@@ -1,138 +1,153 @@
 
-# Export Pipeline Architecture
+# 05 – Export Pipeline (Updated)
 
-This document defines the full deterministic export pipeline used by the
-ChangeTracking extension module. It outlines each processing stage from initial
-staging export through canonicalization, hashing, metadata creation, archival,
-and final normalized output.
+## 1. Overview
 
----
+The Export Pipeline in IntuneManagement is responsible for retrieving objects
+from Microsoft Intune via Graph API and storing them in a temporary, structured
+staging export folder. This data forms the input for the Change Tracking module.
 
-## 1. High-Level Pipeline Overview
-
-The export workflow consists of two major phases:
-
-### **Phase A — Staging Export (Provided by Main Module)**
-- Existing IntuneManagement export writes raw objects into a temporary directory.
-- Files are named using display names (e.g., `TST-FILTER.json`).
-- This acts as the **staging area**.
-
-### **Phase B — Change Tracking Processing (New Module)**
-The ChangeTracking module consumes the staging files and produces canonical,
-Git-friendly, ID-based exports.
-
-Pipeline:
-
-```
-[Staging Export] → [Load] → [Canonical Normalize] → [Hash] →
-[Write raw.json] → [Write meta.json] → [Archive or Delete Source]
-```
-
-All steps are deterministic, order-independent, and repeatable.
+The Change Tracking module does **not** replace or modify the existing export
+mechanism but extends it by providing deterministic downstream processing,
+hashing, metadata generation, and optional archival.
 
 ---
 
-## 2. Staging Folder Behavior
+## 2. Export Flow
 
-The staging folder contains temporary exported files from the upstream module.
-Behavior is configurable:
+The standard application export works as follows:
 
-### Default Behavior
-- **Delete staging file after processing**
-  - Prevents duplication
-  - Avoids reprocessing stale files
-  - Ensures clean state after each run
+1. The user selects object types and/or specific objects.
+2. The existing Intune export engine retrieves objects from Graph.
+3. The engine writes them into a **staging export folder**:
 
-### Optional Behavior
-- **Archive staging file**, preserving folder type structure:
-
-Example:
 ```
-<ExportRoot>/_archive_original_exports/
-    AssignmentFilters/
-        TST-FILTER-W-ChangeTrackingTest.json
+<StagingPath>\<ObjectType>\<FileName>.json
 ```
 
-Configuration keys:
+4. The Change Tracking module consumes this staging folder.
+
+The export pipeline itself remains untouched and continues to function exactly
+as implemented by the original author.
+
+---
+
+## 3. Staging Folder Requirements
+
+The Change Tracking module expects the staging export to follow the exact
+folder structure produced by the IntuneManagement application:
+
+```
+<StagingPath>
+    ├── ConfigurationPolicies
+    ├── AppProtectionPolicies
+    ├── AssignmentFilters
+    └── ...
+```
+
+Each JSON file must contain at minimum an `id` property. Files missing an ID
+are skipped.
+
+---
+
+## 4. Running Change Tracking After Export
+
+After the export completes, the Change Tracking module is invoked:
+
 ```powershell
-$ChangeTrackingConfig = @{
-    KeepOriginalExport = $false
-    ArchiveOriginalExport = $true
-    ArchiveRoot = "C:\Exports\_archive_original_exports"
-}
+Invoke-IntuneExportChangeTracking `
+    -StagingPath "C:\temp\StagingExport" `
+    -ExportRoot  "C:\Git\Intune"
 ```
 
-Only **one archive folder** exists, but the module will recreate subfolders
-matching original structure.
+### 4.1 Parameter → Setting → Default Precedence
+
+The Change Tracking module resolves behavior using:
+
+1. Explicit parameters
+2. Application settings from the **Change Tracking** section
+3. Internal fallback defaults
+
+This is consistent with how other modules in the ecosystem load and apply user
+settings.
 
 ---
 
-## 3. Object Processing Pipeline
+## 5. Outputs of the Change Tracking Pipeline
 
-### Step 1 — Load Staging File
-- Read JSON
-- Detect object type
-- Extract Intune object ID
+For each exported object, Change Tracking produces:
 
-### Step 2 — Canonical JSON Normalize
-Rules:
-- Remove all keys starting with `@odata.`
-- Remove all keys starting with `#`
-- Remove all sibling properties ending with `@odata.type`
-- Sort keys lexicographically
-- Use 2-space indentation
-- Preserve arrays, nulls, and empty objects
-
-### Step 3 — Compute Hash
-- SHA-256 over normalized JSON text
-- Stored into metadata
-
-### Step 4 — Write Canonical Output
-Creates structure:
 ```
-<ExportRoot>/<object-type>/<object-id>/raw.json
-<ExportRoot>/<object-type>/<object-id>/meta.json
+<ExportRoot>\<ObjectType>\<ObjectId>aw.json
+<ExportRoot>\<ObjectType>\<ObjectId>\meta.json
 ```
 
-### Step 5 — Cleanup / Archive
-- Delete staging file (default)
-- OR archive to configured location
+### 5.1 Canonical JSON (raw.json)
+- Deterministic formatting
+- Keys cleaned of volatile OData elements
+- Sorted keys
+- Preserves array order
+
+### 5.2 Metadata File (meta.json)
+- Object ID, display name, type
+- Canonical hash
+- State (“active”, optionally “deleted”)
+- Diagnostics block for future analysis
 
 ---
 
-## 4. Metadata Generation
+## 6. Optional Archival and Deletion Detection
 
-Fields:
-```json
-{
-  "id": "<guid>",
-  "displayName": "<string>",
-  "type": "<object-type>",
-  "category": "<category>",
-  "state": "active | deleted",
-  "lastIntuneModified": "<timestamp>",
-  "hash": "<sha256>",
-  "diagnostics": {}
-}
+These behaviors are controlled via application settings or optional parameters:
+
+### 6.1 Archive Original Export
+When enabled (`CT_ArchiveOriginalExport = $true`), processed staging files are
+moved into:
+
+```
+<ArchiveRoot>\<ObjectType>\<OriginalFile>.json
 ```
 
----
+The structure is preserved using a safe PowerShell 5.1–compatible relative path
+resolver.
 
-## 5. Deleted Object Detection
-If an object was exported in previous runs but is absent in staging:
-- The existing `meta.json` is updated with `state = "deleted"`.
-- The previous `raw.json` remains.
+### 6.2 Deleted Object Marking
+If enabled (`CT_UpdateDeletedStates = $true`), any object previously exported
+but not encountered in the current run is marked:
 
----
+```
+"state": "deleted"
+```
 
-## 6. Deterministic Behavior Guarantees
-- Same input → same output
-- No timestamps written except Intune-modified timestamp
-- No ordering differences
-- Git diffs reflect real configuration changes only
+This is disabled by default.
 
 ---
 
-## 7. Summary
-This pipeline ensures stable Git-based tracking of Intune configuration using a
-separate staging model, deterministic normalization, and modular cleanup rules.
+## 7. Logging Support
+
+If `CT_EnableLogging` is enabled or the parameter `-EnableLogging` is supplied,
+log files are written to:
+
+```
+<ExportRoot>/_logs/ChangeTracking-YYYYMMDD-HHMMSS.log
+```
+
+Logs use the standard Write-Log format consistent with other modules in the
+project.
+
+---
+
+## 8. Summary
+
+The Change Tracking module fully integrates into the existing Export Pipeline
+by:
+
+- Consuming the same staging export structure
+- Applying deterministic processing rules
+- Honoring application settings
+- Remaining compatible with CI/CD automation
+
+The Export Pipeline remains the authoritative source of Intune configuration
+objects—the Change Tracking module adds structure, stability, and versioning
+capabilities on top of it.
+

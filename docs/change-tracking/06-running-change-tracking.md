@@ -1,98 +1,82 @@
 
-# Running Change Tracking
-
-This guide explains how to run the Change Tracking pipeline using the existing
-IntuneManagement export as a staging step.
-
----
+# 06 – Running Change Tracking (Updated)
 
 ## 1. Prerequisites
 
-- IntuneManagement (export) works as usual.
-- The ChangeTracking module is available and imported.
+- Change Tracking module imported.
+- Settings optionally configured via the application Settings UI
+  (Enable Logging, Archive Behavior, Archive Root, Deleted State Handling).
 
 ---
 
-## 2. Recommended Workflow (Development)
+## 2. Running Inside the Application
 
-1. **Export** selected objects using the built-in export, targeting a *staging* folder:
+The module uses:
 
-   ```powershell
-   $staging = 'C:\\temp\\StagingExport'
-   $exportRoot = 'C:\\Git\\Intune'
-   Invoke-IntuneExport -Path $staging
-   ```
+**Parameter → Setting → Default** precedence.
 
-2. **Run Change Tracking** to canonicalize, hash, and write ID-based outputs:
-
-   ```powershell
-   Import-Module '...\\Extensions\\ChangeTracking\\ChangeTracking.psm1' -Force
-
-   # Optional: set runtime config
-   Set-ChangeTrackingConfig @{ 
-       KeepOriginalExport    = $false            # default
-       ArchiveOriginalExport = $true             # default
-       ArchiveRoot           = 'C:\\temp\\Export\\_archive_original_exports'  
-       UpdateDeletedStates   = $false            # use with care
-   }
-
-   Invoke-IntuneExportChangeTracking -StagingPath $staging -ExportRoot $exportRoot -Verbose
-   ```
-
-3. **Review Git changes** under `$exportRoot` and commit if appropriate.
-
----
-
-## 3. What the Module Does
-
-- Reads **staging** JSON files
-- Produces canonical JSON (`raw.json`) and `meta.json` under
-  `\<ExportRoot\>/<objectType>/<objectId>/`
-- Computes SHA-256 to detect changes and **skips writing** if unchanged
-- Deletes or **archives** processed staging files (configurable)
-
----
-
-## 4. Configuration Keys
+Typical execution:
 
 ```powershell
-Set-ChangeTrackingConfig @{
-  KeepOriginalExport     = $false   # if $true: never deletes/moves staging files
-  ArchiveOriginalExport  = $true    # if $true: moves to a single ArchiveRoot (preserves subfolders)
-  ArchiveRoot            = 'C:\\temp\\Export\\_archive_original_exports'
-  UpdateDeletedStates    = $false   # if $true: mark not-seen objects as deleted (use with care)
-}
+Invoke-IntuneExport -Path "C:\temp\Staging"
+Invoke-IntuneExportChangeTracking `
+    -StagingPath "C:\temp\Staging" `
+    -ExportRoot  "C:\Git\Intune"
+```
+
+If the user has modified settings in the Settings UI, those values will
+automatically be applied unless explicitly overridden on the command line.
+
+**Example (override archive root only):**
+
+```powershell
+Invoke-IntuneExportChangeTracking `
+    -StagingPath "C:\temp\Staging" `
+    -ExportRoot  "C:\Git\Intune" `
+    -ArchiveRoot "D:\Archive"
 ```
 
 ---
 
-## 5. Notes & Tips
+## 3. Running Outside the Application
 
-- **Determinism:** If there are no real configuration changes, the module won’t
-  rewrite files; Git stays clean.
-- **Deleted Objects:** If you enable `UpdateDeletedStates`, any object that
-  existed previously in `ExportRoot` but wasn’t seen in the current run will be
-  marked `state = "deleted"` in `meta.json`.
-- **Archival:** With `ArchiveOriginalExport = $true`, the module moves staging
-  files into **one archive root**, recreating the subfolder structure (e.g.,
-  `AssignmentFilters/YourFile.json`).
-- **Safety:** In selective exports, keep `UpdateDeletedStates = $false` to avoid
-  false positives.
+When invoked without the UI loaded, the module:
+
+- Uses explicit parameters when provided.
+- Falls back to stored settings **if** the settings API is available.
+- Otherwise uses module defaults.
+
+CLI wrapper:
+
+```powershell
+Invoke-ChangeTrackingCli `
+    -StagingPath "C:\temp\Staging" `
+    -ExportRoot  "C:\Git\Intune"
+```
+
+This ensures predictable behavior in CI/CD pipelines.
 
 ---
 
-## 6. Example One-Liner for Scheduled Runs
+## 4. Logging
 
-```powershell
-$staging    = 'C:\\temp\\StagingExport'
-$exportRoot = 'C:\\Git\\Intune'
-Invoke-IntuneExport -Path $staging; Import-Module '...\\Extensions\\ChangeTracking\\ChangeTracking.psm1' -Force; Invoke-IntuneExportChangeTracking -StagingPath $staging -ExportRoot $exportRoot -Verbose
+If `EnableLogging` is enabled (via settings or parameter), logs are written to:
+
+```
+<ExportRoot>/_logs/ChangeTracking-YYYYMMDD-HHMMSS.log
 ```
 
 ---
 
-## 7. Next Steps
+## 5. Summary Output
 
-- Add diagnostics to `meta.json` (missing groups/definitions)
-- Add flattened views for selected object types
-- Add a UI button that runs export → change tracking in one flow
+The module concludes with a summary:
+
+```
+[ChangeTracking] Summary:
+  Processed : <n>
+  Changed   : <n>
+  Unchanged : <n>
+  Archived  : <n>
+  Deleted   : <n>   # only if enabled
+```

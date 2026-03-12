@@ -8,7 +8,6 @@
     existing IntuneManagement export workflow, then produce deterministic,
     Git-friendly outputs under an ID-based structure.
 
-
 .NOTES
     Author: Maik Koster
 #>
@@ -32,7 +31,6 @@ function Set-ChangeTrackingConfig {
     }
 }
 
-
 function Invoke-InitializeModule {
     <#
         .SYNOPSIS
@@ -44,6 +42,56 @@ function Invoke-InitializeModule {
     #>
 
     Write-Verbose "[ChangeTracking] Module initialized."
+    
+    # --- Register a settings section for the UI (good neighbor pattern) ---
+    # Matches pattern in EndpointManager.psm1 -> adds a titled section in Settings. 
+    $global:appSettingSections += (New-Object PSObject -Property @{
+        Title    = "Change Tracking"
+        Id       = "ChangeTracking"
+        Values   = @()
+        Priority = 20
+    })
+
+    # Add settings controls – use the same typed controls style as other modules. 
+    # Toggle: Enable logging
+    Add-SettingsObject (New-Object PSObject -Property @{
+        Title        = "Enable logging"
+        Key          = "CT_EnableLogging"
+        Type         = "Boolean"
+        DefaultValue = $false
+        SubPath      = "ChangeTracking"
+        Description  = "Write Change Tracking logs to <ExportRoot>/_logs."
+    }) "ChangeTracking"
+
+    # Toggle: Archive processed staging files
+    Add-SettingsObject (New-Object PSObject -Property @{
+        Title        = "Archive processed staging files"
+        Key          = "CT_ArchiveOriginalExport"
+        Type         = "Boolean"
+        DefaultValue = $true
+        SubPath      = "ChangeTracking"
+        Description  = "If on, move staging files to a single archive root while preserving subfolders."
+    }) "ChangeTracking"
+
+    # Folder picker: Archive root
+    Add-SettingsObject (New-Object PSObject -Property @{
+        Title        = "Archive root folder"
+        Key          = "CT_ArchiveRoot"
+        Type         = "Folder"
+        DefaultValue = "$PSScriptRoot\..\_archive_original_exports"
+        SubPath      = "ChangeTracking"
+        Description  = "Root folder where processed staging files are archived into their original subfolder structure."
+    }) "ChangeTracking"
+
+    # Toggle: Mark unseen as deleted
+    Add-SettingsObject (New-Object PSObject -Property @{
+        Title        = "Mark unseen as deleted"
+        Key          = "CT_UpdateDeletedStates"
+        Type         = "Boolean"
+        DefaultValue = $false
+        SubPath      = "ChangeTracking"
+        Description  = "If on, items not encountered in the current run are marked state='deleted' in meta.json."
+    }) "ChangeTracking"
 }
 
 function Set-ChangeTrackingConfig {
@@ -79,8 +127,37 @@ function Invoke-IntuneExportChangeTracking {
     #>
     param(
         [Parameter(Mandatory)] [string]$StagingPath,
-        [Parameter(Mandatory)] [string]$ExportRoot
+        [Parameter(Mandatory)] [string]$ExportRoot,
+
+        # Optional parameter to override settings
+        [string]$ArchiveRoot,
+
+        # Optional runtime toggles (rarely used; settings are preferred)
+        [Nullable[bool]]$EnableLogging,
+        [Nullable[bool]]$ArchiveOriginalExport,
+        [Nullable[bool]]$UpdateDeletedStates
     )
+
+    # Resolve settings from app store if not passed as params. (Same approach used by doc modules via Get-Setting.) 
+    if ([string]::IsNullOrWhiteSpace($ArchiveRoot)) {
+        $ArchiveRoot = Get-Setting "ChangeTracking" "CT_ArchiveRoot" "$PSScriptRoot\..\_archive_original_exports"
+    }
+    if (-not $EnableLogging.HasValue) {
+        $EnableLogging = [bool](Get-Setting "ChangeTracking" "CT_EnableLogging" $false)
+    }
+    if (-not $ArchiveOriginalExport.HasValue) {
+        $ArchiveOriginalExport = [bool](Get-Setting "ChangeTracking" "CT_ArchiveOriginalExport" $true)
+    }
+    if (-not $UpdateDeletedStates.HasValue) {
+        $UpdateDeletedStates = [bool](Get-Setting "ChangeTracking" "CT_UpdateDeletedStates" $false)
+    }
+
+    # Apply/merge into the module's runtime config
+    # (This keeps existing internal logic intact.)
+    $Script:ChangeTrackingConfig.EnableLogging         = $EnableLogging
+    $Script:ChangeTrackingConfig.ArchiveOriginalExport = $ArchiveOriginalExport
+    $Script:ChangeTrackingConfig.UpdateDeletedStates   = $UpdateDeletedStates
+    $Script:ChangeTrackingConfig.ArchiveRoot           = $ArchiveRoot
 
     if (-not (Test-Path $StagingPath)) { throw "StagingPath not found: $StagingPath" }
     if (-not (Test-Path $ExportRoot)) { New-Item -ItemType Directory -Force -Path $ExportRoot | Out-Null }
@@ -358,6 +435,43 @@ function Get-RelativePath {
 
     # Fallback: no shared root → return filename
     return (Split-Path $full -Leaf)
+}
+
+function Invoke-ChangeTrackingCli {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)] [string]$StagingPath,
+        [Parameter(Mandatory)] [string]$ExportRoot,
+
+        [string]$ArchiveRoot,
+        [switch]$EnableLogging,
+        [switch]$ArchiveOriginalExport,
+        [switch]$UpdateDeletedStates
+    )
+
+    # If settings APIs are present (app loaded), leverage them; otherwise use module defaults.
+    $hasSettings = (Get-Command Get-Setting -ErrorAction SilentlyContinue) -ne $null
+
+    if (-not $PSBoundParameters.ContainsKey('ArchiveRoot')) {
+        if ($hasSettings) {
+            $ArchiveRoot = Get-Setting "ChangeTracking" "CT_ArchiveRoot" "$PSScriptRoot\..\_archive_original_exports"  # 
+        } else {
+            $ArchiveRoot = "$PSScriptRoot\..\_archive_original_exports"
+        }
+    }
+
+    $logPref = if ($PSBoundParameters.ContainsKey('EnableLogging')) { [bool]$EnableLogging } elseif ($hasSettings) { [bool](Get-Setting "ChangeTracking" "CT_EnableLogging" $false) } else { $false }    # 
+    $arcPref = if ($PSBoundParameters.ContainsKey('ArchiveOriginalExport')) { [bool]$ArchiveOriginalExport } elseif ($hasSettings) { [bool](Get-Setting "ChangeTracking" "CT_ArchiveOriginalExport" $true) } else { $true } # 
+    $delPref = if ($PSBoundParameters.ContainsKey('UpdateDeletedStates'))   { [bool]$UpdateDeletedStates }   elseif ($hasSettings) { [bool](Get-Setting "ChangeTracking" "CT_UpdateDeletedStates" $false) } else { $false }  # 
+
+    Invoke-IntuneExportChangeTracking `
+        -StagingPath $StagingPath `
+        -ExportRoot  $ExportRoot `
+        -ArchiveRoot $ArchiveRoot `
+        -EnableLogging:$logPref `
+        -ArchiveOriginalExport:$arcPref `
+        -UpdateDeletedStates:$delPref `
+        -Verbose
 }
 
 function Write-Log {
