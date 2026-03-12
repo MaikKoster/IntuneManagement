@@ -138,26 +138,55 @@ function Invoke-IntuneExportChangeTracking {
         [Nullable[bool]]$UpdateDeletedStates
     )
 
-    # Resolve settings from app store if not passed as params. (Same approach used by doc modules via Get-Setting.) 
+    # Detect whether app settings system is available (UI loaded)
+    $hasSettings = (Get-Command Get-Setting -ErrorAction SilentlyContinue) -ne $null
+
+    # Resolve ArchiveRoot
     if ([string]::IsNullOrWhiteSpace($ArchiveRoot)) {
-        $ArchiveRoot = Get-Setting "ChangeTracking" "CT_ArchiveRoot" "$PSScriptRoot\..\_archive_original_exports"
-    }
-    if (-not $EnableLogging.HasValue) {
-        $EnableLogging = [bool](Get-Setting "ChangeTracking" "CT_EnableLogging" $false)
-    }
-    if (-not $ArchiveOriginalExport.HasValue) {
-        $ArchiveOriginalExport = [bool](Get-Setting "ChangeTracking" "CT_ArchiveOriginalExport" $true)
-    }
-    if (-not $UpdateDeletedStates.HasValue) {
-        $UpdateDeletedStates = [bool](Get-Setting "ChangeTracking" "CT_UpdateDeletedStates" $false)
+        if ($hasSettings) {
+            $ArchiveRoot = Get-Setting "ChangeTracking" "CT_ArchiveRoot" "$PSScriptRoot\..\_archive_original_exports"
+        }
+        else {
+            $ArchiveRoot = "$PSScriptRoot\..\_archive_original_exports"
+        }
     }
 
-    # Apply/merge into the module's runtime config
-    # (This keeps existing internal logic intact.)
+    # Resolve EnableLogging
+    if (-not $EnableLogging.HasValue) {
+        if ($hasSettings) {
+            $EnableLogging = Get-Setting "ChangeTracking" "CT_EnableLogging" $false
+        }
+        else {
+            $EnableLogging = $false
+        }
+    }
+
+    # Resolve ArchiveOriginalExport
+    if (-not $ArchiveOriginalExport.HasValue) {
+        if ($hasSettings) {
+            $ArchiveOriginalExport = Get-Setting "ChangeTracking" "CT_ArchiveOriginalExport" $true
+        }
+        else {
+            $ArchiveOriginalExport = $true
+        }
+    }
+
+    # Resolve UpdateDeletedStates
+    if (-not $UpdateDeletedStates.HasValue) {
+        if ($hasSettings) {
+            $UpdateDeletedStates = Get-Setting "ChangeTracking" "CT_UpdateDeletedStates" $false
+        }
+        else {
+            $UpdateDeletedStates = $false
+        }
+    }
+
+    # Apply settings to the module config
     $Script:ChangeTrackingConfig.EnableLogging         = $EnableLogging
     $Script:ChangeTrackingConfig.ArchiveOriginalExport = $ArchiveOriginalExport
     $Script:ChangeTrackingConfig.UpdateDeletedStates   = $UpdateDeletedStates
     $Script:ChangeTrackingConfig.ArchiveRoot           = $ArchiveRoot
+
 
     if (-not (Test-Path $StagingPath)) { throw "StagingPath not found: $StagingPath" }
     if (-not (Test-Path $ExportRoot)) { New-Item -ItemType Directory -Force -Path $ExportRoot | Out-Null }
@@ -449,28 +478,46 @@ function Invoke-ChangeTrackingCli {
         [switch]$UpdateDeletedStates
     )
 
-    # If settings APIs are present (app loaded), leverage them; otherwise use module defaults.
+    # Determine if app settings system exists
     $hasSettings = (Get-Command Get-Setting -ErrorAction SilentlyContinue) -ne $null
 
+    # Resolve ArchiveRoot
     if (-not $PSBoundParameters.ContainsKey('ArchiveRoot')) {
         if ($hasSettings) {
-            $ArchiveRoot = Get-Setting "ChangeTracking" "CT_ArchiveRoot" "$PSScriptRoot\..\_archive_original_exports"  # 
-        } else {
-            $ArchiveRoot = "$PSScriptRoot\..\_archive_original_exports"
+            $ArchiveRoot = Get-Setting "ChangeTracking" "CT_ArchiveRoot" "$PSScriptRoot\\..\\_archive_original_exports"
+        }
+        else {
+            $ArchiveRoot = "$PSScriptRoot\\..\\_archive_original_exports"
         }
     }
 
-    $logPref = if ($PSBoundParameters.ContainsKey('EnableLogging')) { [bool]$EnableLogging } elseif ($hasSettings) { [bool](Get-Setting "ChangeTracking" "CT_EnableLogging" $false) } else { $false }    # 
-    $arcPref = if ($PSBoundParameters.ContainsKey('ArchiveOriginalExport')) { [bool]$ArchiveOriginalExport } elseif ($hasSettings) { [bool](Get-Setting "ChangeTracking" "CT_ArchiveOriginalExport" $true) } else { $true } # 
-    $delPref = if ($PSBoundParameters.ContainsKey('UpdateDeletedStates'))   { [bool]$UpdateDeletedStates }   elseif ($hasSettings) { [bool](Get-Setting "ChangeTracking" "CT_UpdateDeletedStates" $false) } else { $false }  # 
+    # Resolve booleans
+    $EnableLoggingValue = $EnableLogging.IsPresent
+    $ArchiveValue       = $ArchiveOriginalExport.IsPresent
+    $DeletedValue       = $UpdateDeletedStates.IsPresent
 
+    if ($hasSettings -and -not $EnableLogging.IsPresent) {
+        $EnableLoggingValue = Get-Setting "ChangeTracking" "CT_EnableLogging" $false
+    }
+
+    if ($hasSettings -and -not $ArchiveOriginalExport.IsPresent) {
+        $ArchiveValue = Get-Setting "ChangeTracking" "CT_ArchiveOriginalExport" $true
+    }
+
+    if ($hasSettings -and -not $UpdateDeletedStates.IsPresent) {
+        $DeletedValue = Get-Setting "ChangeTracking" "CT_UpdateDeletedStates" $false
+    }
+
+    #
+    # --- Call main function ---
+    #
     Invoke-IntuneExportChangeTracking `
         -StagingPath $StagingPath `
         -ExportRoot  $ExportRoot `
         -ArchiveRoot $ArchiveRoot `
-        -EnableLogging:$logPref `
-        -ArchiveOriginalExport:$arcPref `
-        -UpdateDeletedStates:$delPref `
+        -EnableLogging:$EnableLoggingValue `
+        -ArchiveOriginalExport:$ArchiveValue `
+        -UpdateDeletedStates:$DeletedValue `
         -Verbose
 }
 
