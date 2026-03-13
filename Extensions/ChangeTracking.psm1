@@ -27,11 +27,11 @@
 
 # module configuration (can be overridden with Set-ChangeTrackingConfig)
 $Script:ChangeTrackingConfig = @{
-    KeepOriginalExport     = $true   # if $true, staging files are never deleted
-    ArchiveOriginalExport  = $true    # if $true, staging files moved into ArchiveRoot
-    ArchiveRoot            = "$PSScriptRoot/../_archive_original_exports"
-    UpdateDeletedStates    = $false   # if $true, mark unseen objects as deleted
-    EnableLogging          = $false   # if $true, Write-Log is enabled
+    KeepOriginalExport    = $true   # if $true, staging files are never deleted
+    ArchiveOriginalExport = $true    # if $true, staging files moved into ArchiveRoot
+    ArchiveRoot           = "$PSScriptRoot/../_archive_original_exports"
+    UpdateDeletedStates   = $false   # if $true, mark unseen objects as deleted
+    EnableLogging         = $false   # if $true, Write-Log is enabled
 }
 
 
@@ -39,7 +39,9 @@ $Script:ChangeTrackingConfig = @{
 function Set-ChangeTrackingConfig {
     param([hashtable]$Config)
     if ($null -ne $Config) {
-        foreach ($k in $Config.Keys) { $Script:ChangeTrackingConfig[$k] = $Config[$k] }
+        foreach ($k in $Config.Keys) {
+            $Script:ChangeTrackingConfig[$k] = $Config[$k] 
+        }
     }
 }
 
@@ -58,52 +60,52 @@ function Invoke-InitializeModule {
     # --- Register a settings section for the UI (good neighbor pattern) ---
     # Matches pattern in EndpointManager.psm1 -> adds a titled section in Settings. 
     $global:appSettingSections += (New-Object PSObject -Property @{
-        Title    = "Change Tracking"
-        Id       = "ChangeTracking"
-        Values   = @()
-        Priority = 20
-    })
+            Title    = "Change Tracking"
+            Id       = "ChangeTracking"
+            Values   = @()
+            Priority = 20
+        })
 
     # Add settings controls – use the same typed controls style as other modules. 
     # Toggle: Enable logging
     Add-SettingsObject (New-Object PSObject -Property @{
-        Title        = "Enable logging"
-        Key          = "CT_EnableLogging"
-        Type         = "Boolean"
-        DefaultValue = $false
-        SubPath      = "ChangeTracking"
-        Description  = "Write Change Tracking logs to <ExportRoot>/_logs."
-    }) "ChangeTracking"
+            Title        = "Enable logging"
+            Key          = "CT_EnableLogging"
+            Type         = "Boolean"
+            DefaultValue = $false
+            SubPath      = "ChangeTracking"
+            Description  = "Write Change Tracking logs to <ExportRoot>/_logs."
+        }) "ChangeTracking"
 
     # Toggle: Archive processed staging files
     Add-SettingsObject (New-Object PSObject -Property @{
-        Title        = "Archive processed staging files"
-        Key          = "CT_ArchiveOriginalExport"
-        Type         = "Boolean"
-        DefaultValue = $true
-        SubPath      = "ChangeTracking"
-        Description  = "If on, move staging files to a single archive root while preserving subfolders."
-    }) "ChangeTracking"
+            Title        = "Archive processed staging files"
+            Key          = "CT_ArchiveOriginalExport"
+            Type         = "Boolean"
+            DefaultValue = $true
+            SubPath      = "ChangeTracking"
+            Description  = "If on, move staging files to a single archive root while preserving subfolders."
+        }) "ChangeTracking"
 
     # Folder picker: Archive root
     Add-SettingsObject (New-Object PSObject -Property @{
-        Title        = "Archive root folder"
-        Key          = "CT_ArchiveRoot"
-        Type         = "Folder"
-        DefaultValue = "$PSScriptRoot\..\_archive_original_exports"
-        SubPath      = "ChangeTracking"
-        Description  = "Root folder where processed staging files are archived into their original subfolder structure."
-    }) "ChangeTracking"
+            Title        = "Archive root folder"
+            Key          = "CT_ArchiveRoot"
+            Type         = "Folder"
+            DefaultValue = "$PSScriptRoot\..\_archive_original_exports"
+            SubPath      = "ChangeTracking"
+            Description  = "Root folder where processed staging files are archived into their original subfolder structure."
+        }) "ChangeTracking"
 
     # Toggle: Mark unseen as deleted
     Add-SettingsObject (New-Object PSObject -Property @{
-        Title        = "Mark unseen as deleted"
-        Key          = "CT_UpdateDeletedStates"
-        Type         = "Boolean"
-        DefaultValue = $false
-        SubPath      = "ChangeTracking"
-        Description  = "If on, items not encountered in the current run are marked state='deleted' in meta.json."
-    }) "ChangeTracking"
+            Title        = "Mark unseen as deleted"
+            Key          = "CT_UpdateDeletedStates"
+            Type         = "Boolean"
+            DefaultValue = $false
+            SubPath      = "ChangeTracking"
+            Description  = "If on, items not encountered in the current run are marked state='deleted' in meta.json."
+        }) "ChangeTracking"
 }
 
 function Invoke-IntuneExportChangeTracking {
@@ -121,33 +123,60 @@ function Invoke-IntuneExportChangeTracking {
     $hasSettings = (Get-Command Get-Setting -ErrorAction SilentlyContinue) -ne $null
 
     # ArchiveRoot
-    if ($PSBoundParameters.ContainsKey('ArchiveRoot')) { }
-    elseif ($hasSettings) { $ArchiveRoot = Get-Setting "ChangeTracking" "CT_ArchiveRoot" "$PSScriptRoot\..\_archive_original_exports" }
-    else { $ArchiveRoot = "$PSScriptRoot\..\_archive_original_exports" }
+    if ($PSBoundParameters.ContainsKey('ArchiveRoot')) { 
+    }
+    elseif ($hasSettings) {
+        $ArchiveRoot = Get-Setting "ChangeTracking" "CT_ArchiveRoot" "$PSScriptRoot\..\_archive_original_exports" 
+    }
+    else {
+        $ArchiveRoot = "$PSScriptRoot\..\_archive_original_exports" 
+    }
 
     # EnableLogging
-    if ($PSBoundParameters.ContainsKey('EnableLogging')) { $EnableLogging = [bool]$EnableLogging }
-    elseif ($hasSettings) { $EnableLogging = Get-Setting "ChangeTracking" "CT_EnableLogging" $false }
-    else { $EnableLogging = $false }
+    if ($PSBoundParameters.ContainsKey('EnableLogging')) {
+        $EnableLogging = [bool]$EnableLogging 
+    }
+    elseif ($hasSettings) {
+        $EnableLogging = Get-Setting "ChangeTracking" "CT_EnableLogging" $false 
+    }
+    else {
+        $EnableLogging = $false 
+    }
 
     # ArchiveOriginalExport
-    if ($PSBoundParameters.ContainsKey('ArchiveOriginalExport')) { $ArchiveOriginalExport = [bool]$ArchiveOriginalExport }
-    elseif ($hasSettings) { $ArchiveOriginalExport = Get-Setting "ChangeTracking" "CT_ArchiveOriginalExport" $true }
-    else { $ArchiveOriginalExport = $true }
+    if ($PSBoundParameters.ContainsKey('ArchiveOriginalExport')) {
+        $ArchiveOriginalExport = [bool]$ArchiveOriginalExport 
+    }
+    elseif ($hasSettings) {
+        $ArchiveOriginalExport = Get-Setting "ChangeTracking" "CT_ArchiveOriginalExport" $true 
+    }
+    else {
+        $ArchiveOriginalExport = $true 
+    }
 
     # UpdateDeletedStates
-    if ($PSBoundParameters.ContainsKey('UpdateDeletedStates')) { $UpdateDeletedStates = [bool]$UpdateDeletedStates }
-    elseif ($hasSettings) { $UpdateDeletedStates = Get-Setting "ChangeTracking" "CT_UpdateDeletedStates" $false }
-    else { $UpdateDeletedStates = $false }
+    if ($PSBoundParameters.ContainsKey('UpdateDeletedStates')) {
+        $UpdateDeletedStates = [bool]$UpdateDeletedStates 
+    }
+    elseif ($hasSettings) {
+        $UpdateDeletedStates = Get-Setting "ChangeTracking" "CT_UpdateDeletedStates" $false 
+    }
+    else {
+        $UpdateDeletedStates = $false 
+    }
 
     # Apply
-    $Script:ChangeTrackingConfig.EnableLogging         = $EnableLogging
+    $Script:ChangeTrackingConfig.EnableLogging = $EnableLogging
     $Script:ChangeTrackingConfig.ArchiveOriginalExport = $ArchiveOriginalExport
-    $Script:ChangeTrackingConfig.UpdateDeletedStates   = $UpdateDeletedStates
-    $Script:ChangeTrackingConfig.ArchiveRoot           = $ArchiveRoot
+    $Script:ChangeTrackingConfig.UpdateDeletedStates = $UpdateDeletedStates
+    $Script:ChangeTrackingConfig.ArchiveRoot = $ArchiveRoot
 
-    if (-not (Test-Path $StagingPath)) { throw "StagingPath not found: $StagingPath" }
-    if (-not (Test-Path $ExportRoot)) { New-Item -ItemType Directory -Force -Path $ExportRoot | Out-Null }
+    if (-not (Test-Path $StagingPath)) {
+        throw "StagingPath not found: $StagingPath" 
+    }
+    if (-not (Test-Path $ExportRoot)) {
+        New-Item -ItemType Directory -Force -Path $ExportRoot | Out-Null 
+    }
 
     $Script:CurrentStagingRoot = (Resolve-Path $StagingPath).Path
 
@@ -155,7 +184,9 @@ function Invoke-IntuneExportChangeTracking {
     if ($Script:ChangeTrackingConfig.EnableLogging) {
         $timestamp = Get-Date -Format 'yyyyMMdd-HHmmss'
         $logDir = Join-Path $ExportRoot "_logs"
-        if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Force -Path $logDir | Out-Null }
+        if (-not (Test-Path $logDir)) {
+            New-Item -ItemType Directory -Force -Path $logDir | Out-Null 
+        }
         $Script:LogPath = Join-Path $logDir "ChangeTracking-$timestamp.log"
         Write-Log -Message "Change Tracking Started" -Severity Info
     }
@@ -177,42 +208,73 @@ function Invoke-IntuneExportChangeTracking {
             Handle-StagingFile -File $file -archivedRef ([ref]$archived); continue
         }
 
-        $objectType = Split-Path $file.DirectoryName -Leaf; if ([string]::IsNullOrWhiteSpace($objectType)) { $objectType = 'Unknown' }
-        if (-not $seen.ContainsKey($objectType)) { $seen[$objectType] = New-Object System.Collections.Generic.HashSet[string] }
+        $objectType = Split-Path $file.DirectoryName -Leaf; if ([string]::IsNullOrWhiteSpace($objectType)) {
+            $objectType = 'Unknown' 
+        }
+        if (-not $seen.ContainsKey($objectType)) {
+            $seen[$objectType] = New-Object System.Collections.Generic.HashSet[string] 
+        }
         [void]$seen[$objectType].Add($objectId)
 
         $targetDir = Join-Path $ExportRoot (Join-Path $objectType $objectId)
         New-Item -ItemType Directory -Force -Path $targetDir | Out-Null
-        $rawPath  = Join-Path $targetDir 'raw.json'
+        $rawPath = Join-Path $targetDir 'raw.json'
         $metaPath = Join-Path $targetDir 'meta.json'
 
         $canonical = ConvertTo-CanonicalJson -Object $json
-        $hash      = Get-ObjectHash -CanonicalJson $canonical
+        $hash = Get-ObjectHash -CanonicalJson $canonical
 
-        $existingMeta = $null; if (Test-Path $metaPath) { try { $existingMeta = Get-Content -Raw -Path $metaPath | ConvertFrom-Json } catch { $existingMeta = $null } }
-        $previousHash = if ($existingMeta) { $existingMeta.hash } else { $null }
+        $existingMeta = $null; if (Test-Path $metaPath) {
+            try {
+                $existingMeta = Get-Content -Raw -Path $metaPath | ConvertFrom-Json 
+            }
+            catch {
+                $existingMeta = $null 
+            } 
+        }
+        $previousHash = if ($existingMeta) {
+            $existingMeta.hash 
+        }
+        else {
+            $null 
+        }
 
         # Assignment summary + diagnostics precompute (will be merged into meta)
         $assignmentSummary = @()
-        $assignmentDiagnostics = @{ missingGroups=@(); nonSecurityGroups=@(); filtersReferencedButMissing=@(); filtersPresent=$false }
+        $assignmentDiagnostics = @{ missingGroups = @(); nonSecurityGroups = @(); filtersReferencedButMissing = @(); filtersPresent = $false }
         if ($json.assignments) {
             foreach ($a in $json.assignments) {
                 $gid = $a.target.groupId; $fid = $a.target.deviceAndAppManagementAssignmentFilterId
-                if ($fid) { $assignmentDiagnostics.filtersPresent = $true }
+                if ($fid) {
+                    $assignmentDiagnostics.filtersPresent = $true 
+                }
                 $gName = "(unknown)"; $isSec = $null
                 if ($gid) {
-                    $gFolder = Join-Path $ExportRoot ("Groups/"+$gid); $gRaw = Join-Path $gFolder 'raw.json'
-                    if (Test-Path $gRaw) { try { $gJson = Get-Content -Raw -Path $gRaw | ConvertFrom-Json; $gName=$gJson.displayName; $isSec=$gJson.securityEnabled; if ($isSec -eq $false) { $assignmentDiagnostics.nonSecurityGroups += $gid } } catch { $assignmentDiagnostics.missingGroups += $gid } }
-                    else { $assignmentDiagnostics.missingGroups += $gid }
+                    $gFolder = Join-Path $ExportRoot ("Groups/" + $gid); $gRaw = Join-Path $gFolder 'raw.json'
+                    if (Test-Path $gRaw) {
+                        try {
+                            $gJson = Get-Content -Raw -Path $gRaw | ConvertFrom-Json; $gName = $gJson.displayName; $isSec = $gJson.securityEnabled; if ($isSec -eq $false) {
+                                $assignmentDiagnostics.nonSecurityGroups += $gid 
+                            } 
+                        }
+                        catch {
+                            $assignmentDiagnostics.missingGroups += $gid 
+                        } 
+                    }
+                    else {
+                        $assignmentDiagnostics.missingGroups += $gid 
+                    }
                 }
-                $assignmentSummary += [PSCustomObject]@{ targetType='group'; groupId=$gid; groupDisplayName=$gName; filterId=$fid; filterType=$a.target.deviceAndAppManagementAssignmentFilterType }
+                $assignmentSummary += [PSCustomObject]@{ targetType = 'group'; groupId = $gid; groupDisplayName = $gName; filterId = $fid; filterType = $a.target.deviceAndAppManagementAssignmentFilterType }
             }
         }
 
         if ($previousHash -and ($previousHash -eq $hash)) {
             $unchanged++
             Write-Verbose "[ChangeTracking] No change for $objectType/$objectId"; Write-Log -Message "Unchanged: $objectType/$objectId" -Severity Verbose
-            if ($existingMeta -and $existingMeta.state -ne 'active') { $existingMeta.state='active'; ($existingMeta | ConvertTo-Json -Depth 20) | Out-File -FilePath $metaPath -Encoding utf8 }
+            if ($existingMeta -and $existingMeta.state -ne 'active') {
+                $existingMeta.state = 'active'; ($existingMeta | ConvertTo-Json -Depth 20) | Out-File -FilePath $metaPath -Encoding utf8 
+            }
             # Even if unchanged, still archive/remove staging file
             Handle-StagingFile -File $file -archivedRef ([ref]$archived)
             continue
@@ -246,7 +308,9 @@ function Invoke-IntuneExportChangeTracking {
 
         # If Groups, add service provisioning warnings (if present)
         if ($objectType -eq 'Groups' -and $json.serviceProvisioningErrors) {
-            $svcErrors = @(); foreach ($e in $json.serviceProvisioningErrors) { $svcErrors += [PSCustomObject]@{ serviceInstance=$e.serviceInstance; isResolved=$e.isResolved; note="See raw.json/serviceProvisioningErrors" } }
+            $svcErrors = @(); foreach ($e in $json.serviceProvisioningErrors) {
+                $svcErrors += [PSCustomObject]@{ serviceInstance = $e.serviceInstance; isResolved = $e.isResolved; note = "See raw.json/serviceProvisioningErrors" } 
+            }
             $meta.diagnostics.serviceProvisioningWarnings = $svcErrors
         }
 
@@ -254,7 +318,9 @@ function Invoke-IntuneExportChangeTracking {
         Handle-StagingFile -File $file -archivedRef ([ref]$archived)
     }
 
-    if ($Script:ChangeTrackingConfig.UpdateDeletedStates) { $deleted += (Update-DeletedStates -ExportRoot $ExportRoot -Seen $seen) }
+    if ($Script:ChangeTrackingConfig.UpdateDeletedStates) {
+        $deleted += (Update-DeletedStates -ExportRoot $ExportRoot -Seen $seen) 
+    }
 
     $summary = @(
         "[ChangeTracking] Summary:",
@@ -263,10 +329,14 @@ function Invoke-IntuneExportChangeTracking {
         "  Unchanged : $unchanged",
         "  Archived  : $archived"
     )
-    if ($Script:ChangeTrackingConfig.UpdateDeletedStates) { $summary += "  Deleted   : $deleted" }
+    if ($Script:ChangeTrackingConfig.UpdateDeletedStates) {
+        $summary += "  Deleted   : $deleted" 
+    }
     $summaryText = $summary -join [Environment]::NewLine
     Write-Verbose $summaryText
-    if ($Script:ChangeTrackingConfig.EnableLogging) { Write-Log -Message $summaryText -AsPlainText -Severity Info }
+    if ($Script:ChangeTrackingConfig.EnableLogging) {
+        Write-Log -Message $summaryText -AsPlainText -Severity Info 
+    }
 }
 
 function ConvertTo-CanonicalJson {
@@ -289,9 +359,15 @@ function ConvertTo-CanonicalJson {
         if ($node -is [System.Collections.IDictionary]) {
             $new = @{}
             foreach ($key in $node.Keys | Sort-Object) {
-                if ($key -like '@odata.*') { continue }
-                if ($key -like '#*')       { continue }
-                if ($key -like '*@odata.type') { continue }
+                if ($key -like '@odata.*') {
+                    continue 
+                }
+                if ($key -like '#*') {
+                    continue 
+                }
+                if ($key -like '*@odata.type') {
+                    continue 
+                }
                 $new[$key] = Clean-Node $node[$key]
             }
             return $new
@@ -329,7 +405,9 @@ function Handle-StagingFile {
         [ref]$archivedRef
     )
 
-    if ($Script:ChangeTrackingConfig.KeepOriginalExport) { return }
+    if ($Script:ChangeTrackingConfig.KeepOriginalExport) {
+        return 
+    }
 
     if ($Script:ChangeTrackingConfig.ArchiveOriginalExport) {
         if (-not (Test-Path $Script:ChangeTrackingConfig.ArchiveRoot)) {
@@ -367,17 +445,29 @@ function Update-DeletedStates {
 
     foreach ($typeDir in Get-ChildItem -Path $ExportRoot -Directory) {
         $objectType = $typeDir.Name
-        $seenSet = if ($Seen.ContainsKey($objectType)) { $Seen[$objectType] } else { New-Object System.Collections.Generic.HashSet[string] }
+        $seenSet = if ($Seen.ContainsKey($objectType)) {
+            $Seen[$objectType] 
+        }
+        else {
+            New-Object System.Collections.Generic.HashSet[string] 
+        }
 
         foreach ($idDir in Get-ChildItem -Path $typeDir.FullName -Directory) {
             $id = $idDir.Name
             $metaPath = Join-Path $idDir.FullName 'meta.json'
-            if (-not (Test-Path $metaPath)) { continue }
-            if ($seenSet.Contains($id))      { continue }
+            if (-not (Test-Path $metaPath)) {
+                continue 
+            }
+            if ($seenSet.Contains($id)) {
+                continue 
+            }
 
             try {
                 $meta = Get-Content -Raw -Path $metaPath | ConvertFrom-Json
-            } catch { continue }
+            }
+            catch {
+                continue 
+            }
 
             if ($meta.state -ne 'deleted') {
                 $meta.state = 'deleted'
@@ -399,11 +489,11 @@ function Get-RelativePath {
     )
 
     # Normalize both paths
-    $base = (Resolve-Path $BasePath).Path.TrimEnd('\','/')
+    $base = (Resolve-Path $BasePath).Path.TrimEnd('\', '/')
     $full = (Resolve-Path $FullPath).Path
 
     if ($full.StartsWith($base, [System.StringComparison]::InvariantCultureIgnoreCase)) {
-        return $full.Substring($base.Length).TrimStart('\','/')
+        return $full.Substring($base.Length).TrimStart('\', '/')
     }
 
     # Fallback: no shared root → return filename
@@ -424,13 +514,47 @@ function Invoke-ChangeTrackingCli {
     $hasSettings = (Get-Command Get-Setting -ErrorAction SilentlyContinue) -ne $null
 
     if (-not $PSBoundParameters.ContainsKey('ArchiveRoot')) {
-        if ($hasSettings) { $ArchiveRoot = Get-Setting "ChangeTracking" "CT_ArchiveRoot" "$PSScriptRoot\..\_archive_original_exports" }
-        else { $ArchiveRoot = "$PSScriptRoot\..\_archive_original_exports" }
+        if ($hasSettings) {
+            $ArchiveRoot = Get-Setting "ChangeTracking" "CT_ArchiveRoot" "$PSScriptRoot\..\_archive_original_exports" 
+        }
+        else {
+            $ArchiveRoot = "$PSScriptRoot\..\_archive_original_exports" 
+        }
     }
 
-    $logPref = if ($PSBoundParameters.ContainsKey('EnableLogging')) { $EnableLogging.IsPresent } else { if ($hasSettings) { Get-Setting "ChangeTracking" "CT_EnableLogging" $false } else { $false } }
-    $arcPref = if ($PSBoundParameters.ContainsKey('ArchiveOriginalExport')) { $ArchiveOriginalExport.IsPresent } else { if ($hasSettings) { Get-Setting "ChangeTracking" "CT_ArchiveOriginalExport" $true } else { $true } }
-    $delPref = if ($PSBoundParameters.ContainsKey('UpdateDeletedStates'))   { $UpdateDeletedStates.IsPresent }   else { if ($hasSettings) { Get-Setting "ChangeTracking" "CT_UpdateDeletedStates" $false } else { $false } }
+    $logPref = if ($PSBoundParameters.ContainsKey('EnableLogging')) {
+        $EnableLogging.IsPresent 
+    }
+    else {
+        if ($hasSettings) {
+            Get-Setting "ChangeTracking" "CT_EnableLogging" $false 
+        }
+        else {
+            $false 
+        } 
+    }
+    $arcPref = if ($PSBoundParameters.ContainsKey('ArchiveOriginalExport')) {
+        $ArchiveOriginalExport.IsPresent 
+    }
+    else {
+        if ($hasSettings) {
+            Get-Setting "ChangeTracking" "CT_ArchiveOriginalExport" $true 
+        }
+        else {
+            $true 
+        } 
+    }
+    $delPref = if ($PSBoundParameters.ContainsKey('UpdateDeletedStates')) {
+        $UpdateDeletedStates.IsPresent 
+    }
+    else {
+        if ($hasSettings) {
+            Get-Setting "ChangeTracking" "CT_UpdateDeletedStates" $false 
+        }
+        else {
+            $false 
+        } 
+    }
 
     Invoke-IntuneExportChangeTracking -StagingPath $StagingPath -ExportRoot $ExportRoot -ArchiveRoot $ArchiveRoot -EnableLogging:$logPref -ArchiveOriginalExport:$arcPref -UpdateDeletedStates:$delPref -Verbose
 }
@@ -468,12 +592,16 @@ function Invoke-IntuneExportWithFlattening {
 function Parse-OmaKeyValueString {
     param([string]$val)
     $result = @{}
-    if ([string]::IsNullOrWhiteSpace($val)) { return $result }
+    if ([string]::IsNullOrWhiteSpace($val)) {
+        return $result 
+    }
     foreach ($pair in ($val -split ',')) {
         $parts = $pair.Trim() -split ':', 2
         if ($parts.Count -eq 2) {
             $key = $parts[0].Trim(); $v = $parts[1].Trim()
-            if ($v -as [int]) { $v = [int]$v }
+            if ($v -as [int]) {
+                $v = [int]$v 
+            }
             $result[$key] = $v
         }
     }
@@ -491,9 +619,13 @@ function Convert-ToFlatObject {
     $flat = @()
 
     # Assignment Filters
-    if ($ObjectType -in @('AssignmentFilters','AssignmentFilter','Filters','Filter')) {
-        if ($JsonObject.rule) { $flat += [PSCustomObject]@{ path="filter.rule"; type="string"; value=$JsonObject.rule } }
-        if ($JsonObject.platform) { $flat += [PSCustomObject]@{ path="filter.platform"; type="string"; value=$JsonObject.platform } }
+    if ($ObjectType -in @('AssignmentFilters', 'AssignmentFilter', 'Filters', 'Filter')) {
+        if ($JsonObject.rule) {
+            $flat += [PSCustomObject]@{ path = "filter.rule"; type = "string"; value = $JsonObject.rule } 
+        }
+        if ($JsonObject.platform) {
+            $flat += [PSCustomObject]@{ path = "filter.platform"; type = "string"; value = $JsonObject.platform } 
+        }
         return $flat
     }
 
@@ -502,45 +634,58 @@ function Convert-ToFlatObject {
         function Flatten-SCSettingInner {
             param([object]$s)
             $inst = $s.settingInstance
-            $sid  = $inst.settingDefinitionId
-            $def  = Get-SettingsCatalogDefinition -DefinitionId $sid -ExportRoot $ExportRoot
+            $sid = $inst.settingDefinitionId
+            $def = Get-SettingsCatalogDefinition -DefinitionId $sid -ExportRoot $ExportRoot
             $out = [ordered]@{
                 path          = $sid
                 scName        = $def.displayName
                 scDesc        = $def.description
                 risk          = $def.riskLevel
                 keywords      = $def.keywords
-                cspEquivalent = if ($def.baseUri -and $def.offsetUri) { $def.baseUri + $def.offsetUri } else { $null }
+                cspEquivalent = if ($def.baseUri -and $def.offsetUri) {
+                    $def.baseUri + $def.offsetUri 
+                }
+                else {
+                    $null 
+                }
             }
 
             if ($inst.'@odata.type' -like '*ChoiceSettingInstance') {
-                $itemId  = $inst.choiceSettingValue.value
+                $itemId = $inst.choiceSettingValue.value
                 $valueInt = $null
-                if ($itemId -match '_(\d+)$') { $valueInt = [int]$Matches[1] }
+                if ($itemId -match '_(\d+)$') {
+                    $valueInt = [int]$Matches[1] 
+                }
                 $friendly = $null
                 if ($def.options) {
-                    foreach ($opt in $def.options) { if ($opt.itemId -eq $itemId) { $friendly = $opt.displayName } }
+                    foreach ($opt in $def.options) {
+                        if ($opt.itemId -eq $itemId) {
+                            $friendly = $opt.displayName 
+                        } 
+                    }
                 }
                 $out.type = 'choice'; $out.value = $valueInt; $out.valueId = $itemId; $out.friendlyValue = $friendly
                 if ($inst.choiceSettingValue.children) {
                     $out.children = @()
                     foreach ($child in $inst.choiceSettingValue.children) {
-                        $out.children += @{ path=$child.settingDefinitionId; type='simple'; value=$child.simpleSettingValue.value }
+                        $out.children += @{ path = $child.settingDefinitionId; type = 'simple'; value = $child.simpleSettingValue.value }
                     }
                 }
                 return $out
             }
 
             if ($inst.'@odata.type' -like '*SimpleSettingInstance') {
-                $out.type='simple'; $out.value=$inst.simpleSettingValue.value; return $out
+                $out.type = 'simple'; $out.value = $inst.simpleSettingValue.value; return $out
             }
             if ($inst.'@odata.type' -like '*SimpleSettingCollectionInstance') {
-                $out.type='stringCollection'; $out.value=$inst.simpleSettingCollectionValue; return $out
+                $out.type = 'stringCollection'; $out.value = $inst.simpleSettingCollectionValue; return $out
             }
             return $out
         }
 
-        foreach ($s in $JsonObject.settings) { $flat += (Flatten-SCSettingInner -s $s) }
+        foreach ($s in $JsonObject.settings) {
+            $flat += (Flatten-SCSettingInner -s $s) 
+        }
         return $flat
     }
 
@@ -552,17 +697,21 @@ function Convert-ToFlatObject {
             $def = Get-SettingsCatalogDefinitionByCspPath -csp $omaUri -ExportRoot $ExportRoot
             $friendly = $null
             if ($def -and $def.options) {
-                foreach ($opt in $def.options) { if ($opt.optionValue.value -eq $oma.value) { $friendly = $opt.displayName } }
+                foreach ($opt in $def.options) {
+                    if ($opt.optionValue.value -eq $oma.value) {
+                        $friendly = $opt.displayName 
+                    } 
+                }
             }
 
             if ($typeTag -like '*omaSettingString*') {
-                $flat += @{ path=$omaUri; type='omaString'; value=(Parse-OmaKeyValueString $oma.value); friendlyValue=$friendly; scEquivalent=($def.id) }
+                $flat += @{ path = $omaUri; type = 'omaString'; value = (Parse-OmaKeyValueString $oma.value); friendlyValue = $friendly; scEquivalent = ($def.id) }
             }
             elseif ($typeTag -like '*omaSettingInteger*') {
-                $flat += @{ path=$omaUri; type='omaInteger'; value=$oma.value; friendlyValue=$friendly; scEquivalent=($def.id) }
+                $flat += @{ path = $omaUri; type = 'omaInteger'; value = $oma.value; friendlyValue = $friendly; scEquivalent = ($def.id) }
             }
             else {
-                $flat += @{ path=$omaUri; type='omaRaw'; value=$oma.value; friendlyValue=$friendly; scEquivalent=($def.id) }
+                $flat += @{ path = $omaUri; type = 'omaRaw'; value = $oma.value; friendlyValue = $friendly; scEquivalent = ($def.id) }
             }
         }
         return $flat
@@ -572,14 +721,19 @@ function Convert-ToFlatObject {
 }
 
 function Ensure-MSGraphModule {
-    if ((Get-Command Invoke-GraphRequest -ErrorAction SilentlyContinue)) { return }
+    if ((Get-Command Invoke-GraphRequest -ErrorAction SilentlyContinue)) {
+        return 
+    }
     $msgraphPath = $null
     if ($global:AppRootFolder) {
         $msgraphPath = Join-Path $global:AppRootFolder "Extensions/MSGraph.psm1"
-    } else {
+    }
+    else {
         $msgraphPath = Join-Path $PSScriptRoot "../MSGraph.psm1"
     }
-    if (Test-Path $msgraphPath) { Import-Module $msgraphPath -Force -ErrorAction Stop }
+    if (Test-Path $msgraphPath) {
+        Import-Module $msgraphPath -Force -ErrorAction Stop 
+    }
 }
 
 function Get-SettingsCatalogCacheRoot {
@@ -588,22 +742,59 @@ function Get-SettingsCatalogCacheRoot {
 }
 
 function Get-SettingsCatalogDefinition {
-    param([Parameter(Mandatory)] [string]$DefinitionId,[Parameter(Mandatory)] [string]$ExportRoot)
+    param(
+        [Parameter(Mandatory)] [string]$DefinitionId,
+        [Parameter(Mandatory)] [string]$ExportRoot
+    )
+
     $cacheRoot = Get-SettingsCatalogCacheRoot -ExportRoot $ExportRoot
-    $path = Join-Path $cacheRoot ("{0}.json" -f $DefinitionId)
-    if (Test-Path $path) { return (Get-Content -Raw -Path $path | ConvertFrom-Json) }
-    return $null
+    $mapFile = Join-Path $cacheRoot "filemap.json"
+    if (-not (Test-Path $mapFile)) { return $null }
+
+    $fileMap = Get-Content -Raw -Path $mapFile | ConvertFrom-Json
+    $safe = $fileMap.$DefinitionId
+    if (-not $safe) { return $null }
+
+    $fullPath = Join-Path $cacheRoot $safe
+    if (-not (Test-Path $fullPath)) { return $null }
+
+    return (Get-Content -Raw -Path $fullPath | ConvertFrom-Json)
 }
 
 function Get-SettingsCatalogDefinitionByCspPath {
-    param([Parameter(Mandatory)] [string]$csp,[Parameter(Mandatory)] [string]$ExportRoot)
+    param(
+        [Parameter(Mandatory)] [string]$csp,
+        [Parameter(Mandatory)] [string]$ExportRoot
+    )
+
     $cacheRoot = Get-SettingsCatalogCacheRoot -ExportRoot $ExportRoot
     $indexFile = Join-Path $cacheRoot "definitions-by-cspPath.json"
+    $mapFile   = Join-Path $cacheRoot "filemap.json"
     if (-not (Test-Path $indexFile)) { return $null }
-    $index = Get-Content -Raw -Path $indexFile | ConvertFrom-Json
-    $id = $index.$csp
-    if ($id) { return Get-SettingsCatalogDefinition -DefinitionId $id -ExportRoot $ExportRoot }
-    return $null
+    if (-not (Test-Path $mapFile))   { return $null }
+
+    $index   = Get-Content -Raw -Path $indexFile | ConvertFrom-Json
+    $fileMap = Get-Content -Raw -Path $mapFile   | ConvertFrom-Json
+
+    $definitionId = $index.$csp
+    if (-not $definitionId) { return $null }
+
+    $safe = $fileMap.$definitionId
+    if (-not $safe) { return $null }
+
+    $fullPath = Join-Path $cacheRoot $safe
+    if (-not (Test-Path $fullPath)) { return $null }
+
+    return (Get-Content -Raw -Path $fullPath | ConvertFrom-Json)
+}
+
+function Get-SafeFilename {
+    param([string]$input)
+    $bytes = [System.Text.Encoding]::UTF8.GetBytes($input)
+    $sha = [System.Security.Cryptography.SHA256]::Create()
+    $hash = $sha.ComputeHash($bytes)
+    # hex-encode
+    return ([BitConverter]::ToString($hash) -replace "-", "").ToLower() + ".json"
 }
 
 function Update-IntuneSettingsCatalogCache {
@@ -624,12 +815,23 @@ function Update-IntuneSettingsCatalogCache {
     Ensure-MSGraphModule
 
     $cacheRoot = Get-SettingsCatalogCacheRoot -ExportRoot $ExportRoot
-    if (-not (Test-Path $cacheRoot)) { New-Item -ItemType Directory -Force -Path $cacheRoot | Out-Null }
+    if (-not (Test-Path $cacheRoot)) {
+        New-Item -ItemType Directory -Force -Path $cacheRoot | Out-Null
+    }
 
+    # If cache exists and not forced AND map exists -> return
     $existing = Get-ChildItem -Path $cacheRoot -Filter *.json -File -ErrorAction SilentlyContinue
-    if ($existing -and -not $Force) {
+    if ($existing -and -not $Force -and (Test-Path (Join-Path $cacheRoot "filemap.json"))) {
         Write-Verbose "[SC Cache] Cache already present at $cacheRoot (use -Force to refresh)."
         return
+    }
+
+    # Clean the cache folder; recreate to be safe
+    if (Test-Path $cacheRoot) {
+        Get-ChildItem -Path $cacheRoot -File -ErrorAction SilentlyContinue |
+            Remove-Item -Force -ErrorAction SilentlyContinue
+    } else {
+        New-Item -ItemType Directory -Force -Path $cacheRoot | Out-Null
     }
 
     $all = @()
@@ -638,45 +840,126 @@ function Update-IntuneSettingsCatalogCache {
     do {
         Write-Verbose "[SC Cache] GET $url"
         $resp = Invoke-GraphRequest -Url $url -Method GET
-        if ($resp -is [string]) { $obj = $resp | ConvertFrom-Json } else { $obj = $resp }
+
+        # PS5-safe assignment (no ternary)
+        if ($resp -is [string]) {
+            $obj = $resp | ConvertFrom-Json
+        } else {
+            $obj = $resp
+        }
+
         if ($obj.value) { $all += $obj.value }
         $url = $obj.'@odata.nextLink'
     } while ($url)
 
+    # Safe file name generator (pure SHA256)
+    function Get-SafeFilename([string]$id) {
+        $bytes = [System.Text.Encoding]::UTF8.GetBytes($id)
+        $sha = [System.Security.Cryptography.SHA256]::Create()
+        $hashBytes = $sha.ComputeHash($bytes)
+        $hex = ([BitConverter]::ToString($hashBytes) -replace "-", "").ToLower()
+        return "$hex.json"
+    }
+
+    # Always create a new map and indexes
+    $fileMap      = @{}
+    $indexRootId  = @{}
+    $indexCspPath = @{}
+
     foreach ($def in $all) {
         $id = $def.id
         if (-not $id) { continue }
-        ($def | ConvertTo-Json -Depth 50) | Out-File (Join-Path $cacheRoot "$id.json") -Encoding utf8
-    }
 
-    # Build indexes
-    $indexRootId = @{}
-    $indexCspPath = @{}
-    foreach ($def in $all) {
+        $safe = Get-SafeFilename $id
+        $fileMap[$id] = $safe
+
+        $outPath = Join-Path $cacheRoot $safe
+        ($def | ConvertTo-Json -Depth 50) | Out-File $outPath -Encoding utf8
+
         if ($def.rootDefinitionId) { $indexRootId[$def.rootDefinitionId] = $def.id }
         if ($def.baseUri -and $def.offsetUri) {
             $csp = ($def.baseUri + $def.offsetUri)
             $indexCspPath[$csp] = $def.id
         }
     }
-    ($indexRootId | ConvertTo-Json -Depth 50) | Out-File (Join-Path $cacheRoot "definitions-by-rootId.json") -Encoding utf8
+
+    # Persist indexes (even if empty)
+    ($fileMap      | ConvertTo-Json -Depth 50) | Out-File (Join-Path $cacheRoot "filemap.json")                -Encoding utf8
+    ($indexRootId  | ConvertTo-Json -Depth 50) | Out-File (Join-Path $cacheRoot "definitions-by-rootId.json")  -Encoding utf8
     ($indexCspPath | ConvertTo-Json -Depth 50) | Out-File (Join-Path $cacheRoot "definitions-by-cspPath.json") -Encoding utf8
 
     Write-Verbose "[SC Cache] Definitions cached: $($all.Count) at $cacheRoot"
 }
 
+function Reindex-IntuneSettingsCatalogCache {
+    <#
+      .SYNOPSIS
+        Rebuilds filemap.json and the CSP/rootId indexes from existing hashed files.
+      .DESCRIPTION
+        No Graph calls. Scans <ExportRoot>/_metadata/SettingsCatalogDefinitions/*.json,
+        reads each definition, and regenerates:
+          - filemap.json
+          - definitions-by-rootId.json
+          - definitions-by-cspPath.json
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)] [string]$ExportRoot
+    )
+
+    $cacheRoot = Get-SettingsCatalogCacheRoot -ExportRoot $ExportRoot
+    if (-not (Test-Path $cacheRoot)) {
+        throw "Cache root not found: $cacheRoot"
+    }
+
+    $fileMap      = @{}
+    $indexRootId  = @{}
+    $indexCspPath = @{}
+
+    $files = Get-ChildItem -Path $cacheRoot -File -Filter *.json -ErrorAction SilentlyContinue |
+             Where-Object { $_.Name -notin @('filemap.json','definitions-by-rootId.json','definitions-by-cspPath.json') }
+
+    foreach ($f in $files) {
+        try {
+            $def = Get-Content -Raw -Path $f.FullName | ConvertFrom-Json
+        } catch {
+            Write-Warning "Skipping unreadable definition: $($f.Name)"
+            continue
+        }
+
+        if ($def.id) {
+            $fileMap[$def.id] = $f.Name
+        }
+
+        if ($def.rootDefinitionId) {
+            $indexRootId[$def.rootDefinitionId] = $def.id
+        }
+
+        if ($def.baseUri -and $def.offsetUri) {
+            $csp = ($def.baseUri + $def.offsetUri)
+            $indexCspPath[$csp] = $def.id
+        }
+    }
+
+    ($fileMap      | ConvertTo-Json -Depth 50) | Out-File (Join-Path $cacheRoot "filemap.json")                -Encoding utf8
+    ($indexRootId  | ConvertTo-Json -Depth 50) | Out-File (Join-Path $cacheRoot "definitions-by-rootId.json")  -Encoding utf8
+    ($indexCspPath | ConvertTo-Json -Depth 50) | Out-File (Join-Path $cacheRoot "definitions-by-cspPath.json") -Encoding utf8
+
+    Write-Verbose "[SC Cache] Reindex complete. Files: $($files.Count)"
+}
+
 function Write-Log {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Message,
 
         [Parameter()]
         [string]$Path,
 
         [Parameter()]
-        [ValidateSet('Error','Warning','Info', 'Verbose')]
-        [string]$Severity='Info',
+        [ValidateSet('Error', 'Warning', 'Info', 'Verbose')]
+        [string]$Severity = 'Info',
 
         [Switch]$PassThru,
 
@@ -684,20 +967,24 @@ function Write-Log {
     )
 
     begin {
-        if (-not $Script:ChangeTrackingConfig.EnableLogging) { return }
+        if (-not $Script:ChangeTrackingConfig.EnableLogging) {
+            return 
+        }
 
         if ([string]::IsNullOrWhiteSpace($Path)) {
             $Path = $Script:LogPath
         }
 
         # Compute caller info
-        $Caller   = (Get-PSCallStack)[1]
+        $Caller = (Get-PSCallStack)[1]
         $Component = $Caller.Command
-        $Source    = $Caller.Location
+        $Source = $Caller.Location
     }
 
     process {
-        if (-not $Script:ChangeTrackingConfig.EnableLogging) { return }
+        if (-not $Script:ChangeTrackingConfig.EnableLogging) {
+            return 
+        }
 
         if ([string]::IsNullOrWhiteSpace($Path)) {
             Write-Error "Logging enabled but no LogPath set."
@@ -720,10 +1007,18 @@ function Write-Log {
         else {
             # Standard log format
             switch ($Severity) {
-                'Error'   { $Sev = 3 }
-                'Warning' { $Sev = 2 }
-                'Info'    { $Sev = 1 }
-                'Verbose' { $Sev = 1 }
+                'Error' {
+                    $Sev = 3 
+                }
+                'Warning' {
+                    $Sev = 2 
+                }
+                'Info' {
+                    $Sev = 1 
+                }
+                'Verbose' {
+                    $Sev = 1 
+                }
             }
 
             if ($null -eq $Script:TimezoneBias) {
@@ -743,10 +1038,18 @@ function Write-Log {
         # Optional console output
         if ($PassThru) {
             switch ($Severity) {
-                'Error'   { Write-Error $Message }
-                'Warning' { Write-Warning $Message }
-                'Info'    { Write-Verbose $Message }
-                'Verbose' { Write-Verbose $Message }
+                'Error' {
+                    Write-Error $Message 
+                }
+                'Warning' {
+                    Write-Warning $Message 
+                }
+                'Info' {
+                    Write-Verbose $Message 
+                }
+                'Verbose' {
+                    Write-Verbose $Message 
+                }
             }
         }
     }
