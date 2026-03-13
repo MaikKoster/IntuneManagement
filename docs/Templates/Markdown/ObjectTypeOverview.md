@@ -1,20 +1,6 @@
-# {{ objectType }} Overview
 
-This page lists all objects of the type:
+# {ObjectType} - Overview
 
-**{{ objectType }}**
+This page lists all objects of type **{ObjectType}**.
 
----
-
-## Objects
-Below is a collection of all discovered objects.
-Click any entry to view its full details.
-
----
-
-{{ objectList }}
-
----
-
-## Navigation
-- index.md
+{Table}

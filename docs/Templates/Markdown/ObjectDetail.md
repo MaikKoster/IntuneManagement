@@ -1,20 +1,16 @@
-# {objectType} - {objectName}
 
-## Overview
-This page shows detailed information for the object:
+# {Title}
 
-- **Type:** {objectType}
-- **Name:** {objectName}
+{Description}
 
----
+## Assignments
+{Assignments}
 
-## Raw JSON Details
-```json
-{objectJson}
-```
+## Settings
+{Settings}
 
----
+## Diagnostics
+{Diagnostics}
 
-## Navigation
-- {objectType}.md
-- index.md
+## Data
+{DataSections}
