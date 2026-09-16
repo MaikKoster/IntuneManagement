@@ -101,6 +101,11 @@
                                            "win32AppPackageFile":  "Egy fájl, amely az alkalmazást olyan formátumban tartalmazza, amelyet közvetlenül telepíteni lehet az eszközökre. Az érvényes csomagtípus: .intunewin.​",
                                            "winGetStoreSelectApp":  "Az Intune-nal üzembe helyezni kívánt áruházbeli alkalmazásokat a Microsoft Store-alkalmazásban (új) keresheti meg."
                                        },
+                              "Status":  {
+                                             "active":  "Aktív",
+                                             "deleted":  "Törölve",
+                                             "softDeleted":  "Helyreállíthatóan törölve"
+                                         },
                               "descriptionPreview":  "Előnézet",
                               "descriptionPreviewLabel":  "Előzetes verzió",
                               "descriptionRequired":  "A leírást meg kell adni.",
@@ -227,6 +232,7 @@
                                                "v16":  "iOS 16.0",
                                                "v17":  "iOS 17.0",
                                                "v18":  "iOS 18.0",
+                                               "v26":  "iOS 26.0",
                                                "v8":  "iOS 8.0",
                                                "v9":  "iOS 9.0"
                                            },
@@ -256,6 +262,9 @@
                                                          },
                                                  "V15":  {
                                                              "0":  "macOS Sequoia 15.0"
+                                                         },
+                                                 "V26":  {
+                                                             "0":  "macOS Tahoe 26.0"
                                                          }
                                              },
                                    "Windows":  {
@@ -276,7 +285,8 @@
                                                    "V11Release":  {
                                                                       "release21H2":  "Windows 11 21H2",
                                                                       "release22H2":  "Windows 11 22H2",
-                                                                      "release23H2":  "Windows 11 23H2"
+                                                                      "release23H2":  "Windows 11 23H2",
+                                                                      "release24H2":  "Windows 11 24H2"
                                                                   },
                                                    "v10":  "Windows 10.0",
                                                    "v80":  "Windows 8.0",
@@ -442,6 +452,7 @@
                    "androidUrlValidation":  "Adjon meg egy érvényes URL-címet, például egy ehhez hasonlót: https://play.google.com/store/apps/details?id=com.microsoft.bing&hl=en",
                    "appInstallContext":  "Alkalmazástelepítési hatókör",
                    "appUrlLabel":  "Alkalmazásáruház URL-címe",
+                   "appleManagementType":  "Felügyelet típusa",
                    "appleUrlValidation":  "Érvényes URL-címet adjon meg. Példa: https://www.itunes.apple.com/us/app/microsoft-excel/id586683407?mt=8",
                    "applicableDeviceType":  "Alkalmazható eszköztípus",
                    "assignmentActionLabel":  "Mód",
@@ -520,7 +531,7 @@
                    "installationSourceLabel":  "Alkalmazás típusa",
                    "installerTypeInfoBalloon":  "Az alkalmazáscsomag telepítőtípusa.",
                    "installerTypeLabel":  "Telepítő típusa",
-                   "isFeatured":  "Megjelenítés kiemelt alkalmazásként a céges portálon",
+                   "isFeatured":  "Kiemelt alkalmazásként jelenjen meg",
                    "isMAMEnabledToggleLabel":  "Igen",
                    "lastModifiedDateTime":  "Utolsó frissítés időpontja",
                    "ldapUrl":  "LDAP URL-cím",
@@ -583,6 +594,7 @@
                    "twoWeeks":  "Két hét",
                    "unifiedAssignmentsLabel":  "Hozzárendelés a következőhöz:",
                    "unlimited":  "Korlátlan",
+                   "updateMethod":  "Frissítési módszer",
                    "urlHint":  "Érvényes URL-t adjon meg",
                    "useManagedBrowserHint":  "Csak Android és iOS rendszeren érhető el. További információ.",
                    "useManagedBrowserLabel":  "Felügyelt böngésző használatának megkövetelése a hivatkozás megnyitásához",
@@ -936,6 +948,11 @@
                                           },
                             "noData":  "Nem található házirendsablon"
                         },
+    "ProfileType":  {
+                        "deviceOwnerOnly":  "Csak teljes mértékben felügyelt, dedikált, vállalati tulajdonban lévő munkahelyi profil",
+                        "workProfileAndDeviceOwner":  "Az összes profiltípus",
+                        "workProfileOnly":  "Csak személyesen birtokolt munkahelyi profil"
+                    },
     "PolicyType":  {
                        "EdgeSmartScreenSettings":  {
                                                        "description":  "Microsoft Edge alkalmazás által ajánlott SmartScreen-beállítások: Windows 10 a felhőkonfigurációs sablonban. https://aka.ms/CloudConfigGuide"
@@ -1075,6 +1092,7 @@
                        "windowsInformationProtection":  "Windows Information Protection",
                        "windowsPhoneCompliancePolicy":  "Windows Phone-os megfelelőségi szabályzat",
                        "windowsUpdateforBusiness":  "Windows Update Vállalatoknak",
+                       "windowsZeroTrustDns":  "Zero Trust DNS",
                        "wiredNetwork":  "Vezetékes hálózat",
                        "workProfile":  "Személyes tulajdonban lévő munkahelyi profil"
                    },
@@ -1250,6 +1268,8 @@
                                                "assignmentFilterTypeColumnHeader":  "Szűrési mód",
                                                "assignmentToast":  "Végfelhasználói értesítések",
                                                "assignmentTypeTableHeader":  "HOZZÁRENDELÉS TÍPUSA",
+                                               "associatedDomains":  "Társított tartományok",
+                                               "associatedDomainsDirectDownloadAllowed":  "Társított tartományok közvetlen letöltése engedélyezve",
                                                "autoUpdate":  "Automatikus frissítés",
                                                "deadlineTimeColumnLabel":  "Telepítési határidő",
                                                "deliveryOptimizationPriorityHeader":  "Szállítás optimalizálásának prioritása",
@@ -1263,6 +1283,8 @@
                                                "preventManagedAppBackup":  "Az iCloud-alkalmazások biztonsági mentésének megakadályozása",
                                                "restartGracePeriodHeader":  "Türelmi időszak újraindítása",
                                                "startTimeColumnLabel":  "Rendelkezésre állás",
+                                               "statusTableHeader":  "Állapot",
+                                               "tapToPayScreenLockEnabled":  "Összeérintéssel történő fizetés képernyőzárolása bekapcsolva",
                                                "tracks":  "Nyomkövetések",
                                                "uninstallOnRemoval":  "Eltávolítás az eszköz törlésekor",
                                                "updateMode":  "Prioritás frissítése",
@@ -1308,6 +1330,7 @@
                                          "winGetPublicApp":  "Windows-csomagkezelő közösségi adattár",
                                          "winGetStoreApp":  "Microsoft Store-alkalmazás (új)",
                                          "windowsAppXLobApp":  "AppX-alapú üzletági Windows-alkalmazás",
+                                         "windowsAutoUpdateCatalogApp":  "Windows automatikus frissítési katalógusalkalmazás",
                                          "windowsClassicApp":  "Windows-alkalmazás (Win32)",
                                          "windowsEdgeApp":  "Microsoft Edge (Windows 10 és újabb)",
                                          "windowsMobileMsiLobApp":  "MSI-alapú üzletági Windows-alkalmazás",
@@ -1879,7 +1902,7 @@
                                    "customMessageTextBox":  "Hibaüzenet",
                                    "customMessageToggle":  "Egyéni üzenet megjelenítése időkorlát vagy hiba esetén",
                                    "enableForAutopilotOnlyToggle":  "Lap megjelenítése csak a kezdőélmény (OOBE) által regisztrált eszközöknek",
-                                   "installQualityUpdatesToggle":  "A Windows frissítéseinek telepítése (újraindíthatja az eszközt) (előzetes verzió)",
+                                   "installQualityUpdatesToggle":  "A Windows frissítéseinek telepítése (újraindíthatja az eszközt)",
                                    "progressToggle":  "Alkalmazás és profil konfigurációs folyamatának megjelenítése",
                                    "resetToggle":  "Az eszköz alaphelyzetbe állításának engedélyezése a felhasználóknak telepítési hiba esetén",
                                    "timeout":  "Hiba megjelenítése, ha a telepítés a (percekben) megadott időtartamnál több időt vesz igénybe"
@@ -2078,10 +2101,10 @@
                    "helpSupportReplacement":  "Súgó és támogatás ({0})",
                    "iOSAppProvisioning":  "iOS-es alkalmazáskiépítési profilok",
                    "incompleteUserEnrollments":  "Hiányos felhasználóregisztrációk",
-                   "iosUpdates":  "iOS-/iPadOS-frissítések",
+                   "iosUpdates":  "iOS/iPadOS-frissítések (elavult)",
                    "legacyPcManagement":  "Örökölt PC-kezelés",
-                   "macOSSoftwareUpdate":  "macOS-frissítések",
-                   "macOSSoftwareUpdateAccountSummaries":  "MacOS-es eszközök telepítési állapota",
+                   "macOSSoftwareUpdate":  "macOS-frissítések (elavult)",
+                   "macOSSoftwareUpdateAccountSummaries":  "MacOS-es eszközök telepítési állapota (elavult)",
                    "macOSSoftwareUpdateCategorySummaries":  "Szoftverfrissítések összegzése",
                    "macOSSoftwareUpdateStateSummaries":  "frissítések",
                    "managedGooglePlay":  "Felügyelt Google Play",
@@ -2094,7 +2117,7 @@
                    "onPremisesConnector":  "Exchange ActiveSync helyszíni összekötő",
                    "onPremisesDeviceAccess":  "Exchange ActiveSync-eszközök",
                    "onPremisesManageAccess":  "Helyszíni Exchange-hozzáférés",
-                   "outOfDateIosDevices":  "iOS-eszközök telepítési hibái",
+                   "outOfDateIosDevices":  "iOS-eszközök telepítési hibái (elavult)",
                    "overview":  "Áttekintés",
                    "partnerDeviceManagement":  "Partnereszköz-kezelés",
                    "perUpdateRingDeploymentState":  "Frissítési kör telepítési állapota szerint",
@@ -2103,6 +2126,7 @@
                    "platformDevices":  "{0} eszköz",
                    "platformEnrollment":  "{0} regisztrációja",
                    "policies":  "Szabályzatok",
+                   "policiesForMicrosoftEdge":  "A Microsoft Edge szabályzatai",
                    "profiles":  "Profilok",
                    "properties":  "Tulajdonságok",
                    "reports":  "Jelentések",
@@ -2116,6 +2140,8 @@
                    "servicenowConnector":  "ServiceNow-összekötő",
                    "shellScripts":  "Héjszkriptek",
                    "teamViewerConnector":  "TeamViewer-összekötő",
+                   "teamViewerConnectorOld":  "TeamViewer connector (old)",
+                   "teamViewerV2Connector":  "TeamViewer connector",
                    "telecomeExpenseManagement":  "Távközlési költségek kezelése",
                    "tenantAdmin":  "Bérlői adminisztrátor",
                    "tenantAdministration":  "Bérlői felügyelet",
@@ -2230,7 +2256,7 @@
                                                          },
                         "GenmojiConfigurationState":  {
                                                           "label":  "Genmoji",
-                                                          "tooltip":  "  Ha le van tiltva, a Genmoji funkció le lesz tiltva a szabályzattal felügyelt alkalmazás használatakor. További információt <a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">itt</a> talál."
+                                                          "tooltip":  "  Ha le van tiltva, a Genmoji funkció le lesz tiltva a szabályzattal felügyelt alkalmazás használatakor. További információt <a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">itt talál. </a>"
                                                       },
                         "IOSBackup":  {
                                           "label":  "Szervezeti adatok mentése biztonsági másolatokba az iTunes és az iCloud szolgáltatásban",
@@ -2262,7 +2288,8 @@
                                                     },
                         "OpenLinksManagedBrowser":  {
                                                         "label":  "Webes tartalom más alkalmazásokkal folytatott átvitelének korlátozása",
-                                                        "tooltip":  "<p>Az alábbi lehetőségek egyikének kiválasztásával adhatja meg, hogy az alkalmazás mely alkalmazásokban nyithat meg webes tartalmakat: </p>\r\n<p><b> Microsoft Edge:</b> A webes tartalom csak a Microsoft Edge-ben nyitható meg.<a href=\"{0}\" target=\"_blank\"> Megtudhatja, hogyan védi a Microsoft Edge az adatait.</a></p>\r\n<p><b>Nem felügyelt böngésző:</b> A webes tartalom csak a \"Nem felügyelt böngészőprotokoll\" beállítás által meghatározott nem felügyelt böngészőben nyitható meg</p>\r\n<p><b>Bármely alkalmazás:</b> Webes hivatkozások engedélyezése bármely alkalmazásban</p>"
+                                                        "tooltip":  "<p>Az alábbi lehetőségek egyikének kiválasztásával adhatja meg, hogy az alkalmazás mely alkalmazásokban nyithat meg webes tartalmakat: </p>\r\n<p><b> Microsoft Edge:</b> A webes tartalom csak a Microsoft Edge-ben nyitható meg.<a href=\"{0}\" target=\"_blank\"> Megtudhatja, hogyan védi a Microsoft Edge az adatait.</a></p>\r\n<p><b>Nem felügyelt böngésző:</b> A webes tartalom csak a \"Nem felügyelt böngészőprotokoll\" beállítás által meghatározott nem felügyelt böngészőben nyitható meg</p>\r\n<p><b>Bármely alkalmazás:</b> Webes hivatkozások engedélyezése bármely alkalmazásban</p>",
+                                                        "warning":  "Válassza a „Microsoft Edge” lehetőséget a szervezete adatainak védelméhez."
                                                     },
                         "OverrideBiometric":  {
                                                   "tooltip":  "Ha szükséges, az időkorlát (inaktív percek) alapján a PIN-kód megadását kérő üzenet felülbírálja a biometrikus hitelesítést kérő üzeneteket. Ha nem érte el az időkorlátban megadott időtartamot, továbbra is a biometrikus hitelesítést kérő üzenet fog megjelenni. Ennek az időkorlátértéknek nagyobbnak kell lennie, mint a Hozzáférési követelmények újbóli ellenőrzése ennyi idő után (inaktív perc) alatt megadott érték. "
@@ -2327,7 +2354,7 @@
                                                              },
                         "ScreenCaptureConfigurationState":  {
                                                                 "label":  "Képernyőfelvétel",
-                                                                "tooltip":  " Ha le van tiltva, a képernyőfelvétel le lesz tiltva a szabályzattal felügyelt alkalmazás használatakor. További információt <a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">itt</a> talál."
+                                                                "tooltip":  " Ha le van tiltva, a képernyőfelvétel le lesz tiltva a szabályzattal felügyelt alkalmazás használatakor. További információt <a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">itt talál. </a>"
                                                             },
                         "SendData":  {
                                          "label":  "Szervezeti adatok küldése egyéb alkalmazásokba",
@@ -2365,7 +2392,7 @@
                                         },
                         "WritingToolsConfigurationState":  {
                                                                "label":  "Írási eszközök",
-                                                               "tooltip":  "Ha le van tiltva, az írási eszközök le lesznek tiltva a szabályzattal felügyelt alkalmazás használatakor. További információt <a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">itt</a> talál."
+                                                               "tooltip":  "Ha le van tiltva, az írási eszközök le lesznek tiltva a szabályzattal felügyelt alkalmazás használatakor. További információt <a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">itt talál. </a>"
                                                            },
                         "Tap":  {
                                     "numberOfDays":  "Napok száma",
@@ -2401,7 +2428,7 @@
                     "macOSDmgApp":  "macOS app (DMG)",
                     "macOSEdgeApp":  "Microsoft Edge (macOS)",
                     "macOSLobApp":  "Üzletági macOS-alkalmazás",
-                    "macOSMicrosoftDefenderApp":  "Microsoft Defender ATP (macOS)",
+                    "macOSMicrosoftDefenderApp":  "Microsoft Defender for Endpoint (macOS)",
                     "macOSOfficeSuiteApp":  "Microsoft 365-alkalmazások (macOS)",
                     "macOSPkgApp":  "macOS app (PKG)",
                     "macOSWebClip":  "macOS-webklip",
@@ -2418,6 +2445,7 @@
                     "officeSuiteApp":  "Microsoft 365-alkalmazások (Windows 10 és újabb)",
                     "webApp":  "Webhivatkozás",
                     "windowsAppXLobApp":  "AppX-alapú üzletági Windows-alkalmazás",
+                    "windowsAutoUpdateCatalogApp":  "Windows automatikus frissítési katalógusalkalmazás",
                     "windowsClassicApp":  "Windows-alkalmazás (Win32)",
                     "windowsEdgeApp":  "Microsoft Edge (Windows 10 és újabb)",
                     "windowsMobileMsiLobApp":  "MSI-alapú üzletági Windows-alkalmazás",
@@ -2779,9 +2807,9 @@
                                       "importPendingStatus":  "Az importálás folyamatban van. Eltelt idő: {0} perc. A folyamat akár {1} percig is eltarthat."
                                   },
                       "DirectoryService":  {
-                                               "activeDirectoryAD":  "A Microsoft Entrához hibrid módon csatlakoztatva",
+                                               "activeDirectoryAD":  "Hibrid Microsoft Entrához csatlakoztatva",
                                                "activeDirectoryADLabel":  "Csatlakoztatás hibrid Microsoft Entrához az Autopilottal",
-                                               "azureAD":  "A Microsoft Entrához csatlakoztatva",
+                                               "azureAD":  "Microsoft Entrához csatlakoztatott",
                                                "unknownType":  "Ismeretlen típus"
                                            },
                       "Filter":  {
@@ -2910,7 +2938,7 @@
                       "deviceType":  "Eszköztípus",
                       "deviceUse":  "Eszköz használata",
                       "directoryServiceHintForSurfaceHub2":  " <p>\r\n        Az Autopilot csak a Surface Hub 2 eszközöknél támogatja a Microsoft Entrához csatlakoztatott beállítást. Adja meg, hogyan csatlakoztatják az eszközök Active Directory (AD) szolgáltatást a szervezetben.\r\n        </p>\r\n        <ul>\r\n        <li>\r\n            Microsoft Entrához csatlakoztatva: csak felhőalapú, helyszíni Windows Server Active Directory nélkül.\r\n        </li>\r\n        </ul>\r\n    ",
-                      "directoryServiceHintForWindowsPC":  "\r\n        <p>\r\n        Adja meg, hogyan csatlakotassák az eszközök Active Directory (AD) szolgáltatást a szervezetben:\r\n        </p>\r\n        <ul>\r\n        <li>\r\n            A Microsoft Entrához csatlakoztatva: Csak felhőalapú, helyszíni Windows Server Active Directory nélkül\r\n        </li>\r\n        </ul>\r\n   ",
+                      "directoryServiceHintForWindowsPC":  "\r\n        <p>\r\n        Adja meg, hogyan csatlakoztatják az eszközök az Active Directory (AD) szolgáltatást a szervezetben:\r\n        </p>\r\n        <ul>\r\n        <li>\r\n            A Microsoft Entrához csatlakoztatva: Csak felhőalapú, helyszíni Windows Server Active Directory nélkül\r\n        </li>\r\n        </ul>\r\n   ",
                       "getAssignedDevicesCountError":  "Hiba történt a hozzárendelt eszközök számának beolvasása során.",
                       "getAssignmentsError":  "Hiba történt az AutoPilot-profilok hozzárendeléseinek beolvasása során.",
                       "harvestDeviceId":  "Minden megcélzott eszköz AutoPilot-eszközzé alakítása",
@@ -4246,6 +4274,7 @@
                      "windowsDefenderATP":  "Microsoft Defender for Endpoint",
                      "windowsHelloForBusiness":  "Vállalati Windows Hello",
                      "windowsSpotlight":  "Windows Reflektorfény",
+                     "windowsZtdns":  "Zero Trust DNS",
                      "wiredNetwork":  "Vezetékes hálózat",
                      "wireless":  "Vezeték nélküli hálózat",
                      "wirelessProjection":  "Vezeték nélküli kivetítés",
@@ -4323,7 +4352,7 @@
                       "bs-latn":  "bosnyák (latin betűs)",
                       "zh-cN":  "kínai (kínai népköztársasági)",
                       "zh-hK":  "kínai (hongkongi k.k.t.)",
-                      "zh-mO":  "Kínai (Makaó KKT)",
+                      "zh-mO":  "kínai (Makaó KKT)",
                       "zh-sG":  "kínai (Szingapúr)",
                       "zh-tW":  "kínai (tajvani)",
                       "hr-bA":  "horvát (latin betűs)",
@@ -4457,7 +4486,7 @@
                       "lv":  "lett (Lettország)",
                       "lt":  "litván (Litvánia)",
                       "lb":  "luxemburgi (Luxemburg)",
-                      "mk":  "Macedón (Észak-Macedónia)",
+                      "mk":  "macedón (Észak-Macedónia)",
                       "ml":  "malajálam (India)",
                       "mt":  "máltai (Málta)",
                       "mr":  "maráthi (India)",
@@ -4539,7 +4568,7 @@
     "WindowsQualityUpdateProfile":  {
                                         "Details":  {
                                                         "DaysUntilForcedReboot":  {
-                                                                                      "label":  "A kényszerített újraindításig hátralévő napok száma"
+                                                                                      "label":  "Ha újraindításra van szükség, adja meg a kényszerítésig hátralévő napok számát"
                                                                                   },
                                                         "Description":  {
                                                                             "label":  "Leírás"
@@ -4548,7 +4577,7 @@
                                                                      "label":  "Név"
                                                                  },
                                                         "QualityUpdateRelease":  {
-                                                                                     "label":  "Minőségi frissítések gyorsított telepítése, ha az eszköz operációsrendszer-verziója a következőnél régebbi:"
+                                                                                     "label":  "Válassza ki a gyorsítani kívánt minőségi frissítést"
                                                                                  },
                                                         "bladeTitle":  "Minőségi frissítések Windows 10-es és újabb verziókhoz (előzetes verzió)",
                                                         "loadError":  "A betöltés sikertelen!"
@@ -4590,6 +4619,7 @@
                                             "deviceTypeTargetingEdit1":  "Ha hozzárendelési szűrőket alkalmaz erre a szabályzatra, a „Eszközkezelési típus” tulajdonság az „Alkalmazások” oldalon a „Cél minden eszköztípuson lévő alkalmazásokra” és az „Eszköztípusok” lapon megadott értékeken felül fog vonatkozni.",
                                             "deviceTypeTargetingEdit2":  "Az eszközkezelési típusok célzásának szerkesztéséhez állítsa vissza a „Cél minden eszköztípuson lévő alkalmazásokra” beállítást = „Igen” értékre. Ezután hozzon létre egy MAM hozzárendelési szűrőt a kívánt „Eszközkezelési típus” értékekkel.",
                                             "deviceTypeTargetingHasMoved":  "További információ a z alkalmazásvédelmi szabályzatok hozzárendeléséről",
+                                            "edgeUpsell":  "Ha meg szeretné győződni arról, hogy a felügyelt alkalmazásokból származó összes webes tartalmat Microsoft Edge védi, válassza a Microsoft Edge lehetőséget a Webes tartalom átvitelének korlátozása más alkalmazásokkal lehetőségnél. Ezután válassza a Véleményezés és mentés lehetőséget.",
                                             "encryptionAndroid1":  "Az Intune-alapú mobilalkalmazás-felügyeleti szabályzathoz társított alkalmazások esetén a Microsoft szolgáltatja a titkosítást. Az adatok titkosítása szinkron módon, a mobilalkalmazás-felügyeleti szabályzatban megadott beállításoknak megfelelően történik a bemeneti/kimeneti fájlműveletek során. A felügyelt Android-alkalmazások AES-128 szabványú titkosítást alkalmaznak CBC módban, a platform kriptográfiai kódtárait használva. A titkosítási módszer nem felel meg a FIPS 140-2 szabványnak. Az SHA-256 szabványú titkosítás explicit utasításként, a SigAlg paraméterrel használható, de csak a 4.2-es és újabb verziójú eszközökön működik. Az eszköz tárolóján tárolt tartalmat a rendszer mindig titkosítja.",
                                             "encryptionAndroid2":  "Ha az alkalmazásszabályzatban előírja a titkosítás használatát, a végfelhasználónak PIN-kódot kell beállítania és használnia az eszköze eléréséhez. Ha nincs beállítva PIN-kód az eszközhöz való hozzáféréshez, az alkalmazások nem indulnak el, a felhasználó pedig a következőhöz hasonló üzenetet fog látni: „Munkahelye PIN-kód engedélyezését írja elő az eszközön az alkalmazás eléréséhez.”",
                                             "encryptionMac1":  "Az Intune-alapú mobilalkalmazás-felügyeleti szabályzathoz társított alkalmazások számára a Microsoft szolgáltatja a titkosítást. Az adatok titkosítása szinkron módon, a mobilalkalmazás-felügyeleti szabályzatban megadott beállításoknak megfelelően történik a bemeneti/kimeneti fájlműveletek során. A felügyelt Mac-alkalmazások AES-128 szabványú titkosítást alkalmaznak CBC módban, a platform kriptográfiai kódtárait használva. A titkosítási módszernek nem felel meg a FIPS 140-2 szabványnak. Az SHA-256 szabványú titkosítás explicit utasításként, a SigAlg paraméterrel használható, de csak a 4.2-es és újabb verziójú eszközökön működik. Az eszköz tárterületén tárolt tartalmat a rendszer mindig titkosítja.",
@@ -5213,8 +5243,7 @@
                            "androidEnterpriseWorkProfileAlwaysOnVpnClientDescription":  "A megadott VPN-ügyfélnek telepítve kell lennie az eszközön, és az ügyfélnek támogatnia kell az alkalmazásonkénti VPN-t a munkahelyi profilokban; ellenkező esetben hiba lép fel. Ha azt szeretné, hogy az alkalmazás telepítve legyen a felhasználó munkahelyi profiljában, az alkalmazást jóvá kell hagynia a felügyelt Google Play Áruházban, szinkronizálni kell az Intune-nal, és telepíteni kell.",
                            "androidEnterpriseWorkProfileAlwaysOnVpnEnabledDescription":  "Állítson be egy VPN-ügyfelet a munkahelyi profilban, ha azt szeretné, hogy az eszköz minden alkalommal automatikusan csatlakozzon a virtuális magánhálózathoz, ha az elérhető. Ha a Letiltva lehetőséget választja, a munkahelyi profilban beállított összes VPN-ügyfél esetében letiltja az állandó VPN-kapcsolatot. Az állandó VPN-kapcsolat csak egy VPN-ügyfél számára állítható be egy adott eszközön, ezért ügyeljen arra, hogy legfeljebb egy állandó VPN-kapcsolatra vonatkozó szabályzat legyen érvénybe léptetve egy adott eszközön.",
                            "androidEnterpriseWorkProfileAlwaysOnVpnLockdownModeEnabledDescription":  "Ha ezt engedélyezi, a munkahelyi profil adatforgalma a VPN-alagúton keresztül fog bonyolódni. Ha nem hozható létre VPN-kapcsolat, az eszköz munkahelyi profiljának hálózati adatforgalma le lesz tiltva.",
-                           "androidForWorkMigrationPolicyDescriptionParagraph1":  "Hozza létre és rendelje hozzá ezt a profilt az eszközök Android Alkalmazáskezelés API-ra történő áthelyezéséhez, amely hatékonyabb módon alkalmazza a házirendet. A webes regisztrációval beállított eszközök automatikusan az Android Alkalmazáskezelés API-t használják.",
-                           "androidForWorkMigrationPolicyDescriptionParagraph2":  "Az eszközök akkor kerülnek áthelyezésre, ha elegendő akkumulátortöltéssel rendelkeznek, és nem csatlakoznak az Intune-szabályzat által kezelt Wi-Fi-hez.",
+                           "androidForWorkMigrationPolicyDescriptionParagraph1":  "Hozza létre és rendelje hozzá ezt a profilt az eszközök Android Alkalmazáskezelés API-ra történő áthelyezéséhez, amely hatékonyabb módon alkalmazza a házirendet. A webes regisztrációval beállított eszközök automatikusan az Android Alkalmazáskezelés API-t használják. Az eszközök akkor fognak áthelyeződni, ha elegendő az akkumulátoruk töltöttségi szintje.",
                            "androidForWorkMigrationPolicyLearnMoreText":  "Tudjon meg többet erről a fejlesztésről.",
                            "androidGeneralKiosk":  "Ezek a beállítások csak a Samsung KNOX Standard-eszközökre vonatkoznak.",
                            "androidHiddenApps":  "Felhasználó elől elrejtett alkalmazások (csak Samsung KNOX Standard esetén)",
@@ -6582,6 +6611,8 @@
                            "disableDeviceLocationSharingName":  "Tartózkodási hely megosztása",
                            "disableMacAddressRandomization":  "MAC-címek véletlenszerűsítésének letiltása",
                            "disableMacAddressRandomizationDescriptionIOS":  "Kényszerítheti a profillal csatlakozó eszközöket, hogy a tényleges Wi-Fi MAC-címüket jelenítsék meg egy véletlenszerű MAC-cím helyett. Mivel ez lehetővé teszi az eszközök MAC-cím általi nyomon követését, ezt csak szükséges esetben lépje meg, például a hálózati hozzáférés-vezérlés (NAC) támogatásához. Az iOS 14-es és újabb verziójára vonatkozik.",
+                           "disableMacAddressRandomizationDescriptionMacOS":  "Azt jelzi, hogy az ezzel a Wi-Fi-profillal csatlakozó eszközöknek véletlenszerű MAC-cím helyett a fizikai MAC-címüket kell-e használniuk. Ha le van tiltva a beállítás, az eszköz a tényleges Wi-Fi MAC-címet használja. Ha engedélyezve van, a rendszer véletlenszerű MAC-címeket használ. A macOS 15-ös és újabb verzióira vonatkozik. Alapértelmezett érték: Engedélyezve.",
+                           "disableMacAddressRandomizationMacOS":  "Véletlenszerű MAC-címek",
                            "disableOnDemandUserOverrideDescription":  "Kényszeríti az igény szerinti VPN-beállítások bekapcsolását. Ha letiltja, a felhasználók látni fogják az igény szerinti VPN-beállításokat az eszközükön, de nem módosíthatják. Ez az iOS 14-es és újabb rendszerekre vonatkozik.",
                            "disableOnDemandUserOverrideMacOSDescription":  "Kényszeríti az igény szerinti VPN-beállítások bekapcsolását. Ha letiltja, a felhasználók látni fogják az igény szerinti VPN-beállításokat az eszközükön, de nem módosíthatják. Ez a macOS 11-es és újabb verzióira vonatkozik.",
                            "disableOnDemandUserOverrideName":  "Letiltja az automatikus VPN letiltását a felhasználók számára",
@@ -6707,6 +6738,7 @@
                            "dropTrafficName":  "Hálózati forgalom leállítása",
                            "durationInHours":  "Időtartam (óra)",
                            "dynamicDomainNameOption":  "Microsoft Entra ID",
+                           "eAPAKAName":  "EAP – AKA",
                            "eAPCustomName":  "Egyéni",
                            "eAPFASTName":  "EAP-FAST",
                            "eAPName":  "EAP",
@@ -6988,6 +7020,8 @@
                            "enableWindowsDefenderFirewallName":  "Windows tűzfal",
                            "enableWithUEFILock":  "Engedélyezés UEFI-zárolással",
                            "enableWithoutUEFILock":  "Engedélyezés UEFI-zárolás nélkül",
+                           "enableWpaTransitionModeDescription":  "Ha engedélyezve van, ez engedélyezi a WPA3 áttűnési módot, amely lehetővé teszi a WPA2-be való visszalépést, ha a hálózat támogatja. Ha Letiltva értékre van állítva, a szigorú WPA3 mód lesz kényszerítve, és nem történik tartalék.",
+                           "enableWpaTransitionModeName":  "WPA3 áttűnési mód",
                            "enabledForAzureAdAndHybridOption":  "A kulcsrotálás engedélyezve van a Microsoft Entrához csatlakoztatott és a hibrid módon csatlakoztatott eszközök esetén",
                            "enabledForAzureAdOption":  "A kulcsrotálás engedélyezve van a Microsoft Entrához csatlakoztatott eszközök esetén",
                            "enabledNoKeepGoing":  "Üzenet megjelenítése arról, hogy a lap az Internet Explorer 11-ben nyílik meg",
@@ -8394,6 +8428,7 @@
                            "mustBeValidGuid":  "Érvényes UUID értéknek kell lennie. Például: 782AFCFC-7CAA-436C-8BF0-78CD0FFBD4AF stb.",
                            "mustBeValidHost":  "Érvényes gazdagépnek kell lennie. Példa: www.host.com stb.",
                            "mustBeValidHttpURL":  "Érvényes HTTP vagy HTTPS URL-címnek kell lennie. Példa: https://www.contoso.com",
+                           "mustBeValidIPOrCidr":  "Adjon meg érvényes IP-címet (198.51.100.1, 2001:db8:0:130F::87C:140B) vagy -tartományt CIDR-jelöléssel (198.51.100.0/24, 2001:db8::/32)",
                            "mustBeValidIpAddress":  "Érvényes IP-címnek kell lennie. Példa: 4.3.6.0",
                            "mustBeValidKaiserWifiFormat":  "A formátum nem megfelelő. Példa felhasználói formátumra: abcd{{WifiMacAddress}}, például jelszóformátumra: abcd{{WifiMacAddress}}{{PreSharedKey}}",
                            "mustBeValidMonthDayDateFormat":  "Érvényes dátumformátumnak (HH/NN) kell lennie. Példa: 01/31, 02/28 stb.",
@@ -8692,7 +8727,7 @@
                            "performServerValidationDescription":  "Akkor engedélyezze, ha ellenőrizni szeretné a kiszolgáló identitását a tanúsítvány a PEAP-kiszolgálóval folytatott kommunikáció során történő érvényesítésével. Javasoljuk, hogy lehetőség szerint ezt a beállítást állítsa Igen értékűre. A Nem vagy Nincs konfigurálva beállítás kevésbé biztonságos.",
                            "personalProfileAppsAllowInstallFromUnknownSourcesDescription":  "Ha engedélyezve van, akkor a felhasználók engedélyezhetik az „ismeretlen forrásból származó” beállítást, hogy a Google Play Áruházon kívüli alkalmazásokat is telepíthessenek.",
                            "personalProfileAppsAllowInstallFromUnknownSourcesName":  "Ismeretlen forrásból származó alkalmazások személyes profilban történő telepítésének engedélyezése a felhasználóknak",
-                           "personalProfileCameraBlockedDescription":  "Az eszköz összes kamerájának letiltása",
+                           "personalProfileCameraBlockedDescription":  "A kamerához való hozzáférés letiltása személyes használat közben",
                            "personalProfileCameraBlockedName":  "Kamera",
                            "personalProfilePersonalApplications":  "Személyes alkalmazások",
                            "personalProfilePersonalApplicationsListTypeDescription":  "Válassza az „Engedélyezett alkalmazásokat” olyan alkalmazási lista létrehozásához, amelyeket engedélyeztek és jóváhagytak a telepítéshez és futtatáshoz az eszköz személyes profiljában. Válassza a „Letiltott alkalmazásokat” olyan alkalmazási lista létrehozásához, amelyeket megtiltottak és megelőzték a telepítésüket és futtatásukat az eszköz személyes profiljában.",
@@ -8878,7 +8913,7 @@
                            "publicNetworkName":  "Nyilvános (nem észlelhető) hálózat",
                            "publicOutboundConnectionsSummaryLabel":  "Alapértelmezett művelet a kimenő kapcsolatok esetén (nyilvános hálózatok)",
                            "publicPlayStoreEnabledDescription":  "Ha az „Engedélyezés” lehetőséget választja, a felhasználók az összes alkalmazáshoz hozzáférhetnek, kivéve azokhoz, amelyek eltávolítását kérte az Ügyfélalkalmazásokban. Ha a „Letiltás” vagy „Nincs konfigurálva” lehetőséget választja ehhez a beállításhoz, akkor a felhasználók csak azokat az alkalmazásokat érhetik el, amelyeket Ön az Ügyfélalkalmazásokban elérhetőként vagy kötelezőként jelölt meg.",
-                           "publicPlayStoreEnabledName":  "Hozzáférés engedélyezése minden alkalmazáshoz a Google Play Áruházban",
+                           "publicPlayStoreEnabledName":  "Hozzáférés engedélyezése minden alkalmazáshoz a Google Play Áruházban (munkahelyi profil szinten)",
                            "publicPlayStoreEnabledWarning":  "Ha az „Engedélyezés” lehetőséget választja, a felhasználók bármilyen alkalmazást telepíthetnek a Google Play Áruházból. Ha később „Letiltva” vagy „Nincs konfigurálva” értékre módosítja a beállítást, az összes alkalmazás el lesz távolítva az eszközről, kivéve az ügyfélalkalmazásokban elérhetőként vagy kötelezőként felsorolt alkalmazásokat.",
                            "publicPlayStoreSelectionAllowList":  "Letiltás",
                            "publicPlayStoreSelectionBlockList":  "Engedélyezés",
@@ -10103,6 +10138,8 @@
                            "wHfBWindowsHelloForBusinessBlockedName":  "Vállalati Windows Hello konfigurálása",
                            "wPA2Enterprise":  "WPA2-Enterprise (Credential Builder)",
                            "wPA2EnterpriseOption":  "WPA/WPA2-Enterprise",
+                           "wPA2PersonalOption":  "WPA2/WPA3-Personal",
+                           "wPA3PersonalOption":  "WPA3-Personal",
                            "wPAEnterpriseOption":  "WPA-Enterprise",
                            "wPAPSKOption":  "Előmegosztott WPA-kulcs",
                            "wPAPersonalOption":  "WPA/WPA2-Personal",
@@ -10594,6 +10631,78 @@
                            "zscalerUserDomain":  "Egyéni tartománynév",
                            "zscalerUserDomainDescription":  "Adjon meg egy statikus tartományt a Zscaler alkalmazás bejelentkezési mezőjének előzetes kitöltéséhez. Ha ez a mező üres marad, a rendszer a felhasználó Microsoft Entra-tartományát fogja használni.",
                            "zscalerUserDomainExample":  "contoso.com",
+                           "ztdnsAdvancedSettingsChevronName":  "Speciális beállítások",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledDescription":  "Megakadályozza, hogy a Windows DNS-ügyfél a gép hosts fájlját használja a DNS-lekérdezések feloldásához. ",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledLearnMore":  "További információ a megbízható DNS-t tartalmazó gazdagépek fájlfeloldásáról.",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledName":  "Lekérdezések a gazdagépfájlból",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledDescription":  "Engedélyezze ezt a beállítást, ha azt szeretné, hogy a localhost (127.0.0.1 vagy ::1) DNS-lekérdezések megbízható DNS-kiszolgálónak legyenek elküldve, megakadályozva a titkosítatlan lekérdezések szűrés nélküli átadását. ",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledLearnMore":  "További információ a MEGBÍZHATÓ DNS-sel történő DNS-továbbításról.",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledName":  "Visszacsatolási DNS-továbbító",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedDescription":  "A 127.0.0.1 és ::1 címekhez tartozó visszacsatolási forgalom blokkolása növeli a biztonságot.",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedLearnMore":  "További információ a visszacsatolási forgalom nulla megbízhatóságú DNS-sel való letiltásáról.",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedName":  "Visszacsatolási IP-forgalom",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsDescription":  "Beállítja, hogy egy IP-címhez használt kapcsolat mennyi ideig maradjon érvényes a névfeloldás után. A kor másodpercben 30 és 604800 között lehet, alapértelmezett értéke 86400 (24 óra). ",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsLearnMore":  "További információ a DNS-rekordok koráról a megbízható DNS-sel való használat esetén.",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsName":  "DNS-rekordok kora (másodperc)",
+                           "ztdnsClientCertificateChevronName":  "Ügyféltanúsítvány-hitelesítés",
+                           "ztdnsClientCertificateEkuHeaderLearnMore":  "További információ az ügyféltanúsítványok EKU-járól.",
+                           "ztdnsClientCertificateEkuHeaderName":  "Konfigurálja az ügyféltanúsítványok EKU-jait a megbízható DNS-kiszolgálók felé irányuló hálózati kérések hitelesítéséhez és védelméhez. Ügyféltanúsítvány-hitelesítés használatakor kibővített kulcshasználatra van szükség.",
+                           "ztdnsClientCertificateHeaderLearnMore":  "További információ az ügyféltanúsítvány-hitelesítésről.",
+                           "ztdnsClientCertificateHeaderName":  "Ha a megbízható DNS-kiszolgálók kölcsönös hitelesítést használnak, meg kell adnia a szükséges ügyfél-hitelesítési tanúsítványokat kiállító hitelesítésszolgáltatókat is. Az ügyféltanúsítványok által használt EKU-kat is megadhatja.",
+                           "ztdnsClientRootCertificateHeader":  "Ügyféltanúsítvány gyökérkiállítója",
+                           "ztdnsExemptionRuleDescriptionName":  "Leírás",
+                           "ztdnsExemptionRuleDescriptionPlaceholder":  "Leírás",
+                           "ztdnsExemptionRuleDisplayNameName":  "Név",
+                           "ztdnsExemptionRuleDisplayNamePlaceholder":  "Név",
+                           "ztdnsExemptionRuleIpAddressName":  "IP-cím- vagy -tartomány",
+                           "ztdnsExemptionRuleIpAddressPlaceholder":  "192.41.101.1, 2001:db8::/32",
+                           "ztdnsExemptionRuleIpAddressesDescription":  "Ezeket a címeket a megbízható DNS-kiszolgálók nem fogják feldolgozni.",
+                           "ztdnsExemptionRuleIpAddressesName":  "IP-címek vagy -tartományok",
+                           "ztdnsExemptionRulesChevronName":  "Kivételszabályok",
+                           "ztdnsExemptionRulesDescription":  "Ezek a szabályok határozzák meg, hogy mely kérelmek mentesülnek a megbízható DNS-feldolgozás alól, így megkerülhetik a megbízható DNS-kényszerítést.",
+                           "ztdnsExemptionRulesHeaderName":  "Előfordulhat, hogy egyes gazdagépeket vagy alhálózatokat fel kell mentesítenie a blokkolási szabályok alól. Ha igen, itt adhat hozzájuk szabályokat.",
+                           "ztdnsExemptionRulesName":  "Kivételszabályok",
+                           "ztdnsMinimumBuildInfoboxName":  "Windows 11, 25H2-es vagy újabb verzió",
+                           "ztdnsModeChevronName":  "Zéró megbízhatóságú DNS-mód",
+                           "ztdnsModeHeaderLearnMore":  "További információ a módokról.",
+                           "ztdnsModeHeaderName":  "A <strong>naplózási</strong> mód a forgalom blokkolása nélkül naplózza a kapcsolatokat. Az eseményeket a Windows-eseménymegtekintő rögzíti. Az Auditálás mód használatával anélkül mérheti fel a hatást, hogy megzavarná a hálózati hozzáférést, mielőtt a Kényszerítés módra váltana.<br /><br /><strong>A Kényszerítés</strong> mód minden olyan DNS-lekérdezést letilt, amely nem a megadott megbízható DNS-kiszolgálók egyikétől érkezik.<br /><br />",
+                           "ztdnsModeSelectionAuditName":  "Auditálás",
+                           "ztdnsModeSelectionEnforceName":  "Kényszerítés",
+                           "ztdnsModeSelectionName":  "Mód",
+                           "ztdnsModeWarningName":  "Kényszerítés módban nem fog tudni hozzáférni egy eszközhöz, ha az nem tud elérni egy megbízható DNS-kiszolgálót.",
+                           "ztdnsNotConfiguredName":  "Nincs konfigurálva",
+                           "ztdnsRootCertificateDescription":  "Ez a hitelesítésszolgáltatói tanúsítvány meg kell, hogy egyezzen annak a hitelesítésszolgáltatónak a gyökértanúsítványával, amely a most beállított profil tanúsítványát kibocsátja.",
+                           "ztdnsSecureDnsServerChevronName":  "Megbízható DNS-kiszolgálók",
+                           "ztdnsSecureDnsServerDisplayNameDescription":  "A megbízható DNS-kiszolgáló megjelenített neve.",
+                           "ztdnsSecureDnsServerDisplayNameName":  "Név",
+                           "ztdnsSecureDnsServerDisplayNamePlaceholder":  "Megjelenítendő név",
+                           "ztdnsSecureDnsServerDohAndDotOptionName":  "HTTPS-en keresztüli DNS és TLS-en keresztüli DNS",
+                           "ztdnsSecureDnsServerDohHeaderName":  "HTTPS-en keresztüli DNS-beállítások",
+                           "ztdnsSecureDnsServerDohOptionName":  "HTTPS-en keresztüli DNS",
+                           "ztdnsSecureDnsServerDohPortDescription":  "A DNS over HTTPS kiszolgáló HTTPS-portja. Az alapértelmezett port a 443.",
+                           "ztdnsSecureDnsServerDohPortName":  "Port",
+                           "ztdnsSecureDnsServerDohUrlDescription":  "Ez az URL-cím a DNS-kérelmek HTTPS-en keresztüli küldésére szolgál.",
+                           "ztdnsSecureDnsServerDohUrlName":  "URL-cím",
+                           "ztdnsSecureDnsServerDohUrlPlaceholder":  "https://dns.contoso.com/dns-query",
+                           "ztdnsSecureDnsServerDotHeaderName":  "DNS over TLS beállítások",
+                           "ztdnsSecureDnsServerDotHostnameDescription":  "Ez az állomásnév fogja érvényesíteni a megbízható DNS-kiszolgáló tanúsítványának tulajdonosnevét.",
+                           "ztdnsSecureDnsServerDotHostnameName":  "Állomásnév",
+                           "ztdnsSecureDnsServerDotHostnamePlaceholder":  "dns.contoso.com",
+                           "ztdnsSecureDnsServerDotOptionName":  "DNS TLS-en keresztül",
+                           "ztdnsSecureDnsServerDotPortDescription":  "A DNS által TLS-kiszolgálón keresztül használt TLS-portszám. Az alapértelmezett port a 853.",
+                           "ztdnsSecureDnsServerDotPortName":  "Port",
+                           "ztdnsSecureDnsServerHeaderLearnMore":  "További információ a megbízható DNS-kiszolgálók konfigurálásáról.",
+                           "ztdnsSecureDnsServerHeaderName":  "A DNS-lekérdezések csak az itt megadott megbízható DNS-kiszolgálókra lesznek elküldve. Minden kiszolgálóhoz állítsa be a használni kívánt biztonságos protokollt: HTTPS-en keresztüli DNS (DoH) vagy TLS-en keresztüli DNS (DoT). IPv4- vagy IPv6-címformátumot is használhat.",
+                           "ztdnsSecureDnsServerIpAddressDescription":  "Ez lehet nyilvános DNS-kiszolgáló vagy a szervezet DNS-kiszolgálója.",
+                           "ztdnsSecureDnsServerIpAddressName":  "IP-cím",
+                           "ztdnsSecureDnsServerIpAddressPlaceholder":  "198.51.100.1, 2001:0db8:85a3::8a2e:0370:7334",
+                           "ztdnsSecureDnsServerName":  "Megbízható DNS-kiszolgálók",
+                           "ztdnsSecureDnsServerTypeDescription":  "A megbízható DNS-kiszolgáló által támogatott protokollok.",
+                           "ztdnsSecureDnsServerTypeName":  "Protokoll",
+                           "ztdnsServerRootCertificateHeader":  "Kiszolgálói tanúsítvány gyökérkiállítója",
+                           "ztdnsTrustedCAChevronName":  "Megbízható hitelesítésszolgáltatók",
+                           "ztdnsTrustedCAHeaderLearnMore":  "További információ a megbízható hitelesítésszolgáltatókról.",
+                           "ztdnsTrustedCAHeaderName":  "A megadott megbízható DNS-kiszolgálóknak megbízható hitelesítésszolgáltatók által kiállított tanúsítványokkal kell rendelkezniük. Itt adhatja meg ezeket a tanúsítványokat.",
                            "platformSupported":  "Támogatott platform",
                            "aadDeviceId":  "Microsoft Entra-eszközazonosító",
                            "access":  "Hozzáférés",
@@ -10808,6 +10917,7 @@
                            "displayName":  "Megjelenítendő név",
                            "downloadReport":  "Jelentés letöltése",
                            "downloadingReport":  "Jelentés letöltése",
+                           "edgeCampaignInfoBoxText":  "Ha meg szeretné győződni arról, hogy a felügyelt alkalmazásokból származó összes webes tartalmat Microsoft Edge védi, válassza a Microsoft Edge lehetőséget a Webes tartalom átvitelének korlátozása más alkalmazásokkal lehetőségnél. Ezután válassza a Véleményezés és mentés lehetőséget.",
                            "edgeGSAssignment":  "Válassza ki azokat a felhasználói csoportokat, amelyeket fel szeretne venni az Edge mobilverziójának telepítésébe. Az Edge az ezen felhasználók által regisztrált összes iOS- és Android-eszközre telepítve lesz.",
                            "edgeGSIntroBenefitHTML":  "<p>Tegye elérhetővé a Microsoft Edge alkalmazást az iOS- vagy Android-felhasználók számára, hogy zökkenőmentesen böngészhessenek a céges eszközeiken! Az Edge használatával a felhasználók megszabadulhatnak a zsúfolt webes tartalmaktól azokkal a beépített funkciókkal, amelyek segítenek a munkacélú tartalom konszolidálásában, rendezésében és kezelésében. A vállalati Microsoft Entra-fiókjukkal az Edge alkalmazásban bejelentkező iOS- és Android-felhasználók a böngészőben megtalálhatják az Ön által előre meghatározott munkahelyi kedvenceket és webhelyszűrőket. </p><p>Ha letiltotta a felhasználóknak az iOS- vagy Android-eszközök regisztrációját, ez a forgatókönyv nem engedélyezi a regisztrációt, és a felhasználóknak maguknak kell telepíteniük az Edge alkalmazást.</p>",
                            "edgeGSIntroPrereqHTML":  "<p>Megkérdezzük a felhasználók által igényelt munkahelyi kedvencekről, valamint a webes böngészéshez szükséges szűrőkről. A folytatás előtt hajtsa végre a következő feladatokat:</p>\r\n<li>Felhasználók hozzáadása a <a href='https://go.microsoft.com/fwlink/?linkid=2102458'>Microsoft Entra-csoportokhoz</a></li>\r\n<li>iOS- vagy Android-eszközök regisztrálása az Intune-ban. <a href='https://go.microsoft.com/fwlink/?linkid=2102547'>További információ</a></li>\r\n<li>Az Edge-hez hozzáadni kívánt munkahelyi kedvencek listájának összegyűjtése.</li>\r\n<li>Az Edge-ben kényszeríteni kívánt webhelyszűrők listájának összegyűjtése.</li>",
@@ -11023,8 +11133,8 @@
                            "ok":  "OK",
                            "on":  "Bekapcsolva",
                            "onlineButUnableToCheckin":  "Letiltott fiók",
-                           "orgDestinationAnySourceOptionText":  "Org data destinations and any source",
-                           "orgDestinationOrgSourceOptionText":  "Org data destinations and org data sources",
+                           "orgDestinationAnySourceOptionText":  "Szervezeti adatok célhelyei és bármely forrás",
+                           "orgDestinationOrgSourceOptionText":  "Szervezeti adatok célhelyei és szervezeti adatforrásai",
                            "orgPermission":  "Szervezet olvasási, frissítési engedélye",
                            "override":  "Felülbírálás",
                            "overview":  "Áttekintés",
@@ -11427,13 +11537,13 @@
                                         "gradualRolloutLicenseWarningEdit":  "A képesség használata és konfigurálása addig lehetséges, amíg a szabályzat részét képezi annak mentésekor.",
                                         "licenseLearnMoreText":  "További információ az előfeltételekről és a funkciófrissítési szabályzatokról.",
                                         "optionalUpdateWarning":  "A választható lehetőség csak Windows 11-frissítésekhez érhető el",
-                                        "profileNameWarning":  "A névnek rövidebbnek kell lennie 64 karakternél",
+                                        "profileNameWarning":  "A névnek rövidebbnek kell lennie 255 karakternél",
                                         "specificLicensingRequired":  "Néhány kiválasztott képességhez konkrét licenc szükséges."
                                     },
     "AzureCA":  {
                     "AdrsUserActionSelectionWarning":  {
                                                            "conditions":  "Conditions that require device registration are not available with \"Register or join devices\" user action.",
-                                                           "message":  "Only \"Require multifactor authentication\" can be used in policies created for the \"Register or join devices\" user action.{0}"
+                                                           "message":  "Only \"Require multifactor authentication or Require Auth strength'\" can be used in policies created for the \"Register or join devices\" user action.{0}"
                                                        },
                     "AuthContext":  {
                                         "Delete":  {
@@ -11564,7 +11674,7 @@
                                                                          "placeholder":  "Choose an attribute"
                                                                      },
                                                 "Configure":  {
-                                                                  "infoBalloon":  "Configure app filters you want to policy to apply to."
+                                                                  "infoBalloon":  "Configure custom security attributes you want the policy to apply to."
                                                               },
                                                 "NoPermissions":  {
                                                                       "learnMoreAria":  "More about custom security attribute permissions.",
@@ -11584,14 +11694,15 @@
                                                  "learnMoreB2C":  "Control access based on all or specific cloud apps.",
                                                  "learnMoreNetworkAccess":  "Control access based on all or specific network access traffic, cloud apps or actions.",
                                                  "learnMorePublicClouds":  "Control access based on all or specific apps, internet resources, actions, or authentication context.",
+                                                 "learnMorePublicCloudsAgents":  "Control access based on all or specific apps, agents, internet resources, actions, or authentication context.",
                                                  "title":  "Cloud apps or actions"
                                              },
                     "CloudappsSelectionBlade":  {
                                                     "AgenticResources":  {
                                                                              "allAgenticResources":  "All agent resources (Preview)",
-                                                                             "allAgenticResourcesExcLower":  "all agent resources excluded",
-                                                                             "allAgenticResourcesExcluded":  "All agent resources excluded",
-                                                                             "allAgenticResourcesIncluded":  "All agent resources"
+                                                                             "allAgenticResourcesExcLower":  "all agent resources (Preview) excluded",
+                                                                             "allAgenticResourcesExcluded":  "All agent resources (Preview) excluded",
+                                                                             "allAgenticResourcesIncluded":  "All agent resources (Preview)"
                                                                          },
                                                     "AllInternetResources":  {
                                                                                  "excludedWithGSA":  "All internet resources with Global Secure Access excluded",
@@ -11603,7 +11714,13 @@
                                                                  },
                                                     "Filter":  {
                                                                    "configured":  "Configured",
+                                                                   "descriptionAgents":  "Apply policy to agent identities based on custom security attributes pre-assigned to them.",
                                                                    "label":  "Edit filter",
+                                                                   "resourceDescription":  "Select resources based on custom security attributes.",
+                                                                   "sPDescription":  "Select service principals based on custom security attributes.",
+                                                                   "titleAgents":  "Select agent identities based on attributes",
+                                                                   "titleResource":  "Select resources based on attributes",
+                                                                   "titleSP":  "Select service principals based on attributes",
                                                                    "with":  "{0} with {1}"
                                                                },
                                                     "Included":  {
@@ -11660,12 +11777,15 @@
                     "MicrosoftManagedPolicies":  {
                                                      "alertBanner":  "Microsoft-managed policies will be enabled no sooner than {0} days after creation unless you take action. We recommend that you review these policies and take the recommended actions.",
                                                      "alertBannerV2":  "Microsoft-managed policies in report-only state will be automatically turned on with advance email and {0}M365 message center{1} notifications. We recommend that you review these policies and recommended actions.",
+                                                     "bsmRecActionsGlobal2":  "When you are ready to enable, switch its state to 'on'. If you do not want to enforce this policy for your organization, switch its state to 'off'.",
                                                      "learnMoreLinkAriaLabel":  "Learn more about Microsoft-managed policies.",
                                                      "m365MessageCenterLinkAriaLabel":  "M365 message center",
                                                      "policySummaryBlockDCF":  "This policy unilaterally blocks device code flow usage across all resources and all users. As a Microsoft-managed policy, only certain properties are editable.",
+                                                     "policySummaryBlockHighRiskAgents":  "This policy blocks any sign-in attempt made by a high-risk agent identity",
                                                      "policySummaryBlockLegacyAuth":  "This policy blocks any sign-in attempt using legacy authentication and legacy authentication protocols from accessing applications. Legacy authentication refers to authentication requests made by: Clients that don't use modern authentication (e.g., Office 2010 clients). Clients that use older mail protocols such as IMAP, SMTP, or POP3.",
                                                      "policySummaryMfa":  "This policy requires some administrator roles to perform multifactor authentication when accessing Microsoft admin portals. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryMfaForAllUsers":  "This policy requires all users to perform multifactor authentication when accessing any resources. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
+                                                     "policySummaryMfaForGuestAccess":  "This policy requires all guest and external users to perform multifactor authentication when accessing your organization's resources. Requiring multifactor authentication for guests reduces the risk of compromised external accounts gaining access to your data and applications.",
                                                      "policySummaryPerUserMfaV2":  "This policy covers per-user multifactor authentication enforced users with recent sign-ins and requires them to perform MFA while accessing cloud applications. There will be no change to the end user experience as a result of this policy and your organization is sufficiently licensed to use this policy. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryPerUserMfaViaGroup":  "This policy covers per-user multifactor authentication enforced users with recent sign-ins and requires them to perform MFA while accessing cloud applications. There will be no change to the end user experience as a result of this policy and your organization is sufficiently licensed to use this policy. We'll assign eligible users into a new security group named 'Conditional Access: Per-user multifactor authentication users (a4ea6c0f-b8fb-4d29-91f1-9f8cf0601e97)'. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryPhishingResistantMfa":  "Accounts that are assigned privileged administrative roles are frequent targets of attackers. Requiring phishing-resistant multifactor authentication (MFA) on those accounts is an easy way to reduce the risk of those accounts being compromised.",
@@ -11829,6 +11949,11 @@
                                                                                                                    "learnMoreLabel":  "enable GSA Adaptive Access Signaling."
                                                                                                                }
                                          },
+                    "ObjectPickerStrings":  {
+                                                "appId":  "App Id",
+                                                "blueprintId":  "Blueprint Id",
+                                                "objectId":  "Object Id"
+                                            },
                     "Overview":  {
                                      "SignInsProtectedByCa":  {
                                                                   "accessDenied":  "Access denied",
@@ -12098,6 +12223,7 @@
                                                                 }
                                                 },
                     "RiskRemediationValidation":  {
+                                                      "mustNotSelect":  "To enable Require Risk Remediation, you must not select {0}.",
                                                       "mustSelect":  "To enable Require Risk Remediation, you must select {0}.",
                                                       "xOrY":  "{0} or {1}"
                                                   },
@@ -12330,6 +12456,8 @@
                                         "accessRequirement2":  "Level 2",
                                         "accessRequirement3":  "Level 3",
                                         "accessRequirementsLabel":  "Accessing secured app data",
+                                        "accountRecovery":  "Recover account",
+                                        "accountRecoveryInfoText":  "This user action requires the idenity verification grant control. Please select an identity verification profile.",
                                         "appsActionsAuthTitle":  "Cloud apps, actions, or authentication context",
                                         "appsOrActionsSelectorInfoBallonText":  "Applications accessed or user actions",
                                         "appsOrActionsTitle":  "Cloud apps or actions",
@@ -12358,6 +12486,7 @@
                                                                   "usersGroups":  "Select at least one user or group"
                                                               },
                                                "learnMore":  "Control access based on who the policy will apply to, such as users and groups, workload identities, directory roles, or external guests.",
+                                               "learnMoreAgents":  "Control access based on who the policy will apply to, such as users and groups, agents, workload identities, directory roles, or external guests.",
                                                "learnMoreAriaLabel":  "Learn more about Conditional Access users, groups, and workload identities."
                                            },
                     "ValidationResult":  {
@@ -12406,7 +12535,9 @@
                                                           "requireMfa":  "Consider testing the new \"{0}\".",
                                                           "requirePasswordChangeEnabled":  "\"Require password change\" can only be used when policy is assigned to \"All cloud apps\".",
                                                           "requirePasswordChangeEnabledResource":  "\"Require password change\" can only be used when policy is assigned to \"All resources\".",
-                                                          "requireRiskRemediation":  "\"{0}\" can only be used when policy is assigned to \"{1}.\" This option requires multifactor authentication or authentication strengths controls. Other controls cannot be used. This option also requires the Session control \"Sign-in Frequency\" to be set to \"Every time.\""
+                                                          "requireRiskRemediation":  "\"{0}\" can only be used when policy is assigned to \"{1}.\" This option requires multifactor authentication or authentication strengths controls. Other controls cannot be used. This option also requires the Session control \"Sign-in Frequency\" to be set to \"Every time.\"",
+                                                          "verifiedId":  "The user action \"Recover account\" requires this control. Please select identity verification profile. No other controls are supported at this time.",
+                                                          "vidAmpWarning":  "Before creating a Conditional Access policy, make sure Verified ID is turned on as an authentication method."
                                                       },
                                          "Policies":  {
                                                           "Linux":  {
@@ -12486,6 +12617,17 @@
                                         "loadingPermissions":  "Loading permissions..."
                                     },
                     "advancedTabText":  "Advanced",
+                    "agentIdentitiesAlert":  "Some controls are not available due to 'agents' selection in policy assignment",
+                    "agentIdentitiesInfo":  "Apply policy to all agent identities.",
+                    "agentIdentitiesSelectInfo":  "Apply policy to specific agent identities in the tenant.",
+                    "agentUsersAlert":  "During public preview, block access to all resources is the only policy configuration allowed for 'All agents acting as users' selection. Additional conditions and controls are coming soon.",
+                    "agentUsersDescription":  "Agent users enable AI-powered applications to interact with systems and services that require user identities.",
+                    "agentUsersInfo":  "Apply policy to all agents acting as users.",
+                    "agentUsersSelect":  "Select agents acting as users",
+                    "agentUsersSelectTitle":  "Select agent users",
+                    "agentUsersWarning":  "All agents acting as users cannot be combined with other selections.",
+                    "agents":  "Agents (Preview)",
+                    "allAgentUsers":  "All agents acting as users (Preview)",
                     "allCloudAppsErrorBox":  "\"All cloud apps\" must be selected when \"Require password change\" grant is selected",
                     "allCloudAppsReauth":  "\"All cloud apps\" must be selected when \"Sign-in frequency every time\" session control and \"sign-in risk\" condition are selected",
                     "allCloudOrSpecificApps":  "The \"sign-in frequency every time\" session control requires \"all cloud apps\" or specifically-supported apps to be selected",
@@ -12515,6 +12657,7 @@
                     "applyConditionClientAppInfoBalloonContent":  "Configure client apps to apply the policy to specific client apps",
                     "applyConditionDevicePlatformInfoBalloonContent":  "Configure device platforms to apply the policy to specific platforms",
                     "applyConditionDeviceStateInfoBalloonContent":  "Configure device state to apply the policy to specific device state(s)",
+                    "applyConditionLocation":  "Configure Locations",
                     "applyConditionLocationInfoBalloonContent":  "Configure locations to apply the policy to trusted/untrusted locations",
                     "applyConditionSigninRiskInfoBalloonContent":  "Configure sign-in risk to apply the policy to selected risk level(s)",
                     "applyConditionUserRiskInfoBalloonContent":  "Configure user risk to apply the policy to selected risk level(s)",
@@ -12709,6 +12852,8 @@
                     "cloudappsSelectionBladeIncludedSelectorTitle":  "Select",
                     "cloudappsSelectionBladeSelectedCloudapps":  "Select apps",
                     "cloudappsSelectionBladeSelectedResources":  "Select resources",
+                    "cloudappsSelectionDescription":  "Select specific resources this policy targets.",
+                    "cloudappsSelectionTitle":  "Select specific resources",
                     "cloudappsSelectorInfoBallonText":  "Services which the user accesses to do work. For example, 'Salesforce'",
                     "cloudappsSelectorNone":  "No cloud apps, actions, or authentication context selected",
                     "cloudappsSelectorPluralExcluded":  "{0} apps excluded",
@@ -12846,7 +12991,7 @@
                     "memberSelectionCommandRemove":  "Remove",
                     "menuItemClaimProviderControls":  "Custom controls (Preview)",
                     "menuItemClassicPolicies":  "Classic policies",
-                    "menuItemDeletedPolicies":  "Deleted Policies (Preview)",
+                    "menuItemDeletedPolicies":  "Deleted Policies",
                     "menuItemInsightsAndReporting":  "Insights and reporting",
                     "menuItemManage":  "Manage",
                     "menuItemNamedLocationsPreview":  "Named locations (Preview)",
@@ -12949,6 +13094,7 @@
                     "policyConditionNetworkLocationDescription":  "Network and locations (determined by IP address range or GPS coordinates) the user is signing in from",
                     "policyConditionSigninRisk":  "Sign-in risk",
                     "policyConditionSigninRiskDescription":  "Likelihood that the sign-in is coming from someone other than the user. Risk level can be high, medium or low. Requires Microsoft Entra ID P2 license.",
+                    "policyConditionUserAndSigninRiskWarning":  "Avoid combining User Risk and Sign-in Risk in the same policy. These conditions rarely occur together, so Microsoft recommends creating separate policies - one for User Risk and another for Sign-in Risk.",
                     "policyConditionUserRisk":  "User risk",
                     "policyConditionUserRiskDescription":  "Configure user risk levels needed for policy to be enforced",
                     "policyConditioniClientApp":  "Client apps",
@@ -12968,6 +13114,7 @@
                     "policyControlRequiredPasswordChangeDisplayedName":  "Require password change",
                     "policyControlSelectAuthStrength":  "Require authentication strength",
                     "policyControlSelectRiskRemediation":  "Require risk remediation",
+                    "policyControlVerifiedIdDisplayedName":  "Require identity verification",
                     "policyControlsNoControlsSelected":  "0 controls selected",
                     "policyControlsSection":  "Access controls",
                     "policyCreatBladeTitle":  "New",
@@ -13114,12 +13261,12 @@
                     "trustedLocationStatusIconEnabled":  "Trusted status icon",
                     "tuesday":  "Tuesday",
                     "uploadInBadState":  "Unable to upload the specified file.",
-                    "userAgentOrSPSelectionBladeTitle":  "Users, agent identities or workload identities",
+                    "userAgentOrSPSelectionBladeTitle":  "Users, agents or workload identities",
                     "userAppNoneOption":  "None",
                     "userNamePlaceholderText":  "Enter User Name",
                     "userNotSetSeletorLabel":  "0 users and groups selected",
                     "userOnlySelectionBladeExcludeDescription":  "Select the users to exempt from the policy",
-                    "userOrAgentSelectionBladeTitle":  "Users or agent identities",
+                    "userOrAgentSelectionBladeTitle":  "Users or agents (Preview)",
                     "userOrGroupSelectionCountDiffBannerText":  "{0} configured in this policy have been deleted from the directory, but this doesn't affect the other users and groups in the policy. The next time you update the policy, the deleted users and/or groups will be automatically removed.",
                     "userOrSPNotSetSelectorLabel":  "0 users or workload identities selected",
                     "userOrSPSelectionBladeTitle":  "Users or workload identities",
@@ -13153,6 +13300,7 @@
                     "userSelectorUserSingular":  "1 user",
                     "userSelectorWithExclusion":  "{0} and {1}",
                     "usersGroupsLabel":  "Users and groups",
+                    "verifiedIdInfoBubble":  "Users must present a Verified ID and complete Face Check",
                     "viewApprovedAppsText":  "See list of approved client apps",
                     "viewCompliantAppsText":  "See list of policy protected client apps",
                     "viewPolicyInformation":  "View policy information",

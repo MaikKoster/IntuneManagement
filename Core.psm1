@@ -1112,7 +1112,7 @@ function Get-Folder
         {
             $dlgCOFD.InitialDirectory = $path
         }
-        if($dlgCOFD.ShowDialog($window) = [Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogResult]::Ok)
+        if($dlgCOFD.ShowDialog($window) -eq [Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogResult]::Ok)
         {
             $dlgCofd.FileName            
         }
@@ -1410,7 +1410,7 @@ function Remove-Setting
         try
         {
             $temp = Get-Item -LiteralPath $regPath -ErrorAction SilentlyContinue
-            if(($temp.Property -contains $Key))
+            if(($temp -and $temp.Property -contains $Key))
             {
                 Remove-ItemProperty -Path $regPath -Name $Key -Force -ErrorAction Stop
             }
@@ -1424,7 +1424,7 @@ function Remove-Setting
 
 function Get-Setting
 {    
-    param($SubPath = "", $Key = "", $defautValue)
+    param($SubPath = "", $Key = "", $defaultValue)
 
     if(-not $key)
     {
@@ -1489,7 +1489,7 @@ function Get-Setting
 
     if(-not $val) 
     {
-        $defautValue
+        $defaultValue
     }
     else
     {
@@ -1712,7 +1712,11 @@ function Add-SettingsItem
     {
         if($settingValue.Description)
         {
-            $descriptionInfo = "<Rectangle Style=`"{DynamicResource InfoIcon}`" ToolTip=`"$($settingValue.Description)`" Margin=`"5,0,0,0`" />"
+            $descriptionInfo = "<Rectangle Style=`"{DynamicResource InfoIcon}`" Margin=`"5,0,0,0`">" +
+                "<Rectangle.ToolTip><TextBlock>" +
+                $settingValue.Description +
+                "</TextBlock></Rectangle.ToolTip>" +
+                "</Rectangle>"
         }
     
         $xaml = @"
@@ -2755,6 +2759,27 @@ function Format-XML
     $XmlWriter.Flush()
     $StringWriter.Flush()
     $StringWriter.ToString()
+}
+
+function Update-XmlFormatting {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [string]$Xml
+    )
+    process {
+
+        $Xml = $Xml -replace '<([^\s/>]+)([^>]*)\s/>' , '<$1$2/>'
+
+        $Xml = ($Xml -split "`r?`n") |
+            Where-Object { $_.Trim().Length -gt 0 } |
+            ForEach-Object { $_ } |
+            Out-String
+
+        $Xml = $Xml -replace "`r`n", "`n"
+
+        return $Xml.Trim()
+    }
 }
 
 function Show-LogView

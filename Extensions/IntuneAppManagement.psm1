@@ -790,7 +790,7 @@ function Start-DownloadAppContent
     {
         foreach($file in $contentFiles.value)
         {
-            if($contentFiles.value[-1].Id -eq $file.id) { continune }
+            if($contentFiles.value[-1].Id -eq $file.id) { continue }
 
             # NOT happy about this. file objects are not always returned in the order of upload.
             $contentFile = Invoke-GraphRequest -Url "/deviceAppManagement/mobileApps/$appId/$appType/contentVersions/$contentVerId/files/$($file.Id)" -NoError

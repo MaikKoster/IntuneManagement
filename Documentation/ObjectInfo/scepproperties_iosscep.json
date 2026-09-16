@@ -558,7 +558,7 @@
                                                                   "dataType":  4,
                                                                   "category":  103,
                                                                   "nameResourceKey":  "sCEPPolicySelectRootCertificateName",
-                                                                  "descriptionResourceKey":  "SCEPPolicySelectRootCertificateName",
+                                                                  "descriptionResourceKey":  "sCEPPolicySelectRootCertificateDescription",
                                                                   "childSettings":  [
 
                                                                                     ],

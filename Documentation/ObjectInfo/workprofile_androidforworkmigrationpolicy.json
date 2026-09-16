@@ -35,22 +35,6 @@
                                                           "showAsSectionHeader":  false,
                                                           "dataType":  8,
                                                           "category":  127,
-                                                          "nameResourceKey":  "androidForWorkMigrationPolicyDescriptionParagraph2",
-                                                          "childSettings":  [
-
-                                                                            ],
-                                                          "options":  [
-
-                                                                      ],
-                                                          "booleanActions":  0,
-                                                          "policyType":  129,
-                                                          "enabled":  true
-                                                      },
-                                                      {
-                                                          "isSettingDescription":  false,
-                                                          "showAsSectionHeader":  false,
-                                                          "dataType":  8,
-                                                          "category":  127,
                                                           "nameResourceKey":  "androidForWorkMigrationPolicyLearnMoreText",
                                                           "childSettings":  [
 

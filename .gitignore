@@ -8,5 +8,6 @@
 /*.new
 /*.old
 /Extensions/*.zip
+Extensions_dev/
 .gitignore
 CloudAPIPowerShellManagement.log

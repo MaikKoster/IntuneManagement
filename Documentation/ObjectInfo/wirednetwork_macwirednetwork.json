@@ -84,21 +84,6 @@
                                                                                                       "value":  "eapFast",
                                                                                                       "children":  [
                                                                                                                        {
-                                                                                                                           "value":  "certificate",
-                                                                                                                           "dataType":  9,
-                                                                                                                           "category":  149,
-                                                                                                                           "childSettings":  [
-
-                                                                                                                                             ],
-                                                                                                                           "options":  [
-
-                                                                                                                                       ],
-                                                                                                                           "entityKey":  "authenticationMethod",
-                                                                                                                           "booleanActions":  0,
-                                                                                                                           "policyType":  68,
-                                                                                                                           "enabled":  true
-                                                                                                                       },
-                                                                                                                       {
                                                                                                                            "dataType":  16,
                                                                                                                            "category":  149,
                                                                                                                            "nameResourceKey":  "pACHeading",
@@ -886,21 +871,6 @@
                                                                                                       "nameResourceKey":  "eAPFASTName",
                                                                                                       "value":  "eapFast",
                                                                                                       "children":  [
-                                                                                                                       {
-                                                                                                                           "value":  "certificate",
-                                                                                                                           "dataType":  9,
-                                                                                                                           "category":  149,
-                                                                                                                           "childSettings":  [
-
-                                                                                                                                             ],
-                                                                                                                           "options":  [
-
-                                                                                                                                       ],
-                                                                                                                           "entityKey":  "authenticationMethod",
-                                                                                                                           "booleanActions":  0,
-                                                                                                                           "policyType":  68,
-                                                                                                                           "enabled":  true
-                                                                                                                       },
                                                                                                                        {
                                                                                                                            "dataType":  16,
                                                                                                                            "category":  149,

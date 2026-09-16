@@ -1,4 +1,75 @@
 # Release Notes
+## 3.10.3 - 2026-05-11
+
+**Fixes**
+
+- **Import/Export**<br />
+  -  Added support for Install/Uninstall scripts on Win32 apps<br />
+  It now supports importing Win32 apps that are configured with Install/Uninstall scripts.<br />
+  **Note:** The Win32 app must be exported with 3.10.1.18 or later since the Install/Uninstall script info is not availble with default json export.<br />
+  -  Categories failed to import<br />
+  Based on [Issue 381](https://github.com/Micke-K/IntuneManagement/issues/381)<br />
+  -  Orderchanges after export<br />
+  This caused issues when using the export for trackiing changes e.g. upload json to Github.<br />
+  Export changed the order of the properties causing a change in the json.<br />
+  This can be enabled in settings: **Sort Json properties**<br />
+  Based on [Issue 378](https://github.com/Micke-K/IntuneManagement/issues/378)<br />
+  -  Importing registry values caused 2016281112 error<br />
+  Import was successful and reigstry value was correct but could caused a remediation error.<br />
+  It looks like CSP formats the XML before applying it, causing it not to match the XML in the policy.<br />
+  Based on [Issue 380](https://github.com/Micke-K/IntuneManagement/issues/380)<br />
+-  Added support for Windows Quality Updates (Policies)<br />
+  Based on [Issue 387](https://github.com/Micke-K/IntuneManagement/issues/387)<br />
+
+
+- **Documentation**<br />
+  - Added Json output provider<br />
+  - Added support for Insall/Uninstall scriupt for Win32 apps<br />
+  - Added support for Strict Open XML document output<br />
+    Based on [Issue 375](https://github.com/Micke-K/IntuneManagement/issues/375)<br />
+  -  Fixed issue with boolean values when documenting App Configuration policies<br />
+    Based on [Issue 383](https://github.com/Micke-K/IntuneManagement/issues/383)<br />
+  - Country names missing when documenting a Named Locations.<br />
+    Based on [Issue 400](https://github.com/Micke-K/IntuneManagement/issues/400)<br />
+  - Uninstall on device removal says Not Configured on Deployemnts<br />
+    Based on [Issue 402](https://github.com/Micke-K/IntuneManagement/issues/402)<br />
+  - iOS Single sign-on app extension config is empty<br />
+    Based on [Issue 403](https://github.com/Micke-K/IntuneManagement/issues/403)<br />
+  - Android App Config is not showing the correct Profile Type in Basic info<br />
+    Based on [Issue 404](https://github.com/Micke-K/IntuneManagement/issues/404)<br />
+
+- **Generic**<br />
+  - Added support for configuring when the cache is cleared<br />
+    Cache is is cleared before a bulk export. <br />
+    If can now be changed in Settings with the **Clear Cache Before Export** and **Clear all objects from cache**.<br />
+    This can reaload all values if doing multiple manual imports but can also cause the imports to take longer.<br />
+    Based on [Issue 306](https://github.com/Micke-K/IntuneManagement/issues/306)<br />
+  - Lots of minor fixes<br />
+
+
+## 3.10.2 - 2025-10-14
+
+**Fixes**
+
+- **Generic**<br />
+  - Paging<br />
+  Paging was introduce in 3.10 but was missed in the release notes and caused a lot of issues<br />
+  Turns out that far from all APIs supports paging<br />
+  Looks like Settings Catalog has a very weird paging solution where it returs the wrong number of objects<br />
+  Sometimes it reports it has more pages even if there are not objects to load e.g. I set page size to 5 and tried to load Android OEM Config<br />
+  Default page size is set to <b>100</b><br />
+  <b>Note:</b> Set <b>API Page size</b> in settings to <b>Graph API Default</b> to skip paging<br />
+  Based on [Issue 364](https://github.com/Micke-K/IntuneManagement/issues/364)<br />
+  - Entra Group Creation
+  Entra groups will now be created with random mailNickname to match the Entra portal.
+
+- **Authentication**<br />
+  - Login with App in UI<br />
+  This was enabled before but Tenant ID was added to Settings to allow App Id login to a single tenant<br />
+  Based on [Issue 367](https://github.com/Micke-K/IntuneManagement/issues/367)<br />
+  <b>Note:</b>This is <b>NOT</b> recommended except for testing App permissions etc. The secret is stored in clear text
+
+
 ## 3.10.1 - 2025-09-14
 
 <br />

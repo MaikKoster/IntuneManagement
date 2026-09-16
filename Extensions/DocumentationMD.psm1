@@ -83,7 +83,7 @@ function Invoke-MDPreProcessItems
         Write-Log "CSS file not specified. Using default" 2
         $MDCssFile = $defaultCSSFile
     }
-    elseif([IO.File]::Exists($MDCssFile) -eq -$false)
+    elseif([IO.File]::Exists($MDCssFile) -eq $false)
     {
         Write-Log "CSS file $($MDCssFile) not found. Using default" 2
         $MDCssFile = $defaultCSSFile

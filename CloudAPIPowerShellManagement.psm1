@@ -149,6 +149,15 @@ function Initialize-CloudAPIManagement
             Write-Host "Using Graph Environment type: $($global:UseGCCType)"
         }
     }
+    elseif($secret)
+    {
+        $global:ClientSecret = $secret 
+    }
+    if($certificate)
+    {
+        $global:ClientCert = $certificate 
+    }
+
 
     if($global:hideUI -ne $true)
     {                

@@ -20,6 +20,8 @@ This PowerShell application is based on the foundation modules CloudAPIPowerShel
 
 **Security note:** Since the scripts are not signed, a warning might be display when running it and files might be blocked. The script will unblock all files. This is to avoid issues that it fails to load the MSAL library etc. If there are any security concerns, the PowerShell code can be reviewed and the DLL files can be downloaded manually from Microsoft repositories, see links below. The DLL files *CAN* be removed but MSAL is a pre-requisite for authentication. The script will try to find the DLL in the Az or MSAL.PS module if not found in the script root directory. DLL files are included to reduce dependencies.
 
+**Development release:** Changes will be uploaded to the [Development](https://github.com/Micke-K/IntuneManagement/tree/Development) branch. Changes and fixes will be implement to this branch. Any PRs must be merging thatto this branch. 
+
 ## Starting the App
 
 Before starting the app:
@@ -274,7 +276,8 @@ Start-WithJson.cmd is included as an example on how to start the script with jso
 * Scripts (PowerShell and Shell scripts, supports download of script)
 * Terms and Conditions
 * Terms of Use
-* Update Policies
+* Windows Update Policies
+* Windows Updates Profiles
 * Co-management Settings
 
 [^1]: ADMX file must be located in the export folder or in the folder defined in Settings. Administrative Template policies based on ADMX files must be imported after the ADMX file is imported.

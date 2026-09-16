@@ -1025,6 +1025,11 @@ function Connect-MSALUser
     if($global:MainAppStarted -eq $false) 
     { 
         $script:AppLogin = (Get-SettingValue "GraphAzureAppLogin") -or ($global:TenantId -and $global:AzureAppId -and ($global:ClientSecret -or $global:ClientCert))
+
+        if((Get-SettingValue "GraphAzureAppLogin") -and -not $global:TenantId)
+        {
+            $global:TenantId = Get-SettingValue "GraphAzureTenantId"
+        }
     }
 
     if($script:AppLogin) 
@@ -1111,7 +1116,6 @@ function Connect-MSALUser
             }
             else
             {
-                $lastUser = 
                 $lastUserId = Get-Setting "" "LastLoggedOnUserId"
                 if($lastUserId)
                 {

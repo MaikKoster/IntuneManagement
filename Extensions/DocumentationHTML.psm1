@@ -74,7 +74,7 @@ function Invoke-HTMLPreProcessItems
         Write-Log "CSS file not specified. Using default" 2
         $HTMLCssFile = $defaultCSSFile
     }
-    elseif([IO.File]::Exists($HTMLCssFile) -eq -$false)
+    elseif([IO.File]::Exists($HTMLCssFile) -eq $false)
     {
         Write-Log "CSS file $($HTMLCssFile) not found. Using default" 2
         $HTMLCssFile = $defaultCSSFile

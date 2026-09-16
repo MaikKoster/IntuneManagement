@@ -63,8 +63,17 @@ function Add-WordOptionsControl
     $global:spWordCustomProperties.Visibility = (?: ($global:cbWordDocumentationProperties.SelectedValue -ne "custom") "Collapsed" "Visible")
     $global:txtWordCustomProperties.Visibility = (?: ($global:cbWordDocumentationProperties.SelectedValue -ne "custom") "Collapsed" "Visible")
 
-    $global:cbWordDocumentationFormat.ItemsSource = ("[ { Name: `"Docx`",Value: `"docx`" }, { Name: `"PDF`",Value: `"pdf`" }]" | ConvertFrom-Json)
-    $global:cbWordDocumentationFormat.SelectedValue = (Get-Setting "Documentation" "WordDocumentFormat" "docx")
+    $global:cbWordDocumentationFormat.ItemsSource = ("[ { Name: `"Word default document (docx)`",Value: `"wdFormatDocumentDefault`" }, { Name: `"Strict Open XML document`",Value: `"wdFormatStrictOpenXMLDocument`" }, { Name: `"PDF`",Value: `"wdFormatPDF`" }]" | ConvertFrom-Json)
+    $currentFormat = (Get-Setting "Documentation" "WordDocumentFormat" "wdFormatDocumentDefault")
+    if($currentFormat -eq "pdf")
+    {
+        $currentFormat = "wdFormatPDF"
+    }
+    elseif($currentFormat -eq "docx")
+    {
+        $currentFormat = "wdFormatDocumentDefault"
+    }
+    $global:cbWordDocumentationFormat.SelectedValue = $currentFormat
 
     $global:cbWordDocumentationLevel.ItemsSource = ("[ { Name: `"Full`",Value: `"full`" }, { Name: `"Limited`",Value: `"limited`" }, { Name: `"Basic`",Value: `"basic`" }]" | ConvertFrom-Json)
     $global:cbWordDocumentationLevel.SelectedValue = (Get-Setting "Documentation" "WordDocumentationLevel" "full")
@@ -282,8 +291,8 @@ function Invoke-WordPreProcessItems
     }
 
     $script:wordStyles = @()
-    $script:doc.Styles | foreach { 
-        $script:wordStyles += [PSCUstomObject]@{
+    $script:doc.Styles | foreach {         
+        $script:wordStyles += [PSCustomObject]@{ 
             Name=$_.NameLocal
             Type=$_.Type
             Style=$_
@@ -400,11 +409,43 @@ function Invoke-WordPostProcessItems
     catch {}
 
     #update fields, ToC etc.
-    $script:doc.Fields | ForEach-Object -Process { $_.Update() | Out-Null } 
-    $script:doc.TablesOfContents | ForEach-Object -Process { $_.Update() | Out-Null }
-    $script:doc.TablesOfFigures | ForEach-Object -Process { $_.Update() | Out-Null }
-    $script:doc.TablesOfAuthorities | ForEach-Object -Process { $_.Update() | Out-Null }
+    try {
+        $script:doc.Fields | ForEach-Object -Process { $_.Update() | Out-Null } 
+    }
+    catch {
+        Write-LogError "Failed to update document fields" $_.Exception
+    }
+    try {
+        $script:doc.TablesOfContents | ForEach-Object -Process { $_.Update() | Out-Null }
+    }
+    catch {
+        Write-LogError "Failed to update Table of Contents" $_.Exception
+    }
+    try {
+        $script:doc.TablesOfFigures | ForEach-Object -Process { $_.Update() | Out-Null }
+    }
+    catch {
+        Write-LogError "Failed to update Table of Figures" $_.Exception
+    }
+    try {
+        $script:doc.TablesOfAuthorities | ForEach-Object -Process { $_.Update() | Out-Null }    
+    }
+    catch {
+        Write-LogError "Failed to update Table of Authorities" $_.Exception
+    }
+        
 
+    Write-Log "Using document format: $($global:cbWordDocumentationFormat.SelectedValue)"
+    try {
+        $format = [Microsoft.Office.Interop.Word.WdSaveFormat]$global:cbWordDocumentationFormat.SelectedValue
+    }
+    catch
+    {
+        Write-LogError "Document validation failed" $_.Exception
+        $format = [Microsoft.Office.Interop.Word.WdSaveFormat]::wdFormatDocumentDefault
+    }
+    
+    <#
     if($global:cbWordDocumentationFormat.SelectedValue -eq "pdf")
     {
         $format = [Microsoft.Office.Interop.Word.WdSaveFormat]::wdFormatPDF
@@ -412,6 +453,7 @@ function Invoke-WordPostProcessItems
     else {
         $format = [Microsoft.Office.Interop.Word.WdSaveFormat]::wdFormatDocumentDefault
     }
+    #>
 
     $fileName = $global:txtWordDocumentName.Text
     if(-not $fileName)
@@ -436,17 +478,28 @@ function Invoke-WordPostProcessItems
         Write-LogError "Failed to save file $fileName" $_.Excption
     }
 
-    if($global:chkWordOpenDocument.IsChecked -eq $true -and $global:hideUI -ne $true)
-    {
-        $script:wordApp.Visible = $true
-        $script:wordApp.WindowState = [Microsoft.Office.Interop.Word.WdWindowState]::wdWindowStateMaximize
-        $script:wordApp.Activate()
-        [Console.Window]::SetForegroundWindow($script:wordApp.ActiveWindow.Hwnd) | Out-Null
+    try {
+        if($global:chkWordOpenDocument.IsChecked -eq $true -and $global:hideUI -ne $true)
+        {
+            $script:wordApp.Visible = $true
+            $script:wordApp.WindowState = [Microsoft.Office.Interop.Word.WdWindowState]::wdWindowStateMaximize
+            $script:wordApp.Activate()
+            [Console.Window]::SetForegroundWindow($script:wordApp.ActiveWindow.Hwnd) | Out-Null
+        }
+        else
+        {
+            $script:doc.Close([Microsoft.Office.Interop.Word.WdSaveOptions]::wdDoNotSaveChanges)
+            $script:wordApp.Quit()
+        }
     }
-    else
+    catch
     {
-        $script:doc.Close([Microsoft.Office.Interop.Word.WdSaveOptions]::wdDoNotSaveChanges)
-        $script:wordApp.Quit()
+        Write-LogError "Failed to close the Word application" $_.Exception
+    }
+    finally {        
+        [void][Runtime.InteropServices.Marshal]::ReleaseComObject($script:doc)
+        [void][Runtime.InteropServices.Marshal]::ReleaseComObject($script:wordApp)
+        [GC]::Collect(); [GC]::WaitForPendingFinalizers()
     }
 }
 

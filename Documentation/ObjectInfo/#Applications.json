@@ -856,20 +856,122 @@
         },
         "complexOptions": [
             {
-                "nameResourceKey":  "Win32Program.installCommand",
+                "nameResourceKey":  "Win32Program.installerTypeText",
                 "descriptionResourceKey":  "",
-                "entityKey":  "installCommandLine",
+                "entityKey":  "installerType",
                 "dataType":  20,
                 "booleanActions":  0,
-                "category": "Win32Program.selectorLabel"
-            },
+                "category": "Win32Program.selectorLabel",
+                "Children": [
+                    {
+                        "nameResourceKey":  "Win32Program.installCommand",
+                        "descriptionResourceKey":  "",
+                        "entityKey":  "installCommandLine",
+                        "dataType":  20,
+                        "booleanActions":  0,
+                        "category": "Win32Program.selectorLabel",
+                        "Condition": {
+                            "Expressions": [
+                                {
+                                    "property": "installCommandLine"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "nameResourceKey":  "Win32Program.installScript",
+                        "descriptionResourceKey":  "",
+                        "entityKey":  "activeInstallScript",
+                        "dataType":  6,
+                        "booleanActions":  0,
+                        "category": "Win32Program.selectorLabel",
+                        "complexOptions": [
+                            {
+                                "nameResourceKey":  "TableHeaders.scriptName",
+                                "descriptionResourceKey":  "",
+                                "entityKey":  "scriptName",
+                                "dataType":  20,
+                                "booleanActions":  0,
+                                "category": "Win32Program.selectorLabel"
+                            },
+                            {
+                                "nameResourceKey":  "Win32Requirements.AdditionalRequirements.Script.enforceSignatureCheck",
+                                "descriptionResourceKey":  "Win32Requirements.AdditionalRequirements.Script.enforceSignatureCheckTooltip",
+                                "entityKey":  "enforceSignatureCheck",
+                                "dataType":  0,
+                                "booleanActions":  109,
+                                "category": "Win32Program.selectorLabel"
+                            },
+                            {
+                                "nameResourceKey": "DetectionRules.CustomScript.runAs32Bit",
+                                "descriptionResourceKey": "DetectionRules.CustomScript.runAs32BitTooltip",
+                                "entityKey":  "runAs32Bit",
+                                "dataType":  0,
+                                "booleanActions":  109,
+                                "category": "Win32Program.selectorLabel"
+                            }
+                        ]
+                    }
+                ]
+            },            
             {
-                "nameResourceKey":  "Win32Program.uninstallCommand",
+                "nameResourceKey":  "Win32Program.uninstallerTypeText",
                 "descriptionResourceKey":  "",
-                "entityKey":  "uninstallCommandLine",
+                "entityKey":  "uninstallerType",
                 "dataType":  20,
                 "booleanActions":  0,
-                "category": "Win32Program.selectorLabel"
+                "category": "Win32Program.selectorLabel",
+                "Children": [
+                    {
+                        "nameResourceKey":  "Win32Program.uninstallCommand",
+                        "descriptionResourceKey":  "",
+                        "entityKey":  "uninstallCommandLine",
+                        "dataType":  20,
+                        "booleanActions":  0,
+                        "category": "Win32Program.selectorLabel",
+                        "Condition": {
+                            "Expressions": [
+                                {
+                                    "property": "uninstallCommandLine"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "nameResourceKey":  "Win32Program.uninstallScript",
+                        "descriptionResourceKey":  "",
+                        "entityKey":  "activeUninstallScript",
+                        "dataType":  6,
+                        "booleanActions":  0,
+                        "category": "Win32Program.selectorLabel",
+                        "complexOptions": [
+                            {
+                                "nameResourceKey":  "TableHeaders.scriptName",
+                                "descriptionResourceKey":  "",
+                                "entityKey":  "scriptName",
+                                "dataType":  20,
+                                "booleanActions":  0,
+                                "category": "Win32Program.selectorLabel"
+                            },
+                            {
+                                "nameResourceKey":  "Win32Requirements.AdditionalRequirements.Script.enforceSignatureCheck",
+                                "descriptionResourceKey":  "Win32Requirements.AdditionalRequirements.Script.enforceSignatureCheckTooltip",
+                                "entityKey":  "enforceSignatureCheck",
+                                "dataType":  0,
+                                "booleanActions":  109,
+                                "category": "Win32Program.selectorLabel"
+                            },
+                            {
+                                "nameResourceKey":  "DetectionRules.CustomScript.runAs32Bit",
+                                "descriptionResourceKey":  "DetectionRules.CustomScript.runAs32BitTooltip",
+                                "entityKey":  "runAs32Bit",
+                                "dataType":  0,
+                                "booleanActions":  109,
+                                "category": "Win32Program.selectorLabel"
+                            }
+                        ]
+                    }
+                ]
             },
             {
                 "nameResourceKey":  "",
@@ -877,7 +979,7 @@
                 "entityKey":  "installExperience",
                 "dataType":  6,
                 "booleanActions":  0,
-                "category": "",                
+                "category": "",
                 "complexOptions": [
                     {
                         "nameResourceKey":  "Win32Program.runAsAccount",

@@ -156,7 +156,8 @@ function Invoke-InitializeModule
         ImportExtension = { Add-ConditionalAccessImportExtensions @args }
         PreImportCommand = { Start-PreImportConditionalAccess @args }
         PostExportCommand = { Start-PostExportConditionalAccess  @args }
-        ExpandAssignmentsList = $false
+        ExpandAssignmentsList = $false        
+        SupportsPageSize = $false
     })
 
     Add-ViewItem (New-Object PSObject -Property @{
@@ -170,7 +171,8 @@ function Invoke-InitializeModule
         Permissons=@("Agreement.ReadWrite.All")
         PreImportCommand = { Start-PreImportTermsOfUse @args }
         PostExportCommand = { Start-PostExportTermsOfUse  @args }
-        GroupId = "ConditionalAccess"        
+        GroupId = "ConditionalAccess"
+        SupportsPageSize = $false
     })
 
     Add-ViewItem (New-Object PSObject -Property @{
@@ -182,6 +184,7 @@ function Invoke-InitializeModule
         ImportOrder = 50
         GroupId = "ConditionalAccess"
         ExpandAssignmentsList = $false
+        SupportsPageSize = $false
     })
 
     Add-ViewItem (New-Object PSObject -Property @{
@@ -201,6 +204,7 @@ function Invoke-InitializeModule
         Permissons=@("DeviceManagementConfiguration.ReadWrite.All")
         Dependencies = @("ReusableSettings")
         GroupId = "EndpointSecurity"        
+        SupportsPageSize = $false
     })    
 
     Add-ViewItem (New-Object PSObject -Property @{
@@ -214,6 +218,7 @@ function Invoke-InitializeModule
         PostExportCommand = { Start-PostExportCompliancePolicies @args }
         PreUpdateCommand = { Start-PreUpdateCompliancePolicies @args }
         GroupId = "CompliancePolicies"
+        SupportsPageSize = $false
     })
 
     Add-ViewItem (New-Object PSObject -Property @{
@@ -261,6 +266,7 @@ function Invoke-InitializeModule
         SkipRemoveProperties = @('Id') # Id is removed by PreImport. Required for default profile
         PropertiesToRemoveForUpdate = @('isDefaultProfile','disableClientTelemetry')
         GroupId = "TenantAdmin"
+        SupportsPageSize = $false
     })
 
     <#
@@ -288,6 +294,7 @@ function Invoke-InitializeModule
         GroupId = "Azure"
         SkipAddIDOnExport = $true
         ExpandAssignmentsList = $false
+        SupportsPageSize = $false
     })
 
     Add-ViewItem (New-Object PSObject -Property @{
@@ -311,6 +318,7 @@ function Invoke-InitializeModule
         AssignmentsType = "enrollmentConfigurationAssignments"
         PropertiesToRemoveForUpdate = @('priority')
         GroupId = "WinEnrollment"
+        SupportsPageSize = $false
     })
 
     Add-ViewItem (New-Object PSObject -Property @{
@@ -334,6 +342,7 @@ function Invoke-InitializeModule
         AssignmentsType = "enrollmentConfigurationAssignments"
         GroupId = "EnrollmentRestrictions"
         ViewProperties = @("displayName","platformType","description","Id")
+        SupportsPageSize = $false
     })
 
     Add-ViewItem (New-Object PSObject -Property @{
@@ -349,6 +358,7 @@ function Invoke-InitializeModule
         SkipRemoveProperties = @('Id')        
         GroupId = "WinEnrollment"
         Icon = "EnrollmentStatusPage"
+        SupportsPageSize = $false
     })
 
     Add-ViewItem (New-Object PSObject -Property @{
@@ -425,6 +435,7 @@ function Invoke-InitializeModule
         PreImportAssignmentsCommand = { Start-PreImportAssignmentsTermsAndConditions @args }
         GroupId = "TenantAdmin"
         ExpandAssignmentsList = $false
+        SupportsPageSize = $false
     })
 
     Add-ViewItem (New-Object PSObject -Property @{
@@ -445,6 +456,7 @@ function Invoke-InitializeModule
         Dependencies = @("Applications")
         GroupId = "AppProtection"
         ExpandAssignmentsList = $false
+        SupportsPageSize = $false
     })
 
     # These are also included in the managedAppPolicies API
@@ -464,6 +476,7 @@ function Invoke-InitializeModule
         Icon = "AppConfiguration"
         GroupId = "AppConfiguration"
         ExpandAssignmentsList = $false
+        SupportsPageSize = $false
     })    
 
     Add-ViewItem (New-Object PSObject -Property @{
@@ -496,8 +509,8 @@ function Invoke-InitializeModule
         ImportOrder = 60
         Expand="categories,assignments" # ODataMetadata is set to minimal so assignments can't be autodetected
         ODataMetadata="minimal" # categories property not supported with ODataMetadata full
-        PostFileImportCommand = { Start-PostFileImportApplications @args }
-        PostCopyCommand = { Start-PostCopyApplications @args }
+        PostFileImportCommand = { Start-PostFileImportApplication @args }
+        PostCopyCommand = { Start-PostCopyApplication @args }
         PreUpdateCommand = { Start-PreUpdateApplication  @args }
         PreImportCommand = { Start-PreImportCommandApplication  @args }
         DetailExtension = { Add-DetailExtensionApplications @args }
@@ -567,7 +580,7 @@ function Invoke-InitializeModule
     })
 
     Add-ViewItem (New-Object PSObject -Property @{
-        Title = "Quality Updates"
+        Title = "Quality Updates (Profiles)"
         Id = "QualityUpdates"
         ViewID = "IntuneGraphAPI"
         API = "/deviceManagement/windowsQualityUpdateProfiles"
@@ -575,6 +588,18 @@ function Invoke-InitializeModule
         Icon = "UpdatePolicies"
         GroupId = "WinQualityUpdates"
         PropertiesToRemoveForUpdate = @('releaseDateDisplayName','deployableContentDisplayName')
+        SupportsPageSize = $false
+    })
+
+    Add-ViewItem (New-Object PSObject -Property @{
+        Title = "Quality Updates (Policies)"
+        Id = "QualityUpdatePolicies"
+        ViewID = "IntuneGraphAPI"
+        API = "/deviceManagement/windowsQualityUpdatePolicies"
+        Permissons=@("DeviceManagementConfiguration.ReadWrite.All")
+        Icon = "UpdatePolicies"
+        GroupId = "WinQualityUpdates"
+        SupportsPageSize = $false
     })    
 
     # Locations are not FULLY supported 
@@ -629,7 +654,7 @@ function Invoke-InitializeModule
         ViewProperties = @("name","description","Id")
         Expand="Settings"
         Icon="DeviceConfiguration"
-        GroupId = "DeviceConfiguration"        
+        GroupId = "DeviceConfiguration"
     })   
     
     Add-ViewItem (New-Object PSObject -Property @{
@@ -644,7 +669,8 @@ function Invoke-InitializeModule
         API = "/deviceManagement/hardwareConfigurations"
         Permissons=@("DeviceManagementConfiguration.ReadWrite.All")
         Icon="DeviceConfiguration"
-        GroupId = "DeviceConfiguration"        
+        GroupId = "DeviceConfiguration"
+        SupportsPageSize = $false
     })   
 
     Add-ViewItem (New-Object PSObject -Property @{
@@ -775,6 +801,7 @@ function Invoke-InitializeModule
         PreDeleteCommand = { Start-PreDeleteADMXFiles @args }
         ViewProperties = @("fileName","status","Id")
         PropertiesToRemove = @("languageCodes","targetPrefix","targetNamespace","policyType","revision","status","uploadDateTime")
+        SupportsPageSize = $false
     })
 
     <#
@@ -818,6 +845,7 @@ function Invoke-InitializeModule
         ExpandAssignmentsList = $false
         Icon = "ConditionalAccess"
         GroupId = "EndpointSecurity"
+        SupportsPageSize = $false
     })
 
     Add-ViewItem (New-Object PSObject -Property @{
@@ -833,6 +861,7 @@ function Invoke-InitializeModule
         ExpandAssignmentsList = $false
         Icon = "ConditionalAccess"
         GroupId = "EndpointSecurity"
+        SupportsPageSize = $false
     })
     
     Add-ViewItem (New-Object PSObject -Property @{
@@ -873,6 +902,7 @@ function Invoke-InitializeModule
         QUERYLIST = "`$top=500"
         Permissons = @("DeviceManagementConfiguration.ReadWrite.All")
         GroupId = "DeviceConfiguration"
+        ExpandAssignmentsList = $false
     })
     
 }
@@ -1053,7 +1083,14 @@ function Set-EMViewPanel
     $global:btnLoadAllPages.add_click({
         Write-Status "Loading $($global:curObjectType.Title) objects"
         [array]$graphObjects = Get-GraphObjects -property $global:curObjectType.ViewProperties -objectType $global:curObjectType -AllPages
-        $graphObjects | Where-Object { $_ -ne $null } | ForEach-Object { $global:dgObjects.ItemsSource.AddNewItem($_) | Out-Null }        
+        if(-not $global:dgObjects.Columns)
+        {
+            Show-GraphObjects -FromGraphObjects $graphObjects
+        }
+        else 
+        {
+            $graphObjects | Where-Object { $_ -ne $null } | ForEach-Object { $global:dgObjects.ItemsSource.AddNewItem($_) | Out-Null }
+        }
         $global:dgObjects.ItemsSource.CommitNew()
         Set-GraphPagesButtonStatus
         Invoke-FilterBoxChanged $global:txtFilter -ForceUpdate
@@ -1063,7 +1100,14 @@ function Set-EMViewPanel
     $global:btnLoadNextPage.add_click({
         Write-Status "Loading $($global:curObjectType.Title) objects"
         [array]$graphObjects = Get-GraphObjects -property $global:curObjectType.ViewProperties -objectType $global:curObjectType -SinglePage
-        $graphObjects | Where-Object { $_ -ne $null } | ForEach-Object { $global:dgObjects.ItemsSource.AddNewItem($_) | Out-Null  }        
+        if(-not $global:dgObjects.Columns)
+        {
+            Show-GraphObjects -FromGraphObjects $graphObjects
+        }
+        else 
+        {
+            $graphObjects | Where-Object { $_ -ne $null } | ForEach-Object { $global:dgObjects.ItemsSource.AddNewItem($_) | Out-Null }
+        }
         $global:dgObjects.ItemsSource.CommitNew()
         Set-GraphPagesButtonStatus
         Invoke-FilterBoxChanged $global:txtFilter
@@ -2309,7 +2353,7 @@ function local:Add-AppConfigurationTargets
                 $appName, $appId, $appType = $targetedApp -split "[|][!][|]"
                 if(-not $appName -or -not $appId)
                 {
-                    Write-Log "App Name and Id is missing in string: $appApp" 2
+                    Write-Log "App Name and Id is missing in string: $targetedApp" 2
                     continue
                 }
                 $tmpApps = (Invoke-GraphRequest -Url "/deviceAppManagement/mobileApps?`$filter=displayName eq '$appName'").value
@@ -2359,15 +2403,16 @@ function Start-PreImportAssignmentsAppConfiguration
 
 #region Applications
 
-function Start-PostCopyApplications
+function Start-PostCopyApplication
 {
     param($objCopyFrom, $objNew, $objectType)
 
     Start-ImportApp $objNew
+    Start-AddInstallScripts $objNew $objCopyFrom
     Write-Status ""
 }
 
-function Start-PostFileImportApplications
+function Start-PostFileImportApplication
 {
     param($obj, $objectType, $file)
     
@@ -2388,6 +2433,7 @@ function Start-PostFileImportApplications
     }
     
     Start-ImportApp $obj $tmpFilName
+    Start-AddInstallScripts $obj $tmpObj
 }
 
 function local:Start-ImportApp
@@ -2463,6 +2509,84 @@ function local:Start-ImportApp
     }
 }
 
+function local:Start-AddInstallScripts
+{
+    param($obj, $fromAppObj)
+
+    if($fromAppObj -and ($fromAppObj.activeInstallScript."#ScriptInfo" -or $fromAppObj.activeUninstallScript."#ScriptInfo"))
+    {
+        Write-Log "Importing scripts for $($obj.displayName)"
+
+        $scriptsAdded = $false        
+        $jsonData = @{}
+        $jsonData."@odata.type"             = "#microsoft.graph.win32LobApp"
+        $jsonData."committedContentVersion" = "1"
+
+        foreach ($scriptType in @('activeInstallScript','activeUninstallScript')) {
+            $scriptInfo = $fromAppObj.$scriptType.'#ScriptInfo'
+            if (-not $scriptInfo) { continue }
+
+            Write-Log "Add $($scriptType -replace '^active','') script: $($scriptInfo.displayName)"
+
+            $json = [ordered]@{
+                '@odata.type'          = $scriptInfo.'@odata.type'
+                displayName            = $scriptInfo.displayName
+                enforceSignatureCheck  = $scriptInfo.enforceSignatureCheck
+                runAs32Bit             = $scriptInfo.runAs32Bit
+                content                = $scriptInfo.content
+            } | ConvertTo-Json -Depth 10 -Compress
+
+            $scriptObject = Invoke-GraphRequest -Url "deviceAppManagement/mobileApps/$($obj.id)/microsoft.graph.win32LobApp/contentVersions/1/scripts" -Method POST -Content $json
+
+            if ($scriptObject) {
+                $jsonData.$scriptType = @{ targetId = $scriptObject.Id }
+                $scriptsAdded = $true
+            }
+        }
+
+        $i = 0
+        while($true)
+        {
+            $scripts = Invoke-GraphRequest -Url "deviceAppManagement/mobileApps/$($obj.id)/microsoft.graph.win32LobApp/contentVersions/1/scripts"
+            if(-not $scripts)
+            {
+                Write-Log "Failed to retrieve scripts for app after adding. Skipping Install/Uninstall script config." 2
+                return
+            }
+
+            if(($scripts.value.state | Select -Unique) -eq "commitSuccess")
+            {
+                Write-Log "Scripts added successfully"
+                break
+            }
+            if($i -ge 12)
+            {
+                Write-Log "Install/Uninstall scripts are still not in pending state after waiting for 1 minute." 3
+                return
+            }
+
+            Write-Log "Waiting for scripts to be added..."
+            Start-Sleep -Seconds 5
+            $i++
+        }        
+
+        if($scriptsAdded)
+        {
+            Write-Log "Add script info to app"
+            $json = ConvertTo-Json $jsonData -Depth 10
+            $status = Invoke-GraphRequest -Url "deviceAppManagement/mobileApps/$($obj.id)" -Method PATCH -Body $json
+            if($status -eq $true)
+            {
+                Write-Log "Install/Uninstall script info updated successfully"
+            }
+            else
+            {
+                Write-Log "Failed to update Install/Uninstall script info" 2
+            }
+        }
+    }
+}
+
 function Start-PreUpdateApplication
 {
     param($obj, $objectType, $curObject, $fromObj)
@@ -2500,6 +2624,9 @@ function Start-PreImportCommandApplication
             $obj.officeSuiteAppDefaultFileFormat = "officeOpenXMLFormat"
         }
     }
+
+    if($obj.activeInstallScript) { $obj.activeInstallScript = $null }
+    if($obj.activeUninstallScript) { $obj.activeUninstallScript = $null }
 } 
 
 function Add-DetailExtensionApplications
@@ -2687,6 +2814,8 @@ function Start-PreImportAssignmentsApplications
 
 function Start-PreDeleteApplications
 {
+    param($obj, $objectType)
+
     if($obj.'@odata.type' -eq "#microsoft.graph.microsoftStoreForBusinessApp")
     {
         # Don't delete Microsoft Store for Business Apps
@@ -2723,6 +2852,16 @@ function Start-PostExportApplications
                         [IO.File]::WriteAllBytes(("$path\$($fi.BaseName)_RequirementScript.ps1"), ([System.Convert]::FromBase64String($rule.ScriptContent)))
                     }
                 }
+            }
+
+            if($obj.activeInstallScript.'#ScriptInfo'.displayName)
+            {
+                [IO.File]::WriteAllBytes(("$path\$($fi.BaseName)_$($obj.activeInstallScript.'#ScriptInfo'.displayName)"), ([System.Convert]::FromBase64String($obj.activeInstallScript.'#ScriptInfo'.content)))
+            }
+
+            if($obj.activeUninstallScript.'#ScriptInfo'.displayName)
+            {
+                [IO.File]::WriteAllBytes(("$path\$($fi.BaseName)_$($obj.activeUninstallScript.'#ScriptInfo'.displayName)"), ([System.Convert]::FromBase64String($obj.activeUninstallScript.'#ScriptInfo'.content)))
             }
         }
         catch
@@ -2847,6 +2986,37 @@ function Start-PostGetApplications {
             $obj.Object | Add-Member -MemberType NoteProperty -Name "#CustomRefSupersedence" -Value ($supersededApps -join "|*|")
         }
     }
+
+    if($obj.Object.'@odata.type' -eq "#microsoft.graph.win32LobApp")
+    {
+        if($obj.Object.activeInstallScript.targetId -or $obj.Object.activeUninstallScript.targetId)
+        {
+            $scriptInfo = (Invoke-GraphRequest -Url "/deviceAppManagement/mobileApps/$($obj.Id)/microsoft.graph.win32LobApp/contentVersions/$($obj.Object.committedContentVersion)/scripts/").value
+
+            foreach($script in $scriptInfo) {
+                $scriptFullInfo = (Invoke-GraphRequest -Url "/deviceAppManagement/mobileApps/$($obj.Id)/microsoft.graph.win32LobApp/contentVersions/$($obj.Object.committedContentVersion)/scripts/$($script.id)?`$select=Id,Content")
+                if($scriptFullInfo.Content)
+                {
+                    $script.content = $scriptFullInfo.Content
+                }
+
+                if($obj.Object.activeInstallScript.targetId -eq $script.id)
+                {
+                    $tpObject = $obj.Object.activeInstallScript
+                }
+                elseif($obj.Object.activeUninstallScript.targetId -eq $script.id)
+                {
+                    $tpObject = $obj.Object.activeUninstallScript
+                }
+                else
+                {
+                    Write-Log "Script with id $($script.id) is not referenced by active install or uninstall script. Skipping." 2
+                    continue
+                }
+                $tpObject | Add-Member -MemberType NoteProperty -Name "#ScriptInfo" -Value $script -Force
+            }
+        }
+    }
 }
 
 function Start-PostImportApplications
@@ -2909,9 +3079,9 @@ function local:Add-ApplicationReferences
                     Write-Log "No $appName application found with version $appVer" 2
                     continue
                 }
-                elseif(-not ($tmpApp | measure).Count -gt 1)
+                elseif(($tmpApp | measure).Count -gt 1)
                 {
-                    Write-Log "Multiple $appName application found with version $appVer" 2
+                    Write-Log "Multiple $appName applications found with version $appVer" 2
                     continue
                 }
                 Write-Log "Add $appName ($appVer) to Dependency list"
@@ -2930,7 +3100,7 @@ function local:Add-ApplicationReferences
                 $appName, $appVer, $appId, $appType = $suppApp -split "[|][!][|]"
                 if(-not $appName -or -not $appVer)
                 {
-                    Write-Log "Could not get Name and Version from string: $appApp" 2
+                    Write-Log "Could not get Name and Version from string: $suppApp" 2
                     continue
                 }
                 $tmpApps = (Invoke-GraphRequest -Url "/deviceAppManagement/mobileApps?`$filter=displayName eq '$appName'").value

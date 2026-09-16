@@ -237,6 +237,32 @@
                                                                                                            "unconfiguredValue":  "none",
                                                                                                            "policyType":  67,
                                                                                                            "enabled":  true
+                                                                                                       },
+                                                                                                       {
+                                                                                                           "dataType":  19,
+                                                                                                           "category":  121,
+                                                                                                           "nameResourceKey":  "DisableMacAddressRandomizationMacOS",
+                                                                                                           "descriptionResourceKey":  "disableMacAddressRandomizationDescriptionMacOS",
+                                                                                                           "childSettings":  [
+
+                                                                                                                             ],
+                                                                                                           "options":  [
+                                                                                                                           {
+                                                                                                                               "nameResourceKey":  "enableOption",
+                                                                                                                               "value":  false,
+                                                                                                                               "enabled":  true
+                                                                                                                           },
+                                                                                                                           {
+                                                                                                                               "nameResourceKey":  "disableOption",
+                                                                                                                               "value":  true,
+                                                                                                                               "enabled":  true
+                                                                                                                           }
+                                                                                                                       ],
+                                                                                                           "entityKey":  "wifiRequirePhysicalMacAddressEnabled",
+                                                                                                           "booleanActions":  0,
+                                                                                                           "defaultValue":  false,
+                                                                                                           "policyType":  67,
+                                                                                                           "enabled":  false
                                                                                                        }
                                                                                                    ],
                                                                                       "enabled":  true
@@ -1263,6 +1289,32 @@
                                                                                                            "unconfiguredValue":  "none",
                                                                                                            "policyType":  67,
                                                                                                            "enabled":  true
+                                                                                                       },
+                                                                                                       {
+                                                                                                           "dataType":  19,
+                                                                                                           "category":  121,
+                                                                                                           "nameResourceKey":  "DisableMacAddressRandomizationMacOS",
+                                                                                                           "descriptionResourceKey":  "disableMacAddressRandomizationDescriptionMacOS",
+                                                                                                           "childSettings":  [
+
+                                                                                                                             ],
+                                                                                                           "options":  [
+                                                                                                                           {
+                                                                                                                               "nameResourceKey":  "enableOption",
+                                                                                                                               "value":  false,
+                                                                                                                               "enabled":  true
+                                                                                                                           },
+                                                                                                                           {
+                                                                                                                               "nameResourceKey":  "disableOption",
+                                                                                                                               "value":  true,
+                                                                                                                               "enabled":  true
+                                                                                                                           }
+                                                                                                                       ],
+                                                                                                           "entityKey":  "wifiRequirePhysicalMacAddressEnabled",
+                                                                                                           "booleanActions":  0,
+                                                                                                           "defaultValue":  false,
+                                                                                                           "policyType":  67,
+                                                                                                           "enabled":  false
                                                                                                        }
                                                                                                    ],
                                                                                       "enabled":  true
@@ -1505,6 +1557,32 @@
                                                                                                            "unconfiguredValue":  "none",
                                                                                                            "policyType":  67,
                                                                                                            "enabled":  true
+                                                                                                       },
+                                                                                                       {
+                                                                                                           "dataType":  19,
+                                                                                                           "category":  121,
+                                                                                                           "nameResourceKey":  "DisableMacAddressRandomizationMacOS",
+                                                                                                           "descriptionResourceKey":  "disableMacAddressRandomizationDescriptionMacOS",
+                                                                                                           "childSettings":  [
+
+                                                                                                                             ],
+                                                                                                           "options":  [
+                                                                                                                           {
+                                                                                                                               "nameResourceKey":  "enableOption",
+                                                                                                                               "value":  false,
+                                                                                                                               "enabled":  true
+                                                                                                                           },
+                                                                                                                           {
+                                                                                                                               "nameResourceKey":  "disableOption",
+                                                                                                                               "value":  true,
+                                                                                                                               "enabled":  true
+                                                                                                                           }
+                                                                                                                       ],
+                                                                                                           "entityKey":  "wifiRequirePhysicalMacAddressEnabled",
+                                                                                                           "booleanActions":  0,
+                                                                                                           "defaultValue":  false,
+                                                                                                           "policyType":  67,
+                                                                                                           "enabled":  false
                                                                                                        }
                                                                                                    ],
                                                                                       "enabled":  true
@@ -2531,6 +2609,32 @@
                                                                                                            "unconfiguredValue":  "none",
                                                                                                            "policyType":  67,
                                                                                                            "enabled":  true
+                                                                                                       },
+                                                                                                       {
+                                                                                                           "dataType":  19,
+                                                                                                           "category":  121,
+                                                                                                           "nameResourceKey":  "DisableMacAddressRandomizationMacOS",
+                                                                                                           "descriptionResourceKey":  "disableMacAddressRandomizationDescriptionMacOS",
+                                                                                                           "childSettings":  [
+
+                                                                                                                             ],
+                                                                                                           "options":  [
+                                                                                                                           {
+                                                                                                                               "nameResourceKey":  "enableOption",
+                                                                                                                               "value":  false,
+                                                                                                                               "enabled":  true
+                                                                                                                           },
+                                                                                                                           {
+                                                                                                                               "nameResourceKey":  "disableOption",
+                                                                                                                               "value":  true,
+                                                                                                                               "enabled":  true
+                                                                                                                           }
+                                                                                                                       ],
+                                                                                                           "entityKey":  "wifiRequirePhysicalMacAddressEnabled",
+                                                                                                           "booleanActions":  0,
+                                                                                                           "defaultValue":  false,
+                                                                                                           "policyType":  67,
+                                                                                                           "enabled":  false
                                                                                                        }
                                                                                                    ],
                                                                                       "enabled":  true

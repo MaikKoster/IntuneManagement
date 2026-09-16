@@ -906,8 +906,29 @@ function Add-CDDocumentCustomProfileProperty
 
         $retValue = $true
     }
-    elseif($obj.'@OData.Type' -like "#microsoft.graph.iosDeviceFeaturesConfiguration")
+    elseif($obj.'@OData.Type' -like "#microsoft.graph.iosDeviceFeaturesConfiguration")    
     {
+        foreach($configuration in $obj.iosSingleSignOnExtension.configurations)
+        {
+            $configurationType = "notConfigured"
+            if($configuration."@OData.Type" -eq "#microsoft.graph.keyStringValuePair")
+            {
+                $configurationType = Get-LanguageString "SettingDetails.singleSignOnExtensionConfigurationsTypeColumnOptionString"
+            }
+            elseif($configuration."@OData.Type" -eq "#microsoft.graph.keyBooleanValuePair")
+            {
+                $configurationType = Get-LanguageString "SettingDetails.singleSignOnExtensionConfigurationsTypeColumnOptionBoolean"
+            }
+            elseif($configuration."@OData.Type" -eq "#microsoft.graph.keyIntegerValuePair")
+            {
+                $configurationType = Get-LanguageString "SettingDetails.singleSignOnExtensionConfigurationsTypeColumnOptionInteger"
+            }
+
+            $configuration | Add-Member Noteproperty -Name "configurationKey" -Value $configuration.key -Force
+            $configuration | Add-Member Noteproperty -Name "configurationValue" -Value $configuration.value -Force
+            $configuration | Add-Member Noteproperty -Name "configurationType" -Value $configurationType -Force
+
+        }
         #singleSignOnSettings
         $obj | Add-Member Noteproperty -Name "kerberosPrincipalName" -Value (?? $obj.singleSignOnSettings.kerberosPrincipalName "notConfigured") -Force
 
@@ -1218,6 +1239,10 @@ function Add-CDDocumentCustomProfileProperty
         $returnCodes = @()
         $detectionRules = @()
         $requirementRules = @()
+        $activeScripts = @()
+        $activeInstallScript =  $null
+        $activeUninstallScript =  $null
+
         foreach($rc in $obj.returnCodes)
         {
             $returnCodes += [PSCustomObject]@{
@@ -1244,6 +1269,46 @@ function Add-CDDocumentCustomProfileProperty
                     $supersededApps += ("{0} {1}" -f @($rel.targetDisplayName,(Get-LanguageString "SettingDetails.$((?: ($rel.supersedenceType -eq "update") "win32SupersedenceUpdate" "win32SupersedenceReplace"))")))
                 }
             }
+        }
+
+        if($obj.activeInstallScript.'#ScriptInfo')
+        {
+            $scriptType = "install"
+            $obj.installCommandLine = $null
+            $installType = "Win32Program.installScript"
+
+            $activeInstallScript = [PSCustomObject]@{
+                scriptType = $scriptType
+                scriptName = $obj.activeInstallScript.'#ScriptInfo'.displayName
+                scriptContent = $obj.activeInstallScript.'#ScriptInfo'.ScriptContent
+                enforceSignatureCheck = $obj.activeInstallScript.'#ScriptInfo'.enforceSignatureCheck
+                runAs32Bit = $obj.activeInstallScript.'#ScriptInfo'.runAs32Bit
+            }
+            Add-ObjectScript $header ("{0} - {1}" -f @($obj.displayName,$obj.activeInstallScript.'#ScriptInfo'.displayName)) $obj.activeInstallScript.'#ScriptInfo'.content
+        }
+        else
+        {
+            $installType = "Win32Program.installCommand"
+        }
+
+        if($obj.activeUninstallScript.'#ScriptInfo')
+        {
+            $scriptType = "uninstall"
+            $obj.uninstallCommandLine = $null
+            $uninstallType = "Win32Program.uninstallScript"
+
+            $activeUninstallScript = [PSCustomObject]@{
+                scriptType = $scriptType
+                scriptName = $obj.activeUninstallScript.'#ScriptInfo'.displayName
+                scriptContent = $obj.activeUninstallScript.'#ScriptInfo'.ScriptContent
+                enforceSignatureCheck = $obj.activeUninstallScript.'#ScriptInfo'.enforceSignatureCheck
+                runAs32Bit = $obj.activeUninstallScript.'#ScriptInfo'.runAs32Bit
+            }
+            Add-ObjectScript $header ("{0} - {1}" -f @($obj.displayName,$obj.activeUninstallScript.'#ScriptInfo'.displayName)) $obj.activeUninstallScript.'#ScriptInfo'.content
+        }
+        else
+        {
+            $uninstallType = "Win32Program.uninstallCommand"
         }
 
         foreach($rule in $obj.requirementRules)
@@ -1305,7 +1370,7 @@ function Add-CDDocumentCustomProfileProperty
                 $detectionRules += Add-CDDocumentDetectionRule $rule
             }
         }
-        
+
         $obj | Add-Member Noteproperty -Name "requirementRulesSummary" -Value ($requirementRulesSummary -join $objSeparator) -Force 
         $obj | Add-Member Noteproperty -Name "detectionRulesSummary" -Value ($detectionRulesSummary -join $objSeparator) -Force 
         $obj | Add-Member Noteproperty -Name "dependencyApps" -Value ($dependencyApps -join $objSeparator) -Force 
@@ -1313,8 +1378,12 @@ function Add-CDDocumentCustomProfileProperty
         $obj | Add-Member Noteproperty -Name "detectionRulesType" -Value $detectionRulesType -Force 
         $obj | Add-Member Noteproperty -Name "requirementRulesTranslated" -Value $requirementRules -Force 
         $obj | Add-Member Noteproperty -Name "detectionRulesTranslated" -Value $detectionRules -Force 
-        $obj | Add-Member Noteproperty -Name "returnCodes" -Value $returnCodes -Force 
+        $obj | Add-Member Noteproperty -Name "returnCodes" -Value $returnCodes -Force
+        $obj | Add-Member Noteproperty -Name "activeInstallScript" -Value $activeInstallScript -Force
+        $obj | Add-Member Noteproperty -Name "activeUninstallScript" -Value $activeUninstallScript -Force
         $obj | Add-Member Noteproperty -Name "win10Release" -Value (Get-LanguageString "MinimumOperatingSystem.Windows.V10Release.release$($obj.minimumSupportedWindowsRelease)") -Force 
+        $obj | Add-Member Noteproperty -Name "installerType" -Value (Get-LanguageString $installType) -Force
+        $obj | Add-Member Noteproperty -Name "uninstallerType" -Value (Get-LanguageString $uninstallType) -Force
     }
     elseif($obj.'@OData.Type' -eq "#microsoft.graph.deviceHealthScript")
     {
@@ -1869,8 +1938,21 @@ function Invoke-CDDocumentAndroidManagedStoreAppConfiguration
     ###################################################
     # Basic info
     ###################################################
+    $profileString = $null
+    if($obj.profileApplicability -eq "default")
+    {
+        $profileString = Get-LanguageString "ProfileType.workProfileAndDeviceOwner"
+    }
+    elseif($obj.profileApplicability -eq "androidWorkProfile")
+    {
+        $profileString = Get-LanguageString "ProfileType.workProfileOnly"
+    }
+    elseif($obj.profileApplicability -eq "androidDeviceOwner")
+    {
+        $profileString = Get-LanguageString "ProfileType.deviceOwnerOnly"
+    }
 
-    Add-BasicDefaultValues $obj $objectType
+    Add-BasicDefaultValues $obj $objectType $profileString
     Add-BasicAdditionalValues $obj $objectType
     #Add-BasicPropertyValue (Get-LanguageString "TableHeaders.configurationType") (Get-LanguageString "SettingDetails.appConfiguration")
     #Add-BasicPropertyValue (Get-LanguageString "Inputs.enrollmentTypeLabel") (Get-LanguageString "EnrollmentType.devicesWithEnrollment")
@@ -2033,11 +2115,22 @@ function Invoke-CDDocumentMobileAppConfiguration
         {
             $name = $xml.dict.ChildNodes[$i].'#text'
             $i++
-            $value = $xml.dict.ChildNodes[$i].'#text'
+
+            if($xml.dict.ChildNodes[$i].Name -eq "true" -or $xml.dict.ChildNodes[$i].Name -eq "false")
+            {
+                $value = $xml.dict.ChildNodes[$i].Name             
+                $type = "boolean"
+            }
+            else 
+            {
+                $value = $xml.dict.ChildNodes[$i].'#text'
+                $type = $xml.dict.ChildNodes[$i].Name
+            }
 
             Add-CustomSettingObject ([PSCustomObject]@{
                 Name = $name
                 Value = $value
+                ValueType = $type
                 EntityKey = $name
                 Category = $category
             })             
@@ -2217,7 +2310,7 @@ function Invoke-CDDocumentCountryNamedLocation
     $countryList = @()
     foreach($country in $obj.countriesAndRegions)
     {
-        $countryList += Get-LanguageString "CountryNames.countryName$($country.ToLower())"
+        $countryList += Get-LanguageString "AzureIAMCommon.CountryNames.countryName$($country.ToUpper())"
     }
 
     Add-CustomSettingObject ([PSCustomObject]@{

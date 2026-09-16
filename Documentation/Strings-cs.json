@@ -101,6 +101,11 @@
                                            "win32AppPackageFile":  "Soubor, který obsahuje vaši aplikaci ve formátu, který se dá zkušebně načíst na zařízení. Platné typy balíčků: .intunewin.",
                                            "winGetStoreSelectApp":  "V aplikaci Microsoft Store (nová verze) vyhledejte aplikace, které chcete nasadit pomocí Intune."
                                        },
+                              "Status":  {
+                                             "active":  "Aktivní",
+                                             "deleted":  "Odstraněno",
+                                             "softDeleted":  "Obnovitelně odstraněno"
+                                         },
                               "descriptionPreview":  "Preview",
                               "descriptionPreviewLabel":  "Preview",
                               "descriptionRequired":  "Popis je povinný.",
@@ -227,6 +232,7 @@
                                                "v16":  "iOS 16.0",
                                                "v17":  "iOS 17.0",
                                                "v18":  "iOS 18.0",
+                                               "v26":  "iOS 26.0",
                                                "v8":  "iOS 8.0",
                                                "v9":  "iOS 9.0"
                                            },
@@ -256,6 +262,9 @@
                                                          },
                                                  "V15":  {
                                                              "0":  "macOS Sequoia 15.0"
+                                                         },
+                                                 "V26":  {
+                                                             "0":  "macOS Tahoe 26.0"
                                                          }
                                              },
                                    "Windows":  {
@@ -276,7 +285,8 @@
                                                    "V11Release":  {
                                                                       "release21H2":  "Windows 11 21H2",
                                                                       "release22H2":  "Windows 11 22H2",
-                                                                      "release23H2":  "Windows 11 23H2"
+                                                                      "release23H2":  "Windows 11 23H2",
+                                                                      "release24H2":  "Windows 11 24H2"
                                                                   },
                                                    "v10":  "Windows 10.0",
                                                    "v80":  "Windows 8.0",
@@ -442,6 +452,7 @@
                    "androidUrlValidation":  "Zadejte platnou adresu URL podobnou této: https://play.google.com/store/apps/details?id=com.microsoft.bing&hl=en",
                    "appInstallContext":  "Kontext instalace aplikace",
                    "appUrlLabel":  "Adresa URL v obchodu s aplikacemi",
+                   "appleManagementType":  "Typ správy",
                    "appleUrlValidation":  "Zadejte platnou adresu URL podobnou této: https://www.itunes.apple.com/cz/app/microsoft-excel/id586683407?mt=8",
                    "applicableDeviceType":  "Použitelný typ zařízení",
                    "assignmentActionLabel":  "Režim",
@@ -520,7 +531,7 @@
                    "installationSourceLabel":  "Typ aplikace",
                    "installerTypeInfoBalloon":  "Typ instalačního programu balíčku aplikace.",
                    "installerTypeLabel":  "Typ instalačního programu",
-                   "isFeatured":  "Zobrazit na Portálu společnosti jako vybranou aplikaci",
+                   "isFeatured":  "Zobrazit jako doporučenou aplikaci",
                    "isMAMEnabledToggleLabel":  "Ano",
                    "lastModifiedDateTime":  "Čas poslední aktualizace",
                    "ldapUrl":  "URL protokolu LDAP",
@@ -583,6 +594,7 @@
                    "twoWeeks":  "Dva týdny",
                    "unifiedAssignmentsLabel":  "Přiřadit k:",
                    "unlimited":  "Bez omezení",
+                   "updateMethod":  "Způsob aktualizace",
                    "urlHint":  "Zadejte platnou adresu URL",
                    "useManagedBrowserHint":  "Jenom Android a iOS. Další informace",
                    "useManagedBrowserLabel":  "K otevření tohoto odkazu vyžadovat spravovaný prohlížeč",
@@ -936,6 +948,11 @@
                                           },
                             "noData":  "Nenašly se žádné šablony zásad."
                         },
+    "ProfileType":  {
+                        "deviceOwnerOnly":  "Jenom plně spravovaná, vyhrazená, vlastněná společností a s pracovním profilem",
+                        "workProfileAndDeviceOwner":  "Všechny typy profilů",
+                        "workProfileOnly":  "Jenom pracovní profil v osobním vlastnictví"
+                    },
     "PolicyType":  {
                        "EdgeSmartScreenSettings":  {
                                                        "description":  "Doporučené nastavení filtru SmartScreen aplikace Microsoft Edge: Windows 10 v šabloně konfigurace cloudu. https://aka.ms/CloudConfigGuide"
@@ -1075,6 +1092,7 @@
                        "windowsInformationProtection":  "Windows Information Protection",
                        "windowsPhoneCompliancePolicy":  "Zásady dodržování předpisů ve Windows Phone",
                        "windowsUpdateforBusiness":  "Windows Update pro firmy",
+                       "windowsZeroTrustDns":  "DNS model nulové důvěry (Zero Trust)",
                        "wiredNetwork":  "Drátová síť",
                        "workProfile":  "Pracovní profil v osobním vlastnictví"
                    },
@@ -1250,6 +1268,8 @@
                                                "assignmentFilterTypeColumnHeader":  "Režim filtru",
                                                "assignmentToast":  "Oznámení koncovému uživateli",
                                                "assignmentTypeTableHeader":  "TYP PŘIŘAZENÍ",
+                                               "associatedDomains":  "Přidružené domény",
+                                               "associatedDomainsDirectDownloadAllowed":  "Přidružené domény – povoleno přímé stahování",
                                                "autoUpdate":  "Automatická aktualizace",
                                                "deadlineTimeColumnLabel":  "Konečný termín instalace",
                                                "deliveryOptimizationPriorityHeader":  "Priorita optimalizace doručení",
@@ -1263,6 +1283,8 @@
                                                "preventManagedAppBackup":  "Zabránit zálohování aplikace iCloud",
                                                "restartGracePeriodHeader":  "Období odkladu restartování",
                                                "startTimeColumnLabel":  "Dostupnost",
+                                               "statusTableHeader":  "Stav",
+                                               "tapToPayScreenLockEnabled":  "Zámek obrazovky Zaplatit přiblížením povolen",
                                                "tracks":  "Stopy",
                                                "uninstallOnRemoval":  "Při odebrání zařízení odinstalovat",
                                                "updateMode":  "Priorita aktualizace",
@@ -1308,6 +1330,7 @@
                                          "winGetPublicApp":  "Úložiště komunity Správce balíčků systému Windows",
                                          "winGetStoreApp":  "Aplikace Microsoft Store (nová verze)",
                                          "windowsAppXLobApp":  "Obchodní aplikace Windows AppX",
+                                         "windowsAutoUpdateCatalogApp":  "Aplikace katalogu automatických aktualizací systému Windows",
                                          "windowsClassicApp":  "Aplikace pro Windows (Win32)",
                                          "windowsEdgeApp":  "Microsoft Edge (Windows 10 a novější)",
                                          "windowsMobileMsiLobApp":  "Obchodní aplikace Windows MSI",
@@ -1879,7 +1902,7 @@
                                    "customMessageTextBox":  "Chybová zpráva",
                                    "customMessageToggle":  "Zobrazit vlastní zprávu, když dojde k časovému limitu nebo chybě",
                                    "enableForAutopilotOnlyToggle":  "Stránku zobrazit jenom pro zařízení, která jsou zřízena pomocí prostředí prvního spuštění (OOBE)",
-                                   "installQualityUpdatesToggle":  "Nainstalovat aktualizace Windows (zařízení se může restartovat) (Preview)",
+                                   "installQualityUpdatesToggle":  "Nainstalovat aktualizace Windows (zařízení se může restartovat)",
                                    "progressToggle":  "Zobrazit průběh konfigurace aplikací a profilů",
                                    "resetToggle":  "Povolit uživatelům resetovat zařízení, když dojde k chybě instalace",
                                    "timeout":  "Zobrazit chybu, pokud instalace trvá déle než zadaný počet minut"
@@ -2078,10 +2101,10 @@
                    "helpSupportReplacement":  "Nápověda a podpora ({0})",
                    "iOSAppProvisioning":  "Zřizovací profily aplikací pro iOS",
                    "incompleteUserEnrollments":  "Nedokončené registrace uživatele",
-                   "iosUpdates":  "Aktualizace pro iOS/iPadOS",
+                   "iosUpdates":  "Aktualizace pro iOS/iPadOS (zastaralé)",
                    "legacyPcManagement":  "Starší verze správy počítače",
-                   "macOSSoftwareUpdate":  "Aktualizace pro macOS",
-                   "macOSSoftwareUpdateAccountSummaries":  "Stav instalace pro zařízení s macOSem",
+                   "macOSSoftwareUpdate":  "Aktualizace macOS (zastaralé)",
+                   "macOSSoftwareUpdateAccountSummaries":  "Stav instalace pro zařízení s macOS (zastaralé)",
                    "macOSSoftwareUpdateCategorySummaries":  "Souhrn aktualizací softwaru",
                    "macOSSoftwareUpdateStateSummaries":  "aktualizace",
                    "managedGooglePlay":  "Spravovaný obchod Google Play",
@@ -2094,7 +2117,7 @@
                    "onPremisesConnector":  "Exchange ActiveSync On-premises Connector",
                    "onPremisesDeviceAccess":  "Zařízení Exchange ActiveSync",
                    "onPremisesManageAccess":  "Přístup k místnímu Exchangi",
-                   "outOfDateIosDevices":  "Chyby instalace pro zařízení s iOSem",
+                   "outOfDateIosDevices":  "Chyby instalace pro zařízení s iOS (zastaralé)",
                    "overview":  "Přehled",
                    "partnerDeviceManagement":  "Správa partnerského zařízení",
                    "perUpdateRingDeploymentState":  "Stav nasazení podle kruhu aktualizace",
@@ -2103,6 +2126,7 @@
                    "platformDevices":  "Zařízení {0}",
                    "platformEnrollment":  "Registrace {0}",
                    "policies":  "Zásady",
+                   "policiesForMicrosoftEdge":  "Zásady Microsoft Edge",
                    "profiles":  "Profily",
                    "properties":  "Vlastnosti",
                    "reports":  "Sestavy",
@@ -2116,6 +2140,8 @@
                    "servicenowConnector":  "Konektor ServiceNow",
                    "shellScripts":  "Skripty prostředí",
                    "teamViewerConnector":  "Konektor pro TeamViewer",
+                   "teamViewerConnectorOld":  "TeamViewer connector (old)",
+                   "teamViewerV2Connector":  "TeamViewer connector",
                    "telecomeExpenseManagement":  "Služba TEM (Telecom Expense Management)",
                    "tenantAdmin":  "Správce tenanta",
                    "tenantAdministration":  "Správa tenanta",
@@ -2230,7 +2256,7 @@
                                                          },
                         "GenmojiConfigurationState":  {
                                                           "label":  "Genmoji",
-                                                          "tooltip":  "  Pokud bude tato možnost zablokována, genmoji budou při používání aplikace spravované zásadami zakázána. Další informace najdete <a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">tady. </a>"
+                                                          "tooltip":  "  Pokud bude tato možnost zablokována, genmoji budou při používání aplikace spravované zásadami zakázána. Další informace najdete <a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">tady. </a>"
                                                       },
                         "IOSBackup":  {
                                           "label":  "Zálohovat data organizace do iTunes a iCloudu",
@@ -2262,7 +2288,8 @@
                                                     },
                         "OpenLinksManagedBrowser":  {
                                                         "label":  "Omezit přenos webového obsahu s jinými aplikacemi",
-                                                        "tooltip":  "<p>Vyberte jednu z následujících možností pro určení aplikací, ve kterých tato aplikace bude moci otevírat webový obsah:</p>\r\n<p><b>Microsoft Edge:</b> Dovolí otevírat webový obsah jen v Microsoft Edgi.<a href=\"{0}\" target=\"_blank\"> Zjistěte, jak Microsoft Edge chrání vaše data.</a></p>\r\n<p><b>Nespravovaný prohlížeč:</b>  Dovolí otevírat webový obsah jen v nespravovaném prohlížeči definovaném v nastavení Protokol nespravovaného prohlížeče.</p>\r\n<p><b>Libovolná aplikace:</b> Dovolí otevírat webové odkazy ve kterékoli aplikaci.</p>"
+                                                        "tooltip":  "<p>Vyberte jednu z následujících možností pro určení aplikací, ve kterých tato aplikace bude moci otevírat webový obsah:</p>\r\n<p><b>Microsoft Edge:</b> Dovolí otevírat webový obsah jen v Microsoft Edgi.<a href=\"{0}\" target=\"_blank\"> Zjistěte, jak Microsoft Edge chrání vaše data.</a></p>\r\n<p><b>Nespravovaný prohlížeč:</b>  Dovolí otevírat webový obsah jen v nespravovaném prohlížeči definovaném v nastavení Protokol nespravovaného prohlížeče.</p>\r\n<p><b>Libovolná aplikace:</b> Dovolí otevírat webové odkazy ve kterékoli aplikaci.</p>",
+                                                        "warning":  "Vyberte možnost Microsoft Edge, abyste ochránili data vaší organizace."
                                                     },
                         "OverrideBiometric":  {
                                                   "tooltip":  "V případě potřeby, v závislosti na časovém limitu (počet minut neaktivity), přepíše výzva zadat PIN kód výzvy použít biometriku. Pokud ještě časový limit nevyprší, výzva použít biometriku se bude zobrazovat nadále. Tato hodnota časového limitu by měla být větší než hodnota zadaná v části Znovu zkontrolovat požadavky na přístup po (počet minut neaktivity). "
@@ -2327,7 +2354,7 @@
                                                              },
                         "ScreenCaptureConfigurationState":  {
                                                                 "label":  "Snímek obrazovky",
-                                                                "tooltip":  " Pokud bude tato možnost zablokována, zachytávání obrazovky bude při používání aplikace spravované zásadami zakázáno. Další informace najdete <a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">tady. </a>"
+                                                                "tooltip":  " Pokud bude tato možnost zablokována, zachytávání obrazovky bude při používání aplikace spravované zásadami zakázáno. Další informace najdete <a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">tady. </a>"
                                                             },
                         "SendData":  {
                                          "label":  "Posílat data organizace do jiných aplikací",
@@ -2365,7 +2392,7 @@
                                         },
                         "WritingToolsConfigurationState":  {
                                                                "label":  "Nástroje pro psaní",
-                                                               "tooltip":  "Pokud bude tato možnost zablokována, nástroje pro psaní budou při používání aplikace spravované zásadami zakázány. Další informace najdete <a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">tady. </a>"
+                                                               "tooltip":  "Pokud bude tato možnost zablokována, nástroje pro psaní budou při používání aplikace spravované zásadami zakázány. Další informace najdete <a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">tady. </a>"
                                                            },
                         "Tap":  {
                                     "numberOfDays":  "Počet dnů",
@@ -2401,7 +2428,7 @@
                     "macOSDmgApp":  "Aplikace pro macOS (.DMG)",
                     "macOSEdgeApp":  "Microsoft Edge (macOS)",
                     "macOSLobApp":  "Obchodní aplikace pro macOS",
-                    "macOSMicrosoftDefenderApp":  "Microsoft Defender ATP (macOS)",
+                    "macOSMicrosoftDefenderApp":  "Microsoft Defender pro koncový bod (macOS)",
                     "macOSOfficeSuiteApp":  "Aplikace Microsoft 365 (macOS)",
                     "macOSPkgApp":  "Aplikace pro macOS (PKG)",
                     "macOSWebClip":  "Webový klip pro macOS",
@@ -2418,6 +2445,7 @@
                     "officeSuiteApp":  "Microsoft 365 Apps (Windows 10 a novější)",
                     "webApp":  "Webový odkaz",
                     "windowsAppXLobApp":  "Obchodní aplikace Windows AppX",
+                    "windowsAutoUpdateCatalogApp":  "Aplikace katalogu automatických aktualizací systému Windows",
                     "windowsClassicApp":  "Aplikace pro Windows (Win32)",
                     "windowsEdgeApp":  "Microsoft Edge (Windows 10 a novější)",
                     "windowsMobileMsiLobApp":  "Obchodní aplikace Windows MSI",
@@ -2909,8 +2937,8 @@
                       "description":  "Popis",
                       "deviceType":  "Typ zařízení",
                       "deviceUse":  "Použití zařízení",
-                      "directoryServiceHintForSurfaceHub2":  " <p>\r\n        Autopilot podporuje připojení k Microsoft Entra jenom pro zařízení Surface Hub 2. Zadejte, jak se zařízení připojují k Active Directory (AD) ve vaší organizaci.\r\n        </p>\r\n        <ul>\r\n        <li>\r\n            Připojeno k Microsoft Entra: Jen cloud bez místní služby Windows Server Active Directory\r\n        </li>\r\n        </ul>\r\n    ",
-                      "directoryServiceHintForWindowsPC":  "\r\n        <p>\r\n        Zadejte, jak se zařízení připojují k Active Directory (AD) ve vaší organizaci:\r\n        </p>\r\n        <ul>\r\n        <li>\r\n            Připojeno k Microsoft Entra: Jen cloud bez místní služby Windows Server Active Directory\r\n        </li>\r\n        </ul>\r\n   ",
+                      "directoryServiceHintForSurfaceHub2":  " <p> \r\n        Autopilot podporuje připojení k Microsoft Entra jenom pro zařízení Surface Hub 2. Zadejte, jak se zařízení připojují k Active Directory (AD) ve vaší organizaci.\r\n        </p> \r\n        <ul> \r\n        <li> \r\n            Připojeno k Microsoft Entra: Jen cloud bez místní služby Windows Server Active Directory\r\n        </li> \r\n        </ul> \r\n    ",
+                      "directoryServiceHintForWindowsPC":  "\r\n        <p> \r\n        Zadejte, jak se zařízení připojují k Active Directory (AD) ve vaší organizaci:\r\n        </p> \r\n        <ul> \r\n        <li> \r\n            Připojeno k Microsoft Entra: Jen cloud bez místní služby Windows Server Active Directory\r\n        </li> \r\n        </ul> \r\n   ",
                       "getAssignedDevicesCountError":  "Při načítání počtu přiřazených zařízení došlo k chybě.",
                       "getAssignmentsError":  "Při načítání přiřazení profilů AutoPilot došlo k chybě.",
                       "harvestDeviceId":  "Převést všechna cílová zařízení na Autopilot",
@@ -4246,6 +4274,7 @@
                      "windowsDefenderATP":  "Microsoft Defender pro koncový bod",
                      "windowsHelloForBusiness":  "Windows Hello pro firmy",
                      "windowsSpotlight":  "Windows Spotlight",
+                     "windowsZtdns":  "DNS model nulové důvěry (Zero Trust)",
                      "wiredNetwork":  "Drátová síť",
                      "wireless":  "Bezdrátové",
                      "wirelessProjection":  "Bezdrátová projekce",
@@ -4382,7 +4411,7 @@
                       "smn":  "Sámština (inarijská, Finsko)",
                       "sms":  "Sámština (skoltská, Finsko)",
                       "sr-Cyrl-bA":  "Srbština (cyrilice)",
-                      "sr-Cyrl-rS":  "Srbština (cyrilice, Srbsko a Černá hora)",
+                      "sr-Cyrl-rS":  "Srbština (cyrilice, Srbská republika a Černá hora (Montenegro))",
                       "sr-Latn-bA":  "srbština (latinka)",
                       "sr-Latn-rS":  "srbština (latinka, Srbsko)",
                       "dsb":  "Dolnolužická srbština (Německo)",
@@ -4539,7 +4568,7 @@
     "WindowsQualityUpdateProfile":  {
                                         "Details":  {
                                                         "DaysUntilForcedReboot":  {
-                                                                                      "label":  "Počet dní čekání před vynucením restartování"
+                                                                                      "label":  "Pokud je vyžadován restart, vyberte počet dní, než bude vynucen"
                                                                                   },
                                                         "Description":  {
                                                                             "label":  "Popis"
@@ -4548,7 +4577,7 @@
                                                                      "label":  "Název"
                                                                  },
                                                         "QualityUpdateRelease":  {
-                                                                                     "label":  "Urychleně zpracovat instalaci aktualizací pro zvýšení kvality, pokud je verze operačního systému zařízení nižší než:"
+                                                                                     "label":  "Vyberte aktualizaci kvality, kterou chcete urychlit"
                                                                                  },
                                                         "bladeTitle":  "Aktualizace pro zvýšení kvality pro systém Windows 10 a novější (Preview)",
                                                         "loadError":  "Načítání selhalo."
@@ -4590,6 +4619,7 @@
                                             "deviceTypeTargetingEdit1":  "Pokud u této zásady použijete filtry přiřazení, použije se na stránce „Aplikace“ kromě hodnot zadaných pro „Cílit na aplikace na všech typech zařízení“ a „Typy zařízení“ také vlastnost „Typ správy zařízení“.",
                                             "deviceTypeTargetingEdit2":  "Pokud chcete upravit cílení na typ správy zařízení, resetujte možnost „Cílit na aplikace na všech typech zařízení“ = „Ano“. Pak vytvořte filtr přiřazení MAM s požadovanými hodnotami pro „Typ správy zařízení“.",
                                             "deviceTypeTargetingHasMoved":  "Další informace o přiřazování zásad ochrany aplikací",
+                                            "edgeUpsell":  "Pokud chcete zajistit, aby byl veškerý webový obsah ze spravovaných aplikací chráněný Microsoft Edge, vyberte v možnosti Omezit přenos webového obsahu s jinými aplikacemi možnost Microsoft Edge. Poté vyberte Zkontrolovat a uložit.",
                                             "encryptionAndroid1":  "U aplikací přidružených k zásadě správy mobilních aplikací Intune poskytuje šifrování společnost Microsoft. Data se šifrují synchronně během V/V operací se soubory podle nastavení v zásadě správy mobilních aplikací. Spravované aplikace na Androidu používají šifrování AES-128 v režimu CBC s využitím kryptografických knihoven platformy. Metoda šifrování nedodržuje standard FIPS 140-2. Šifrování SHA-256 se podporuje jako explicitní příkaz prostřednictvím parametru SigAlg a je funkční jenom na zařízeních 4.2 a novějších. Obsah v úložišti zařízení se šifruje vždy.",
                                             "encryptionAndroid2":  "Pokud ve vaší zásadě aplikace vyžadujete šifrování, musí koncový uživatel nastavit a používat PIN kód pro přístup k zařízení. Pokud není PIN kód pro přístup k zařízení nastavený, aplikace se nespustí a koncovému uživateli se místo toho zobrazí zpráva s informacemi o tom, že jeho společnost vyžaduje, aby pro přístup k dané aplikaci nejprve povolil PIN kód zařízení.",
                                             "encryptionMac1":  "U aplikací přidružených k zásadě správy mobilních aplikací Intune poskytuje šifrování společnost Microsoft. Data se šifrují synchronně během V/V operací se soubory podle nastavení v zásadě správy mobilních aplikací. Spravované aplikace na Macu používají šifrování AES-128 v režimu CBC s využitím kryptografických knihoven platformy. Metoda šifrování nedodržuje standard FIPS 140-2. Šifrování SHA-256 se podporuje jako explicitní příkaz prostřednictvím parametru SigAlg a je funkční jenom na zařízeních 4.2 a novějších. Obsah v úložišti zařízení se šifruje vždy.",
@@ -5213,8 +5243,7 @@
                            "androidEnterpriseWorkProfileAlwaysOnVpnClientDescription":  "Zadaný klient VPN musí být nainstalovaný na zařízení a v pracovních profilech musí podporovat VPN pro aplikaci. Jinak dojde k chybě. Poznámka: Abyste mohli aplikaci nainstalovat do pracovního profilu uživatele, bude nutné ji schválit ve spravovaném obchodě Google Play, synchronizovat ji s Intune a nasadit ji.",
                            "androidEnterpriseWorkProfileAlwaysOnVpnEnabledDescription":  "Nastavte klienta VPN v pracovním profilu tak, aby se automaticky připojoval a opětovně navazoval spojení se sítí VPN vždy, kdy to bude možné. Pokud chcete pro všechny klienty VPN v pracovním profilu zakázat trvalé připojení VPN, zvolte Zakázáno. Na jednom zařízení je možné pro trvalé připojení VPN nakonfigurovat jen jednoho klienta VPN, takže mějte na paměti, že na jednom zařízení byste neměli mít nasazené více než jedny zásady trvalého připojení VPN.",
                            "androidEnterpriseWorkProfileAlwaysOnVpnLockdownModeEnabledDescription":  "Když tuto možnost povolíte, všechen síťový provoz pro pracovní profil bude vynuceně probíhat přes tunel VPN. Pokud se připojení k síti VPN nedá navázat, v pracovním profilu zařízení se nepovolí žádný síťový provoz.",
-                           "androidForWorkMigrationPolicyDescriptionParagraph1":  "Vytvořte a přiřaďte tento profil k přesunu zařízení do rozhraní AMAPI (Android Management API), které zásady aplikují efektivněji. Zařízení nastavená s webovou registrací používají rozhraní AMAPI (Android Management API) automaticky.",
-                           "androidForWorkMigrationPolicyDescriptionParagraph2":  "Zařízení se přesunou, když mají dostatečně nabitou baterii a nejsou připojena k síti Wi-Fi spravované zásadami Intune.",
+                           "androidForWorkMigrationPolicyDescriptionParagraph1":  "Vytvořte a přiřaďte tento profil k přesunu zařízení do rozhraní AMAPI (Android Management API), které zásady aplikují efektivněji. Zařízení nastavená s webovou registrací používají rozhraní AMAPI (Android Management API) automaticky. Zařízení se přesunou, když budou mít dostatečnou baterii.",
                            "androidForWorkMigrationPolicyLearnMoreText":  "Přečtěte si další informace o tomto vylepšení.",
                            "androidGeneralKiosk":  "Tato nastavení se vztahují jen na zařízení Samsung se standardem KNOX.",
                            "androidHiddenApps":  "Aplikace, které jsou před uživatelem skryty (pouze Samsung KNOX Standard)",
@@ -6582,6 +6611,8 @@
                            "disableDeviceLocationSharingName":  "Sdílení polohy",
                            "disableMacAddressRandomization":  "Zakázat náhodné MAC adresy",
                            "disableMacAddressRandomizationDescriptionIOS":  "Umožňuje vynutit, aby zařízení, která se připojují pomocí tohoto profilu, uvedla svou skutečnou MAC adresu Wi-Fi místo náhodné MAC adresy. Vzhledem k tomu, že tato možnost umožňuje sledovat zařízení podle MAC adres, měli byste toto nastavení zavést jen v případě, že je to nutné, například pro podporu řízení přístupu k síti (NAC). Platí pro iOS 14 a novější.",
+                           "disableMacAddressRandomizationDescriptionMacOS":  "Určuje, zda zařízení připojující se k tomuto profilu Wi-Fi musí místo náhodné adresy MAC používat svou fyzickou adresu MAC. Pokud je nastavena hodnota Zakázáno, používá se skutečná adresa MAC Wi-Fi. Pokud je nastavena hodnota Povoleno, povolí se randomizace adresy MAC. Platí pro macOS 15 a novější. Výchozí hodnota je Povoleno.",
+                           "disableMacAddressRandomizationMacOS":  "Randomizace adresy MAC",
                            "disableOnDemandUserOverrideDescription":  "Vynutí zapnutí nastavení sítě VPN na vyžádání. Pokud je zablokujete, vaši uživatelé na svém zařízení nastavení VPN na vyžádání zobrazí, ale nebudou ho moct měnit. Použije se na iOS 14 a novější.",
                            "disableOnDemandUserOverrideMacOSDescription":  "Vynutí zapnutí nastavení sítě VPN na vyžádání. Pokud je zablokujete, vaši uživatelé na svém zařízení nastavení VPN na vyžádání zobrazí, ale nebudou ho moct měnit. Použije se na macOS 11 a novější.",
                            "disableOnDemandUserOverrideName":  "Blokovat uživatelům zakázat automatickou síť VPN",
@@ -6707,6 +6738,7 @@
                            "dropTrafficName":  "Přemístit síťový provoz",
                            "durationInHours":  "Doba trvání v hodinách",
                            "dynamicDomainNameOption":  "Microsoft Entra ID",
+                           "eAPAKAName":  "EAP - AKA",
                            "eAPCustomName":  "Vlastní",
                            "eAPFASTName":  "EAP – FAST",
                            "eAPName":  "EAP",
@@ -6988,6 +7020,8 @@
                            "enableWindowsDefenderFirewallName":  "Brána firewall systému Windows",
                            "enableWithUEFILock":  "Povolit se zámkem UEFI",
                            "enableWithoutUEFILock":  "Povolit bez zámku UEFI",
+                           "enableWpaTransitionModeDescription":  "Pokud je tato možnost nastavená na Povoleno, povolí se přechodový režim WPA3, který umožňuje přechod na WPA2, pokud to síť podporuje. Pokud je tato možnost nastavená na Zakázáno, bude vynucen striktní režim WPA3 a nedojde k žádnému přechodu do náhradního režimu.",
+                           "enableWpaTransitionModeName":  "Režim přechodu WPA3",
                            "enabledForAzureAdAndHybridOption":  "Rotace klíčů povolená pro zařízení připojená k Microsoft Entra a zařízení připojená hybridně",
                            "enabledForAzureAdOption":  "Rotace klíčů povolená pro zařízení připojená k Microsoft Entra",
                            "enabledNoKeepGoing":  "Zobrazit zprávu, že web je otevřený v Internet Exploreru 11",
@@ -8394,6 +8428,7 @@
                            "mustBeValidGuid":  "Musí jít o platný identifikátor UUID. Příklad: 782AFCFC-7CAA-436C-8BF0-78CD0FFBD4AF atd.",
                            "mustBeValidHost":  "Musí se jednat o platného hostitele. Příklad: www.host.com atd.",
                            "mustBeValidHttpURL":  "Musí se jednat o platnou adresu URL protokolu HTTP nebo HTTPS. Příklad: https://www.contoso.com",
+                           "mustBeValidIPOrCidr":  "Zadejte platnou IP adresu (198.51.100.1, 2001:db8:0:130F::87C:140B) nebo rozsah s notací CIDR (198.51.100.0/24, 2001:db8::/32)",
                            "mustBeValidIpAddress":  "Musí se jednat o platnou IP adresu. Příklad: 4.3.6.0",
                            "mustBeValidKaiserWifiFormat":  "Formát není správný. Příklad formátu uživatele: abcd{{WifiMacAddress}}, příklad formátu hesla: abcd{{WifiMacAddress}}{{PreSharedKey}}",
                            "mustBeValidMonthDayDateFormat":  "Musí to být platný formát data (MM/DD). Příklad: 01/31, 02/28 atd.",
@@ -8692,7 +8727,7 @@
                            "performServerValidationDescription":  "Povolí ověřit identitu serveru ověřením certifikátu během výměny se serverem PEAP. Doporučujeme nastavit na Ano, pokud je to možné. Nastavení na hodnotu Ne nebo Není nakonfigurované je méně bezpečné.",
                            "personalProfileAppsAllowInstallFromUnknownSourcesDescription":  "Když se tato možnost povolí, uživatelé budou moct povolit nastavení neznámé zdroje a instalovat aplikace ze zdrojů jiných než Obchod Google Play.",
                            "personalProfileAppsAllowInstallFromUnknownSourcesName":  "Povolit uživatelům povolit v osobním profilu instalaci aplikací z neznámých zdrojů ",
-                           "personalProfileCameraBlockedDescription":  "Zablokuje všechny kamery na zařízení.",
+                           "personalProfileCameraBlockedDescription":  "Zabrání přístupu ke kameře během osobního použití.",
                            "personalProfileCameraBlockedName":  "Kamera",
                            "personalProfilePersonalApplications":  "Osobní aplikace",
                            "personalProfilePersonalApplicationsListTypeDescription":  "Vyberte „Povolené aplikace“ a vytvořte seznam aplikací, které jsou povoleny a schváleny k instalaci a spuštění v osobním profilu na zařízení. Výběrem možnosti „Blokované aplikace“ vytvoříte seznam aplikací, které mají zakázáno instalovat a spouštět v osobním profilu na zařízení.",
@@ -8878,7 +8913,7 @@
                            "publicNetworkName":  "Veřejná (nezjistitelná) síť",
                            "publicOutboundConnectionsSummaryLabel":  "Výchozí akce pro odchozí připojení (Veřejné sítě)",
                            "publicPlayStoreEnabledDescription":  "Pokud vyberete „Povolit“, získají uživatelé přístup ke všem aplikacím s výjimkou těch, které jste v klientských aplikacích museli odinstalovat. Pokud pro toto nastavení zvolíte „Blokovat“ nebo „Nenakonfigurováno“, budou uživatelé moct přistupovat jenom k aplikacím, které jste uvedli jako dostupné nebo požadované v klientských aplikacích.",
-                           "publicPlayStoreEnabledName":  "Povolit přístup ke všem aplikacím v Obchodu Google Play",
+                           "publicPlayStoreEnabledName":  "Povolit přístup ke všem aplikacím v Obchodu Google Play (na úrovni pracovního profilu)",
                            "publicPlayStoreEnabledWarning":  "Pokud vyberete „Povolit“, budou uživatelé moct nainstalovat libovolné aplikace z Obchod Google Play. Pokud později změníte výběr na „Blokovat“ nebo „Nenakonfigurováno“, odeberou se ze zařízení všechny aplikace s výjimkou těch aplikací, které jste uvedli jako dostupné nebo požadované v klientských aplikacích.",
                            "publicPlayStoreSelectionAllowList":  "Blokovat",
                            "publicPlayStoreSelectionBlockList":  "Povolit",
@@ -10103,6 +10138,8 @@
                            "wHfBWindowsHelloForBusinessBlockedName":  "Konfigurovat Windows Hello pro firmy",
                            "wPA2Enterprise":  "WPA2-Enterprise (Credential Builder)",
                            "wPA2EnterpriseOption":  "WPA/WPA2-Enterprise",
+                           "wPA2PersonalOption":  "WPA2/WPA3-Personal",
+                           "wPA3PersonalOption":  "WPA3-Personal",
                            "wPAEnterpriseOption":  "WPA-Enterprise",
                            "wPAPSKOption":  "Předsdílený klíč WPA",
                            "wPAPersonalOption":  "WPA/WPA2-Personal",
@@ -10594,6 +10631,78 @@
                            "zscalerUserDomain":  "Název vlastní domény",
                            "zscalerUserDomainDescription":  "Zadejte statickou doménou, kterou se předem vyplní přihlašovací pole v aplikaci Zscaler. Pokud se toto pole nechá prázdné, použije se místo toho doména Microsoft Entra uživatele.",
                            "zscalerUserDomainExample":  "contoso.com",
+                           "ztdnsAdvancedSettingsChevronName":  "Rozšířená nastavení",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledDescription":  "Zablokuje klientovi DNS systému Windows použití souboru hostitelů počítače k překladu dotazů DNS. ",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledLearnMore":  "Zjistěte více o překladu souborů hostitelů s DNS s DNS modelu nulové důvěry (Zero Trust).",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledName":  "Dotazy ze souboru hosts",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledDescription":  "Toto nastavení povolte, pokud chcete, aby se na důvěryhodný server DNS odesílaly dotazy DNS localhost (127.0.0.1 nebo ::1), což zabrání předávání nešifrovaných dotazů bez vyfiltrování. ",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledLearnMore":  "Zjistěte více o předávání DNS pomocí DNS modelu nulové důvěry (Zero Trust).",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledName":  "Server DNS pro předávání zpětné smyčky",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedDescription":  "Blokování provozu na adresy zpětné smyčky, jako jsou 127.0.0.1 a ::1, zlepšuje zabezpečení.",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedLearnMore":  "Zjistěte více o blokování provozu zpětné smyčky s DNS modelu nulové důvěry (Zero Trust).",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedName":  "Přenosy IP adres zpětné smyčky",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsDescription":  "Nastavte, jak dlouho bude připojení k IP adrese po překladu IP adres platné. Stáří v sekundách může být mezi 30 a 604800 s výchozí hodnotou 86400 (24 hodin). ",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsLearnMore":  "Zjistěte více o stáří záznamů DNS při použití s DNS modelu nulové důvěry (Zero Trust).",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsName":  "Stáří záznamů DNS (v sekundách)",
+                           "ztdnsClientCertificateChevronName":  "Ověřování klientským certifikátem",
+                           "ztdnsClientCertificateEkuHeaderLearnMore":  "Zjistěte více o rozšířeném použití klíče klientského certifikátu.",
+                           "ztdnsClientCertificateEkuHeaderName":  "Nakonfigurujte rozšířená použití klíče, která klientský certifikát musí mít k ověřování a zabezpečení síťových žádostí na důvěryhodné servery DNS. Při použití ověřování klientským certifikátem se vyžadují rozšířená použití klíče.",
+                           "ztdnsClientCertificateHeaderLearnMore":  "Zjistěte více o ověřování klientským certifikátem.",
+                           "ztdnsClientCertificateHeaderName":  "Pokud důvěryhodné servery DNS používají vzájemné ověřování, musíte také poskytnout certifikační autority, které vystavují potřebné certifikáty pro ověření klienta. Můžete také poskytnout rozšířená použití klíče, která používají klientské certifikáty.",
+                           "ztdnsClientRootCertificateHeader":  "Kořenový vystavitel klientského certifikátu",
+                           "ztdnsExemptionRuleDescriptionName":  "Popis",
+                           "ztdnsExemptionRuleDescriptionPlaceholder":  "Popis",
+                           "ztdnsExemptionRuleDisplayNameName":  "Název",
+                           "ztdnsExemptionRuleDisplayNamePlaceholder":  "Název",
+                           "ztdnsExemptionRuleIpAddressName":  "IP adresa nebo rozsah",
+                           "ztdnsExemptionRuleIpAddressPlaceholder":  "192.41.101.1, 2001:db8::/32",
+                           "ztdnsExemptionRuleIpAddressesDescription":  "Tyto adresy nebudou zpracovány důvěryhodnými servery DNS.",
+                           "ztdnsExemptionRuleIpAddressesName":  "IP adresy nebo rozsahy",
+                           "ztdnsExemptionRulesChevronName":  "Pravidla pro výjimky",
+                           "ztdnsExemptionRulesDescription":  "Tato pravidla určují, které požadavky jsou vyloučené z důvěryhodného zpracování DNS, což jim umožňuje obejít vynucení DNS s nulovou důvěryhodností.",
+                           "ztdnsExemptionRulesHeaderName":  "Možná budete muset vyloučit některé hostitele nebo podsítě z pravidel blokování. V takovém případě tady pro ně přidejte pravidla.",
+                           "ztdnsExemptionRulesName":  "Pravidla pro výjimky",
+                           "ztdnsMinimumBuildInfoboxName":  "Windows 11 verze 25H2 nebo novější",
+                           "ztdnsModeChevronName":  "Režim DNS modelu nulové důvěry (Zero Trust)",
+                           "ztdnsModeHeaderLearnMore":  "Zjistěte více o režimech.",
+                           "ztdnsModeHeaderName":  "Režim <strong>auditování</strong> protokoluje připojení bez blokování provozu. Události se zaznamenávají v Prohlížeči událostí systému Windows. Před použitím režimu vynucení použijte režim auditu k posouzení dopadu bez přerušení přístupu k síti.<br /><br /> Režim <strong>vynucení</strong> blokuje všechny dotazy DNS, které nejsou odeslány jednomu ze zadaných důvěryhodných serverů DNS.<br /><br />",
+                           "ztdnsModeSelectionAuditName":  "Audit",
+                           "ztdnsModeSelectionEnforceName":  "Vynutit",
+                           "ztdnsModeSelectionName":  "Režim",
+                           "ztdnsModeWarningName":  "V režimu vynucení nebudete mít přístup k zařízení, pokud se nebude moct spojit s důvěryhodným serverem DNS.",
+                           "ztdnsNotConfiguredName":  "Nenakonfigurováno",
+                           "ztdnsRootCertificateDescription":  "Tento certifikát certifikační autority se musí shodovat s kořenovým certifikátem certifikační autority, která vydává certifikát pro profil, který právě nastavujete.",
+                           "ztdnsSecureDnsServerChevronName":  "Důvěryhodné servery DNS",
+                           "ztdnsSecureDnsServerDisplayNameDescription":  "Zobrazovaný název důvěryhodného serveru DNS.",
+                           "ztdnsSecureDnsServerDisplayNameName":  "Název",
+                           "ztdnsSecureDnsServerDisplayNamePlaceholder":  "Zobrazovaný název",
+                           "ztdnsSecureDnsServerDohAndDotOptionName":  "DNS přes HTTPS a DNS přes TLS",
+                           "ztdnsSecureDnsServerDohHeaderName":  "Nastavení DNS přes HTTPS",
+                           "ztdnsSecureDnsServerDohOptionName":  "DNS přes HTTPS",
+                           "ztdnsSecureDnsServerDohPortDescription":  "Port HTTPS pro server DNS přes HTTPS Výchozí port je 443.",
+                           "ztdnsSecureDnsServerDohPortName":  "Port",
+                           "ztdnsSecureDnsServerDohUrlDescription":  "Tato adresa URL se použije k odesílání žádostí DNS přes protokol HTTPS.",
+                           "ztdnsSecureDnsServerDohUrlName":  "Adresa URL",
+                           "ztdnsSecureDnsServerDohUrlPlaceholder":  "https://dns.contoso.com/dns-query",
+                           "ztdnsSecureDnsServerDotHeaderName":  "Nastavení DNS přes TLS",
+                           "ztdnsSecureDnsServerDotHostnameDescription":  "Tento název hostitele se použije k ověření názvu subjektu certifikátu důvěryhodného serveru DNS.",
+                           "ztdnsSecureDnsServerDotHostnameName":  "Název hostitele",
+                           "ztdnsSecureDnsServerDotHostnamePlaceholder":  "dns.contoso.com",
+                           "ztdnsSecureDnsServerDotOptionName":  "DNS přes TLS",
+                           "ztdnsSecureDnsServerDotPortDescription":  "Číslo portu TLS používané serverem DNS přes TLS Výchozí port je 853.",
+                           "ztdnsSecureDnsServerDotPortName":  "Port",
+                           "ztdnsSecureDnsServerHeaderLearnMore":  "Zjistěte více o konfiguraci důvěryhodných serverů DNS.",
+                           "ztdnsSecureDnsServerHeaderName":  "Dotazy DNS se odesílají jenom na důvěryhodné servery DNS, které tady zadáte. Pro každý server nastavte, který zabezpečený protokol se má použít: DNS přes HTTPS (DoH) nebo DNS přes TLS (DoT). Můžete použít formát adresy IPv4 nebo IPv6.",
+                           "ztdnsSecureDnsServerIpAddressDescription":  "Může to být veřejný server DNS nebo server DNS vaší organizace.",
+                           "ztdnsSecureDnsServerIpAddressName":  "IP adresa",
+                           "ztdnsSecureDnsServerIpAddressPlaceholder":  "198.51.100.1, 2001:0db8:85a3::8a2e:0370:7334",
+                           "ztdnsSecureDnsServerName":  "Důvěryhodné servery DNS",
+                           "ztdnsSecureDnsServerTypeDescription":  "Protokoly podporované důvěryhodným serverem DNS",
+                           "ztdnsSecureDnsServerTypeName":  "Protokol",
+                           "ztdnsServerRootCertificateHeader":  "Kořenový vystavitel certifikátu serveru",
+                           "ztdnsTrustedCAChevronName":  "Důvěryhodné certifikační autority",
+                           "ztdnsTrustedCAHeaderLearnMore":  "Zjistěte více o důvěryhodných certifikačních autoritách.",
+                           "ztdnsTrustedCAHeaderName":  "Zadané důvěryhodné servery DNS musí používat certifikáty vydané důvěryhodnými certifikačními autoritami. Tyto certifikáty zadejte sem.",
                            "platformSupported":  "Podporovaná platforma",
                            "aadDeviceId":  "ID zařízení Microsoft Entra",
                            "access":  "Přístup",
@@ -10808,6 +10917,7 @@
                            "displayName":  "Zobrazovaný název",
                            "downloadReport":  "Stáhnout sestavu",
                            "downloadingReport":  "Stahuje se sestava.",
+                           "edgeCampaignInfoBoxText":  "Pokud chcete zajistit, aby byl veškerý webový obsah ze spravovaných aplikací chráněný Microsoft Edge, vyberte v možnosti Omezit přenos webového obsahu s jinými aplikacemi možnost Microsoft Edge. Poté vyberte Zkontrolovat a uložit.",
                            "edgeGSAssignment":  "Zvolte skupiny uživatelů, kterým chcete mobilně nainstalovat Microsoft Edge. Microsoft Edge se nainstaluje na všechna zařízení s iOS a Androidem registrovaná těmito uživateli.",
                            "edgeGSIntroBenefitHTML":  "<p>Získejte aplikaci Microsoft Edge pro své uživatele iOS nebo Androidu, kteří tak budou moct bezproblémově procházet weby napříč svými firemními zařízeními. Edge umožňuje uživatelům skrývat nepotřebné části webu pomocí vestavěných funkcí, které usnadňují konsolidaci, uspořádání a správu pracovního obsahu. Uživatelé zařízení s iOS a Androidem, kteří se přihlašují pomocí firemních účtů Microsoft Entra v aplikaci Edge, najdou v prohlížeči předem načtené oblíbené položky na pracovišti a filtry webů, které definujete.</p><p>Pokud jste uživatelům zablokovali registraci zařízení s iOS nebo Androidem, tento scénář nepovolí registraci a uživatelé si budou muset Edge nainstalovat sami.</p>",
                            "edgeGSIntroPrereqHTML":  "<p>Požádáme vás o oblíbené položky pracoviště, které uživatelé potřebují, a o filtry, které požadujete pro procházení webu. Než budete pokračovat, ujistěte se, že jste dokončili následující úkoly:</p>\r\n<li>Přidejte uživatele do <a href='https://go.microsoft.com/fwlink/?linkid=2102458'>skupin Microsoft Entra</a></li>\r\n<li>Zaregistrujte zařízení se systémem iOS nebo Androidem v Intune. <a href='https://go.microsoft.com/fwlink/?linkid=2102547'>Další informace</a></li>\r\n<li>Vytvořte seznam oblíbených položek pracoviště pro přidání do Microsoft Edge.</li>\r\n<li>Vytvořte seznam filtrů webů pro použití v Microsoft Edgi.</li>",
@@ -11023,8 +11133,8 @@
                            "ok":  "OK",
                            "on":  "Zapnuto",
                            "onlineButUnableToCheckin":  "Zakázaný účet",
-                           "orgDestinationAnySourceOptionText":  "Org data destinations and any source",
-                           "orgDestinationOrgSourceOptionText":  "Org data destinations and org data sources",
+                           "orgDestinationAnySourceOptionText":  "Cíle dat organizace a jakýkoli zdroj",
+                           "orgDestinationOrgSourceOptionText":  "Cíle dat organizace a zdroje dat organizace",
                            "orgPermission":  "Oprávnění organizace číst, aktualizovat ",
                            "override":  "Přepsat",
                            "overview":  "Přehled",
@@ -11427,13 +11537,13 @@
                                         "gradualRolloutLicenseWarningEdit":  "Tato funkce se může dál používat a konfigurovat, dokud se zásady neuloží bez výběru této funkce.",
                                         "licenseLearnMoreText":  "Přečtěte si další informace o požadavcích a zásadách aktualizace funkcí.",
                                         "optionalUpdateWarning":  "Možnost Volitelné je dostupná jenom pro aktualizace systému Windows 11.",
-                                        "profileNameWarning":  "Název musí být kratší než 64 znaků.",
+                                        "profileNameWarning":  "Název musí být kratší než 255 znaků.",
                                         "specificLicensingRequired":  "Některé vybrané funkce vyžadují konkrétní licencování."
                                     },
     "AzureCA":  {
                     "AdrsUserActionSelectionWarning":  {
                                                            "conditions":  "Conditions that require device registration are not available with \"Register or join devices\" user action.",
-                                                           "message":  "Only \"Require multifactor authentication\" can be used in policies created for the \"Register or join devices\" user action.{0}"
+                                                           "message":  "Only \"Require multifactor authentication or Require Auth strength'\" can be used in policies created for the \"Register or join devices\" user action.{0}"
                                                        },
                     "AuthContext":  {
                                         "Delete":  {
@@ -11564,7 +11674,7 @@
                                                                          "placeholder":  "Choose an attribute"
                                                                      },
                                                 "Configure":  {
-                                                                  "infoBalloon":  "Configure app filters you want to policy to apply to."
+                                                                  "infoBalloon":  "Configure custom security attributes you want the policy to apply to."
                                                               },
                                                 "NoPermissions":  {
                                                                       "learnMoreAria":  "More about custom security attribute permissions.",
@@ -11584,14 +11694,15 @@
                                                  "learnMoreB2C":  "Control access based on all or specific cloud apps.",
                                                  "learnMoreNetworkAccess":  "Control access based on all or specific network access traffic, cloud apps or actions.",
                                                  "learnMorePublicClouds":  "Control access based on all or specific apps, internet resources, actions, or authentication context.",
+                                                 "learnMorePublicCloudsAgents":  "Control access based on all or specific apps, agents, internet resources, actions, or authentication context.",
                                                  "title":  "Cloud apps or actions"
                                              },
                     "CloudappsSelectionBlade":  {
                                                     "AgenticResources":  {
                                                                              "allAgenticResources":  "All agent resources (Preview)",
-                                                                             "allAgenticResourcesExcLower":  "all agent resources excluded",
-                                                                             "allAgenticResourcesExcluded":  "All agent resources excluded",
-                                                                             "allAgenticResourcesIncluded":  "All agent resources"
+                                                                             "allAgenticResourcesExcLower":  "all agent resources (Preview) excluded",
+                                                                             "allAgenticResourcesExcluded":  "All agent resources (Preview) excluded",
+                                                                             "allAgenticResourcesIncluded":  "All agent resources (Preview)"
                                                                          },
                                                     "AllInternetResources":  {
                                                                                  "excludedWithGSA":  "All internet resources with Global Secure Access excluded",
@@ -11603,7 +11714,13 @@
                                                                  },
                                                     "Filter":  {
                                                                    "configured":  "Configured",
+                                                                   "descriptionAgents":  "Apply policy to agent identities based on custom security attributes pre-assigned to them.",
                                                                    "label":  "Edit filter",
+                                                                   "resourceDescription":  "Select resources based on custom security attributes.",
+                                                                   "sPDescription":  "Select service principals based on custom security attributes.",
+                                                                   "titleAgents":  "Select agent identities based on attributes",
+                                                                   "titleResource":  "Select resources based on attributes",
+                                                                   "titleSP":  "Select service principals based on attributes",
                                                                    "with":  "{0} with {1}"
                                                                },
                                                     "Included":  {
@@ -11660,12 +11777,15 @@
                     "MicrosoftManagedPolicies":  {
                                                      "alertBanner":  "Microsoft-managed policies will be enabled no sooner than {0} days after creation unless you take action. We recommend that you review these policies and take the recommended actions.",
                                                      "alertBannerV2":  "Microsoft-managed policies in report-only state will be automatically turned on with advance email and {0}M365 message center{1} notifications. We recommend that you review these policies and recommended actions.",
+                                                     "bsmRecActionsGlobal2":  "When you are ready to enable, switch its state to 'on'. If you do not want to enforce this policy for your organization, switch its state to 'off'.",
                                                      "learnMoreLinkAriaLabel":  "Learn more about Microsoft-managed policies.",
                                                      "m365MessageCenterLinkAriaLabel":  "M365 message center",
                                                      "policySummaryBlockDCF":  "This policy unilaterally blocks device code flow usage across all resources and all users. As a Microsoft-managed policy, only certain properties are editable.",
+                                                     "policySummaryBlockHighRiskAgents":  "This policy blocks any sign-in attempt made by a high-risk agent identity",
                                                      "policySummaryBlockLegacyAuth":  "This policy blocks any sign-in attempt using legacy authentication and legacy authentication protocols from accessing applications. Legacy authentication refers to authentication requests made by: Clients that don't use modern authentication (e.g., Office 2010 clients). Clients that use older mail protocols such as IMAP, SMTP, or POP3.",
                                                      "policySummaryMfa":  "This policy requires some administrator roles to perform multifactor authentication when accessing Microsoft admin portals. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryMfaForAllUsers":  "This policy requires all users to perform multifactor authentication when accessing any resources. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
+                                                     "policySummaryMfaForGuestAccess":  "This policy requires all guest and external users to perform multifactor authentication when accessing your organization's resources. Requiring multifactor authentication for guests reduces the risk of compromised external accounts gaining access to your data and applications.",
                                                      "policySummaryPerUserMfaV2":  "This policy covers per-user multifactor authentication enforced users with recent sign-ins and requires them to perform MFA while accessing cloud applications. There will be no change to the end user experience as a result of this policy and your organization is sufficiently licensed to use this policy. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryPerUserMfaViaGroup":  "This policy covers per-user multifactor authentication enforced users with recent sign-ins and requires them to perform MFA while accessing cloud applications. There will be no change to the end user experience as a result of this policy and your organization is sufficiently licensed to use this policy. We'll assign eligible users into a new security group named 'Conditional Access: Per-user multifactor authentication users (a4ea6c0f-b8fb-4d29-91f1-9f8cf0601e97)'. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryPhishingResistantMfa":  "Accounts that are assigned privileged administrative roles are frequent targets of attackers. Requiring phishing-resistant multifactor authentication (MFA) on those accounts is an easy way to reduce the risk of those accounts being compromised.",
@@ -11829,6 +11949,11 @@
                                                                                                                    "learnMoreLabel":  "enable GSA Adaptive Access Signaling."
                                                                                                                }
                                          },
+                    "ObjectPickerStrings":  {
+                                                "appId":  "App Id",
+                                                "blueprintId":  "Blueprint Id",
+                                                "objectId":  "Object Id"
+                                            },
                     "Overview":  {
                                      "SignInsProtectedByCa":  {
                                                                   "accessDenied":  "Access denied",
@@ -12098,6 +12223,7 @@
                                                                 }
                                                 },
                     "RiskRemediationValidation":  {
+                                                      "mustNotSelect":  "To enable Require Risk Remediation, you must not select {0}.",
                                                       "mustSelect":  "To enable Require Risk Remediation, you must select {0}.",
                                                       "xOrY":  "{0} or {1}"
                                                   },
@@ -12330,6 +12456,8 @@
                                         "accessRequirement2":  "Level 2",
                                         "accessRequirement3":  "Level 3",
                                         "accessRequirementsLabel":  "Accessing secured app data",
+                                        "accountRecovery":  "Recover account",
+                                        "accountRecoveryInfoText":  "This user action requires the idenity verification grant control. Please select an identity verification profile.",
                                         "appsActionsAuthTitle":  "Cloud apps, actions, or authentication context",
                                         "appsOrActionsSelectorInfoBallonText":  "Applications accessed or user actions",
                                         "appsOrActionsTitle":  "Cloud apps or actions",
@@ -12358,6 +12486,7 @@
                                                                   "usersGroups":  "Select at least one user or group"
                                                               },
                                                "learnMore":  "Control access based on who the policy will apply to, such as users and groups, workload identities, directory roles, or external guests.",
+                                               "learnMoreAgents":  "Control access based on who the policy will apply to, such as users and groups, agents, workload identities, directory roles, or external guests.",
                                                "learnMoreAriaLabel":  "Learn more about Conditional Access users, groups, and workload identities."
                                            },
                     "ValidationResult":  {
@@ -12406,7 +12535,9 @@
                                                           "requireMfa":  "Consider testing the new \"{0}\".",
                                                           "requirePasswordChangeEnabled":  "\"Require password change\" can only be used when policy is assigned to \"All cloud apps\".",
                                                           "requirePasswordChangeEnabledResource":  "\"Require password change\" can only be used when policy is assigned to \"All resources\".",
-                                                          "requireRiskRemediation":  "\"{0}\" can only be used when policy is assigned to \"{1}.\" This option requires multifactor authentication or authentication strengths controls. Other controls cannot be used. This option also requires the Session control \"Sign-in Frequency\" to be set to \"Every time.\""
+                                                          "requireRiskRemediation":  "\"{0}\" can only be used when policy is assigned to \"{1}.\" This option requires multifactor authentication or authentication strengths controls. Other controls cannot be used. This option also requires the Session control \"Sign-in Frequency\" to be set to \"Every time.\"",
+                                                          "verifiedId":  "The user action \"Recover account\" requires this control. Please select identity verification profile. No other controls are supported at this time.",
+                                                          "vidAmpWarning":  "Before creating a Conditional Access policy, make sure Verified ID is turned on as an authentication method."
                                                       },
                                          "Policies":  {
                                                           "Linux":  {
@@ -12486,6 +12617,17 @@
                                         "loadingPermissions":  "Loading permissions..."
                                     },
                     "advancedTabText":  "Advanced",
+                    "agentIdentitiesAlert":  "Some controls are not available due to 'agents' selection in policy assignment",
+                    "agentIdentitiesInfo":  "Apply policy to all agent identities.",
+                    "agentIdentitiesSelectInfo":  "Apply policy to specific agent identities in the tenant.",
+                    "agentUsersAlert":  "During public preview, block access to all resources is the only policy configuration allowed for 'All agents acting as users' selection. Additional conditions and controls are coming soon.",
+                    "agentUsersDescription":  "Agent users enable AI-powered applications to interact with systems and services that require user identities.",
+                    "agentUsersInfo":  "Apply policy to all agents acting as users.",
+                    "agentUsersSelect":  "Select agents acting as users",
+                    "agentUsersSelectTitle":  "Select agent users",
+                    "agentUsersWarning":  "All agents acting as users cannot be combined with other selections.",
+                    "agents":  "Agents (Preview)",
+                    "allAgentUsers":  "All agents acting as users (Preview)",
                     "allCloudAppsErrorBox":  "\"All cloud apps\" must be selected when \"Require password change\" grant is selected",
                     "allCloudAppsReauth":  "\"All cloud apps\" must be selected when \"Sign-in frequency every time\" session control and \"sign-in risk\" condition are selected",
                     "allCloudOrSpecificApps":  "The \"sign-in frequency every time\" session control requires \"all cloud apps\" or specifically-supported apps to be selected",
@@ -12515,6 +12657,7 @@
                     "applyConditionClientAppInfoBalloonContent":  "Configure client apps to apply the policy to specific client apps",
                     "applyConditionDevicePlatformInfoBalloonContent":  "Configure device platforms to apply the policy to specific platforms",
                     "applyConditionDeviceStateInfoBalloonContent":  "Configure device state to apply the policy to specific device state(s)",
+                    "applyConditionLocation":  "Configure Locations",
                     "applyConditionLocationInfoBalloonContent":  "Configure locations to apply the policy to trusted/untrusted locations",
                     "applyConditionSigninRiskInfoBalloonContent":  "Configure sign-in risk to apply the policy to selected risk level(s)",
                     "applyConditionUserRiskInfoBalloonContent":  "Configure user risk to apply the policy to selected risk level(s)",
@@ -12709,6 +12852,8 @@
                     "cloudappsSelectionBladeIncludedSelectorTitle":  "Select",
                     "cloudappsSelectionBladeSelectedCloudapps":  "Select apps",
                     "cloudappsSelectionBladeSelectedResources":  "Select resources",
+                    "cloudappsSelectionDescription":  "Select specific resources this policy targets.",
+                    "cloudappsSelectionTitle":  "Select specific resources",
                     "cloudappsSelectorInfoBallonText":  "Services which the user accesses to do work. For example, 'Salesforce'",
                     "cloudappsSelectorNone":  "No cloud apps, actions, or authentication context selected",
                     "cloudappsSelectorPluralExcluded":  "{0} apps excluded",
@@ -12846,7 +12991,7 @@
                     "memberSelectionCommandRemove":  "Remove",
                     "menuItemClaimProviderControls":  "Custom controls (Preview)",
                     "menuItemClassicPolicies":  "Classic policies",
-                    "menuItemDeletedPolicies":  "Deleted Policies (Preview)",
+                    "menuItemDeletedPolicies":  "Deleted Policies",
                     "menuItemInsightsAndReporting":  "Insights and reporting",
                     "menuItemManage":  "Manage",
                     "menuItemNamedLocationsPreview":  "Named locations (Preview)",
@@ -12949,6 +13094,7 @@
                     "policyConditionNetworkLocationDescription":  "Network and locations (determined by IP address range or GPS coordinates) the user is signing in from",
                     "policyConditionSigninRisk":  "Sign-in risk",
                     "policyConditionSigninRiskDescription":  "Likelihood that the sign-in is coming from someone other than the user. Risk level can be high, medium or low. Requires Microsoft Entra ID P2 license.",
+                    "policyConditionUserAndSigninRiskWarning":  "Avoid combining User Risk and Sign-in Risk in the same policy. These conditions rarely occur together, so Microsoft recommends creating separate policies - one for User Risk and another for Sign-in Risk.",
                     "policyConditionUserRisk":  "User risk",
                     "policyConditionUserRiskDescription":  "Configure user risk levels needed for policy to be enforced",
                     "policyConditioniClientApp":  "Client apps",
@@ -12968,6 +13114,7 @@
                     "policyControlRequiredPasswordChangeDisplayedName":  "Require password change",
                     "policyControlSelectAuthStrength":  "Require authentication strength",
                     "policyControlSelectRiskRemediation":  "Require risk remediation",
+                    "policyControlVerifiedIdDisplayedName":  "Require identity verification",
                     "policyControlsNoControlsSelected":  "0 controls selected",
                     "policyControlsSection":  "Access controls",
                     "policyCreatBladeTitle":  "New",
@@ -13114,12 +13261,12 @@
                     "trustedLocationStatusIconEnabled":  "Trusted status icon",
                     "tuesday":  "Tuesday",
                     "uploadInBadState":  "Unable to upload the specified file.",
-                    "userAgentOrSPSelectionBladeTitle":  "Users, agent identities or workload identities",
+                    "userAgentOrSPSelectionBladeTitle":  "Users, agents or workload identities",
                     "userAppNoneOption":  "None",
                     "userNamePlaceholderText":  "Enter User Name",
                     "userNotSetSeletorLabel":  "0 users and groups selected",
                     "userOnlySelectionBladeExcludeDescription":  "Select the users to exempt from the policy",
-                    "userOrAgentSelectionBladeTitle":  "Users or agent identities",
+                    "userOrAgentSelectionBladeTitle":  "Users or agents (Preview)",
                     "userOrGroupSelectionCountDiffBannerText":  "{0} configured in this policy have been deleted from the directory, but this doesn't affect the other users and groups in the policy. The next time you update the policy, the deleted users and/or groups will be automatically removed.",
                     "userOrSPNotSetSelectorLabel":  "0 users or workload identities selected",
                     "userOrSPSelectionBladeTitle":  "Users or workload identities",
@@ -13153,6 +13300,7 @@
                     "userSelectorUserSingular":  "1 user",
                     "userSelectorWithExclusion":  "{0} and {1}",
                     "usersGroupsLabel":  "Users and groups",
+                    "verifiedIdInfoBubble":  "Users must present a Verified ID and complete Face Check",
                     "viewApprovedAppsText":  "See list of approved client apps",
                     "viewCompliantAppsText":  "See list of policy protected client apps",
                     "viewPolicyInformation":  "View policy information",

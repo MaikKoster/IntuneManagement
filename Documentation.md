@@ -101,6 +101,75 @@ The json files contains a definition of each property to document. This includes
 
 The `DocumentationCustom.psm1` file also takes care of custom documentation for some object types e.g. Conditional Access. App Configuration policies etc. These objects are documented via a PowerShell function in the script.
 
+**dataTypes Reference**
+
+The following `dataType` values are supported in property-based ObjectInfo json files:
+
+| Value | Name | Description |
+|---|---|---|
+| `0` | Boolean | Translated via the `booleanActions` field |
+| `1` | Base64 | Certificate or binary data decoded to a UTF-8 string; filename used if `filenameEntityKey` is set |
+| `2` | Multiline String | Multiline text or XML decoded from Base64 if needed; stored to a payload file if `filenameEntityKey` is set |
+| `3` | Image | Binary image; outputs "Image file" when a value is present |
+| `4` | Linked Certificate | Certificate resolved via OData navigation link |
+| `5` | Complex Options | Iterates child `complexOptions` as a sub-section |
+| `6` | Complex Option (sub-property) | Iterates `complexOptions` resolved via `entityKey` sub-property |
+| `7` | OMA DateTime | Raw OMA DateTime string |
+| `8` | Sub-category | Sets the current sub-category label from `nameResourceKey` |
+| `9` | Label / OData Type | Skipped — UI label or `@odata.type` property |
+| `10` | Information Box | Skipped — UI-only information box |
+| `11` | App Picker | Application picker |
+| `12` | Multiline String Array | Array of strings joined with the object separator |
+| `13` | Multi Option | Multiple selection; translated via `Invoke-TranslateMultiOption` |
+| `14` | Int32 | 32-bit integer |
+| `15` | Int64 | 64-bit integer |
+| `16` | Option | Single-select option; translated via `Invoke-TranslateOption` |
+| `19` | Option (variant) | Single-select option; translated via `Invoke-TranslateOption` |
+| `20` | String | Plain string |
+| `21` | Table | Sub-table; translated via `Invoke-TranslateTable` |
+| `22` | Scale Value | Numeric value combined with a unit from `scaleOptions` (e.g. "4 Years") |
+| `99` | Reserved | No-op placeholder |
+| `100` | Duration | Custom `Edm.Duration` formatting via `Invoke-TranslateDuration` |
+| `101` | Static Label | Language string taken from the `value` field |
+| `102` | Culture Name | Language/culture name string |
+| `103` | Boolean (hide on false) | Boolean via `booleanActions`; hides child properties when `false` |
+| `104` | Multi Option Boolean | Multi-option via boolean; hides children when `false` |
+| `105` | Multi Option Boolean (inverted) | Like `104` but treats `false` as the selected state |
+| `106` | Language Array | Array of culture/language names joined with the object separator |
+| `107` | Static Value | Literal string taken directly from the `value` field |
+| `108` | String with Format | String formatted using the `formatStringKey` language template |
+| `200` | Multi Option (language key) | Translated string looked up via `entityKey` as a language string ID |
+
+**booleanActions Reference**
+
+The `booleanActions` field controls the text shown for `true`/`false` values when `dataType` is `0`, `103`, `104`, or `105`.
+
+Values `0`–`9` and `107`–`108` only display a custom label when `true`; a `false` value falls through to *Not Configured*.
+
+| Value | `true` → | `false` → |
+|---|---|---|
+| `0` | Allow | *(Not Configured)* |
+| `1` | Require | *(Not Configured)* |
+| `2` | Enable | *(Not Configured)* |
+| `3` | Block | *(Not Configured)* |
+| `4` | Configured | *(Not Configured)* |
+| `5` | Disable | *(Not Configured)* |
+| `6` | Limit | *(Not Configured)* |
+| `7` | Show | *(Not Configured)* |
+| `8` | Hide | *(Not Configured)* |
+| `9` | Yes | *(Not Configured)* |
+| `100` | Block | Allow |
+| `101` | Require | Not Required |
+| `102` | Enable | Disable |
+| `107` | Show | *(Not Configured)* |
+| `108` | Hide | *(Not Configured)* |
+| `109` | Yes | No |
+| `110` | No | Yes |
+| `120` | On | Off |
+| `200` | Allow | Block |
+| `201` | Not Required | Require |
+| `220` | Off | On |
+
 **Language Support**
 
 The Settings based objects get their language strings from Graph APIs with a few exceptions.

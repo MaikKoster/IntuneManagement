@@ -101,6 +101,11 @@
                                            "win32AppPackageFile":  "デバイスにサイドロードできる形式でお客様のアプリを含むファイルです。有効なパッケージの種類: .intunewin。",
                                            "winGetStoreSelectApp":  "Microsoft Store アプリ (新規) で、Intune で展開するストア アプリを検索します。"
                                        },
+                              "Status":  {
+                                             "active":  "アクティブ",
+                                             "deleted":  "削除済み",
+                                             "softDeleted":  "論理的に削除済み"
+                                         },
                               "descriptionPreview":  "プレビュー",
                               "descriptionPreviewLabel":  "プレビュー",
                               "descriptionRequired":  "説明が必要です。",
@@ -227,6 +232,7 @@
                                                "v16":  "iOS 16.0",
                                                "v17":  "iOS 17.0",
                                                "v18":  "iOS 18.0",
+                                               "v26":  "iOS 26.0",
                                                "v8":  "iOS 8.0",
                                                "v9":  "iOS 9.0"
                                            },
@@ -256,6 +262,9 @@
                                                          },
                                                  "V15":  {
                                                              "0":  "macOS Sequoia 15.0"
+                                                         },
+                                                 "V26":  {
+                                                             "0":  "macOS Tahoe 26.0"
                                                          }
                                              },
                                    "Windows":  {
@@ -276,7 +285,8 @@
                                                    "V11Release":  {
                                                                       "release21H2":  "Windows 11 21H2",
                                                                       "release22H2":  "Windows 11 22H2",
-                                                                      "release23H2":  "Windows 11 23H2"
+                                                                      "release23H2":  "Windows 11 23H2",
+                                                                      "release24H2":  "Windows 11 24H2"
                                                                   },
                                                    "v10":  "Windows 10.0",
                                                    "v80":  "Windows 8.0",
@@ -442,6 +452,7 @@
                    "androidUrlValidation":  "https://play.google.com/store/apps/details?id=com.microsoft.bing&hl=ja のような有効な URL を入力します",
                    "appInstallContext":  "アプリのインストール コンテキスト",
                    "appUrlLabel":  "アプリ ストアの URL",
+                   "appleManagementType":  "管理の種類",
                    "appleUrlValidation":  "https://www.itunes.apple.com/us/app/microsoft-excel/id586683407?mt=8 のような有効な URL を入力します",
                    "applicableDeviceType":  "適用可能なデバイスの種類",
                    "assignmentActionLabel":  "モード",
@@ -520,7 +531,7 @@
                    "installationSourceLabel":  "アプリの種類",
                    "installerTypeInfoBalloon":  "アプリケーション パッケージのインストーラーの種類。",
                    "installerTypeLabel":  "インストーラーの種類",
-                   "isFeatured":  "ポータル サイトでおすすめアプリとして表示する",
+                   "isFeatured":  "おすすめアプリとして表示する",
                    "isMAMEnabledToggleLabel":  "はい",
                    "lastModifiedDateTime":  "最終更新時刻",
                    "ldapUrl":  "LDAP URL",
@@ -583,6 +594,7 @@
                    "twoWeeks":  "2 週間",
                    "unifiedAssignmentsLabel":  "割り当て先:",
                    "unlimited":  "無制限",
+                   "updateMethod":  "更新方法",
                    "urlHint":  "有効な URL を入力してください",
                    "useManagedBrowserHint":  "Android と iOS のみ。詳細を表示",
                    "useManagedBrowserLabel":  "このリンクを開くには Managed Browser が必要です",
@@ -936,6 +948,11 @@
                                           },
                             "noData":  "ポリシー テンプレートが見つかりません"
                         },
+    "ProfileType":  {
+                        "deviceOwnerOnly":  "フル マネージド、専用、会社所有の仕事用プロファイルのみ",
+                        "workProfileAndDeviceOwner":  "すべてのプロファイルの種類",
+                        "workProfileOnly":  "個人所有の仕事用プロファイルのみ"
+                    },
     "PolicyType":  {
                        "EdgeSmartScreenSettings":  {
                                                        "description":  "Microsoft Edge は SmartScreen 設定を提案しました: Windows 10 クラウド構成テンプレート。https://aka.ms/CloudConfigGuide"
@@ -1075,6 +1092,7 @@
                        "windowsInformationProtection":  "Windows Information Protection",
                        "windowsPhoneCompliancePolicy":  "Windows Phone コンプライアンス ポリシー",
                        "windowsUpdateforBusiness":  "Windows Update for Business",
+                       "windowsZeroTrustDns":  "ゼロトラスト DNS",
                        "wiredNetwork":  "ワイヤード (有線) ネットワーク",
                        "workProfile":  "個人所有の仕事用プロファイル"
                    },
@@ -1250,6 +1268,8 @@
                                                "assignmentFilterTypeColumnHeader":  "フィルター モード",
                                                "assignmentToast":  "エンド ユーザーの通知",
                                                "assignmentTypeTableHeader":  "割り当ての種類",
+                                               "associatedDomains":  "関連付けられているドメイン",
+                                               "associatedDomainsDirectDownloadAllowed":  "関連付けられたドメインの直接ダウンロードが許可されました",
                                                "autoUpdate":  "自動更新",
                                                "deadlineTimeColumnLabel":  "インストールの期限",
                                                "deliveryOptimizationPriorityHeader":  "配信の最適化の優先度",
@@ -1263,6 +1283,8 @@
                                                "preventManagedAppBackup":  "iCloud アプリのバックアップを禁止する",
                                                "restartGracePeriodHeader":  "再起動の猶予期間",
                                                "startTimeColumnLabel":  "可用性",
+                                               "statusTableHeader":  "状態",
+                                               "tapToPayScreenLockEnabled":  "[タップして支払い] の画面ロックが有効になりました",
                                                "tracks":  "トラック",
                                                "uninstallOnRemoval":  "デバイスの削除時にアンインストールする",
                                                "updateMode":  "優先度の更新",
@@ -1308,6 +1330,7 @@
                                          "winGetPublicApp":  "Windows パッケージ マネージャーのコミュニティ リポジトリ",
                                          "winGetStoreApp":  "Microsoft Store アプリ (新規)",
                                          "windowsAppXLobApp":  "Windows AppX 基幹業務アプリ",
+                                         "windowsAutoUpdateCatalogApp":  "Windows 自動更新プログラム カタログ アプリ",
                                          "windowsClassicApp":  "Windows アプリ (Win32)",
                                          "windowsEdgeApp":  "Microsoft Edge (Windows 10 以降)",
                                          "windowsMobileMsiLobApp":  "Windows MSI 基幹業務アプリ",
@@ -1672,7 +1695,7 @@
                                    "deleteTitle":  "{0} 制限を削除しますか?",
                                    "descriptionHint":  "制限の設定によって特徴づけられる、業務での使用または制限のレベルの短い説明文。",
                                    "edit":  "制限の編集",
-                                   "info":  "デバイスは、そのユーザーに割り当てられている優先順位の最も高い登録制限に準拠している必要があります。優先順位を変更するには、デバイスの制限をドラッグします。既定の制限は、どのユーザーでも優先順位が最低であり、ユーザーなしの登録を管理します。既定の制限を編集することはできますが、削除することはできません。",
+                                   "info":  "デバイスは、そのユーザーに割り当てられている優先順位の最も高い登録制限に準拠している必要があります。優先順位を変更するには、デバイスの制限をドラッグします。既定では、すべてのユーザーについて制限の優先順位は最も低く、ユーザーなしの登録を管理します。既定の制限を編集することはできますが、削除することはできません。",
                                    "iosRestrictions":  "iOS の制限",
                                    "mDM":  "MDM",
                                    "macRestrictions":  "macOS の制限",
@@ -1879,7 +1902,7 @@
                                    "customMessageTextBox":  "エラー メッセージ",
                                    "customMessageToggle":  "時間制限またはエラーの発生時にカスタム メッセージを表示する",
                                    "enableForAutopilotOnlyToggle":  "out-of-box experience (OOBE) でプロビジョニングされたデバイスにのみページを表示する",
-                                   "installQualityUpdatesToggle":  "Windows 更新プログラムのインストール (デバイスの再起動を伴う可能性があります) (プレビュー)",
+                                   "installQualityUpdatesToggle":  "Windows 更新プログラムのインストール (デバイスの再起動を伴う可能性があります)",
                                    "progressToggle":  "アプリとプロファイルの構成の進行状況を表示します",
                                    "resetToggle":  "インストール エラーが発生した場合にデバイスのリセットをユーザーに許可する",
                                    "timeout":  "インストールに要する時間が指定された分数を超えたらエラーを表示します"
@@ -2078,10 +2101,10 @@
                    "helpSupportReplacement":  "ヘルプとサポート ({0})",
                    "iOSAppProvisioning":  "iOS アプリ プロビジョニング プロファイル",
                    "incompleteUserEnrollments":  "不完全なユーザー登録",
-                   "iosUpdates":  "iOS/iPadOS の更新プログラム",
+                   "iosUpdates":  "iOS/iPadOS の更新プログラム (非推奨)",
                    "legacyPcManagement":  "レガシ PC 管理",
-                   "macOSSoftwareUpdate":  "macOS の更新プログラム",
-                   "macOSSoftwareUpdateAccountSummaries":  "MacOS デバイスのインストール状態",
+                   "macOSSoftwareUpdate":  "macOS の更新プログラム (非推奨)",
+                   "macOSSoftwareUpdateAccountSummaries":  "macOS デバイスのインストール状態 (非推奨)",
                    "macOSSoftwareUpdateCategorySummaries":  "ソフトウェア更新プログラムの概要",
                    "macOSSoftwareUpdateStateSummaries":  "更新プログラム",
                    "managedGooglePlay":  "マネージド Google Play",
@@ -2094,7 +2117,7 @@
                    "onPremisesConnector":  "Exchange ActiveSync のオンプレミス コネクタ",
                    "onPremisesDeviceAccess":  "Exchange ActiveSync デバイス",
                    "onPremisesManageAccess":  "Exchange On-Premises のアクセス",
-                   "outOfDateIosDevices":  "iOS デバイスのインストール エラー",
+                   "outOfDateIosDevices":  "iOS デバイスのインストール エラー (非推奨)",
                    "overview":  "概要",
                    "partnerDeviceManagement":  "パートナー デバイスの管理",
                    "perUpdateRingDeploymentState":  "更新プログラムごとのリングの展開の状態",
@@ -2103,6 +2126,7 @@
                    "platformDevices":  "{0} デバイス",
                    "platformEnrollment":  "{0} 登録",
                    "policies":  "ポリシー",
+                   "policiesForMicrosoftEdge":  "Microsoft Edge ポリシー",
                    "profiles":  "プロファイル",
                    "properties":  "プロパティ",
                    "reports":  "レポート",
@@ -2116,6 +2140,8 @@
                    "servicenowConnector":  "ServiceNow コネクタ",
                    "shellScripts":  "シェル スクリプト",
                    "teamViewerConnector":  "TeamViewer コネクタ",
+                   "teamViewerConnectorOld":  "TeamViewer connector (old)",
+                   "teamViewerV2Connector":  "TeamViewer connector",
                    "telecomeExpenseManagement":  "通信費管理",
                    "tenantAdmin":  "テナント管理",
                    "tenantAdministration":  "テナント管理",
@@ -2230,7 +2256,7 @@
                                                          },
                         "GenmojiConfigurationState":  {
                                                           "label":  "Genmoji",
-                                                          "tooltip":  "  ブロックされると、ポリシー マネージド アプリを使用する際に genmoji が無効になります。詳細については、<a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">こちら</a>をご覧ください。"
+                                                          "tooltip":  "  ブロックされると、ポリシー マネージド アプリを使用する際に genmoji が無効になります。詳細については、<a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">こちら</a>をご覧ください。"
                                                       },
                         "IOSBackup":  {
                                           "label":  "iTunes と iCloud のバックアップに組織データをバックアップ",
@@ -2262,7 +2288,8 @@
                                                     },
                         "OpenLinksManagedBrowser":  {
                                                         "label":  "その他のアプリでの Web コンテンツの転送を制限する",
-                                                        "tooltip":  "<p>このアプリが Web コンテンツを開くことができるアプリを指定するには、次のいずれかのオプションを選択します。</p>\r\n<p><b> Microsoft Edge:</b> Web コンテンツをMicrosoft Edge でのみ開くことを許可します。<a href=\"{0}\" target=\"_blank\">Microsoft Edge がデータを保護する方法について説明します。</a></p>\r\n<p><b>アンマネージド ブラウザー:</b> [アンマネージド ブラウザー プロトコル] 設定で定義されているアンマネージド ブラウザーでのみ Web コンテンツを開くことを許可します</p>\r\n<p><b>任意のアプリ:</b> 任意のアプリで Web リンクを許可します</p>"
+                                                        "tooltip":  "<p>このアプリが Web コンテンツを開くことができるアプリを指定するには、次のいずれかのオプションを選択します。</p>\r\n<p><b> Microsoft Edge:</b> Web コンテンツをMicrosoft Edge でのみ開くことを許可します。<a href=\"{0}\" target=\"_blank\">Microsoft Edge がデータを保護する方法について説明します。</a></p>\r\n<p><b>アンマネージド ブラウザー:</b> [アンマネージド ブラウザー プロトコル] 設定で定義されているアンマネージド ブラウザーでのみ Web コンテンツを開くことを許可します</p>\r\n<p><b>任意のアプリ:</b> 任意のアプリで Web リンクを許可します</p>",
+                                                        "warning":  "組織のデータを保護するには、[Microsoft Edge] を選択してください。"
                                                     },
                         "OverrideBiometric":  {
                                                   "tooltip":  "必須の場合、タイムアウト (非アクティブ分数) に従い、生体認証プロンプトが PIN プロンプトでオーバーライドされます。このタイムアウト値に達していない場合は生体認証プロンプトが引き続き表示されます。このタイムアウト値は、[(非アクティブ分数) 後にアクセス要件を再確認する] で指定された値より大きくなければなりません。"
@@ -2327,7 +2354,7 @@
                                                              },
                         "ScreenCaptureConfigurationState":  {
                                                                 "label":  "スクリーンショット",
-                                                                "tooltip":  " ブロックされると、ポリシー マネージド アプリを使用する際にスクリーンショットが無効になります。詳細については、<a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">こちら</a>をご覧ください。"
+                                                                "tooltip":  " ブロックされると、ポリシー マネージド アプリを使用する際にスクリーンショットが無効になります。詳細については、<a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">こちら</a>をご覧ください。"
                                                             },
                         "SendData":  {
                                          "label":  "他のアプリに組織データを送信",
@@ -2365,7 +2392,7 @@
                                         },
                         "WritingToolsConfigurationState":  {
                                                                "label":  "書き込みツール",
-                                                               "tooltip":  "ブロックされると、ポリシー マネージド アプリを使用する際に書き込みツールが無効になります。詳細については、<a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">こちら</a>をご覧ください。"
+                                                               "tooltip":  "ブロックされると、ポリシー マネージド アプリを使用する際に書き込みツールが無効になります。詳細については、<a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">こちら</a>をご覧ください。"
                                                            },
                         "Tap":  {
                                     "numberOfDays":  "日数",
@@ -2401,7 +2428,7 @@
                     "macOSDmgApp":  "macOS のアプリ (DMG)",
                     "macOSEdgeApp":  "Microsoft Edge (macOS)",
                     "macOSLobApp":  "macOS 基幹業務アプリ",
-                    "macOSMicrosoftDefenderApp":  "Microsoft Defender ATP (macOS)",
+                    "macOSMicrosoftDefenderApp":  "Microsoft Defender for Endpoint (macOS)",
                     "macOSOfficeSuiteApp":  "Microsoft 365 アプリ (macOS)",
                     "macOSPkgApp":  "macOS のアプリ (PKG)",
                     "macOSWebClip":  "macOS Web クリップ",
@@ -2418,6 +2445,7 @@
                     "officeSuiteApp":  "Microsoft 365 Apps (Windows 10 以降)",
                     "webApp":  "Web リンク",
                     "windowsAppXLobApp":  "Windows AppX 基幹業務アプリ",
+                    "windowsAutoUpdateCatalogApp":  "Windows 自動更新プログラム カタログ アプリ",
                     "windowsClassicApp":  "Windows アプリ (Win32)",
                     "windowsEdgeApp":  "Microsoft Edge (Windows 10 以降)",
                     "windowsMobileMsiLobApp":  "Windows MSI 基幹業務アプリ",
@@ -2910,7 +2938,7 @@
                       "deviceType":  "デバイスの種類",
                       "deviceUse":  "デバイスの使用",
                       "directoryServiceHintForSurfaceHub2":  " <p>\r\n        Autopilot では、Surface Hub 2 デバイスに対して Microsoft Entra 参加済みのみをサポートしています。デバイスが組織内の Active Directory (AD) に参加する方法を指定します。\r\n        </p>\r\n        <ul>\r\n        <li>\r\n            Microsoft Entra 参加済み: オンプレミスの Windows Server Active Directory のないクラウド専用。\r\n        </li>\r\n        </ul>\r\n    ",
-                      "directoryServiceHintForWindowsPC":  "\r\n        <p>\r\n        デバイスが組織内の Active Directory (AD) に参加する方法を指定します。\r\n        </p>\r\n        <ul>\r\n        <li>\r\n            Microsoft Entra 参加済み: オンプレミスの Windows Server Active Directory のないクラウド専用\r\n        </li>\r\n        </ul>\r\n   ",
+                      "directoryServiceHintForWindowsPC":  "\r\n        <p>\r\n        デバイスが組織内の Active Directory (AD) に参加する方法を指定します: \r\n        </p>\r\n        <ul>\r\n        <li>\r\n            Microsoft Entra 参加済み: オンプレミスの Windows Server Active Directory のないクラウド専用\r\n        </li>\r\n        </ul>\r\n   ",
                       "getAssignedDevicesCountError":  "割り当て済みデバイス数のフェッチ中にエラーが発生しました。",
                       "getAssignmentsError":  "AutoPilot プロファイル割り当てのフェッチ中にエラーが発生しました。",
                       "harvestDeviceId":  "すべての対象デバイスを Autopilot に変換する",
@@ -4246,6 +4274,7 @@
                      "windowsDefenderATP":  "Microsoft Defender for Endpoint",
                      "windowsHelloForBusiness":  "Windows Hello for Business",
                      "windowsSpotlight":  "Windows スポットライト",
+                     "windowsZtdns":  "ゼロトラスト DNS",
                      "wiredNetwork":  "ワイヤード (有線) ネットワーク",
                      "wireless":  "ワイヤレス",
                      "wirelessProjection":  "ワイヤレス投影",
@@ -4382,7 +4411,7 @@
                       "smn":  "イナリ サーミ語 (フィンランド)",
                       "sms":  "スコルト サーミ語 (フィンランド)",
                       "sr-Cyrl-bA":  "セルビア語 (キリル)",
-                      "sr-Cyrl-rS":  "セルビア語 (キリル、セルビアおよびモンテネグロ (旧))",
+                      "sr-Cyrl-rS":  "セルビア語 (キリル、セルビアおよびモンテネグロ)",
                       "sr-Latn-bA":  "セルビア語 (ラテン)",
                       "sr-Latn-rS":  "セルビア語 (ラテン、セルビア)",
                       "dsb":  "低地ソルブ語 (ドイツ)",
@@ -4539,7 +4568,7 @@
     "WindowsQualityUpdateProfile":  {
                                         "Details":  {
                                                         "DaysUntilForcedReboot":  {
-                                                                                      "label":  "再起動が強制されるまでの待機日数"
+                                                                                      "label":  "再起動が必要な場合は、それが適用されるまでの日数を選択します"
                                                                                   },
                                                         "Description":  {
                                                                             "label":  "説明"
@@ -4548,7 +4577,7 @@
                                                                      "label":  "名前"
                                                                  },
                                                         "QualityUpdateRelease":  {
-                                                                                     "label":  "デバイスの OS バージョンが次より小さい場合に品質更新プログラムを迅速にインストールする:"
+                                                                                     "label":  "迅速にしたい品質更新プログラムを選択します"
                                                                                  },
                                                         "bladeTitle":  "Windows 10 以降の品質更新プログラム (プレビュー)",
                                                         "loadError":  "読み込みに失敗しました。"
@@ -4590,6 +4619,7 @@
                                             "deviceTypeTargetingEdit1":  "このポリシーに割り当てフィルターを適用する場合は、[アプリ] ページの [すべてのデバイスの種類のアプリを対象にする] と [デバイスの種類] に指定した値に加えて、[デバイス管理の種類] プロパティが適用されます。",
                                             "deviceTypeTargetingEdit2":  "デバイス管理の種類のターゲット設定を編集するには、'すべてのデバイスの種類のアプリを対象にする' = 'はい' をリセットします。次に、'デバイス管理 Type' に必要な値を含む MAM 割り当てフィルターを作成します。",
                                             "deviceTypeTargetingHasMoved":  "アプリ保護ポリシーの割り当てに関する詳細情報",
+                                            "edgeUpsell":  "マネージド アプリのすべての Web コンテンツが Microsoft Edge によって保護されていることを確認するには、[他のアプリとの Web コンテンツ転送を制限する] で [Microsoft Edge] を選択します。次に、[レビューして保存] を選択します。",
                                             "encryptionAndroid1":  "Intune モバイル アプリケーション管理ポリシーに関連するアプリについては、暗号化は Microsoft によって提供されます。データはファイルの I/O 操作の間に、モバイル アプリケーション管理ポリシーの設定に従って同調的に暗号化されます。Android で管理されるアプリは、CBC モードで、プラットフォーム暗号化ライブラリを使用して AES-128 暗号化を使用します。暗号化の方法は FIPS 140-2 に準拠していません。SHA-256 暗号化は SigAlg パラメーターを使用した明示的な指示によりサポートされています。またデバイス 4.2 以上でのみ動作します。デバイス ストレージ上のコンテンツは常に暗号化されます。",
                                             "encryptionAndroid2":  "デバイスへのアクセスにPINが設定されない場合、アプリは起動されず、エンドユーザーには「会社により、このアプリケーションにアクセスするには、まずデバイスのPINを有効にする必要があります」というメッセージが表示されます。",
                                             "encryptionMac1":  "Intune モバイル アプリケーション管理ポリシーに関連するアプリについては、暗号化は Microsoft によって提供されます。データはファイルの I/O 操作の間に、モバイル アプリケーション管理ポリシーの設定に従って同調的に暗号化されます。Mac で管理されるアプリは、CBC モードで、プラットフォーム暗号化ライブラリを使用して AES-128 暗号化を使用します。暗号化の方法は FIPS 140-2 に準拠していません。SHA-256 暗号化は SigAlg パラメーターを使用した明示的な指示によりサポートされています。またデバイス 4.2 以上でのみ動作します。デバイス ストレージ上のコンテンツは常に暗号化されます。",
@@ -5213,8 +5243,7 @@
                            "androidEnterpriseWorkProfileAlwaysOnVpnClientDescription":  "指定した VPN クライアントがデバイスにインストールされており、作業プロファイルでアプリごとの VPN をサポートしている必要があります。それ以外の場合はエラーが発生します。アプリをユーザーの作業プロファイルにインストールするには、アプリを managed Google Play ストアで承認し、Intune に同期して展開する必要があることに注意してください。",
                            "androidEnterpriseWorkProfileAlwaysOnVpnEnabledDescription":  "可能な場合は VPN に自動的に接続および再接続するよう作業プロファイルの VPN クライアントを設定します。[無効] を選択して作業プロファイルのすべての VPN クライアントについて Always On VPN を無効にします。指定のデバイスで Always On VPN に対して構成できるのは 1 つの VPN クライアントのみであるため、1 つのデバイスに 1 つの Always On VPN ポリシーだけが展開されていることをご確認ください。",
                            "androidEnterpriseWorkProfileAlwaysOnVpnLockdownModeEnabledDescription":  "これを有効にすると、作業プロファイルのすべてのネットワーク トラフィックについて VPN トンネルの使用を強制します。VPN への接続を確立できない場合、デバイスの作業プロファイルでネットワーク トラフィックは許可されません。",
-                           "androidForWorkMigrationPolicyDescriptionParagraph1":  "このプロファイルを作成して割り当て、デバイスを Android Management API に移動します。これにより、ポリシーがより効率的に適用されます。Web ベースの登録で設定されたデバイスは、自動的に Android Management API を使用します。",
-                           "androidForWorkMigrationPolicyDescriptionParagraph2":  "デバイスは、十分なバッテリーがあり、Intune ポリシーで管理されている Wi-Fi に接続されていない場合に移動します。",
+                           "androidForWorkMigrationPolicyDescriptionParagraph1":  "このプロファイルを作成して割り当て、デバイスを Android Management API に移動します。これにより、ポリシーがより効率的に適用されます。Web ベースの登録で設定されたデバイスは、自動的に Android Management API を使用します。デバイスは、十分なバッテリーがあるときに移動されます。",
                            "androidForWorkMigrationPolicyLearnMoreText":  "この改善の詳細をご確認ください。",
                            "androidGeneralKiosk":  "これらの設定は Samsung KNOX Standard デバイスにのみ適用されます。",
                            "androidHiddenApps":  "ユーザーに対して非表示のアプリ (Samsung KNOX Standard のみ)",
@@ -6582,6 +6611,8 @@
                            "disableDeviceLocationSharingName":  "位置情報の共有",
                            "disableMacAddressRandomization":  "MAC アドレスのランダム化を無効にする",
                            "disableMacAddressRandomizationDescriptionIOS":  "ランダムな MAC アドレスの代わりに実際の Wi-Fi MAC アドレスを表示させるには、デバイスの接続に強制的にこのプロファイルを使用します。これにより、デバイスを MAC アドレスで追跡できるようになるため、ネットワーク アクセス制御 (NAC) のサポートなど、必要な場合にのみこれを行うようにしてください。iOS 14 以降に適用されます。",
+                           "disableMacAddressRandomizationDescriptionMacOS":  "この Wi-Fi プロファイルを使用して接続するデバイスが、ランダム化された MAC アドレスではなく物理 MAC アドレスを使用する必要があるかどうかを示します。無効にすると、実際の Wi-Fi MAC アドレスを使用します。有効にすると、MAC アドレスのランダム化が有効になります。macOS 15 以降に適用されます。既定値は [有効] です。",
+                           "disableMacAddressRandomizationMacOS":  "MAC アドレスのランダム化",
                            "disableOnDemandUserOverrideDescription":  "オンデマンド VPN 設定を強制的にオンにします。これをブロックした場合、ユーザーのデバイスにはオンデマンド VPN 設定が表示されますが、それに変更を加えることはできません。iOS 14 以降に適用されます。",
                            "disableOnDemandUserOverrideMacOSDescription":  "オンデマンド VPN 設定を強制的にオンにします。これをブロックした場合、ユーザーのデバイスにはオンデマンド VPN 設定が表示されますが、それに変更を加えることはできません。MacOS 11 以降に適用されます。",
                            "disableOnDemandUserOverrideName":  "ユーザーが自動 VPN を無効にすることをブロックする",
@@ -6707,6 +6738,7 @@
                            "dropTrafficName":  "ネットワーク トラフィックを削除する",
                            "durationInHours":  "期間 (時間単位)",
                            "dynamicDomainNameOption":  "Microsoft Entra ID",
+                           "eAPAKAName":  "EAP - AKA",
                            "eAPCustomName":  "カスタム",
                            "eAPFASTName":  "EAP - FAST",
                            "eAPName":  "EAP",
@@ -6988,6 +7020,8 @@
                            "enableWindowsDefenderFirewallName":  "Windows ファイアウォール",
                            "enableWithUEFILock":  "UEFI ロックで有効にする",
                            "enableWithoutUEFILock":  "UEFI ロックなしで有効にする",
+                           "enableWpaTransitionModeDescription":  "[有効] に設定すると、WPA3 移行モードが有効になり、ネットワークが対応している場合は WPA2 にフォールバックできます。[無効] に設定すると、厳格な WPA3 モードが適用され、フォールバックは行われません。",
+                           "enableWpaTransitionModeName":  "WPA3 切り替えモード",
                            "enabledForAzureAdAndHybridOption":  "Microsoft Entra と Hybrid に参加しているデバイスでキーのローテーションが有効になっています",
                            "enabledForAzureAdOption":  "Microsoft Entra に参加しているデバイスでキーのローテーションが有効になっています",
                            "enabledNoKeepGoing":  "サイトが Internet Explorer 11 で開かれているというメッセージを表示します",
@@ -8394,6 +8428,7 @@
                            "mustBeValidGuid":  "有効な UUID である必要があります。例: 782AFCFC-7CAA-436C-8BF0-78CD0FFBD4AF など",
                            "mustBeValidHost":  "有効なホストである必要があります。例: www.host.com など",
                            "mustBeValidHttpURL":  "有効な HTTP または HTTPS URL である必要があります。例: https://www.contoso.com",
+                           "mustBeValidIPOrCidr":  "有効な IP アドレス (198.51.100.1、2001:db8:0:130F::87C:140B) または CIDR 表記の範囲 (198.51.100.0/24、2001:db8::/32) を入力してください",
                            "mustBeValidIpAddress":  "有効な IP アドレスである必要があります。例: 4.3.6.0",
                            "mustBeValidKaiserWifiFormat":  "形式が正しくありません。ユーザーの形式の例: abcd{{WifiMacAddress}}、パスワードの形式の例: abcd{{WifiMacAddress}}{{PreSharedKey}}",
                            "mustBeValidMonthDayDateFormat":  "有効な日付形式 (MM/DD) である必要があります。例: 01/31、02/28 など。",
@@ -8692,7 +8727,7 @@
                            "performServerValidationDescription":  "有効にすると、PEAP サーバーとの交換中に証明書を検証して、サーバーの ID を確認できます。可能な場合、これを [はい] に設定することをお勧めします。これを [いいえ] または [未構成] に設定すると、安全性が低くなります。",
                            "personalProfileAppsAllowInstallFromUnknownSourcesDescription":  "許可されている場合、ユーザーは、Google Play ストア以外のソースからアプリをインストールするために「提供元不明のアプリ」設定を有効にできます。",
                            "personalProfileAppsAllowInstallFromUnknownSourcesName":  "ユーザーによる個人プロファイルにある不明なソースからのアプリのインストールの有効化を許可する",
-                           "personalProfileCameraBlockedDescription":  "デバイスのすべてのカメラをブロックします",
+                           "personalProfileCameraBlockedDescription":  "個人での使用時にカメラへのアクセスをブロックする",
                            "personalProfileCameraBlockedName":  "カメラ",
                            "personalProfilePersonalApplications":  "個人用アプリケーション",
                            "personalProfilePersonalApplicationsListTypeDescription":  "デバイス上の個人用プロファイルでインストールおよび実行することを許可および承認されたアプリの一覧を作成するには、[許可されたアプリ] を選択します。デバイス上の個人用プロファイルでインストールおよび実行することを禁止および防止されたアプリの一覧を作成するには、[禁止されたアプリ] を選択します。",
@@ -8878,7 +8913,7 @@
                            "publicNetworkName":  "パブリック (検出不可能な) ネットワーク",
                            "publicOutboundConnectionsSummaryLabel":  "送信接続の既定のアクション (パブリック ネットワーク)",
                            "publicPlayStoreEnabledDescription":  "[許可] を選択すると、ユーザーはクライアント アプリでアンインストールが要求されたアプリ以外のすべてのアプリにアクセスできます。この設定で [ブロック] または [未構成] を選択すると、ユーザーがアクセスできるのは、クライアント アプリで使用可能または必須とリストされているアプリのみになります。",
-                           "publicPlayStoreEnabledName":  "Google Play ストア内のすべてのアプリへのアクセスを許可",
+                           "publicPlayStoreEnabledName":  "Google Play ストア内のすべてのアプリへのアクセスを許可する (仕事用プロファイル レベル)",
                            "publicPlayStoreEnabledWarning":  "[許可] を選択すると、ユーザーは Google Play ストアから任意のアプリをインストールできます。後で選択内容を [ブロック] または [未構成] に変更すると、クライアント アプリで利用可能または必須としてリストされているアプリを除き、すべてのアプリがデバイスから削除されます。",
                            "publicPlayStoreSelectionAllowList":  "ブロック",
                            "publicPlayStoreSelectionBlockList":  "許可",
@@ -10103,6 +10138,8 @@
                            "wHfBWindowsHelloForBusinessBlockedName":  "Windows Hello for Business の構成",
                            "wPA2Enterprise":  "WPA2-エンタープライズ (資格情報ビルダー)",
                            "wPA2EnterpriseOption":  "WPA/WPA2-Enterprise",
+                           "wPA2PersonalOption":  "WPA2/WPA3-Personal",
+                           "wPA3PersonalOption":  "WPA3-Personal",
                            "wPAEnterpriseOption":  "WPA-Enterprise",
                            "wPAPSKOption":  "WPA 事前共有キー",
                            "wPAPersonalOption":  "WPA/WPA2-Personal",
@@ -10594,6 +10631,78 @@
                            "zscalerUserDomain":  "カスタム ドメイン名",
                            "zscalerUserDomainDescription":  "Zscaler アプリでログイン フィールドを事前設定する静的ドメインを入力します。これが空のままだと、ユーザーの Microsoft Entra ドメインが代わりに使用されます。",
                            "zscalerUserDomainExample":  "contoso.com",
+                           "ztdnsAdvancedSettingsChevronName":  "詳細設定",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledDescription":  "Windows DNS クライアントが DNS クエリを解決するためにマシンの hosts ファイルを使用できないようにします。",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledLearnMore":  "ゼロトラスト DNS によるホスト ファイルの解決に関する詳細情報をご確認ください。",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledName":  "ホスト ファイルからのクエリ",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledDescription":  "この設定を有効にすると、localhost (127.0.0.1 または ::1) の DNS クエリが信頼された DNS サーバーに送信され、暗号化されていないクエリがフィルター処理されずに通過することがなくなります。",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledLearnMore":  "ゼロトラスト DNS による DNS 転送に関する詳細情報をご確認ください。",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledName":  "ループバック DNS フォワーダー",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedDescription":  "127.0.0.1 や ::1 などのループバック アドレスへのトラフィックをブロックすると、セキュリティが向上します。",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedLearnMore":  "ゼロトラスト DNS を使用してループバック トラフィックをブロックする方法に関する詳細情報をご確認ください。",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedName":  "ループバック IP トラフィック",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsDescription":  "名前解決後に IP アドレスへの接続が有効な状態を維持する期間を設定します。期間 (秒) には 30 ~ 604,800 を指定でき、既定値は 86,400 (24 時間) です。",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsLearnMore":  "ゼロトラスト DNS で使用される場合の DNS レコードの有効期間に関する詳細情報をご確認ください。",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsName":  "DNS レコードの経過時間 (秒)",
+                           "ztdnsClientCertificateChevronName":  "クライアント証明書認証",
+                           "ztdnsClientCertificateEkuHeaderLearnMore":  "クライアント証明書 EKU に関する詳細情報をご確認ください。",
+                           "ztdnsClientCertificateEkuHeaderName":  "信頼された DNS サーバーへのネットワーク要求を認証してセキュリティ保護するためにクライアント証明書に含まれている必要がある EKU を構成します。クライアント証明書認証を使用する場合は EKU が必要です。",
+                           "ztdnsClientCertificateHeaderLearnMore":  "クライアント証明書認証に関する詳細情報をご確認ください。",
+                           "ztdnsClientCertificateHeaderName":  "信頼された DNS サーバーが相互認証を使用する場合は、必要なクライアント認証証明書を発行する証明機関も指定する必要があります。クライアント証明書が使用する EKU を指定することもできます。",
+                           "ztdnsClientRootCertificateHeader":  "クライアント証明書のルート発行者",
+                           "ztdnsExemptionRuleDescriptionName":  "説明",
+                           "ztdnsExemptionRuleDescriptionPlaceholder":  "説明",
+                           "ztdnsExemptionRuleDisplayNameName":  "名前",
+                           "ztdnsExemptionRuleDisplayNamePlaceholder":  "名前",
+                           "ztdnsExemptionRuleIpAddressName":  "IP アドレスまたは範囲",
+                           "ztdnsExemptionRuleIpAddressPlaceholder":  "192.41.101.1, 2001:db8::/32",
+                           "ztdnsExemptionRuleIpAddressesDescription":  "これらのアドレスは、信頼された DNS サーバーによって処理されません。",
+                           "ztdnsExemptionRuleIpAddressesName":  "IP アドレスまたは範囲",
+                           "ztdnsExemptionRulesChevronName":  "適用除外のルール",
+                           "ztdnsExemptionRulesDescription":  "これらのルールは、どの要求を信頼された DNS 処理から除外するかを決定し、除外された要求がゼロトラスト DNS の強制適用をバイパスできるようにします。",
+                           "ztdnsExemptionRulesHeaderName":  "一部のホストまたはサブネットをブロック ルールから除外する必要がある場合があります。その場合は、それらに対応するルールをここで追加してください。",
+                           "ztdnsExemptionRulesName":  "適用除外のルール",
+                           "ztdnsMinimumBuildInfoboxName":  "Windows 11 バージョン 25H2 以降",
+                           "ztdnsModeChevronName":  "ゼロトラスト DNS モード",
+                           "ztdnsModeHeaderLearnMore":  "モードに関する詳細情報をご確認ください。",
+                           "ztdnsModeHeaderName":  "<strong>監査</strong>モードでは、トラフィックをブロックせずに接続をログに記録します。イベントは Windows イベント ビューアーに記録されます。強制モードを使用する前に、監査モードを使用して、ネットワーク アクセスを中断せずに影響を評価します。<br /><br /><strong>強制</strong>モードでは、指定した信頼された DNS サーバーのいずれかに送信されない DNS クエリはすべてブロックされます。<br /><br />",
+                           "ztdnsModeSelectionAuditName":  "監査",
+                           "ztdnsModeSelectionEnforceName":  "強制",
+                           "ztdnsModeSelectionName":  "モード",
+                           "ztdnsModeWarningName":  "強制モードでは、デバイスが信頼された DNS サーバーに到達できない場合、そのデバイスにはアクセスできなくなります。",
+                           "ztdnsNotConfiguredName":  "未構成",
+                           "ztdnsRootCertificateDescription":  "この CA 証明書は、現在設定しているプロファイルの証明書を発行する CA のルート証明書と一致している必要があります。",
+                           "ztdnsSecureDnsServerChevronName":  "信頼された DNS サーバー",
+                           "ztdnsSecureDnsServerDisplayNameDescription":  "信頼された DNS サーバーの表示名。",
+                           "ztdnsSecureDnsServerDisplayNameName":  "名前",
+                           "ztdnsSecureDnsServerDisplayNamePlaceholder":  "表示名",
+                           "ztdnsSecureDnsServerDohAndDotOptionName":  "DNS over HTTPS と DNS over TLS",
+                           "ztdnsSecureDnsServerDohHeaderName":  "DNS over HTTPS の設定",
+                           "ztdnsSecureDnsServerDohOptionName":  "DNS over HTTPS",
+                           "ztdnsSecureDnsServerDohPortDescription":  "DNS over HTTPS サーバーの HTTPS ポート。既定のポートは 443 です。",
+                           "ztdnsSecureDnsServerDohPortName":  "ポート",
+                           "ztdnsSecureDnsServerDohUrlDescription":  "この URL は、HTTPS 経由で DNS 要求を送信するために使用されます。",
+                           "ztdnsSecureDnsServerDohUrlName":  "URL",
+                           "ztdnsSecureDnsServerDohUrlPlaceholder":  "https://dns.contoso.com/dns-query",
+                           "ztdnsSecureDnsServerDotHeaderName":  "DNS over TLS の設定",
+                           "ztdnsSecureDnsServerDotHostnameDescription":  "このホスト名は、信頼された DNS サーバー証明書のサブジェクト名を検証するために使用されます。",
+                           "ztdnsSecureDnsServerDotHostnameName":  "ホスト名",
+                           "ztdnsSecureDnsServerDotHostnamePlaceholder":  "dns.contoso.com",
+                           "ztdnsSecureDnsServerDotOptionName":  "DNS over TLS",
+                           "ztdnsSecureDnsServerDotPortDescription":  "DNS over TLS サーバーによって使用される TLS ポート番号。既定のポートは 853 です。",
+                           "ztdnsSecureDnsServerDotPortName":  "ポート",
+                           "ztdnsSecureDnsServerHeaderLearnMore":  "信頼された DNS サーバーを構成する方法に関する詳細情報をご確認ください。",
+                           "ztdnsSecureDnsServerHeaderName":  "DNS クエリは、ここで指定する信頼された DNS サーバーにのみ送信されます。各サーバーに対して、どのセキュア プロトコルを使用するかを設定します: DNS over HTTPS (DoH) または DNS over TLS (DoT)。IPv4 または IPv6 いずれかのアドレス形式を使用できます。",
+                           "ztdnsSecureDnsServerIpAddressDescription":  "ここではパブリック DNS サーバーまたは組織の DNS サーバーを指定できます。",
+                           "ztdnsSecureDnsServerIpAddressName":  "IP アドレス",
+                           "ztdnsSecureDnsServerIpAddressPlaceholder":  "198.51.100.1, 2001:0db8:85a3::8a2e:0370:7334",
+                           "ztdnsSecureDnsServerName":  "信頼された DNS サーバー",
+                           "ztdnsSecureDnsServerTypeDescription":  "信頼された DNS サーバーでサポートされているプロトコル。",
+                           "ztdnsSecureDnsServerTypeName":  "プロトコル",
+                           "ztdnsServerRootCertificateHeader":  "サーバー証明書のルート発行者",
+                           "ztdnsTrustedCAChevronName":  "信頼された証明機関",
+                           "ztdnsTrustedCAHeaderLearnMore":  "信頼された証明機関に関する詳細情報をご確認ください。",
+                           "ztdnsTrustedCAHeaderName":  "指定した信頼された DNS サーバーは、信頼された証明機関によって発行された証明書を使用する必要があります。ここでそれらの証明書を指定します。",
                            "platformSupported":  "サポートされているプラットフォーム",
                            "aadDeviceId":  "Microsoft Entra デバイス ID",
                            "access":  "アクセス",
@@ -10808,6 +10917,7 @@
                            "displayName":  "表示名",
                            "downloadReport":  "レポートのダウンロード",
                            "downloadingReport":  "レポートをダウンロードしています",
+                           "edgeCampaignInfoBoxText":  "マネージド アプリのすべての Web コンテンツが Microsoft Edge によって保護されていることを確認するには、[他のアプリとの Web コンテンツ転送を制限する] で [Microsoft Edge] を選択します。次に、[レビューして保存] を選択します。",
                            "edgeGSAssignment":  "確実に Microsoft Edge モバイルがインストールされるように、含めるユーザー グループを選択します。これらのユーザーが登録したすべての iOS と Android デバイスに Microsoft Edge がインストールされます。",
                            "edgeGSIntroBenefitHTML":  "<p>会社のデバイス間でシームレスに閲覧できるように、iOS または Android のユーザー用の Microsoft Edge アプリを取得します。Edge を使用すると、ユーザーは組み込みの機能を使用して簡単に Web を操作し、作業内容の統合、調整、管理を行うことができます。iOS および Android デバイスのユーザーが Edge アプリケーションに会社の Microsoft Entra アカウントでサインインする場合、自分が定義したワークプレースのお気に入りと Web サイトのフィルターがブラウザーに事前に読み込まれます。</p><p>ユーザーが iOS または Android デバイスのいずれかを登録できないようにした場合、このシナリオで登録を行うことはできないため、ユーザーは自分で Edge をインストールする必要があります。</p>",
                            "edgeGSIntroPrereqHTML":  "<p>ユーザーが必要としているワークプレースのお気に入りと、Web の閲覧に必要なフィルターについてお聞かせください。続行する前に、次のタスクを完了していることを確認してください:</p>\r\n<li>ユーザーを<a href='https://go.microsoft.com/fwlink/?linkid=2102458'>Microsoft Entra グループ</a>に追加する</li>\r\n<li>Intune に iOS または Android デバイスを登録する。<a href='https://go.microsoft.com/fwlink/?linkid=2102547'>詳細情報</a></li>\r\n<li>Edge に追加するワークプレースのお気に入りのリストを収集する。</li>\r\n<li>Edge に適用する Web サイトのフィルターのリストを収集する。</li>",
@@ -11023,8 +11133,8 @@
                            "ok":  "OK",
                            "on":  "オン",
                            "onlineButUnableToCheckin":  "無効なアカウント",
-                           "orgDestinationAnySourceOptionText":  "Org data destinations and any source",
-                           "orgDestinationOrgSourceOptionText":  "Org data destinations and org data sources",
+                           "orgDestinationAnySourceOptionText":  "組織データの宛先と任意のソース",
+                           "orgDestinationOrgSourceOptionText":  "組織データの宛先と組織のデータ ソース",
                            "orgPermission":  "組織の読み取り、更新のアクセス許可",
                            "override":  "オーバーライド",
                            "overview":  "概要",
@@ -11427,13 +11537,13 @@
                                         "gradualRolloutLicenseWarningEdit":  "この機能は、この機能が選択されていない状態でポリシーが保存されるまで引き続き使用および構成できます。",
                                         "licenseLearnMoreText":  "前提条件と機能更新プログラム ポリシーに関する詳細をご覧ください。",
                                         "optionalUpdateWarning":  "オプションは、Windows 11更新プログラムでのみ使用できます",
-                                        "profileNameWarning":  "名前は 64 文字未満でなければなりません",
+                                        "profileNameWarning":  "名前は 255 文字未満にする必要があります",
                                         "specificLicensingRequired":  "選択した機能の一部には、特定のライセンスが必要です。"
                                     },
     "AzureCA":  {
                     "AdrsUserActionSelectionWarning":  {
                                                            "conditions":  "Conditions that require device registration are not available with \"Register or join devices\" user action.",
-                                                           "message":  "Only \"Require multifactor authentication\" can be used in policies created for the \"Register or join devices\" user action.{0}"
+                                                           "message":  "Only \"Require multifactor authentication or Require Auth strength'\" can be used in policies created for the \"Register or join devices\" user action.{0}"
                                                        },
                     "AuthContext":  {
                                         "Delete":  {
@@ -11564,7 +11674,7 @@
                                                                          "placeholder":  "Choose an attribute"
                                                                      },
                                                 "Configure":  {
-                                                                  "infoBalloon":  "Configure app filters you want to policy to apply to."
+                                                                  "infoBalloon":  "Configure custom security attributes you want the policy to apply to."
                                                               },
                                                 "NoPermissions":  {
                                                                       "learnMoreAria":  "More about custom security attribute permissions.",
@@ -11584,14 +11694,15 @@
                                                  "learnMoreB2C":  "Control access based on all or specific cloud apps.",
                                                  "learnMoreNetworkAccess":  "Control access based on all or specific network access traffic, cloud apps or actions.",
                                                  "learnMorePublicClouds":  "Control access based on all or specific apps, internet resources, actions, or authentication context.",
+                                                 "learnMorePublicCloudsAgents":  "Control access based on all or specific apps, agents, internet resources, actions, or authentication context.",
                                                  "title":  "Cloud apps or actions"
                                              },
                     "CloudappsSelectionBlade":  {
                                                     "AgenticResources":  {
                                                                              "allAgenticResources":  "All agent resources (Preview)",
-                                                                             "allAgenticResourcesExcLower":  "all agent resources excluded",
-                                                                             "allAgenticResourcesExcluded":  "All agent resources excluded",
-                                                                             "allAgenticResourcesIncluded":  "All agent resources"
+                                                                             "allAgenticResourcesExcLower":  "all agent resources (Preview) excluded",
+                                                                             "allAgenticResourcesExcluded":  "All agent resources (Preview) excluded",
+                                                                             "allAgenticResourcesIncluded":  "All agent resources (Preview)"
                                                                          },
                                                     "AllInternetResources":  {
                                                                                  "excludedWithGSA":  "All internet resources with Global Secure Access excluded",
@@ -11603,7 +11714,13 @@
                                                                  },
                                                     "Filter":  {
                                                                    "configured":  "Configured",
+                                                                   "descriptionAgents":  "Apply policy to agent identities based on custom security attributes pre-assigned to them.",
                                                                    "label":  "Edit filter",
+                                                                   "resourceDescription":  "Select resources based on custom security attributes.",
+                                                                   "sPDescription":  "Select service principals based on custom security attributes.",
+                                                                   "titleAgents":  "Select agent identities based on attributes",
+                                                                   "titleResource":  "Select resources based on attributes",
+                                                                   "titleSP":  "Select service principals based on attributes",
                                                                    "with":  "{0} with {1}"
                                                                },
                                                     "Included":  {
@@ -11660,12 +11777,15 @@
                     "MicrosoftManagedPolicies":  {
                                                      "alertBanner":  "Microsoft-managed policies will be enabled no sooner than {0} days after creation unless you take action. We recommend that you review these policies and take the recommended actions.",
                                                      "alertBannerV2":  "Microsoft-managed policies in report-only state will be automatically turned on with advance email and {0}M365 message center{1} notifications. We recommend that you review these policies and recommended actions.",
+                                                     "bsmRecActionsGlobal2":  "When you are ready to enable, switch its state to 'on'. If you do not want to enforce this policy for your organization, switch its state to 'off'.",
                                                      "learnMoreLinkAriaLabel":  "Learn more about Microsoft-managed policies.",
                                                      "m365MessageCenterLinkAriaLabel":  "M365 message center",
                                                      "policySummaryBlockDCF":  "This policy unilaterally blocks device code flow usage across all resources and all users. As a Microsoft-managed policy, only certain properties are editable.",
+                                                     "policySummaryBlockHighRiskAgents":  "This policy blocks any sign-in attempt made by a high-risk agent identity",
                                                      "policySummaryBlockLegacyAuth":  "This policy blocks any sign-in attempt using legacy authentication and legacy authentication protocols from accessing applications. Legacy authentication refers to authentication requests made by: Clients that don't use modern authentication (e.g., Office 2010 clients). Clients that use older mail protocols such as IMAP, SMTP, or POP3.",
                                                      "policySummaryMfa":  "This policy requires some administrator roles to perform multifactor authentication when accessing Microsoft admin portals. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryMfaForAllUsers":  "This policy requires all users to perform multifactor authentication when accessing any resources. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
+                                                     "policySummaryMfaForGuestAccess":  "This policy requires all guest and external users to perform multifactor authentication when accessing your organization's resources. Requiring multifactor authentication for guests reduces the risk of compromised external accounts gaining access to your data and applications.",
                                                      "policySummaryPerUserMfaV2":  "This policy covers per-user multifactor authentication enforced users with recent sign-ins and requires them to perform MFA while accessing cloud applications. There will be no change to the end user experience as a result of this policy and your organization is sufficiently licensed to use this policy. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryPerUserMfaViaGroup":  "This policy covers per-user multifactor authentication enforced users with recent sign-ins and requires them to perform MFA while accessing cloud applications. There will be no change to the end user experience as a result of this policy and your organization is sufficiently licensed to use this policy. We'll assign eligible users into a new security group named 'Conditional Access: Per-user multifactor authentication users (a4ea6c0f-b8fb-4d29-91f1-9f8cf0601e97)'. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryPhishingResistantMfa":  "Accounts that are assigned privileged administrative roles are frequent targets of attackers. Requiring phishing-resistant multifactor authentication (MFA) on those accounts is an easy way to reduce the risk of those accounts being compromised.",
@@ -11829,6 +11949,11 @@
                                                                                                                    "learnMoreLabel":  "enable GSA Adaptive Access Signaling."
                                                                                                                }
                                          },
+                    "ObjectPickerStrings":  {
+                                                "appId":  "App Id",
+                                                "blueprintId":  "Blueprint Id",
+                                                "objectId":  "Object Id"
+                                            },
                     "Overview":  {
                                      "SignInsProtectedByCa":  {
                                                                   "accessDenied":  "Access denied",
@@ -12098,6 +12223,7 @@
                                                                 }
                                                 },
                     "RiskRemediationValidation":  {
+                                                      "mustNotSelect":  "To enable Require Risk Remediation, you must not select {0}.",
                                                       "mustSelect":  "To enable Require Risk Remediation, you must select {0}.",
                                                       "xOrY":  "{0} or {1}"
                                                   },
@@ -12330,6 +12456,8 @@
                                         "accessRequirement2":  "Level 2",
                                         "accessRequirement3":  "Level 3",
                                         "accessRequirementsLabel":  "Accessing secured app data",
+                                        "accountRecovery":  "Recover account",
+                                        "accountRecoveryInfoText":  "This user action requires the idenity verification grant control. Please select an identity verification profile.",
                                         "appsActionsAuthTitle":  "Cloud apps, actions, or authentication context",
                                         "appsOrActionsSelectorInfoBallonText":  "Applications accessed or user actions",
                                         "appsOrActionsTitle":  "Cloud apps or actions",
@@ -12358,6 +12486,7 @@
                                                                   "usersGroups":  "Select at least one user or group"
                                                               },
                                                "learnMore":  "Control access based on who the policy will apply to, such as users and groups, workload identities, directory roles, or external guests.",
+                                               "learnMoreAgents":  "Control access based on who the policy will apply to, such as users and groups, agents, workload identities, directory roles, or external guests.",
                                                "learnMoreAriaLabel":  "Learn more about Conditional Access users, groups, and workload identities."
                                            },
                     "ValidationResult":  {
@@ -12406,7 +12535,9 @@
                                                           "requireMfa":  "Consider testing the new \"{0}\".",
                                                           "requirePasswordChangeEnabled":  "\"Require password change\" can only be used when policy is assigned to \"All cloud apps\".",
                                                           "requirePasswordChangeEnabledResource":  "\"Require password change\" can only be used when policy is assigned to \"All resources\".",
-                                                          "requireRiskRemediation":  "\"{0}\" can only be used when policy is assigned to \"{1}.\" This option requires multifactor authentication or authentication strengths controls. Other controls cannot be used. This option also requires the Session control \"Sign-in Frequency\" to be set to \"Every time.\""
+                                                          "requireRiskRemediation":  "\"{0}\" can only be used when policy is assigned to \"{1}.\" This option requires multifactor authentication or authentication strengths controls. Other controls cannot be used. This option also requires the Session control \"Sign-in Frequency\" to be set to \"Every time.\"",
+                                                          "verifiedId":  "The user action \"Recover account\" requires this control. Please select identity verification profile. No other controls are supported at this time.",
+                                                          "vidAmpWarning":  "Before creating a Conditional Access policy, make sure Verified ID is turned on as an authentication method."
                                                       },
                                          "Policies":  {
                                                           "Linux":  {
@@ -12486,6 +12617,17 @@
                                         "loadingPermissions":  "Loading permissions..."
                                     },
                     "advancedTabText":  "Advanced",
+                    "agentIdentitiesAlert":  "Some controls are not available due to 'agents' selection in policy assignment",
+                    "agentIdentitiesInfo":  "Apply policy to all agent identities.",
+                    "agentIdentitiesSelectInfo":  "Apply policy to specific agent identities in the tenant.",
+                    "agentUsersAlert":  "During public preview, block access to all resources is the only policy configuration allowed for 'All agents acting as users' selection. Additional conditions and controls are coming soon.",
+                    "agentUsersDescription":  "Agent users enable AI-powered applications to interact with systems and services that require user identities.",
+                    "agentUsersInfo":  "Apply policy to all agents acting as users.",
+                    "agentUsersSelect":  "Select agents acting as users",
+                    "agentUsersSelectTitle":  "Select agent users",
+                    "agentUsersWarning":  "All agents acting as users cannot be combined with other selections.",
+                    "agents":  "Agents (Preview)",
+                    "allAgentUsers":  "All agents acting as users (Preview)",
                     "allCloudAppsErrorBox":  "\"All cloud apps\" must be selected when \"Require password change\" grant is selected",
                     "allCloudAppsReauth":  "\"All cloud apps\" must be selected when \"Sign-in frequency every time\" session control and \"sign-in risk\" condition are selected",
                     "allCloudOrSpecificApps":  "The \"sign-in frequency every time\" session control requires \"all cloud apps\" or specifically-supported apps to be selected",
@@ -12515,6 +12657,7 @@
                     "applyConditionClientAppInfoBalloonContent":  "Configure client apps to apply the policy to specific client apps",
                     "applyConditionDevicePlatformInfoBalloonContent":  "Configure device platforms to apply the policy to specific platforms",
                     "applyConditionDeviceStateInfoBalloonContent":  "Configure device state to apply the policy to specific device state(s)",
+                    "applyConditionLocation":  "Configure Locations",
                     "applyConditionLocationInfoBalloonContent":  "Configure locations to apply the policy to trusted/untrusted locations",
                     "applyConditionSigninRiskInfoBalloonContent":  "Configure sign-in risk to apply the policy to selected risk level(s)",
                     "applyConditionUserRiskInfoBalloonContent":  "Configure user risk to apply the policy to selected risk level(s)",
@@ -12709,6 +12852,8 @@
                     "cloudappsSelectionBladeIncludedSelectorTitle":  "Select",
                     "cloudappsSelectionBladeSelectedCloudapps":  "Select apps",
                     "cloudappsSelectionBladeSelectedResources":  "Select resources",
+                    "cloudappsSelectionDescription":  "Select specific resources this policy targets.",
+                    "cloudappsSelectionTitle":  "Select specific resources",
                     "cloudappsSelectorInfoBallonText":  "Services which the user accesses to do work. For example, 'Salesforce'",
                     "cloudappsSelectorNone":  "No cloud apps, actions, or authentication context selected",
                     "cloudappsSelectorPluralExcluded":  "{0} apps excluded",
@@ -12846,7 +12991,7 @@
                     "memberSelectionCommandRemove":  "Remove",
                     "menuItemClaimProviderControls":  "Custom controls (Preview)",
                     "menuItemClassicPolicies":  "Classic policies",
-                    "menuItemDeletedPolicies":  "Deleted Policies (Preview)",
+                    "menuItemDeletedPolicies":  "Deleted Policies",
                     "menuItemInsightsAndReporting":  "Insights and reporting",
                     "menuItemManage":  "Manage",
                     "menuItemNamedLocationsPreview":  "Named locations (Preview)",
@@ -12949,6 +13094,7 @@
                     "policyConditionNetworkLocationDescription":  "Network and locations (determined by IP address range or GPS coordinates) the user is signing in from",
                     "policyConditionSigninRisk":  "Sign-in risk",
                     "policyConditionSigninRiskDescription":  "Likelihood that the sign-in is coming from someone other than the user. Risk level can be high, medium or low. Requires Microsoft Entra ID P2 license.",
+                    "policyConditionUserAndSigninRiskWarning":  "Avoid combining User Risk and Sign-in Risk in the same policy. These conditions rarely occur together, so Microsoft recommends creating separate policies - one for User Risk and another for Sign-in Risk.",
                     "policyConditionUserRisk":  "User risk",
                     "policyConditionUserRiskDescription":  "Configure user risk levels needed for policy to be enforced",
                     "policyConditioniClientApp":  "Client apps",
@@ -12968,6 +13114,7 @@
                     "policyControlRequiredPasswordChangeDisplayedName":  "Require password change",
                     "policyControlSelectAuthStrength":  "Require authentication strength",
                     "policyControlSelectRiskRemediation":  "Require risk remediation",
+                    "policyControlVerifiedIdDisplayedName":  "Require identity verification",
                     "policyControlsNoControlsSelected":  "0 controls selected",
                     "policyControlsSection":  "Access controls",
                     "policyCreatBladeTitle":  "New",
@@ -13114,12 +13261,12 @@
                     "trustedLocationStatusIconEnabled":  "Trusted status icon",
                     "tuesday":  "Tuesday",
                     "uploadInBadState":  "Unable to upload the specified file.",
-                    "userAgentOrSPSelectionBladeTitle":  "Users, agent identities or workload identities",
+                    "userAgentOrSPSelectionBladeTitle":  "Users, agents or workload identities",
                     "userAppNoneOption":  "None",
                     "userNamePlaceholderText":  "Enter User Name",
                     "userNotSetSeletorLabel":  "0 users and groups selected",
                     "userOnlySelectionBladeExcludeDescription":  "Select the users to exempt from the policy",
-                    "userOrAgentSelectionBladeTitle":  "Users or agent identities",
+                    "userOrAgentSelectionBladeTitle":  "Users or agents (Preview)",
                     "userOrGroupSelectionCountDiffBannerText":  "{0} configured in this policy have been deleted from the directory, but this doesn't affect the other users and groups in the policy. The next time you update the policy, the deleted users and/or groups will be automatically removed.",
                     "userOrSPNotSetSelectorLabel":  "0 users or workload identities selected",
                     "userOrSPSelectionBladeTitle":  "Users or workload identities",
@@ -13153,6 +13300,7 @@
                     "userSelectorUserSingular":  "1 user",
                     "userSelectorWithExclusion":  "{0} and {1}",
                     "usersGroupsLabel":  "Users and groups",
+                    "verifiedIdInfoBubble":  "Users must present a Verified ID and complete Face Check",
                     "viewApprovedAppsText":  "See list of approved client apps",
                     "viewCompliantAppsText":  "See list of policy protected client apps",
                     "viewPolicyInformation":  "View policy information",

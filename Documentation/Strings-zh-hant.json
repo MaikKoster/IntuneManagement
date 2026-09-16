@@ -101,6 +101,11 @@
                                            "win32AppPackageFile":  "包含您應用程式的檔案，其格式可在裝置上側載。有效的套件類型: .intunewin。",
                                            "winGetStoreSelectApp":  "搜尋 Microsoft Store 應用程式 (新版)，以尋找您想要使用 Intune 部署的 Microsoft Store 應用程式。"
                                        },
+                              "Status":  {
+                                             "active":  "使用中",
+                                             "deleted":  "已刪除",
+                                             "softDeleted":  "已虛刪除"
+                                         },
                               "descriptionPreview":  "預覽",
                               "descriptionPreviewLabel":  "預覽",
                               "descriptionRequired":  "需要描述。",
@@ -227,6 +232,7 @@
                                                "v16":  "iOS 16.0",
                                                "v17":  "iOS 17.0",
                                                "v18":  "iOS 18.0",
+                                               "v26":  "iOS 26.0",
                                                "v8":  "iOS 8.0",
                                                "v9":  "iOS 9.0"
                                            },
@@ -256,6 +262,9 @@
                                                          },
                                                  "V15":  {
                                                              "0":  "macOS Sequoia 15.0"
+                                                         },
+                                                 "V26":  {
+                                                             "0":  "macOS Tahoe 26.0"
                                                          }
                                              },
                                    "Windows":  {
@@ -276,7 +285,8 @@
                                                    "V11Release":  {
                                                                       "release21H2":  "Windows 11 21H2",
                                                                       "release22H2":  "Windows 11 22H2",
-                                                                      "release23H2":  "Windows 11 23H2"
+                                                                      "release23H2":  "Windows 11 23H2",
+                                                                      "release24H2":  "Windows 11 24H2"
                                                                   },
                                                    "v10":  "Windows 10.0",
                                                    "v80":  "Windows 8.0",
@@ -442,6 +452,7 @@
                    "androidUrlValidation":  "輸入與 https://play.google.com/store/apps/details?id=com.microsoft.bing&hl=en 類似的有效 URL",
                    "appInstallContext":  "應用程式安裝內容",
                    "appUrlLabel":  "AppStore URL",
+                   "appleManagementType":  "管理類型",
                    "appleUrlValidation":  "輸入與 https://www.itunes.apple.com/us/app/microsoft-excel/id586683407?mt=8 類似的有效 URL",
                    "applicableDeviceType":  "適用的裝置類型",
                    "assignmentActionLabel":  "模式",
@@ -520,7 +531,7 @@
                    "installationSourceLabel":  "應用程式類型",
                    "installerTypeInfoBalloon":  "應用程式封裝的安裝程式類型。",
                    "installerTypeLabel":  "安裝程式類型",
-                   "isFeatured":  "將此項顯示為公司入口網站中的精選應用程式",
+                   "isFeatured":  "將此項目顯示為精選應用程式",
                    "isMAMEnabledToggleLabel":  "是",
                    "lastModifiedDateTime":  "上次更新時間",
                    "ldapUrl":  "LDAP URL",
@@ -583,6 +594,7 @@
                    "twoWeeks":  "兩週",
                    "unifiedAssignmentsLabel":  "指派至:",
                    "unlimited":  "無限制",
+                   "updateMethod":  "更新方法",
                    "urlHint":  "輸入有效的 URL",
                    "useManagedBrowserHint":  "僅限 Android 與 iOS。深入了解",
                    "useManagedBrowserLabel":  "需要受管理瀏覽器以開啟此連結",
@@ -936,6 +948,11 @@
                                           },
                             "noData":  "找不到原則範本"
                         },
+    "ProfileType":  {
+                        "deviceOwnerOnly":  "僅限公司擁有且完全受控的專用工作設定檔",
+                        "workProfileAndDeviceOwner":  "所有設定檔類型",
+                        "workProfileOnly":  "僅限個人擁有的工作設定檔"
+                    },
     "PolicyType":  {
                        "EdgeSmartScreenSettings":  {
                                                        "description":  "Microsoft Edge 應用程式建議的 SmartScreen 設定: 在雲端設定範本中 Windows 10。https://aka.ms/CloudConfigGuide"
@@ -1075,6 +1092,7 @@
                        "windowsInformationProtection":  "Windows 資訊保護",
                        "windowsPhoneCompliancePolicy":  "Windows Phone 合規性原則",
                        "windowsUpdateforBusiness":  "商務用 Windows Update",
+                       "windowsZeroTrustDns":  "零信任 DNS",
                        "wiredNetwork":  "有線網路",
                        "workProfile":  "個人擁有的工作設定檔"
                    },
@@ -1250,6 +1268,8 @@
                                                "assignmentFilterTypeColumnHeader":  "篩選模式",
                                                "assignmentToast":  "終端使用者通知",
                                                "assignmentTypeTableHeader":  "指派類型",
+                                               "associatedDomains":  "相關聯的網域",
+                                               "associatedDomainsDirectDownloadAllowed":  "允許相關聯網域直接下載",
                                                "autoUpdate":  "自動更新",
                                                "deadlineTimeColumnLabel":  "安裝期限",
                                                "deliveryOptimizationPriorityHeader":  "傳遞最佳化優先順序",
@@ -1263,6 +1283,8 @@
                                                "preventManagedAppBackup":  "禁止 iCloud 應用程式備份",
                                                "restartGracePeriodHeader":  "重新啟動寬限期",
                                                "startTimeColumnLabel":  "可用性",
+                                               "statusTableHeader":  "狀態",
+                                               "tapToPayScreenLockEnabled":  "已啟用輕觸以付款螢幕鎖定",
                                                "tracks":  "追蹤",
                                                "uninstallOnRemoval":  "移除裝置時解除安裝",
                                                "updateMode":  "更新優先順序",
@@ -1308,6 +1330,7 @@
                                          "winGetPublicApp":  "Windows 封裝管理員社群存放庫",
                                          "winGetStoreApp":  "Microsoft Store 應用程式 (新版)",
                                          "windowsAppXLobApp":  "Windows AppX 企業營運應用程式",
+                                         "windowsAutoUpdateCatalogApp":  "Windows 自動更新目錄應用程式",
                                          "windowsClassicApp":  "Windows 應用程式 (Win32)",
                                          "windowsEdgeApp":  "Microsoft Edge (Windows 10 及更新版本)",
                                          "windowsMobileMsiLobApp":  "Windows MSI 企業營運應用程式",
@@ -1879,7 +1902,7 @@
                                    "customMessageTextBox":  "錯誤訊息",
                                    "customMessageToggle":  "發生時間限制錯誤時，顯示自訂的訊息",
                                    "enableForAutopilotOnlyToggle":  "僅顯示由全新體驗 (OOBE) 佈建的裝置頁面",
-                                   "installQualityUpdatesToggle":  "安裝 Windows 更新 (可能會將裝置重新啟動) (預覽)",
+                                   "installQualityUpdatesToggle":  "安裝 Windows 更新 (可能會重新啟動裝置)",
                                    "progressToggle":  "顯示應用程式與設定檔的設定進度",
                                    "resetToggle":  "允許使用者在發生安裝錯誤時重設裝置",
                                    "timeout":  "當安裝時間超過指定的分鐘數時顯示錯誤"
@@ -2078,10 +2101,10 @@
                    "helpSupportReplacement":  "說明及支援 ({0})",
                    "iOSAppProvisioning":  "iOS 應用程式佈建設定檔",
                    "incompleteUserEnrollments":  "未完成的使用者註冊",
-                   "iosUpdates":  "iOS/iPadOS 更新",
+                   "iosUpdates":  "iOS/iPadOS 更新 (已棄用)",
                    "legacyPcManagement":  "舊版電腦管理",
-                   "macOSSoftwareUpdate":  "macOS 更新",
-                   "macOSSoftwareUpdateAccountSummaries":  "macOS 裝置的安裝狀態",
+                   "macOSSoftwareUpdate":  "macOS 更新 (已棄用)",
+                   "macOSSoftwareUpdateAccountSummaries":  "macOS 裝置 (已棄用) 的安裝狀態",
                    "macOSSoftwareUpdateCategorySummaries":  "軟體更新摘要",
                    "macOSSoftwareUpdateStateSummaries":  "更新",
                    "managedGooglePlay":  "受控的 Google Play",
@@ -2094,7 +2117,7 @@
                    "onPremisesConnector":  "Exchange ActiveSync 內部部署連接器",
                    "onPremisesDeviceAccess":  "Exchange ActiveSync 裝置",
                    "onPremisesManageAccess":  "Exchange 內部部署存取",
-                   "outOfDateIosDevices":  "iOS 裝置的安裝失敗",
+                   "outOfDateIosDevices":  "iOS 裝置 (已棄用) 的安裝失敗",
                    "overview":  "概觀",
                    "partnerDeviceManagement":  "夥伴裝置管理",
                    "perUpdateRingDeploymentState":  "依更新通道別部署狀態",
@@ -2103,6 +2126,7 @@
                    "platformDevices":  "{0} 部裝置",
                    "platformEnrollment":  "{0} 註冊",
                    "policies":  "原則",
+                   "policiesForMicrosoftEdge":  "Microsoft Edge 原則",
                    "profiles":  "設定檔",
                    "properties":  "屬性",
                    "reports":  "報表",
@@ -2116,6 +2140,8 @@
                    "servicenowConnector":  "ServiceNow 連接器",
                    "shellScripts":  "Shell 指令碼",
                    "teamViewerConnector":  "TeamViewer 連接器",
+                   "teamViewerConnectorOld":  "TeamViewer connector (old)",
+                   "teamViewerV2Connector":  "TeamViewer connector",
                    "telecomeExpenseManagement":  "電信費用管理",
                    "tenantAdmin":  "租用戶系統管理員",
                    "tenantAdministration":  "租用戶系統管理",
@@ -2230,7 +2256,7 @@
                                                          },
                         "GenmojiConfigurationState":  {
                                                           "label":  "Genmoji",
-                                                          "tooltip":  "  若遭到封鎖，使用受原則管理的應用程式時，系統將停用 Genmoji。如需詳細資訊，請參閱<a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">這裡。</a>"
+                                                          "tooltip":  "  若遭到封鎖，使用受原則管理的應用程式時，系統將停用 Genmoji。如需詳細資訊，請參閱<a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">這裡</a>。"
                                                       },
                         "IOSBackup":  {
                                           "label":  "將組織資料備份到 iTunes 與 iCloud 備份",
@@ -2262,7 +2288,8 @@
                                                     },
                         "OpenLinksManagedBrowser":  {
                                                         "label":  "限制使用其他應用程式的 Web 內容傳輸",
-                                                        "tooltip":  "<p>選取下列其中一個選項，以指定此應用程式可在其中開啟 Web 內容的應用程式: </p>\r\n<p>[Microsoft Edge]<b></b>: 只允許在 Microsoft Edge 中開啟 Web 內容。<a href=\"{0}\" target=\"_blank\">了解 Microsoft Edge 如何保護您的資料。</a></p>\r\n<p>[非受控瀏覽器]<b></b>: 只允許 Web 內容在非受控瀏覽器 (由 [未非受控瀏覽器通訊協定] 設定所定義) 中開啟</p>\r\n<p>[任何應用程式]<b></b>: 允許在任何應用程式中的 Web 連結</p>"
+                                                        "tooltip":  "<p>選取下列其中一個選項，以指定此應用程式可在其中開啟 Web 內容的應用程式: </p>\r\n<p>[Microsoft Edge]<b></b>: 只允許在 Microsoft Edge 中開啟 Web 內容。<a href=\"{0}\" target=\"_blank\">了解 Microsoft Edge 如何保護您的資料。</a></p>\r\n<p>[非受控瀏覽器]<b></b>: 只允許 Web 內容在非受控瀏覽器 (由 [未非受控瀏覽器通訊協定] 設定所定義) 中開啟</p>\r\n<p>[任何應用程式]<b></b>: 允許在任何應用程式中的 Web 連結</p>",
+                                                        "warning":  "請選取「Microsoft Edge」以保護您組織的資料。"
                                                     },
                         "OverrideBiometric":  {
                                                   "tooltip":  "PIN 提示會視逾時情況 (非使用狀態分鐘數)，在必要時覆寫生物特徵辨識提示。若不符合此逾時值，則會持續顯示生物特徵辨識提示。此逾時值應大於在 [重新檢查存取需求前的剩餘時間 (非使用狀態分鐘數)] 下所指定的值。"
@@ -2327,7 +2354,7 @@
                                                              },
                         "ScreenCaptureConfigurationState":  {
                                                                 "label":  "螢幕擷取",
-                                                                "tooltip":  " 若遭到封鎖，使用受原則管理的應用程式時，系統將停用螢幕擷取畫面。如需詳細資訊，請參閱<a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">這裡。</a>"
+                                                                "tooltip":  " 若遭到封鎖，使用受原則管理的應用程式時，系統將停用螢幕擷取畫面。如需詳細資訊，請參閱<a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">這裡</a>。"
                                                             },
                         "SendData":  {
                                          "label":  "將組織資料傳送到其他應用程式",
@@ -2365,7 +2392,7 @@
                                         },
                         "WritingToolsConfigurationState":  {
                                                                "label":  "撰寫工具",
-                                                               "tooltip":  "若遭到封鎖，使用受原則管理的應用程式時，系統將停用撰寫工具。如需詳細資訊，請參閱<a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">這裡。</a>"
+                                                               "tooltip":  "若遭到封鎖，使用受原則管理的應用程式時，系統將停用撰寫工具。如需詳細資訊，請參閱<a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">這裡</a>。"
                                                            },
                         "Tap":  {
                                     "numberOfDays":  "天數",
@@ -2401,7 +2428,7 @@
                     "macOSDmgApp":  "macOS 應用程式 (DMG)",
                     "macOSEdgeApp":  "Microsoft Edge (macOS)",
                     "macOSLobApp":  "macOS 企業營運應用程式",
-                    "macOSMicrosoftDefenderApp":  "Microsoft Defender ATP (macOS)",
+                    "macOSMicrosoftDefenderApp":  "Microsoft Defender for Endpoint (macOS)",
                     "macOSOfficeSuiteApp":  "Microsoft 365 應用程式 (macOS)",
                     "macOSPkgApp":  "macOS 應用程式 (PKG)",
                     "macOSWebClip":  "macOS 網頁剪輯",
@@ -2418,6 +2445,7 @@
                     "officeSuiteApp":  "Microsoft 365 Apps (Windows 10 及更新版本)",
                     "webApp":  "網頁連結",
                     "windowsAppXLobApp":  "Windows AppX 企業營運應用程式",
+                    "windowsAutoUpdateCatalogApp":  "Windows 自動更新目錄應用程式",
                     "windowsClassicApp":  "Windows 應用程式 (Win32)",
                     "windowsEdgeApp":  "Microsoft Edge (Windows 10 及更新版本)",
                     "windowsMobileMsiLobApp":  "Windows MSI 企業營運應用程式",
@@ -2779,10 +2807,10 @@
                                       "importPendingStatus":  "正在匯入。已耗用時間: {0} 分鐘。此程序最多可花費 {1} 分鐘。"
                                   },
                       "DirectoryService":  {
-                                               "activeDirectoryAD":  "已使用 Microsoft Entra 混合式而聯結的",
+                                               "activeDirectoryAD":  "已使用混合式 Microsoft Entra 而聯結",
                                                "activeDirectoryADLabel":  "使用 Autopilot 加入 Microsoft Entra 混合式聯結",
-                                               "azureAD":  "已使用 Microsoft Entra 而聯結的",
-                                               "unknownType":  "未知的類型"
+                                               "azureAD":  "已聯結 Microsoft Entra",
+                                               "unknownType":  "未知型別"
                                            },
                       "Filter":  {
                                      "enrollmentState":  "狀態",
@@ -2909,8 +2937,8 @@
                       "description":  "描述",
                       "deviceType":  "裝置類型",
                       "deviceUse":  "裝置用途",
-                      "directoryServiceHintForSurfaceHub2":  " <p>\r\n        Autopilot 僅支援已使用 Microsoft Entra 而加入的 Surface Hub 2 裝置。指定裝置如何加入組織中的 Active Directory (AD)。\r\n        </p>\r\n        <ul>\r\n        <li>\r\n            Microsoft Entra 加入: 僅支援雲端，不支援內部部署 Windows Server Active Directory。\r\n        </li>\r\n        </ul>\r\n    ",
-                      "directoryServiceHintForWindowsPC":  "\r\n        <p>\r\n        指定裝置如何加入組織中的 Active Directory (AD):\r\n        </p>\r\n        <ul>\r\n        <li>\r\n            Microsoft Entra 加入: 僅支援雲端，不支援內部部署 Windows Server Active Directory:\r\n        </li>\r\n        </ul>\r\n   ",
+                      "directoryServiceHintForSurfaceHub2":  " <p>\r\n        Autopilot 僅支援已為 Surface Hub 2 裝置加入的 Microsoft Entra。指定裝置如何加入組織中的 Active Directory (AD)。\r\n        </p>\r\n        <ul>\r\n        <li>\r\n            已加入 Microsoft Entra: 僅支援雲端，不支援內部部署 Windows Server Active Directory。\r\n        </li>\r\n        </ul>\r\n    ",
+                      "directoryServiceHintForWindowsPC":  "\r\n        <p>\r\n        指定裝置如何加入組織中的 Active Directory (AD):\r\n        </p>\r\n        <ul>\r\n        <li>\r\n            已加入 Microsoft Entra: 僅支援雲端，不支援內部部署 Windows Server Active Directory\r\n        </li>\r\n        </ul>\r\n   ",
                       "getAssignedDevicesCountError":  "擷取已指派的裝置計數時發生錯誤。",
                       "getAssignmentsError":  "擷取 Autopilot 設定檔指派時發生錯誤。",
                       "harvestDeviceId":  "將所有目標裝置轉換為 Autopilot",
@@ -4246,6 +4274,7 @@
                      "windowsDefenderATP":  "適用於端點的 Microsoft Defender",
                      "windowsHelloForBusiness":  "Windows Hello 企業版",
                      "windowsSpotlight":  "Windows 焦點",
+                     "windowsZtdns":  "零信任 DNS",
                      "wiredNetwork":  "有線網路",
                      "wireless":  "無線",
                      "wirelessProjection":  "無線投影",
@@ -4377,8 +4406,8 @@
                       "se-fI":  "北沙米文 (芬蘭)",
                       "se-nO":  "北沙米文 (挪威)",
                       "se-sE":  "北沙米文 (瑞典)",
-                      "sma-nO":  "南沙米文 (挪威)",
-                      "sma-sE":  "南沙米文 (瑞典)",
+                      "sma-nO":  "南薩米文 (挪威)",
+                      "sma-sE":  "南薩米文 (瑞典)",
                       "smn":  "伊納立沙米文 (芬蘭)",
                       "sms":  "斯科特沙米文 (芬蘭)",
                       "sr-Cyrl-bA":  "塞爾維亞文 (斯拉夫)",
@@ -4539,7 +4568,7 @@
     "WindowsQualityUpdateProfile":  {
                                         "Details":  {
                                                         "DaysUntilForcedReboot":  {
-                                                                                      "label":  "已施行重新開機前要等候的天數"
+                                                                                      "label":  "如果需要重新啟動，請選取強制執行之前的天數"
                                                                                   },
                                                         "Description":  {
                                                                             "label":  "描述"
@@ -4548,7 +4577,7 @@
                                                                      "label":  "名稱"
                                                                  },
                                                         "QualityUpdateRelease":  {
-                                                                                     "label":  "當裝置 OS 版本低於以下版本時，加快品質更新的安裝:"
+                                                                                     "label":  "選取您想要加快的品質更新"
                                                                                  },
                                                         "bladeTitle":  "Windows 10 和更新版本的品質更新 (預覽)",
                                                         "loadError":  "載入失敗!"
@@ -4590,6 +4619,7 @@
                                             "deviceTypeTargetingEdit1":  "如果您將指派篩選套用至此原則，則除了在 [應用程式] 頁面上為 [以所有裝置類型上的應用程式為目標] 和 [裝置類型] 指定的值之外，也將套用 [裝置管理類型] 屬性。",
                                             "deviceTypeTargetingEdit2":  "若要編輯裝置管理類型目標，請將 [以所有裝置類型上的應用程式為目標] 重設為 [是]。然後針對 [裝置管理類型] 使用所需的值建立 MAM 指派篩選。",
                                             "deviceTypeTargetingHasMoved":  "深入了解如何指派應用程式保護原則",
+                                            "edgeUpsell":  "若要確保受控應用程式中的所有網頁內容皆由 Microsoft Edge 保護，請在「限制與其他應用程式進行網頁內容傳輸」中選取 Microsoft Edge。然後選取「檢閱 + 儲存」。",
                                             "encryptionAndroid1":  "對於關聯到 Intune 行動應用程式管理原則的應用程式，Microsoft 會提供加密。檔案在 I/O 作業期間，將會依據行動應用程式管理原則中的設定同步加密資料。Android 上受管理的應用程式會利用平台加密程式庫使用 CBC 模式的 AES-128 加密。此加密法並未符合 FIPS 140-2 規範。在用法說明中明確指出，只有使用 SigAlg 參數時，才支援 SHA-256 加密，而且此加密法只可在 4.2 (含) 版以上的裝置上運作。裝置儲存體中的內容一律會加密。",
                                             "encryptionAndroid2":  "當您的應用程式原則規定需要加密時，使用者便須設定及使用 PIN 碼，才能存取其裝置。若未設定存取裝置所需的 PIN 碼，應用程式將不會啟動，而且會對使用者顯示下列訊息:「根據您公司的要求，您必須先啟用裝置的 PIN 碼，才能存取此應用程式」。",
                                             "encryptionMac1":  "對於與 Intune 行動應用程式管理原則建立關聯的應用程式，Microsoft 會提供加密。在檔案 I/O 作業期間，會依據行動應用程式管理原則中的設定同步加密資料。Mac 上受管理的應用程式會利用平台加密程式庫使用 CBC 模式的 AES-128 加密。此加密方法並未符合 FIPS 140-2 規範。在用法說明中明確指出，使用 SigAlg 參數時，才支援 SHA-256 加密，且此加密方法只可在 4.2 (含) 以上的裝置上運作。裝置儲存體中的內容一律會經過加密。",
@@ -5213,8 +5243,7 @@
                            "androidEnterpriseWorkProfileAlwaysOnVpnClientDescription":  "裝置上必須安裝指定的 VPN 用戶端，且其必須支援工作設定檔中每個應用程式的 VPN，否則將會發生錯誤。請注意，您必須核准受控 Google Play Store 中的此應用程式，並將此應用程式同步到 Intune，然後加以部署，以安裝在使用者的工作設定檔中。",
                            "androidEnterpriseWorkProfileAlwaysOnVpnEnabledDescription":  "在工作設定檔中設定 VPN 用戶端，可以在情況允許時，自動連線及重新連線到 VPN。若選擇 [已停用]，可以停用工作設定檔中所有 VPN 用戶端的 Always-On VPN。每部指定的裝置上，都只能設定一個 VPN 用戶端使用 Always-On VPN。因此，請務必只為每部裝置部署一項 Always-On VPN 原則。",
                            "androidEnterpriseWorkProfileAlwaysOnVpnLockdownModeEnabledDescription":  "啟用此選項會強制工作設定檔的所有網路流量皆必須通過 VPN Tunnel。若無法連線到 VPN，將不會允許裝置工作設定檔中的任何網路流量。",
-                           "androidForWorkMigrationPolicyDescriptionParagraph1":  "建立並指派此設定檔以將裝置移至 Android Management API，其會以更有效率的方式套用原則。使用網頁型註冊設定的裝置會自動使用 Android Management API。",
-                           "androidForWorkMigrationPolicyDescriptionParagraph2":  "裝置將在電池電力充足且未連線到受 Intune 原則管理的 Wi-Fi 時移動。",
+                           "androidForWorkMigrationPolicyDescriptionParagraph1":  "建立並指派此設定檔以將裝置移至 Android Management API，其會以更有效率的方式套用原則。使用網頁型註冊設定的裝置會自動使用 Android Management API。當裝置有足夠的電力時，裝置將會移動。",
                            "androidForWorkMigrationPolicyLearnMoreText":  "深入了解此改進功能的資訊。",
                            "androidGeneralKiosk":  "這些設定僅適用於 Samsung KNOX Standard 裝置。",
                            "androidHiddenApps":  "不對使用者顯示應用程式 (僅限 Samsung KNOX Standard)",
@@ -6582,6 +6611,8 @@
                            "disableDeviceLocationSharingName":  "位置分享",
                            "disableMacAddressRandomization":  "停用 MAC 位址隨機化",
                            "disableMacAddressRandomizationDescriptionIOS":  "強制裝置使用此設定檔進行連線，以呈現其實際的 Wi-Fi MAC 位址，而非隨機的 MAC 位址。因為這會允許 MAC 位址追蹤裝置，所以您應只在必要時執行此動作，例如為了取得網路存取控制 (NAC) 的支援。適用於 iOS 14 及更新版本。",
+                           "disableMacAddressRandomizationDescriptionMacOS":  "指出使用此 Wi-Fi 設定檔連線的裝置是否必須使用其實體 MAC 位址，而不是隨機的 MAC 位址。停用時，它會使用實際的 Wi-Fi MAC 位址。啟用時，它會啟用 MAC 位址隨機化。適用於 macOS 15 及更新版本。預設值為已啟用。",
+                           "disableMacAddressRandomizationMacOS":  "MAC 位址隨機化",
                            "disableOnDemandUserOverrideDescription":  "強制開啟隨選 VPN 設定。如果禁止這些設定，則您的使用者雖然可在裝置上看到隨選 VPN 設定，卻無法進行變更。適用於 iOS 14 及更新版本。",
                            "disableOnDemandUserOverrideMacOSDescription":  "強制開啟隨選 VPN 設定。如果禁止這些設定，則您的使用者雖然可在裝置上看到隨選 VPN 設定，卻無法進行變更。適用於 MacOS 11 及更新版本。",
                            "disableOnDemandUserOverrideName":  "禁止使用者停用自動 VPN",
@@ -6707,6 +6738,7 @@
                            "dropTrafficName":  "卸除網路流量",
                            "durationInHours":  "持續時間 (小時)",
                            "dynamicDomainNameOption":  "Microsoft Entra ID",
+                           "eAPAKAName":  "EAP - AKA",
                            "eAPCustomName":  "自訂",
                            "eAPFASTName":  "EAP - FAST",
                            "eAPName":  "EAP",
@@ -6988,6 +7020,8 @@
                            "enableWindowsDefenderFirewallName":  "Windows 防火牆",
                            "enableWithUEFILock":  "連同 UEFI 鎖定一起啟用",
                            "enableWithoutUEFILock":  "不與 UEFI 鎖定一起啟用",
+                           "enableWpaTransitionModeDescription":  "設定為 [已啟用] 時，這會啟用 WPA3 轉換模式，如果網路支援，則會允許後援至 WPA2。設定為 [已停用] 時，會強制執行嚴格的 WPA3 模式，而且不會發生後援。",
+                           "enableWpaTransitionModeName":  "WPA3 轉換模式",
                            "enabledForAzureAdAndHybridOption":  "已針對加入 Microsoft Entra 和混合式加入的裝置啟用金鑰輪替",
                            "enabledForAzureAdOption":  "已針對加入 Microsoft Entra 的裝置啟用金鑰輪替",
                            "enabledNoKeepGoing":  "顯示網站在 Internet Explorer 11 中開啟的訊息",
@@ -8394,6 +8428,7 @@
                            "mustBeValidGuid":  "必須是有效的 UUID。範例: 782AFCFC-7CAA-436C-8BF0-78CD0FFBD4AF 等等",
                            "mustBeValidHost":  "必須是有效的主機。範例: www.host.com 等",
                            "mustBeValidHttpURL":  "必須是有效的 HTTP 或 HTTPS URL。範例: https://www.contoso.com",
+                           "mustBeValidIPOrCidr":  "輸入有效的 IP 位址 (198.51.100.1, 2001:db8:0:130F::87C:140B) 或具有 CIDR 標記法的範圍 (198.51.100.0/24, 2001:db8::/32)",
                            "mustBeValidIpAddress":  "必須是有效的 IP 位址。範例: 4.3.6.0",
                            "mustBeValidKaiserWifiFormat":  "格式不正確。使用者格式範例: abcd{{WifiMacAddress}}，密碼格式範例: abcd{{WifiMacAddress}}{{PreSharedKey}}",
                            "mustBeValidMonthDayDateFormat":  "必須是有效的日期格式 (MM/DD)。範例: 01/31、02/28 等。",
@@ -8692,7 +8727,7 @@
                            "performServerValidationDescription":  "在與 PEAP 伺服器進行交換期間驗證憑證，以驗證伺服器的身分識別。如果可以的話，建議您將此選項設為 [是]。將此設為 [否] 或 [未設定] 較不安全。",
                            "personalProfileAppsAllowInstallFromUnknownSourcesDescription":  "一旦允許，使用者就可讓「未知來源」設定安裝來自 Google Play 商店以外來源的應用程式。",
                            "personalProfileAppsAllowInstallFromUnknownSourcesName":  "允許使用者在個人設定檔中從不明來源啟用應用程式安裝",
-                           "personalProfileCameraBlockedDescription":  "封鎖所有裝置上的相機",
+                           "personalProfileCameraBlockedDescription":  "在個人使用期間禁止存取相機",
                            "personalProfileCameraBlockedName":  "相機",
                            "personalProfilePersonalApplications":  "個人應用程式",
                            "personalProfilePersonalApplicationsListTypeDescription":  "選取 [允許的應用程式] 可建立允許及核准在裝置上個人設定檔中安裝及執行的應用程式清單。選取 [封鎖的應用程式] 以建立禁止且無法在裝置上個人設定檔中安裝及執行的應用程式清單。",
@@ -8878,7 +8913,7 @@
                            "publicNetworkName":  "公用 (不可搜尋的) 網路",
                            "publicOutboundConnectionsSummaryLabel":  "輸出連線的預設動作 (公用網路)",
                            "publicPlayStoreEnabledDescription":  "如果您選取 [允許]，使用者可存取所有應用程式，但您已在用戶端應用程式中要求解除安裝的應用程式除外。如果您針對此設定選擇 [封鎖] 或 [未設定]，使用者只能存取您在用戶端應用程式中列為可用或必要的應用程式。",
-                           "publicPlayStoreEnabledName":  "允許存取 Google Play 商店中的所有應用程式",
+                           "publicPlayStoreEnabledName":  "允許存取 Google Play 商店中的所有應用程式 (工作設定檔層級)",
                            "publicPlayStoreEnabledWarning":  "如果您選取 [允許]，使用者就可以從 Google Play 商店安裝任何應用程式。如果您稍後將選取項目變更為 [封鎖] 或 [未設定]，則會從裝置移除所有應用程式，但用戶端應用程式中列為可用或必要的應用程式除外。",
                            "publicPlayStoreSelectionAllowList":  "封鎖",
                            "publicPlayStoreSelectionBlockList":  "允許",
@@ -10103,6 +10138,8 @@
                            "wHfBWindowsHelloForBusinessBlockedName":  "設定 Windows Hello 企業版",
                            "wPA2Enterprise":  "WPA2-Enterprise (認證產生器)",
                            "wPA2EnterpriseOption":  "WPA/WPA2-Enterprise",
+                           "wPA2PersonalOption":  "WPA2/WPA3-Personal",
+                           "wPA3PersonalOption":  "WPA3-Personal",
                            "wPAEnterpriseOption":  "WPA-Enterprise",
                            "wPAPSKOption":  "WPA 預先共用金鑰",
                            "wPAPersonalOption":  "WPA/WPA2-Personal",
@@ -10594,6 +10631,78 @@
                            "zscalerUserDomain":  "自訂網域名稱",
                            "zscalerUserDomainDescription":  "輸入靜態網域，以在 Zscaler 應用程式中預先填入登入欄位。如果保留空白，則改為使用使用者的 Microsoft Entra 網域。",
                            "zscalerUserDomainExample":  "contoso.com",
+                           "ztdnsAdvancedSettingsChevronName":  "進階設定",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledDescription":  "封鎖 Windows DNS 用戶端使用電腦的 hosts 檔案來解析 DNS 查詢。",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledLearnMore":  "深入了解使用零信任 DNS 的主機檔案解析。",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledName":  "來自主機檔案的查詢",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledDescription":  "啟用此設定，以將 localhost (127.0.0.1 或 ::1) DNS 查詢傳送到信任的 DNS 伺服器，防止未加密的查詢未經篩選便傳遞。",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledLearnMore":  "深入了解使用零信任 DNS 的 DNS 轉送。",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledName":  "回送 DNS 轉寄器",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedDescription":  "阻擋流向 127.0.0.1 和 ::1 等回送位址的流量可提升安全性。",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedLearnMore":  "深入了解使用零信任 DNS 封鎖回送流量。",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedName":  "回送 IP 流量",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsDescription":  "設定與 IP 位址的連線在名稱解析後保持有效的時間長度。有效時間 (以秒為單位) 可介於 30 到 604800 之間，預設為 86400 (24 小時)。",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsLearnMore":  "深入了解搭配零信任 DNS 使用時的 DNS 記錄存留期。",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsName":  "DNS 記錄存留期 (秒)",
+                           "ztdnsClientCertificateChevronName":  "用戶端憑證驗證",
+                           "ztdnsClientCertificateEkuHeaderLearnMore":  "深入了解用戶端憑證 EKU。",
+                           "ztdnsClientCertificateEkuHeaderName":  "為 EKU 設定用戶端憑證，必須對受信任的 DNS 伺服器驗證並保護網路要求。使用用戶端憑證驗證時需要 EKU。",
+                           "ztdnsClientCertificateHeaderLearnMore":  "深入了解用戶端憑證驗證。",
+                           "ztdnsClientCertificateHeaderName":  "當受信任的 DNS 伺服器使用相互驗證時，您也必須提供核發所需用戶端驗證憑證的憑證授權單位。您也可以提供用戶端憑證使用的 EKU。",
+                           "ztdnsClientRootCertificateHeader":  "用戶端憑證根簽發者",
+                           "ztdnsExemptionRuleDescriptionName":  "描述",
+                           "ztdnsExemptionRuleDescriptionPlaceholder":  "描述",
+                           "ztdnsExemptionRuleDisplayNameName":  "名稱",
+                           "ztdnsExemptionRuleDisplayNamePlaceholder":  "名稱",
+                           "ztdnsExemptionRuleIpAddressName":  "IP 位址或範圍",
+                           "ztdnsExemptionRuleIpAddressPlaceholder":  "192.41.101.1, 2001:db8::/32",
+                           "ztdnsExemptionRuleIpAddressesDescription":  "這些位址將不會由受信任的 DNS 伺服器處理。",
+                           "ztdnsExemptionRuleIpAddressesName":  "IP 位址或範圍",
+                           "ztdnsExemptionRulesChevronName":  "豁免規則",
+                           "ztdnsExemptionRulesDescription":  "這些規則會決定哪些要求會從未受信任的 DNS 處理中豁免，允許它們略過零信任 DNS 強制執行。",
+                           "ztdnsExemptionRulesHeaderName":  "您可能需要從封鎖規則豁免某些主機或子網路。如果是，請在這裡為其新增規則。",
+                           "ztdnsExemptionRulesName":  "豁免規則",
+                           "ztdnsMinimumBuildInfoboxName":  "Windows 11 版本 25H2 或更新版本",
+                           "ztdnsModeChevronName":  "零信任 DNS 模式",
+                           "ztdnsModeHeaderLearnMore":  "深入了解模式。",
+                           "ztdnsModeHeaderName":  "<strong>稽核</strong>模式會記錄連線，而不會封鎖流量。事件會記錄在 Windows 事件檢視器中。使用稽核模式以在您使用強制模式之前，先評定影響而不中斷網路存取。<br /><br /><strong>強制</strong>模式會封鎖未由您指定的其中一部受信任 DNS 伺服器所傳送的任何 DNS 查詢。<br /><br />",
+                           "ztdnsModeSelectionAuditName":  "稽核",
+                           "ztdnsModeSelectionEnforceName":  "強制執行",
+                           "ztdnsModeSelectionName":  "模式",
+                           "ztdnsModeWarningName":  "在強制模式中，如果裝置無法連線到受信任的 DNS 伺服器，您就無法存取裝置。",
+                           "ztdnsNotConfiguredName":  "未設定",
+                           "ztdnsRootCertificateDescription":  "此 CA 憑證必須與發行您目前設定的設定檔憑證的 CA 根憑證相符。",
+                           "ztdnsSecureDnsServerChevronName":  "受信任的 DNS 伺服器",
+                           "ztdnsSecureDnsServerDisplayNameDescription":  "受信任的 DNS 伺服器的顯示名稱。",
+                           "ztdnsSecureDnsServerDisplayNameName":  "名稱",
+                           "ztdnsSecureDnsServerDisplayNamePlaceholder":  "顯示名稱",
+                           "ztdnsSecureDnsServerDohAndDotOptionName":  "DNS over HTTPS 和 DNS over TLS",
+                           "ztdnsSecureDnsServerDohHeaderName":  "DNS over HTTPS 設定",
+                           "ztdnsSecureDnsServerDohOptionName":  "DNS over HTTPS",
+                           "ztdnsSecureDnsServerDohPortDescription":  "DNS over HTTPS 伺服器的 HTTPS 連接埠。預設連接埠為 443。",
+                           "ztdnsSecureDnsServerDohPortName":  "連接埠",
+                           "ztdnsSecureDnsServerDohUrlDescription":  "此 URL 將用來透過 HTTPS 傳送 DNS 要求。",
+                           "ztdnsSecureDnsServerDohUrlName":  "URL",
+                           "ztdnsSecureDnsServerDohUrlPlaceholder":  "https://dns.contoso.com/dns-query",
+                           "ztdnsSecureDnsServerDotHeaderName":  "DNS over TLS 設定",
+                           "ztdnsSecureDnsServerDotHostnameDescription":  "此主機名稱將用來驗證受信任的 DNS 伺服器憑證的主體名稱。",
+                           "ztdnsSecureDnsServerDotHostnameName":  "主機名稱",
+                           "ztdnsSecureDnsServerDotHostnamePlaceholder":  "dns.contoso.com",
+                           "ztdnsSecureDnsServerDotOptionName":  "DNS over TLS",
+                           "ztdnsSecureDnsServerDotPortDescription":  "DNS over TLS 伺服器所使用的 TLS 連接埠號碼。預設連接埠為 853。",
+                           "ztdnsSecureDnsServerDotPortName":  "連接埠",
+                           "ztdnsSecureDnsServerHeaderLearnMore":  "深入了解如何設定受信任的 DNS 伺服器。",
+                           "ztdnsSecureDnsServerHeaderName":  "DNS 查詢只會傳送到您在這裡指定的受信任的 DNS 伺服器。針對每部伺服器，設定要使用的安全通訊協定: DNS over HTTPS (DoH) 或 DNS over TLS (DoT)。您可以使用 IPv4 或 IPv6 位址格式。",
+                           "ztdnsSecureDnsServerIpAddressDescription":  "這可以是公用 DNS 伺服器或組織的 DNS 伺服器。",
+                           "ztdnsSecureDnsServerIpAddressName":  "IP 位址",
+                           "ztdnsSecureDnsServerIpAddressPlaceholder":  "198.51.100.1, 2001:0db8:85a3::8a2e:0370:7334",
+                           "ztdnsSecureDnsServerName":  "受信任的 DNS 伺服器",
+                           "ztdnsSecureDnsServerTypeDescription":  "受信任的 DNS 伺服器支援的通訊協定。",
+                           "ztdnsSecureDnsServerTypeName":  "通訊協定",
+                           "ztdnsServerRootCertificateHeader":  "伺服器憑證根簽發者",
+                           "ztdnsTrustedCAChevronName":  "受信任的憑證授權單位",
+                           "ztdnsTrustedCAHeaderLearnMore":  "深入了解受信任的憑證授權單位。",
+                           "ztdnsTrustedCAHeaderName":  "您指定的受信任 DNS 伺服器必須使用受信任憑證授權單位核發的憑證。在這裡指定這些憑證。",
                            "platformSupported":  "支援的平台",
                            "aadDeviceId":  "Microsoft Entra 裝置識別碼",
                            "access":  "存取",
@@ -10808,6 +10917,7 @@
                            "displayName":  "顯示名稱",
                            "downloadReport":  "下載報表",
                            "downloadingReport":  "正在下載報表",
+                           "edgeCampaignInfoBoxText":  "若要確保受控應用程式中的所有網頁內容皆由 Microsoft Edge 保護，請在「限制與其他應用程式進行網頁內容傳輸」中選取 Microsoft Edge。然後選取「檢閱 + 儲存」。",
                            "edgeGSAssignment":  "選擇您要包含在 Edge 行動版安裝範圍內的使用者群組。Edge 會安裝在這些使用者所註冊的所有 iOS 和 Android 裝置上。",
                            "edgeGSIntroBenefitHTML":  "<p>在 iOS 或 Android 上為您的使用者取得 Microsoft Edge 應用程式，讓他們可以在公司裝置之間無縫瀏覽! Edge 可讓使用者透過內建功能迅速處理網路上的混雜資訊，協助他們合併、安排及管理工作內容。在 Edge 應用程式中使用公司 Microsoft Entra 帳戶登入的 iOS 和 Android 裝置使用者，會看到瀏覽器已預先載入您定義的工作場所我的最愛和網站篩選。</p><p>若您已禁止使用者註冊 iOS 或 Android裝置，這個案例並不會允許註冊，而且使用者必須自行安裝 Edge。</p>",
                            "edgeGSIntroPrereqHTML":  "<p>我們會詢問您使用者所需的工作場所我的最愛，以及您要用於網頁瀏覽的篩選。繼續之前，請確定您已完成下列工作:</p>\r\n<li>將使用者新增到 <a href='https://go.microsoft.com/fwlink/?linkid=2102458'>Microsoft Entra 群組</a></li>\r\n<li>在 Intune 中註冊 iOS 或 Android 裝置。<a href='https://go.microsoft.com/fwlink/?linkid=2102547'>深入了解</a></li>\r\n<li>收集要新增到Edge 的工作場所我的最愛清單。</li>\r\n<li>收集要在 Edge 中強制執行的網站篩選清單。</li>",
@@ -11023,8 +11133,8 @@
                            "ok":  "確定",
                            "on":  "開啟",
                            "onlineButUnableToCheckin":  "已停用的帳戶",
-                           "orgDestinationAnySourceOptionText":  "Org data destinations and any source",
-                           "orgDestinationOrgSourceOptionText":  "Org data destinations and org data sources",
+                           "orgDestinationAnySourceOptionText":  "組織資料目的地及任何來源",
+                           "orgDestinationOrgSourceOptionText":  "組織資料目的地及組織資料來源",
                            "orgPermission":  "組織讀取、更新權限",
                            "override":  "覆寫",
                            "overview":  "概觀",
@@ -11427,13 +11537,13 @@
                                         "gradualRolloutLicenseWarningEdit":  "在未選取此功能的情況下儲存原則之前，可以繼續使用並設定此功能。",
                                         "licenseLearnMoreText":  "深入了解先決條件和功能更新原則。",
                                         "optionalUpdateWarning":  "選擇性更新僅適用於 Windows 11",
-                                        "profileNameWarning":  "名稱不應該超過 64 個字元",
+                                        "profileNameWarning":  "名稱應少於 255 個字元",
                                         "specificLicensingRequired":  "某些選取的功能需要特定授權。"
                                     },
     "AzureCA":  {
                     "AdrsUserActionSelectionWarning":  {
                                                            "conditions":  "Conditions that require device registration are not available with \"Register or join devices\" user action.",
-                                                           "message":  "Only \"Require multifactor authentication\" can be used in policies created for the \"Register or join devices\" user action.{0}"
+                                                           "message":  "Only \"Require multifactor authentication or Require Auth strength'\" can be used in policies created for the \"Register or join devices\" user action.{0}"
                                                        },
                     "AuthContext":  {
                                         "Delete":  {
@@ -11564,7 +11674,7 @@
                                                                          "placeholder":  "Choose an attribute"
                                                                      },
                                                 "Configure":  {
-                                                                  "infoBalloon":  "Configure app filters you want to policy to apply to."
+                                                                  "infoBalloon":  "Configure custom security attributes you want the policy to apply to."
                                                               },
                                                 "NoPermissions":  {
                                                                       "learnMoreAria":  "More about custom security attribute permissions.",
@@ -11584,14 +11694,15 @@
                                                  "learnMoreB2C":  "Control access based on all or specific cloud apps.",
                                                  "learnMoreNetworkAccess":  "Control access based on all or specific network access traffic, cloud apps or actions.",
                                                  "learnMorePublicClouds":  "Control access based on all or specific apps, internet resources, actions, or authentication context.",
+                                                 "learnMorePublicCloudsAgents":  "Control access based on all or specific apps, agents, internet resources, actions, or authentication context.",
                                                  "title":  "Cloud apps or actions"
                                              },
                     "CloudappsSelectionBlade":  {
                                                     "AgenticResources":  {
                                                                              "allAgenticResources":  "All agent resources (Preview)",
-                                                                             "allAgenticResourcesExcLower":  "all agent resources excluded",
-                                                                             "allAgenticResourcesExcluded":  "All agent resources excluded",
-                                                                             "allAgenticResourcesIncluded":  "All agent resources"
+                                                                             "allAgenticResourcesExcLower":  "all agent resources (Preview) excluded",
+                                                                             "allAgenticResourcesExcluded":  "All agent resources (Preview) excluded",
+                                                                             "allAgenticResourcesIncluded":  "All agent resources (Preview)"
                                                                          },
                                                     "AllInternetResources":  {
                                                                                  "excludedWithGSA":  "All internet resources with Global Secure Access excluded",
@@ -11603,7 +11714,13 @@
                                                                  },
                                                     "Filter":  {
                                                                    "configured":  "Configured",
+                                                                   "descriptionAgents":  "Apply policy to agent identities based on custom security attributes pre-assigned to them.",
                                                                    "label":  "Edit filter",
+                                                                   "resourceDescription":  "Select resources based on custom security attributes.",
+                                                                   "sPDescription":  "Select service principals based on custom security attributes.",
+                                                                   "titleAgents":  "Select agent identities based on attributes",
+                                                                   "titleResource":  "Select resources based on attributes",
+                                                                   "titleSP":  "Select service principals based on attributes",
                                                                    "with":  "{0} with {1}"
                                                                },
                                                     "Included":  {
@@ -11660,12 +11777,15 @@
                     "MicrosoftManagedPolicies":  {
                                                      "alertBanner":  "Microsoft-managed policies will be enabled no sooner than {0} days after creation unless you take action. We recommend that you review these policies and take the recommended actions.",
                                                      "alertBannerV2":  "Microsoft-managed policies in report-only state will be automatically turned on with advance email and {0}M365 message center{1} notifications. We recommend that you review these policies and recommended actions.",
+                                                     "bsmRecActionsGlobal2":  "When you are ready to enable, switch its state to 'on'. If you do not want to enforce this policy for your organization, switch its state to 'off'.",
                                                      "learnMoreLinkAriaLabel":  "Learn more about Microsoft-managed policies.",
                                                      "m365MessageCenterLinkAriaLabel":  "M365 message center",
                                                      "policySummaryBlockDCF":  "This policy unilaterally blocks device code flow usage across all resources and all users. As a Microsoft-managed policy, only certain properties are editable.",
+                                                     "policySummaryBlockHighRiskAgents":  "This policy blocks any sign-in attempt made by a high-risk agent identity",
                                                      "policySummaryBlockLegacyAuth":  "This policy blocks any sign-in attempt using legacy authentication and legacy authentication protocols from accessing applications. Legacy authentication refers to authentication requests made by: Clients that don't use modern authentication (e.g., Office 2010 clients). Clients that use older mail protocols such as IMAP, SMTP, or POP3.",
                                                      "policySummaryMfa":  "This policy requires some administrator roles to perform multifactor authentication when accessing Microsoft admin portals. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryMfaForAllUsers":  "This policy requires all users to perform multifactor authentication when accessing any resources. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
+                                                     "policySummaryMfaForGuestAccess":  "This policy requires all guest and external users to perform multifactor authentication when accessing your organization's resources. Requiring multifactor authentication for guests reduces the risk of compromised external accounts gaining access to your data and applications.",
                                                      "policySummaryPerUserMfaV2":  "This policy covers per-user multifactor authentication enforced users with recent sign-ins and requires them to perform MFA while accessing cloud applications. There will be no change to the end user experience as a result of this policy and your organization is sufficiently licensed to use this policy. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryPerUserMfaViaGroup":  "This policy covers per-user multifactor authentication enforced users with recent sign-ins and requires them to perform MFA while accessing cloud applications. There will be no change to the end user experience as a result of this policy and your organization is sufficiently licensed to use this policy. We'll assign eligible users into a new security group named 'Conditional Access: Per-user multifactor authentication users (a4ea6c0f-b8fb-4d29-91f1-9f8cf0601e97)'. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryPhishingResistantMfa":  "Accounts that are assigned privileged administrative roles are frequent targets of attackers. Requiring phishing-resistant multifactor authentication (MFA) on those accounts is an easy way to reduce the risk of those accounts being compromised.",
@@ -11829,6 +11949,11 @@
                                                                                                                    "learnMoreLabel":  "enable GSA Adaptive Access Signaling."
                                                                                                                }
                                          },
+                    "ObjectPickerStrings":  {
+                                                "appId":  "App Id",
+                                                "blueprintId":  "Blueprint Id",
+                                                "objectId":  "Object Id"
+                                            },
                     "Overview":  {
                                      "SignInsProtectedByCa":  {
                                                                   "accessDenied":  "Access denied",
@@ -12098,6 +12223,7 @@
                                                                 }
                                                 },
                     "RiskRemediationValidation":  {
+                                                      "mustNotSelect":  "To enable Require Risk Remediation, you must not select {0}.",
                                                       "mustSelect":  "To enable Require Risk Remediation, you must select {0}.",
                                                       "xOrY":  "{0} or {1}"
                                                   },
@@ -12330,6 +12456,8 @@
                                         "accessRequirement2":  "Level 2",
                                         "accessRequirement3":  "Level 3",
                                         "accessRequirementsLabel":  "Accessing secured app data",
+                                        "accountRecovery":  "Recover account",
+                                        "accountRecoveryInfoText":  "This user action requires the idenity verification grant control. Please select an identity verification profile.",
                                         "appsActionsAuthTitle":  "Cloud apps, actions, or authentication context",
                                         "appsOrActionsSelectorInfoBallonText":  "Applications accessed or user actions",
                                         "appsOrActionsTitle":  "Cloud apps or actions",
@@ -12358,6 +12486,7 @@
                                                                   "usersGroups":  "Select at least one user or group"
                                                               },
                                                "learnMore":  "Control access based on who the policy will apply to, such as users and groups, workload identities, directory roles, or external guests.",
+                                               "learnMoreAgents":  "Control access based on who the policy will apply to, such as users and groups, agents, workload identities, directory roles, or external guests.",
                                                "learnMoreAriaLabel":  "Learn more about Conditional Access users, groups, and workload identities."
                                            },
                     "ValidationResult":  {
@@ -12406,7 +12535,9 @@
                                                           "requireMfa":  "Consider testing the new \"{0}\".",
                                                           "requirePasswordChangeEnabled":  "\"Require password change\" can only be used when policy is assigned to \"All cloud apps\".",
                                                           "requirePasswordChangeEnabledResource":  "\"Require password change\" can only be used when policy is assigned to \"All resources\".",
-                                                          "requireRiskRemediation":  "\"{0}\" can only be used when policy is assigned to \"{1}.\" This option requires multifactor authentication or authentication strengths controls. Other controls cannot be used. This option also requires the Session control \"Sign-in Frequency\" to be set to \"Every time.\""
+                                                          "requireRiskRemediation":  "\"{0}\" can only be used when policy is assigned to \"{1}.\" This option requires multifactor authentication or authentication strengths controls. Other controls cannot be used. This option also requires the Session control \"Sign-in Frequency\" to be set to \"Every time.\"",
+                                                          "verifiedId":  "The user action \"Recover account\" requires this control. Please select identity verification profile. No other controls are supported at this time.",
+                                                          "vidAmpWarning":  "Before creating a Conditional Access policy, make sure Verified ID is turned on as an authentication method."
                                                       },
                                          "Policies":  {
                                                           "Linux":  {
@@ -12486,6 +12617,17 @@
                                         "loadingPermissions":  "Loading permissions..."
                                     },
                     "advancedTabText":  "Advanced",
+                    "agentIdentitiesAlert":  "Some controls are not available due to 'agents' selection in policy assignment",
+                    "agentIdentitiesInfo":  "Apply policy to all agent identities.",
+                    "agentIdentitiesSelectInfo":  "Apply policy to specific agent identities in the tenant.",
+                    "agentUsersAlert":  "During public preview, block access to all resources is the only policy configuration allowed for 'All agents acting as users' selection. Additional conditions and controls are coming soon.",
+                    "agentUsersDescription":  "Agent users enable AI-powered applications to interact with systems and services that require user identities.",
+                    "agentUsersInfo":  "Apply policy to all agents acting as users.",
+                    "agentUsersSelect":  "Select agents acting as users",
+                    "agentUsersSelectTitle":  "Select agent users",
+                    "agentUsersWarning":  "All agents acting as users cannot be combined with other selections.",
+                    "agents":  "Agents (Preview)",
+                    "allAgentUsers":  "All agents acting as users (Preview)",
                     "allCloudAppsErrorBox":  "\"All cloud apps\" must be selected when \"Require password change\" grant is selected",
                     "allCloudAppsReauth":  "\"All cloud apps\" must be selected when \"Sign-in frequency every time\" session control and \"sign-in risk\" condition are selected",
                     "allCloudOrSpecificApps":  "The \"sign-in frequency every time\" session control requires \"all cloud apps\" or specifically-supported apps to be selected",
@@ -12515,6 +12657,7 @@
                     "applyConditionClientAppInfoBalloonContent":  "Configure client apps to apply the policy to specific client apps",
                     "applyConditionDevicePlatformInfoBalloonContent":  "Configure device platforms to apply the policy to specific platforms",
                     "applyConditionDeviceStateInfoBalloonContent":  "Configure device state to apply the policy to specific device state(s)",
+                    "applyConditionLocation":  "Configure Locations",
                     "applyConditionLocationInfoBalloonContent":  "Configure locations to apply the policy to trusted/untrusted locations",
                     "applyConditionSigninRiskInfoBalloonContent":  "Configure sign-in risk to apply the policy to selected risk level(s)",
                     "applyConditionUserRiskInfoBalloonContent":  "Configure user risk to apply the policy to selected risk level(s)",
@@ -12709,6 +12852,8 @@
                     "cloudappsSelectionBladeIncludedSelectorTitle":  "Select",
                     "cloudappsSelectionBladeSelectedCloudapps":  "Select apps",
                     "cloudappsSelectionBladeSelectedResources":  "Select resources",
+                    "cloudappsSelectionDescription":  "Select specific resources this policy targets.",
+                    "cloudappsSelectionTitle":  "Select specific resources",
                     "cloudappsSelectorInfoBallonText":  "Services which the user accesses to do work. For example, 'Salesforce'",
                     "cloudappsSelectorNone":  "No cloud apps, actions, or authentication context selected",
                     "cloudappsSelectorPluralExcluded":  "{0} apps excluded",
@@ -12846,7 +12991,7 @@
                     "memberSelectionCommandRemove":  "Remove",
                     "menuItemClaimProviderControls":  "Custom controls (Preview)",
                     "menuItemClassicPolicies":  "Classic policies",
-                    "menuItemDeletedPolicies":  "Deleted Policies (Preview)",
+                    "menuItemDeletedPolicies":  "Deleted Policies",
                     "menuItemInsightsAndReporting":  "Insights and reporting",
                     "menuItemManage":  "Manage",
                     "menuItemNamedLocationsPreview":  "Named locations (Preview)",
@@ -12949,6 +13094,7 @@
                     "policyConditionNetworkLocationDescription":  "Network and locations (determined by IP address range or GPS coordinates) the user is signing in from",
                     "policyConditionSigninRisk":  "Sign-in risk",
                     "policyConditionSigninRiskDescription":  "Likelihood that the sign-in is coming from someone other than the user. Risk level can be high, medium or low. Requires Microsoft Entra ID P2 license.",
+                    "policyConditionUserAndSigninRiskWarning":  "Avoid combining User Risk and Sign-in Risk in the same policy. These conditions rarely occur together, so Microsoft recommends creating separate policies - one for User Risk and another for Sign-in Risk.",
                     "policyConditionUserRisk":  "User risk",
                     "policyConditionUserRiskDescription":  "Configure user risk levels needed for policy to be enforced",
                     "policyConditioniClientApp":  "Client apps",
@@ -12968,6 +13114,7 @@
                     "policyControlRequiredPasswordChangeDisplayedName":  "Require password change",
                     "policyControlSelectAuthStrength":  "Require authentication strength",
                     "policyControlSelectRiskRemediation":  "Require risk remediation",
+                    "policyControlVerifiedIdDisplayedName":  "Require identity verification",
                     "policyControlsNoControlsSelected":  "0 controls selected",
                     "policyControlsSection":  "Access controls",
                     "policyCreatBladeTitle":  "New",
@@ -13114,12 +13261,12 @@
                     "trustedLocationStatusIconEnabled":  "Trusted status icon",
                     "tuesday":  "Tuesday",
                     "uploadInBadState":  "Unable to upload the specified file.",
-                    "userAgentOrSPSelectionBladeTitle":  "Users, agent identities or workload identities",
+                    "userAgentOrSPSelectionBladeTitle":  "Users, agents or workload identities",
                     "userAppNoneOption":  "None",
                     "userNamePlaceholderText":  "Enter User Name",
                     "userNotSetSeletorLabel":  "0 users and groups selected",
                     "userOnlySelectionBladeExcludeDescription":  "Select the users to exempt from the policy",
-                    "userOrAgentSelectionBladeTitle":  "Users or agent identities",
+                    "userOrAgentSelectionBladeTitle":  "Users or agents (Preview)",
                     "userOrGroupSelectionCountDiffBannerText":  "{0} configured in this policy have been deleted from the directory, but this doesn't affect the other users and groups in the policy. The next time you update the policy, the deleted users and/or groups will be automatically removed.",
                     "userOrSPNotSetSelectorLabel":  "0 users or workload identities selected",
                     "userOrSPSelectionBladeTitle":  "Users or workload identities",
@@ -13153,6 +13300,7 @@
                     "userSelectorUserSingular":  "1 user",
                     "userSelectorWithExclusion":  "{0} and {1}",
                     "usersGroupsLabel":  "Users and groups",
+                    "verifiedIdInfoBubble":  "Users must present a Verified ID and complete Face Check",
                     "viewApprovedAppsText":  "See list of approved client apps",
                     "viewCompliantAppsText":  "See list of policy protected client apps",
                     "viewPolicyInformation":  "View policy information",

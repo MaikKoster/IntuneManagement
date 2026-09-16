@@ -40,6 +40,7 @@ function Invoke-InitializeModule
         useDeviceContext="SettingDetails.installContextLabel"
         uninstallOnDeviceRemoval="SettingDetails.UninstallOnRemoval"
         isRemovable="SettingDetails.installAsRemovable"
+        preventManagedAppBackup="AppResources.AppSettingsUx.preventManagedAppBackup"
         vpnConfigurationId="PolicyType.vpn"
         Action="SettingDetails.actionColumnName"
         Schedule="ScheduledAction.List.schedule"
@@ -605,7 +606,7 @@ function Get-ObjectTypeString
 
 function Add-BasicDefaultValues
 {
-    param($obj, $objectType)
+    param($obj, $objectType, $profileTypeName = $null)
 
     Add-BasicPropertyValue (Get-LanguageString "SettingDetails.nameName") (Get-GraphObjectName $obj $objectType)
     Add-BasicPropertyValue (Get-LanguageString "SettingDetails.descriptionName") $obj.description
@@ -616,7 +617,7 @@ function Add-BasicDefaultValues
     if($objInfo)
     {
         $platformType = Get-LanguageString "Platform.$($objInfo.PlatformLanguageId)"
-        $profileType = Get-LanguageString "ConfigurationTypes.$($objInfo.PolicyType)"
+        $profileType = (?? $profileTypeName (Get-LanguageString "ConfigurationTypes.$($objInfo.PolicyType)"))
 
         if($platformType) { Add-BasicPropertyValue (Get-LanguageString "SettingDetails.platformSupported") $platformType }
         if($profileType) { Add-BasicPropertyValue (Get-LanguageString "TableHeaders.configurationType") $profileType }
@@ -1699,7 +1700,7 @@ function Add-IntentSettingObjectToList
         {
             $passConstraint = ($dependencyItemObj.RawValue -ne $null -and $dependencyItemObj.RawValue.ToString() -ne "NotConfigured" -and $dependencyItemObj.RawValue.ToString() -ne "False")
         }
-        if(-not $passConstraint) { break ]}
+        if(-not $passConstraint) { break }
     }
 
     if(-not $passConstraint)
@@ -3780,6 +3781,7 @@ function Invoke-TranslateAssignments
                                         "uninstallOnDeviceRemoval",
                                         "isRemovable",
                                         "useDeviceLicensing",
+                                        "preventManagedAppBackup",
                                         "androidManagedStoreAppTrackIds",
                                         "deliveryOptimizationPriority",
                                         "installTimeSettings",
@@ -3880,7 +3882,7 @@ function Invoke-TranslateAssignments
                         }
                         $value = $tmpStr -f $tmpType
                     }
-                    elseif($assignment.settings.$settingProp -eq "notConfigured")
+                    elseif("$($assignment.settings.$settingProp)" -eq "notConfigured")
                     {
                         $value = Get-LanguageString "BooleanActions.notConfigured"
                     }                    
@@ -4422,7 +4424,7 @@ function local:Invoke-StartDocumentatiom
     $script:migTable = $null
     $script:scopeTags = $null
 
-    $diSource = $nul
+    $diSource = $null
     $global:intentCategories = $null
     $global:catRecommendedSettings = $null
     $global:intentCategoryDefs = $null
@@ -4484,7 +4486,7 @@ function local:Invoke-StartDocumentatiom
                 $tmpObj | Add-Member Noteproperty -Name "GroupName" -Value (Get-ObjectTypeGroupName $tmpObj.ObjectType) -Force
             }
 
-            if($groupSourceList.Count -eq 0) { contnue }
+            if($groupSourceList.Count -eq 0) { continue }
 
             if($curObjectType.GroupId -eq "EndpointSecurity")
             {

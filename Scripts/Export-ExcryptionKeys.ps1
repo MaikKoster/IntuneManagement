@@ -117,7 +117,7 @@ function Export-EncryptionKeys
         if($DetectionXML.ApplicationInfo.MsiInfo)
         {
             $msiInfo.MsiPublisher = $DetectionXML.ApplicationInfo.MsiInfo.MsiPublisher
-            $msiInfo.MsiProductCode = $DetectionXML.ApplicationInfo.MsiInfo.Publisher
+            $msiInfo.MsiProductCode = $DetectionXML.ApplicationInfo.MsiInfo.MsiProductCode
             $msiInfo.MsiProductVersion = $DetectionXML.ApplicationInfo.MsiInfo.MsiProductVersion
             $msiInfo.MsiPackageCode = $DetectionXML.ApplicationInfo.MsiInfo.MsiPackageCode
             $msiInfo.MsiUpgradeCode = $DetectionXML.ApplicationInfo.MsiInfo.MsiUpgradeCode
@@ -141,7 +141,7 @@ function Export-EncryptionKeys
 
         if([IO.Directory]::Exists($exportFolder) -eq $false)
         {
-            md $exportFolder | Out-Null
+            New-Item -ItemType Directory -Path $exportFolder -Force | Out-Null
         }
 
         $fileName = $exportFolder + "\$($fileInfo.BaseName)_$($DetectionXML.ApplicationInfo.UnencryptedContentSize).json"

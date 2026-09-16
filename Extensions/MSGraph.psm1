@@ -99,6 +99,29 @@ function Invoke-InitializeModule
         }
     )
 
+    # Bit 1: Bulk export
+    # Bit 2: Manual export
+    # Bit 3: Bulk import
+    # Bit 4: Manual import
+    $script:lstClearCacheTypes = @(
+        [PSCustomObject]@{
+            Name = "Bulk export (Default)"
+            Value = "1" # Bulk export only
+        },
+        [PSCustomObject]@{
+            Name = "Bulk and manual export"
+            Value = "3"
+        },
+        [PSCustomObject]@{
+            Name = "Bulk export/import"
+            Value = "7" #
+        },
+        [PSCustomObject]@{
+            Name = "Bulk and manual import/export"
+            Value = "15" # Both bulk and manual
+        }
+    )
+
     # Make sure MS Graph settings are added before exiting before App Id and Tenant Id is missing
     Write-Log "Add settings and menu items"
 
@@ -215,7 +238,7 @@ function Invoke-InitializeModule
         DefaultValue = $true
         Description = "This will export/import info for referenced/navigation properties eg certificates in VPN profiles etc."
     }) "ImportExport"
-        
+
     Add-SettingsObject (New-Object PSObject -Property @{
         Title = "ApplicationId"
         Key = "GraphAzureAppId"
@@ -243,6 +266,13 @@ function Invoke-InitializeModule
         Type = "Boolean"
         DefaultValue = $false
         Description = "Login with specified app in the UI. Note: Change will require app restart"
+    }) "GraphSilent"
+
+    Add-SettingsObject (New-Object PSObject -Property @{
+        Title = "TenantId"
+        Key = "GraphAzureTenantId"
+        Type = "String"
+        Description = "Tenent Id used when logging in with App in UI"
     }) "GraphSilent"
 
     Add-SettingsObject (New-Object PSObject -Property @{
@@ -290,7 +320,7 @@ function Invoke-InitializeModule
         Key = "GraphPageSize"
         Type = "List"
         ItemsSource = $script:lstGraphPageSize
-        DefaultValue = "20"
+        DefaultValue = "100"
         Description = "How many items load at a time"
     }) "GraphGeneral"
 
@@ -302,6 +332,42 @@ function Invoke-InitializeModule
         DefaultValue = "disabled"
         Description = "Define the default option of the Conditional Access policy state. It is recommended to have this to disabled to avoid accidental tenant lock out"
     }) "ImportExport"
+
+    Add-SettingsObject (New-Object PSObject -Property @{
+        Title = "Sort Json Properties"
+        Key = "SortJsonProperties"
+        Type = "Boolean"
+        DefaultValue = $false
+        Description = "This will use sorted JSON properties when exporting JSON data. Making sure that properties are in the same order in each export."
+    }) "ImportExport"
+
+    Add-SettingsObject (New-Object PSObject -Property @{
+        Title = "Clear Cache Before Export"
+        Key = "ClearCacheBeforeExportImport"
+        Type = "List"
+        ItemsSource = $script:lstClearCacheTypes
+        DefaultValue = "1"
+        Description = "Specifies when objects should be cleared from cache.<LineBreak />" +
+                    "<Bold>Bulk export (Default)</Bold> - Clear objects from cache before bulk export.<LineBreak />" +
+                    "<Bold>Bulk and manual export</Bold> - Clear objects from cache before bulk and manual export.<LineBreak />" +
+                    "<Bold>Bulk export/import</Bold> - Clear objects from cache before bulk export or import.<LineBreak />" +
+                    "<Bold>Bulk and manual export/import</Bold> - Clear objects from cache before bulk or manual export or import.<LineBreak /><LineBreak />" +
+                    "<Bold>Note:</Bold> - Only Entra objects are cleared by default. Enable <Bold>Clear all objects from cache</Bold> to clear MigTable etc.."
+
+    }) "ImportExport"
+
+    Add-SettingsObject (New-Object PSObject -Property @{
+        Title = "Clear all objects from cache"
+        Key = "ClearAllObjectsFromCache"
+        Type = "Boolean"
+        DefaultValue = $false
+        Description = "This will clear all objects from cache e.g. groups, MigTabole etc.<LineBreak />" + 
+        "This can be used if objects have been changed outside of the application to make sure the latest info e.g.<LineBreak />" +
+        "* New groups added<LineBreak />" +
+        "* New dependencies added<LineBreak />" +
+        "<Bold>Note:</Bold> - Clearing all cached object might cause import/export to take long timw or even reimport deleted policies/groups etc."
+    }) "ImportExport"
+
 }
 
 function Get-GraphAppInfo
@@ -520,7 +586,8 @@ function Invoke-GraphRequest
             do 
             {
                 $ret = Invoke-RestMethod -Uri $Url -Method $HttpMethod @params 
-                if($? -eq $false) 
+                $callSucceeded = $?
+                if($callSucceeded -eq $false) 
                 {
                     throw $global:error[0]
                 }
@@ -556,7 +623,6 @@ function Invoke-GraphRequest
             if($_.Exception.Response.StatusCode -eq 429 -and $retryCount -le $retryMax)
             {
                 # NOT OK - Should use the date property but could not replicate the issue
-                $retryCount++
                 $retryRequest = $true
                 Write-Log "429 - Too many requests received. Wait 5 s before retry" 2
                 Start-Sleep -Seconds 5
@@ -790,7 +856,7 @@ function Add-GraphObjectProperties
 
 function Show-GraphObjects
 {
-    param($filter, [switch]$ObjectTypeChanged)
+    param($filter, [switch]$ObjectTypeChanged, $FromGraphObjects)
 
     $global:curObjectType = $global:lstMenuItems.SelectedItem
 
@@ -820,7 +886,7 @@ function Show-GraphObjects
         {
             $requiredPermissions = ""
         }
-        $global:txtNotLoggedIn.Content = "You don't have the required permissons to access $($global:curObjectType.Title).$($requiredPermissions)`n`Missing perimssons: $missingScopes`n`nRequest consent from the 'Request Consent' link in the user login info`nor`nDisable the 'Use Default Permissions' setting to trigger consent prompt.`nNote: Changing the 'Use Default Permissions' setting will require a restart of the app`nand a 'manual' login" 
+        $global:txtNotLoggedIn.Content = "You don't have the required permissions to access $($global:curObjectType.Title).$($requiredPermissions)`n`Missing permissions: $missingScopes`n`nRequest consent from the 'Request Consent' link in the user login info`nor`nDisable the 'Use Default Permissions' setting to trigger consent prompt.`nNote: Changing the 'Use Default Permissions' setting will require a restart of the app`nand a 'manual' login" 
         $global:grdNotLoggedIn.Visibility = "Visible"
         $global:grdData.Visibility = "Collapsed"
         return
@@ -833,7 +899,9 @@ function Show-GraphObjects
 
     if(-not $global:lstMenuItems.SelectedItem) { return }
 
-    Write-Status "Loading $($global:curObjectType.Title) objects" 
+    if(-not $FromGraphObjects) {
+        Write-Status "Loading $($global:curObjectType.Title) objects" 
+    }
 
     if($global:lstMenuItems.SelectedItem.ShowForm -ne $false)
     {
@@ -851,10 +919,20 @@ function Show-GraphObjects
 
     $params = @{}
     $pageSize = 0
-    $tmpPageSize = Get-SettingValue "GraphPageSize"
-    if ($tmpPageSize -eq "All")
+    if($global:curObjectType.PageSize)
     {
-        $params.Add("AllPages", $true)        
+        $tmpPageSize = $global:curObjectType.PageSize
+    }
+    else {        
+        $tmpPageSize = Get-SettingValue "GraphPageSize"
+    }
+
+    if($global:curObjectType.SupportsPageSize -eq $false) {
+        # Do nothing - use default page size from API
+    }
+    elseif ($tmpPageSize -eq "All")
+    {
+        $params.Add("AllPages", $true)
     }else
     {
         
@@ -872,7 +950,12 @@ function Show-GraphObjects
         $params.Add("SinglePage", $true)
     }
 
-    [array]$graphObjects = Get-GraphObjects -property $global:curObjectType.ViewProperties -objectType $global:curObjectType -Filter $filter @params
+    if($FromGraphObjects) {
+        [array]$graphObjects = $FromGraphObjects
+    }
+    else {
+        [array]$graphObjects = Get-GraphObjects -property $global:curObjectType.ViewProperties -objectType $global:curObjectType -Filter $filter @params
+    }
 
     $dgObjects.AutoGenerateColumns = $false
     $dgObjects.Columns.Clear()
@@ -950,7 +1033,9 @@ function Show-GraphObjects
     }
     else
     {
-        $dgObjects.ItemsSource = $null
+        $ocList = [System.Collections.ObjectModel.ObservableCollection[object]]::new()
+        $dgObjects.ItemsSource = [System.Windows.Data.CollectionViewSource]::GetDefaultView($ocList)
+        #$dgObjects.ItemsSource = $null
     }
 
     
@@ -1552,7 +1637,14 @@ function Start-GraphObjectExport
     $script:exportRoot = Expand-FileName (Get-XamlProperty $script:exportForm "txtExportPath" "Text")
     Write-Log "Export root folder: $script:exportRoot"
 
-    $global:AADObjectCache = $null
+    if((Get-SettingValue "ClearAllObjectsFromCache"))
+    {
+        Invoke-GraphAuthenticationUpdated
+    }
+    else
+    {
+        $global:AADObjectCache = $null
+    }
 
     foreach($item in $script:exportObjects)
     { 
@@ -1849,6 +1941,20 @@ function Show-GraphImportForm
     Add-XamlEvent $script:importForm "btnImportSelected" "add_click" {
         Write-Status "Import objects"
         #Get-GraphDependencyDefaultObjects
+
+        $clearCacheValue = ?? ((Get-SettingValue "ClearCacheBeforeExportImport" "1") -as [int]) 1
+        if($clearCacheValue -band 8)
+        {
+            if((Get-SettingValue "ClearAllObjectsFromCache"))
+            {
+                Invoke-GraphAuthenticationUpdated
+            }
+            else
+            {
+                $global:AADObjectCache = $null
+            }
+        }
+
         $allowUpdate = $true 
         $filesToImport = $global:dgObjectsToImport.ItemsSource | Where Selected -eq $true
         if($global:curObjectType.PreFilesImportCommand)
@@ -2059,6 +2165,19 @@ function Start-GraphObjectImport
     $tmpFolder = Expand-FileName (Get-XamlProperty $script:importForm "txtImportPath" "Text")
     Write-Log "Import root folder: $tmpFolder"
 
+    $clearCacheValue = ?? ((Get-SettingValue "ClearCacheBeforeExportImport" "1") -as [int]) 1
+    if($clearCacheValue -band 4)
+    {
+        if((Get-SettingValue "ClearAllObjectsFromCache"))
+        {
+            Invoke-GraphAuthenticationUpdated
+        }
+        else
+        {
+            $global:AADObjectCache = $null
+        }
+    }
+
     $importedObjects = 0
 
     $txtNameFilter = $global:txtImportNameFilter.Text.Trim()
@@ -2125,7 +2244,7 @@ function Start-GraphObjectImport
                         ImportedObject = $importedObj
                     }
                 }
-                $arrImportedObjects = $importedObj
+                $arrImportedObjects += $importedObj
 
                 $importedObjects++
                 $importedObjectsCurType++
@@ -3074,17 +3193,7 @@ function Get-GraphMigrationObjectsFromFile
                     {
                         $groupName = $migTableGroupName
                         Write-Log "No group object found for $groupName. Creating a cloud group with default settings" 2
-                        $dateStr = ((Get-Date).ToString("yyMMddHHmmss"))
-                        
-                        if(($groupName.Length + $dateStr.Length) -gt 64)
-                        {
-                            $nickName = $groupName.Substring(0,(64-$dateStr.Length))
-                        }
-                        else
-                        {
-                            $nickName = $groupName
-                        }
-                        $nickName = $nickName + $dateStr
+                        $nickName = (New-Guid).Guid.SubString(0,10)
                         
                         $groupJson = @"
                         { 
@@ -3274,6 +3383,19 @@ function Export-GraphObjects
 
     $objectType = $global:curObjectType
     Write-Status "Export $($objectType.Title)"
+
+    $clearCacheValue = ?? ((Get-SettingValue "ClearCacheBeforeExportImport" "1") -as [int]) 1
+    if($clearCacheValue -band 2)
+    {
+        if((Get-SettingValue "ClearAllObjectsFromCache"))
+        {
+            Invoke-GraphAuthenticationUpdated
+        }
+        else
+        {
+            $global:AADObjectCache = $null
+        }
+    }
 
     $script:ExportRoot = (Get-XamlProperty $script:exportForm "txtExportPath" "Text")
     $folder = Get-GraphObjectFolder  $objectType $script:ExportRoot (Get-XamlProperty $script:exportForm "chkAddObjectType" "IsChecked") (Get-XamlProperty $script:exportForm "chkAddCompanyName" "IsChecked")
@@ -4538,7 +4660,12 @@ function Save-GraphObjectToFile
 {
     param($obj, $fileName)
 
-    $json = $obj | ConvertTo-Json -Depth 50
+    if(((Get-SettingValue "SortJsonProperties") -eq $true)) {
+        $json = $obj | ConvertTo-JsonSortedGraph -Depth 50
+    }
+    else {
+        $json = $obj | ConvertTo-Json -Depth 50
+    }
 
     if($global:Organization.Id)
     {
@@ -4633,4 +4760,142 @@ function Confirm-GraphMatchFilter
         }
     }
     return $true
+}
+
+function Invoke-SortJsonGraphObject {
+    param(
+        [Parameter(Mandatory)]
+        $InputObject
+    )
+
+    if ($null -eq $InputObject) { return $null }
+
+    if ($InputObject -is [System.Collections.IList]) {
+        $new = @()
+        foreach ($item in $InputObject) {
+            $new += Invoke-SortJsonGraphObject $item
+        }
+        return ,$new
+    }
+
+    if ($InputObject -is [System.Collections.IDictionary] -or
+        $InputObject -is [System.Management.Automation.PSCustomObject]) {
+
+        $props =
+            if ($InputObject -is [System.Collections.IDictionary]) {
+                $InputObject.Keys
+            } else {
+                $InputObject.PSObject.Properties.Name
+            }
+
+        $baseGroups = @{}
+
+        foreach ($p in $props) {
+            if ($p -match '^(.+?)@(.+)$') {
+                $base  = $matches[1]
+                if (-not $baseGroups.ContainsKey($base)) {
+                    $baseGroups[$base] = @{
+                        Base = $null
+                        Meta = New-Object System.Collections.ArrayList
+                    }
+                }
+                [void]$baseGroups[$base].Meta.Add($p)
+            }
+        }
+
+        foreach ($p in $props) {
+            if ($baseGroups.ContainsKey($p)) {
+                $baseGroups[$p].Base = $p
+            }
+        }
+
+        $atProps   = @()  # starts with @
+        $hashProps = @()  # starts with #
+        $normal    = @()  # everything else
+
+        foreach ($p in $props) {
+
+            if ($p.StartsWith('@')) {
+                $atProps += $p
+                continue
+            }
+
+            if ($p.StartsWith('#')) {
+                $hashProps += $p
+                continue
+            }
+
+            # If in a baseGroup, skip for now (added later)
+            if ($baseGroups.ContainsKey($p)) {
+                continue
+            }
+
+            $normal += $p
+        }
+
+        $atProps   = $atProps   | Sort-Object
+        $normal    = $normal    | Sort-Object
+        $hashProps = $hashProps | Sort-Object
+
+        $orderedNames = @()
+
+        $orderedNames += $atProps
+
+        foreach ($base in ($baseGroups.Keys | Sort-Object)) {
+
+            $meta = $baseGroups[$base].Meta | Sort-Object
+
+            foreach ($m in $meta) {
+                $orderedNames += $m
+            }
+
+            if ($null -ne $InputObject.$base) {
+                $orderedNames += $base
+            }
+        }
+
+        $orderedNames += $normal
+        $orderedNames += $hashProps
+
+        $result = [ordered]@{}
+        foreach ($p in $orderedNames) {
+            $value = 
+                if ($InputObject -is [System.Collections.IDictionary]) {
+                    $InputObject[$p]
+                } else {
+                    $InputObject.$p
+                }
+
+            if($null -ne $value) {
+                $result[$p] = Invoke-SortJsonGraphObject $value
+            }
+            else {                
+                $result[$p] = $null                
+            }
+
+            if($InputObject.$p -is [Array] -and $result[$p] -isnot [Array]) {
+                if($result[$p] -eq $null) {
+                    $result[$p] = @()
+                }
+                else {
+                    $result[$p] = @($result[$p])
+                }
+            }
+        }
+
+        return [pscustomobject]$result
+    }
+
+    return $InputObject
+}
+
+function ConvertTo-JsonSortedGraph {
+    param(
+        [Parameter(ValueFromPipeline, Mandatory)]
+        $InputObject,
+
+        [int]$Depth = 50
+    )
+    $sorted = Invoke-SortJsonGraphObject $InputObject
+    return $sorted | ConvertTo-Json -Depth $Depth
 }

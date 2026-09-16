@@ -348,7 +348,7 @@ function Get-EMIntuneFilterUsage
 
         foreach($groupID in $loadedGroups.Keys)
         {
-            $filterObjs = $script:objFilterUsage | WHere GroupID -eq $groupID
+            $filterObjs = $script:objFilterUsage | Where GroupID -eq $groupID
             if($filterObjs -and $loadedGroups[$groupID])
             {
                 foreach($filterObj in $filterObjs) {

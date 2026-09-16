@@ -145,6 +145,54 @@
                                                                                       "enabled":  true
                                                                                   },
                                                                                   {
+                                                                                      "nameResourceKey":  "wPA2PersonalOption",
+                                                                                      "value":  "wpa2Personal",
+                                                                                      "children":  [
+                                                                                                       {
+                                                                                                           "dataType":  20,
+                                                                                                           "category":  121,
+                                                                                                           "nameResourceKey":  "preSharedKeyName",
+                                                                                                           "descriptionResourceKey":  "preSharedKeyDescription",
+                                                                                                           "emptyValueResourceKey":  "wifiPasswordExample",
+                                                                                                           "childSettings":  [
+
+                                                                                                                             ],
+                                                                                                           "options":  [
+
+                                                                                                                       ],
+                                                                                                           "entityKey":  "preSharedKey",
+                                                                                                           "booleanActions":  0,
+                                                                                                           "policyType":  54,
+                                                                                                           "enabled":  true
+                                                                                                       }
+                                                                                                   ],
+                                                                                      "enabled":  true
+                                                                                  },
+                                                                                  {
+                                                                                      "nameResourceKey":  "wPA3PersonalOption",
+                                                                                      "value":  "wpa3Personal",
+                                                                                      "children":  [
+                                                                                                       {
+                                                                                                           "dataType":  20,
+                                                                                                           "category":  121,
+                                                                                                           "nameResourceKey":  "preSharedKeyName",
+                                                                                                           "descriptionResourceKey":  "preSharedKeyDescription",
+                                                                                                           "emptyValueResourceKey":  "wifiPasswordExample",
+                                                                                                           "childSettings":  [
+
+                                                                                                                             ],
+                                                                                                           "options":  [
+
+                                                                                                                       ],
+                                                                                                           "entityKey":  "preSharedKey",
+                                                                                                           "booleanActions":  0,
+                                                                                                           "policyType":  54,
+                                                                                                           "enabled":  true
+                                                                                                       }
+                                                                                                   ],
+                                                                                      "enabled":  true
+                                                                                  },
+                                                                                  {
                                                                                       "nameResourceKey":  "wEPOption",
                                                                                       "value":  "wep",
                                                                                       "enabled":  true

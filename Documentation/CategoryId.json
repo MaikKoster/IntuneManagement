@@ -152,5 +152,6 @@
     "150":  "DefenderAntivirus",
     "151":  "CustomCompliance",
     "152":  "IosDefenderAtp",
-    "153":  "WSLCompliance"
+    "153":  "WSLCompliance",
+    "154":  "WindowsZtdns"
 }

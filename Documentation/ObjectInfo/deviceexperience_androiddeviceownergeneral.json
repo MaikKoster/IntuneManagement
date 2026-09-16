@@ -317,7 +317,7 @@
                                                                                                                                          "descriptionResourceKey":  "kioskDropOutDescription",
                                                                                                                                          "childSettings":  [
                                                                                                                                                                {
-                                                                                                                                                                   "dataType":  20,
+                                                                                                                                                                   "dataType":  17,
                                                                                                                                                                    "category":  46,
                                                                                                                                                                    "nameResourceKey":  "kioskModeExitCodeName",
                                                                                                                                                                    "descriptionResourceKey":  "kioskModeExitCodeDescription",

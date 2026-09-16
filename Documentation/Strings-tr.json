@@ -101,6 +101,11 @@
                                            "win32AppPackageFile":  "Cihaza dışarıdan yüklenebilecek biçimdeki uygulamanızı içeren dosya. Geçerli paket türü: .intunewin.​",
                                            "winGetStoreSelectApp":  "Intune ile dağıtmak istediğiniz mağaza uygulamaları için Microsoft Store uygulamasında (yeni) arama yapın."
                                        },
+                              "Status":  {
+                                             "active":  "Etkin",
+                                             "deleted":  "Silindi",
+                                             "softDeleted":  "Geçici Olarak Silindi"
+                                         },
                               "descriptionPreview":  "Önizleme",
                               "descriptionPreviewLabel":  "Önizleme",
                               "descriptionRequired":  "Açıklama gerekiyor.",
@@ -227,6 +232,7 @@
                                                "v16":  "iOS 16.0",
                                                "v17":  "iOS 17.0",
                                                "v18":  "iOS 18.0",
+                                               "v26":  "iOS 26.0",
                                                "v8":  "iOS 8.0",
                                                "v9":  "iOS 9.0"
                                            },
@@ -256,6 +262,9 @@
                                                          },
                                                  "V15":  {
                                                              "0":  "macOS Sequoia 15.0"
+                                                         },
+                                                 "V26":  {
+                                                             "0":  "macOS Tahoe 26.0"
                                                          }
                                              },
                                    "Windows":  {
@@ -276,7 +285,8 @@
                                                    "V11Release":  {
                                                                       "release21H2":  "Windows 11 21H2",
                                                                       "release22H2":  "Windows 11 22H2",
-                                                                      "release23H2":  "Windows 11 23H2"
+                                                                      "release23H2":  "Windows 11 23H2",
+                                                                      "release24H2":  "Windows 11 24H2"
                                                                   },
                                                    "v10":  "Windows 10.0",
                                                    "v80":  "Windows 8.0",
@@ -442,6 +452,7 @@
                    "androidUrlValidation":  "Şuna benzer geçerli bir URL girin: https://play.google.com/store/apps/details?id=com.microsoft.bing&hl=tr",
                    "appInstallContext":  "Uygulama yükleme bağlamı",
                    "appUrlLabel":  "App Store URL'si",
+                   "appleManagementType":  "Yönetim türü",
                    "appleUrlValidation":  "Şuna benzer geçerli bir URL girin: https://www.itunes.apple.com/us/app/microsoft-excel/id586683407?mt=8",
                    "applicableDeviceType":  "İlgili cihaz türü",
                    "assignmentActionLabel":  "Mod",
@@ -520,7 +531,7 @@
                    "installationSourceLabel":  "Uygulama türü",
                    "installerTypeInfoBalloon":  "Uygulama paketinin yükleyici türü.",
                    "installerTypeLabel":  "Yükleyici Türü",
-                   "isFeatured":  "Bunu Şirket Portalı'nda öne çıkan uygulama olarak görüntüle",
+                   "isFeatured":  "Bunu öne çıkan uygulama olarak göster",
                    "isMAMEnabledToggleLabel":  "Evet",
                    "lastModifiedDateTime":  "Son güncelleştirme Zamanı",
                    "ldapUrl":  "LDAP URL'si",
@@ -583,6 +594,7 @@
                    "twoWeeks":  "İki Hafta",
                    "unifiedAssignmentsLabel":  "Şuna ata:",
                    "unlimited":  "Sınırsız",
+                   "updateMethod":  "Güncelleştirme Yöntemi",
                    "urlHint":  "Geçerli bir url girin",
                    "useManagedBrowserHint":  "Yalnızca Android ve iOS. Daha fazla bilgi edinin",
                    "useManagedBrowserLabel":  "Bu bağlantının açılabilmesi için yönetilen tarayıcı gerektir",
@@ -936,6 +948,11 @@
                                           },
                             "noData":  "İlke şablonu bulunamadı"
                         },
+    "ProfileType":  {
+                        "deviceOwnerOnly":  "Yalnızca Tam Olarak Yönetilen, Ayrılmış ve Şirkete Ait İş Profili",
+                        "workProfileAndDeviceOwner":  "Tüm Profil Türleri",
+                        "workProfileOnly":  "Yalnızca Kişilerin Sahipliğindeki İş Profili"
+                    },
     "PolicyType":  {
                        "EdgeSmartScreenSettings":  {
                                                        "description":  "Microsoft Edge uygulaması tarafından önerilen SmartScreen ayarları: Bulut yapılandırması şablonunda Windows 10. https://aka.ms/CloudConfigGuide"
@@ -1075,6 +1092,7 @@
                        "windowsInformationProtection":  "Windows Bilgi Koruması",
                        "windowsPhoneCompliancePolicy":  "Windows Phone uyumluluk ilkesi",
                        "windowsUpdateforBusiness":  "İş İçin Windows Update",
+                       "windowsZeroTrustDns":  "Sıfır Güven DNS",
                        "wiredNetwork":  "Kablolu ağ",
                        "workProfile":  "Kişisel olarak sahip olunan iş profili"
                    },
@@ -1250,6 +1268,8 @@
                                                "assignmentFilterTypeColumnHeader":  "Filtre modu",
                                                "assignmentToast":  "Son kullanıcı bildirimleri",
                                                "assignmentTypeTableHeader":  "ATAMA TÜRÜ",
+                                               "associatedDomains":  "İlişkili Alan Adları",
+                                               "associatedDomainsDirectDownloadAllowed":  "İlişkili Alan Adları Doğrudan İndirme İzin Verildi",
                                                "autoUpdate":  "Otomatik güncelleştirme",
                                                "deadlineTimeColumnLabel":  "Yükleme son tarihi",
                                                "deliveryOptimizationPriorityHeader":  "Teslim iyileştirme önceliği",
@@ -1263,6 +1283,8 @@
                                                "preventManagedAppBackup":  "iCloud uygulamasını yedeklemeyi engelle",
                                                "restartGracePeriodHeader":  "Yeniden başlatma mehil süresi",
                                                "startTimeColumnLabel":  "Kullanılabilirlik",
+                                               "statusTableHeader":  "Durum",
+                                               "tapToPayScreenLockEnabled":  "Dokun ve Öde Ekran Kilidi Etkin",
                                                "tracks":  "İzlemeler",
                                                "uninstallOnRemoval":  "Cihaz kaldırılırken yüklemeyi kaldır",
                                                "updateMode":  "Güncelleştirme Önceliği",
@@ -1308,6 +1330,7 @@
                                          "winGetPublicApp":  "Windows Paket Yöneticisi Topluluk Deposu",
                                          "winGetStoreApp":  "Microsoft Store uygulaması (yeni)",
                                          "windowsAppXLobApp":  "Windows AppX iş kolu uygulaması",
+                                         "windowsAutoUpdateCatalogApp":  "Windows otomatik güncelleme katalog uygulaması",
                                          "windowsClassicApp":  "Windows uygulaması (Win32)",
                                          "windowsEdgeApp":  "Microsoft Edge (Windows 10 ve üzeri)",
                                          "windowsMobileMsiLobApp":  "Windows MSI iş kolu uygulaması",
@@ -1879,7 +1902,7 @@
                                    "customMessageTextBox":  "Hata iletisi",
                                    "customMessageToggle":  "Zaman sınırı veya hatası oluştuğunda özel ileti göster",
                                    "enableForAutopilotOnlyToggle":  "İlk çalıştırma deneyimi (OOBE) tarafından sağlanan cihazlarda yalnızca sayfayı göster",
-                                   "installQualityUpdatesToggle":  "Windows güncelleştirmelerini yükleyin (cihazı yeniden başlatabilir) (önizleme)",
+                                   "installQualityUpdatesToggle":  "Windows güncelleştirmelerini yükleyin (cihaz yeniden başlatılabilir)",
                                    "progressToggle":  "Uygulama ve profil yapılandırma ilerlemesini göster",
                                    "resetToggle":  "Yükleme hatası oluşursa kullanıcıların cihazı sıfırlamasına izin ver",
                                    "timeout":  "Yükleme belirtilen dakikadan uzun sürerse hata göster"
@@ -2078,10 +2101,10 @@
                    "helpSupportReplacement":  "Yardım ve destek ({0})",
                    "iOSAppProvisioning":  "iOS uygulama sağlama profilleri",
                    "incompleteUserEnrollments":  "Eksik kullanıcı kayıtları",
-                   "iosUpdates":  "iOS/iPadOS güncelleştirmeleri",
+                   "iosUpdates":  "iOS/iPadOS güncelleştirmeleri (kullanım dışı)",
                    "legacyPcManagement":  "Eski bilgisayar yönetimi",
-                   "macOSSoftwareUpdate":  "macOS güncelleştirmeleri",
-                   "macOSSoftwareUpdateAccountSummaries":  "macOS cihazlar için yükleme durumu",
+                   "macOSSoftwareUpdate":  "macOS güncelleştirmeleri (kullanım dışı)",
+                   "macOSSoftwareUpdateAccountSummaries":  "macOS cihazları için yükleme durumu (kullanım dışı)",
                    "macOSSoftwareUpdateCategorySummaries":  "Yazılım güncelleştirmeleri özeti",
                    "macOSSoftwareUpdateStateSummaries":  "güncelleştirmeler",
                    "managedGooglePlay":  "Yönetilen Google Play",
@@ -2094,7 +2117,7 @@
                    "onPremisesConnector":  "Exchange ActiveSync şirket içi bağlayıcısı",
                    "onPremisesDeviceAccess":  "Exchange ActiveSync cihazları",
                    "onPremisesManageAccess":  "Exchange şirket içi erişimi",
-                   "outOfDateIosDevices":  "iOS cihazları için yükleme hataları",
+                   "outOfDateIosDevices":  "iOS cihazları için yükleme hataları (kullanım dışı)",
                    "overview":  "Genel Bakış",
                    "partnerDeviceManagement":  "İş ortağı cihaz yönetimi",
                    "perUpdateRingDeploymentState":  "Güncelleştirme halkası dağıtım durumuna göre",
@@ -2103,6 +2126,7 @@
                    "platformDevices":  "{0} cihaz",
                    "platformEnrollment":  "{0} kaydı",
                    "policies":  "İlkeler",
+                   "policiesForMicrosoftEdge":  "Microsoft Edge ilkeleri",
                    "profiles":  "Profiller",
                    "properties":  "Özellikler",
                    "reports":  "Raporlar",
@@ -2116,6 +2140,8 @@
                    "servicenowConnector":  "ServiceNow bağlayıcısı",
                    "shellScripts":  "Kabuk betikleri",
                    "teamViewerConnector":  "TeamViewer bağlayıcısı",
+                   "teamViewerConnectorOld":  "TeamViewer connector (old)",
+                   "teamViewerV2Connector":  "TeamViewer connector",
                    "telecomeExpenseManagement":  "Telekom gider yönetimi",
                    "tenantAdmin":  "Kiracı yöneticisi",
                    "tenantAdministration":  "Kiracı yönetimi",
@@ -2230,7 +2256,7 @@
                                                          },
                         "GenmojiConfigurationState":  {
                                                           "label":  "Genmoji",
-                                                          "tooltip":  "  Engellendiyse, ilke tarafından yönetilen uygulama kullanılırken genmoji özelliği devre dışı bırakılır. Daha fazla bilgi için <a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">buraya bakın. </a>"
+                                                          "tooltip":  "  Engellendiyse, ilke tarafından yönetilen uygulama kullanılırken genmoji özelliği devre dışı bırakılır. Daha fazla bilgi için <a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">buraya bakın. </a>"
                                                       },
                         "IOSBackup":  {
                                           "label":  "Kuruluş verilerini iTunes ve iCloud yedeklerine yedekle",
@@ -2262,7 +2288,8 @@
                                                     },
                         "OpenLinksManagedBrowser":  {
                                                         "label":  "Diğer uygulamalarla web içerik aktarımını kısıtla",
-                                                        "tooltip":  "<p>Bu uygulamanın web içeriğini açabileceği uygulamaları belirtmek için aşağıdaki seçeneklerden birini seçin: </p>\r\n<p><b> Microsoft Edge:</b> Web içeriğinin yalnızca Microsoft Edge'de açılmasına izin verin.<a href=\"{0}\" target=\"_blank\"> Microsoft Edge'in verilerinizi nasıl koruduğunu öğrenin.</a></p>\r\n<p><b> Yönetilmeyen tarayıcı:</b> Web içeriğinin yalnızca “Yönetilmeyen tarayıcı protokolü” ayarıyla tanımlanan yönetilmeyen tarayıcıda açılmasına izin ver</p>\r\n<p><b>Herhangi bir uygulama:</b> Herhangi bir uygulamada web bağlantılarına izin ver</p>"
+                                                        "tooltip":  "<p>Bu uygulamanın web içeriğini açabileceği uygulamaları belirtmek için aşağıdaki seçeneklerden birini seçin: </p>\r\n<p><b> Microsoft Edge:</b> Web içeriğinin yalnızca Microsoft Edge'de açılmasına izin verin.<a href=\"{0}\" target=\"_blank\"> Microsoft Edge'in verilerinizi nasıl koruduğunu öğrenin.</a></p>\r\n<p><b> Yönetilmeyen tarayıcı:</b> Web içeriğinin yalnızca “Yönetilmeyen tarayıcı protokolü” ayarıyla tanımlanan yönetilmeyen tarayıcıda açılmasına izin ver</p>\r\n<p><b>Herhangi bir uygulama:</b> Herhangi bir uygulamada web bağlantılarına izin ver</p>",
+                                                        "warning":  "Kaynak verilerinizi korumak için lütfen “Microsoft Edge” seçeneğini seçin."
                                                     },
                         "OverrideBiometric":  {
                                                   "tooltip":  "Gerekirse zaman aşımına (dakika olarak eylemsizlik süresi) bağlı olarak bir PIN istemi, biyometrik istemlerini geçersiz kılar. Bu zaman aşımı değerine ulaşılmazsa biyometrik istemi gösterilmeye devam eder. Bu zaman aşımı değeri, 'Erişim gereksinimlerini yeniden denetlemek için geçecek süre (dakika olarak eylemsizlik süresi)' altında belirtilen değerden büyük olmalıdır. "
@@ -2327,7 +2354,7 @@
                                                              },
                         "ScreenCaptureConfigurationState":  {
                                                                 "label":  "Ekran görüntüsü",
-                                                                "tooltip":  " Engellendiyse, ilke tarafından yönetilen uygulama kullanılırken ekran görüntüsü özelliği devre dışı bırakılır. Daha fazla bilgi için <a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">buraya bakın. </a>"
+                                                                "tooltip":  " Engellendiyse, ilke tarafından yönetilen uygulama kullanılırken ekran görüntüsü özelliği devre dışı bırakılır. Daha fazla bilgi için <a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">buraya bakın. </a>"
                                                             },
                         "SendData":  {
                                          "label":  "Kuruluş verilerini diğer uygulamalara gönder",
@@ -2365,7 +2392,7 @@
                                         },
                         "WritingToolsConfigurationState":  {
                                                                "label":  "Yazma araçları",
-                                                               "tooltip":  "Engellendiyse, ilke tarafından yönetilen uygulama kullanılırken yazma araçları devre dışı bırakılır. Daha fazla bilgi için <a href = \"https://support.apple.com/guide/iphone/get-started-with-apple-intelligence-iphc28624b81/18.0/ios/18.0 \">buraya bakın. </a>"
+                                                               "tooltip":  "Engellendiyse, ilke tarafından yönetilen uygulama kullanılırken yazma araçları devre dışı bırakılır. Daha fazla bilgi için <a href = \"https://learn.microsoft.com/en-us/intune/intune-service/apps/app-protection-policy-settings-ios#functionality\">buraya bakın. </a>"
                                                            },
                         "Tap":  {
                                     "numberOfDays":  "Gün Sayısı",
@@ -2401,7 +2428,7 @@
                     "macOSDmgApp":  "macOS uygulaması (DMG)",
                     "macOSEdgeApp":  "Microsoft Edge (macOS)",
                     "macOSLobApp":  "macOS iş kolu uygulaması",
-                    "macOSMicrosoftDefenderApp":  "Microsoft Defender ATP (macOS)",
+                    "macOSMicrosoftDefenderApp":  "Uç Nokta için Microsoft Defender (macOS)",
                     "macOSOfficeSuiteApp":  "Microsoft 365 Uygulamaları (macOS)",
                     "macOSPkgApp":  "macOS uygulaması (PKG)",
                     "macOSWebClip":  "macOS web klibi",
@@ -2418,6 +2445,7 @@
                     "officeSuiteApp":  "Microsoft 365 Uygulamaları (Windows 10 ve üzeri)",
                     "webApp":  "Web bağlantısı",
                     "windowsAppXLobApp":  "Windows AppX iş kolu uygulaması",
+                    "windowsAutoUpdateCatalogApp":  "Windows Otomatik Güncelleme Kataloğu uygulaması",
                     "windowsClassicApp":  "Windows uygulaması (Win32)",
                     "windowsEdgeApp":  "Microsoft Edge (Windows 10 ve üzeri)",
                     "windowsMobileMsiLobApp":  "Windows MSI iş kolu uygulaması",
@@ -2779,9 +2807,9 @@
                                       "importPendingStatus":  "İçeri aktarma sürüyor. Geçen süre: {0} dk. Bu işlem {1} dakikaya kadar sürebilir."
                                   },
                       "DirectoryService":  {
-                                               "activeDirectoryAD":  "Microsoft Entra hibrite katılmış",
+                                               "activeDirectoryAD":  "Microsoft Entra hibrite katıldı",
                                                "activeDirectoryADLabel":  "Autopilot ile Microsoft Entra hibrit katılımı",
-                                               "azureAD":  "Microsoft Entra’ya katılmış",
+                                               "azureAD":  "Microsoft Entra’ya katıldı",
                                                "unknownType":  "Bilinmeyen Tür"
                                            },
                       "Filter":  {
@@ -4246,6 +4274,7 @@
                      "windowsDefenderATP":  "Uç Nokta için Microsoft Defender",
                      "windowsHelloForBusiness":  "İş için Windows Hello",
                      "windowsSpotlight":  "Windows Spot",
+                     "windowsZtdns":  "Sıfır Güven DNS",
                      "wiredNetwork":  "Kablolu ağ",
                      "wireless":  "Kablosuz",
                      "wirelessProjection":  "Kablosuz projeksiyon",
@@ -4539,7 +4568,7 @@
     "WindowsQualityUpdateProfile":  {
                                         "Details":  {
                                                         "DaysUntilForcedReboot":  {
-                                                                                      "label":  "Yeniden başlatma zorlanmadan önce beklenecek gün sayısı"
+                                                                                      "label":  "Yeniden başlatma gerekiyorsa, zorlama olmadan önce geçecek gün sayısını seçin"
                                                                                   },
                                                         "Description":  {
                                                                             "label":  "Açıklama"
@@ -4548,7 +4577,7 @@
                                                                      "label":  "Ad"
                                                                  },
                                                         "QualityUpdateRelease":  {
-                                                                                     "label":  "Cihaz işletim sistemi sürümü şundan düşükse kalite güncelleştirmeleri yüklemesini hızlandır:"
+                                                                                     "label":  "Hızlandırmak istediğiniz kalite güncelleştirmelerini seçin"
                                                                                  },
                                                         "bladeTitle":  "Kalite güncelleştirmeleri Windows 10 ve sonrası (önizleme)",
                                                         "loadError":  "Yüklenemedi!"
@@ -4590,6 +4619,7 @@
                                             "deviceTypeTargetingEdit1":  "Bu ilkeye atama filtreleri eklerseniz 'Cihaz Yönetimi Türü' özelliği, 'Uygulamalar' sayfasında 'Tüm cihaz türlerinde uygulamalara hedefle' ve 'Cihaz türleri' için belirtilen değerlere ek olarak uygulanır.",
                                             "deviceTypeTargetingEdit2":  "Cihaz yönetim türü hedeflemesini düzenlemek için 'Tüm cihaz türlerinde uygulamaları hedefle' = 'Evet' seçeneğini sıfırlayın. Daha sonra 'Cihaz Yönetimi Türü' için istenen değerleri içeren bir MAM atama filtresi oluşturun.",
                                             "deviceTypeTargetingHasMoved":  "Uygulama Koruma İlkeleri hakkında daha fazla bilgi edinin",
+                                            "edgeUpsell":  "Yönetilen uygulamalardan gelen tüm web içeriğinin Microsoft Edge tarafından korunmasını sağlamak için Diğer uygulamalarla web içeriği aktarımını kısıtla bölümünde Microsoft Edge'i seçin. Ardından İncele + kaydet öğesini seçin.",
                                             "encryptionAndroid1":  "Intune mobil uygulama yönetim ilkesiyle ilişkilendirilen uygulamalar için, şifreleme Microsoft tarafından sağlanır. Veriler, mobil uygulama yönetimi ilkesindeki ayara göre dosya G/Ç işlemleri sırasında eş zamanlı olarak şifrelenir. Android üzerindeki yönetilen uygulamalar, platform şifreleme kitaplıklarından yararlanan CBC modunda AES-128 şifrelemesini kullanır. Şifreleme yöntemi FIPS 140-2 uyumlu değildir. SHA-256 şifrelemesi, SigAlg parametresini kullanan açık bir yönerge olarak desteklenir ve yalnızca 4.2 ve üzeri cihazlarda çalışır. Cihaz depolama alanındaki içerikler her zaman şifrelenir.",
                                             "encryptionAndroid2":  "Uygulama ilkenizde şifreleme gerektirdiğinizde, cihazlarına erişmek için son kullanıcıların bir PIN ayarlaması ve kullanması gerekir. Cihaz erişimi için ayarlanmış bir PIN yoksa uygulamalar başlatılmaz ve son kullanıcıya “Şirketiniz, bu uygulamaya erişmek için öncelikle bir cihaz PIN'i etkinleştirmenizi gerektirdi.\" iletisi görüntülenir.",
                                             "encryptionMac1":  "Intune mobil uygulama yönetim ilkesiyle ilişkilendirilen uygulamalar için şifreleme Microsoft tarafından sağlanır. Veriler, mobil uygulama yönetimi ilkesindeki ayara göre dosya G/Ç işlemleri sırasında eş zamanlı olarak şifrelenir. Mac üzerindeki yönetilen uygulamalar, platform şifreleme kitaplıklarından yararlanan CBC modunda AES-128 şifrelemesini kullanır. Şifreleme yöntemi FIPS 140-2 uyumlu değildir. SHA-256 şifrelemesi, SigAlg parametresini kullanan açık bir yönerge olarak desteklenir ve yalnızca 4.2 ve üzeri cihazlarda çalışır. Cihaz depolama alanındaki içerikler her zaman şifrelenir.",
@@ -5213,8 +5243,7 @@
                            "androidEnterpriseWorkProfileAlwaysOnVpnClientDescription":  "Belirtilen VPN istemcisi cihazda yüklü olmalıdır ve uygulama başına VPN iş profillerini desteklemelidir, aksi takdirde bir hata oluşacaktır. Uygulamayı Yönetilen Google Play mağazasında onaylamanız, uygulamayı Intune ile eşitlemeniz ve kullanıcının iş profiline yüklenmesi için dağıtmanız gerekeceğini unutmayın.",
                            "androidEnterpriseWorkProfileAlwaysOnVpnEnabledDescription":  "Mümkün olduğunda VPN'e otomatik olarak bağlanmak ve yeniden bağlanmak için iş profilinde bir VPN istemcisi ayarlayın. İş profilinde tüm VPN istemcileri için her zaman açık VPN'i devre dışı bırakmak için Devre Dışı seçeneğini belirleyin. Belirli bir cihazda her zaman açık VPN için yalnızca bir VPN istemcisi yapılandırılabilir, bu yüzden tek bir cihaza birden fazla her zaman açık VPN ilkesi dağıtılmadığından emin olun.",
                            "androidEnterpriseWorkProfileAlwaysOnVpnLockdownModeEnabledDescription":  "Bu etkinleştirildiğinde, tüm ağ trafiğini VPN tüneli üzerinden iş profili için zorlar. Bir VPN bağlantısı kurulamıyorsa cihazın iş profilinde ağ trafiğine izin verilmeyecek.",
-                           "androidForWorkMigrationPolicyDescriptionParagraph1":  "Cihazları, ilkeyi daha verimli bir şekilde uygulayan Android Yönetim API'sine taşımak için bu profili oluşturun ve atayın. Web tabanlı kayıtla ayarlanan cihazlar otomatik olarak Android Yönetim API'sini kullanır.",
-                           "androidForWorkMigrationPolicyDescriptionParagraph2":  "Cihazlar Intune ilkesi tarafından yönetilen Wi-Fi'ye bağlı olmadıklarında ve yeterli pile sahip olduklarında taşınacaklardır. ​​",
+                           "androidForWorkMigrationPolicyDescriptionParagraph1":  "Cihazları, ilkeyi daha verimli bir şekilde uygulayan Android Yönetim API'sine taşımak için bu profili oluşturun ve atayın. Web tabanlı kayıtla ayarlanan cihazlar otomatik olarak Android Yönetim API'sini kullanır. Cihazlar yeterli pil şarjına sahip olduklarında hareket edecektir.",
                            "androidForWorkMigrationPolicyLearnMoreText":  "Bu geliştirme hakkında daha fazla bilgi edinin. ​​",
                            "androidGeneralKiosk":  "Bu ayarlar yalnızca Samsung KNOX Standart cihazlar için geçerlidir.",
                            "androidHiddenApps":  "Kullanıcıdan gizlenen uygulamalar (yalnızca Samsung KNOX Standard)",
@@ -6582,6 +6611,8 @@
                            "disableDeviceLocationSharingName":  "Konum Paylaşımı",
                            "disableMacAddressRandomization":  "MAC adresini rastgele seçme özelliğini devre dışı bırak",
                            "disableMacAddressRandomizationDescriptionIOS":  "Bu profili kullanarak bağlanan cihazları rastgele bir MAC adresi yerine cihazların gerçek Wi-Fi MAC adresini sunmaya zorlayın. Bu işlem, cihazların MAC adresine göre izlenmesini sağladığından, bu işlemi yalnızca ağ erişim denetimi (NAC) desteği gibi gerektiği durumlarda yapmanız gerekir. iOS 14 ve üzeri için geçerlidir.",
+                           "disableMacAddressRandomizationDescriptionMacOS":  "Bu Wi-Fi profiline bağlanan cihazların rastgele MAC adresi yerine fiziksel MAC adreslerini kullanması gerekip gerekmediğini belirtir. Devre dışı bırakıldığında, gerçek Wi-Fi MAC adresini kullanır. Etkinleştirildiğinde, MAC adresinin rastgele hale getirilmesini sağlar. macOS 15 ve sonraki sürümler için geçerlidir. Varsayılan değer Etkin olarak ayarlanmıştır.",
+                           "disableMacAddressRandomizationMacOS":  "MAC adresini rastgele seçme",
                            "disableOnDemandUserOverrideDescription":  "İsteğe bağlı VPN ayarını açılmaya zorlayın. Bunları engellerseniz kullanıcılarınız cihazlarında isteğe bağlı VPN ayarını görür ancak bu ayarda değişiklik yapamaz. iOS 14 ve üzeri sürümler için geçerlidir.",
                            "disableOnDemandUserOverrideMacOSDescription":  "İsteğe bağlı VPN ayarını açılmaya zorlayın. Bunları engellerseniz kullanıcılarınız cihazlarında isteğe bağlı VPN ayarını görür ancak bu ayarda değişiklik yapamaz. macOS 11 ve üzeri sürümler için geçerlidir.",
                            "disableOnDemandUserOverrideName":  "Kullanıcıların otomatik VPN'yi devre dışı bırakmasını engelle",
@@ -6707,6 +6738,7 @@
                            "dropTrafficName":  "Ağ trafiğini bırak",
                            "durationInHours":  "Saat olarak süre",
                            "dynamicDomainNameOption":  "Microsoft Entra Kimliği",
+                           "eAPAKAName":  "EAP - AKA",
                            "eAPCustomName":  "Özel",
                            "eAPFASTName":  "EAP - FAST",
                            "eAPName":  "EAP",
@@ -6988,6 +7020,8 @@
                            "enableWindowsDefenderFirewallName":  "Windows Güvenlik Duvarı",
                            "enableWithUEFILock":  "UEFI kilidiyle etkinleştir",
                            "enableWithoutUEFILock":  "UEFI kilidi olmadan etkinleştir",
+                           "enableWpaTransitionModeDescription":  "Etkin olarak ayarlandığında, ağ tarafından destekleniyorsa WPA3 geçiş modu etkinleşir ve WPA2’ye geri dönüşe olanak tanır. Devre dışı olarak ayarlandığında, katı WPA3 modu zorlanır ve geri dönüş gerçekleşmez.",
+                           "enableWpaTransitionModeName":  "WPA3 geçiş modu",
                            "enabledForAzureAdAndHybridOption":  "Microsoft Entra'ya katılmış ve hibrite katılmış cihazlar için anahtar döndürme etkinleştirildi",
                            "enabledForAzureAdOption":  "Microsoft Entra'ya katılmış cihazlar için anahtar döndürme etkinleştirildi",
                            "enabledNoKeepGoing":  "Sitenin Internet Explorer 11'da açıldığı iletisini göster",
@@ -8394,6 +8428,7 @@
                            "mustBeValidGuid":  "Geçerli bir UUID olmalıdır. Örnek: 782AFCFC-7CAA-436C-8BF0-78CD0FFBD4AF vb.",
                            "mustBeValidHost":  "Geçerli bir konak olmalıdır. Örnek: www.host.com vs.",
                            "mustBeValidHttpURL":  "Geçerli bir HTTP veya HTTPS URL'si olmalıdır. Örnek: https://www.contoso.com",
+                           "mustBeValidIPOrCidr":  "Geçerli bir IP adresi (198.51.100.1, 2001:db8:0:130F::87C:140B) veya CIDR gösterimi ile aralık (198.51.100.0/24, 2001:db8::/32) girin",
                            "mustBeValidIpAddress":  "Geçerli bir IP adresi olmalıdır. Örnek: 4.3.6.0",
                            "mustBeValidKaiserWifiFormat":  "Biçim doğru değil. Kullanıcı biçimi örneği: abcd{{WifiMacAddress}}, Parola biçimi örneği: abcd{{WifiMacAddress}}{{PreSharedKey}}",
                            "mustBeValidMonthDayDateFormat":  "Geçerli bir tarih biçimi (AA/DD) olmalıdır. Örnek: 31/01, 28/02 vb.",
@@ -8692,7 +8727,7 @@
                            "performServerValidationDescription":  "PEAP sunucusu ile değişim sırasında sertifikayı doğrulayarak sunucunun kimliğini doğrulamak için etkinleştirin. Mümkün olduğunda bu ayarı Evet olarak belirlemenizi öneririz. Bu ayarın Hayır veya Yapılandırılmadı olarak belirlenmesi daha az güvenlidir.",
                            "personalProfileAppsAllowInstallFromUnknownSourcesDescription":  "İzin verildiğinde kullanıcılar, Google Play Store dışındaki kaynaklardan uygulama yüklemek için \"bilinmeyen kaynaklar\" ayarını etkinleştirebilir.",
                            "personalProfileAppsAllowInstallFromUnknownSourcesName":  "Kullanıcıların, kişisel profildeki bilinmeyen kaynaklardan uygulama yüklemesini etkinleştirmesine izin ver",
-                           "personalProfileCameraBlockedDescription":  "Cihazdaki tüm kameraları engelle",
+                           "personalProfileCameraBlockedDescription":  "Kişisel kullanım sırasında kameraya erişimi engelle",
                            "personalProfileCameraBlockedName":  "Kamera",
                            "personalProfilePersonalApplications":  "Kişisel uygulamalar",
                            "personalProfilePersonalApplicationsListTypeDescription":  "Kişisel profilde cihaza yüklenmesine ve çalıştırılmasına izin verilen ve onaylanan uygulamaların listesini oluşturmak için “İzin verilen uygulamalar” seçeneğine tıklayın. Kişisel profilde cihaza yüklenmesi ve çalıştırılması yasaklanan ve engellenen uygulamaların listesini oluşturmak için “Engellenen uygulamalar” seçeneğine tıklayın.",
@@ -8878,7 +8913,7 @@
                            "publicNetworkName":  "Ortak (bulunamayan) ağ",
                            "publicOutboundConnectionsSummaryLabel":  "Giden bağlantılar için varsayılan eylem (Genel ağlar)",
                            "publicPlayStoreEnabledDescription":  "\"İzin Ver\"i seçerseniz kullanıcılar, İstemci Uygulamalarında kaldırılmasını istediğiniz uygulamalar dışındaki tüm uygulamalara erişebilir. Bu ayar için \"Engelle\" veya \"Yapılandırılmadı\"yı seçerseniz kullanıcılar yalnızca İstemci Uygulamalarında kullanılabilir veya gerekli olarak listelediğiniz uygulamalara erişebilir.",
-                           "publicPlayStoreEnabledName":  "Google Play Store'daki tüm uygulamalara izin ver",
+                           "publicPlayStoreEnabledName":  "Google Play Store'daki tüm uygulamalara erişim izni ver (iş profili düzeyinde)",
                            "publicPlayStoreEnabledWarning":  "\"İzin Ver\"i seçerseniz kullanıcılar Google Play Store'dan herhangi bir uygulamayı yükleyebilir. Daha sonra seçiminizi \"Engelle\" veya \"Yapılandırılmadı\" olarak değiştirirseniz, İstemci Uygulamalarında kullanılabilir veya gerekli olarak listelediğiniz uygulamalar dışındaki tüm uygulamalar cihazdan kaldırılacaktır.",
                            "publicPlayStoreSelectionAllowList":  "Engelle",
                            "publicPlayStoreSelectionBlockList":  "İzin ver",
@@ -10103,6 +10138,8 @@
                            "wHfBWindowsHelloForBusinessBlockedName":  "İş için Windows Hello'yu yapılandır",
                            "wPA2Enterprise":  "WPA2-Enterprise (Kimlik Bilgisi Oluşturucu)",
                            "wPA2EnterpriseOption":  "WPA/WPA2-Enterprise",
+                           "wPA2PersonalOption":  "WPA2/WPA3-Personal",
+                           "wPA3PersonalOption":  "WPA3-Personal",
                            "wPAEnterpriseOption":  "WPA-Enterprise",
                            "wPAPSKOption":  "WPA Önceden paylaşılan anahtar",
                            "wPAPersonalOption":  "WPA/WPA2-Personal",
@@ -10594,6 +10631,78 @@
                            "zscalerUserDomain":  "Özel etki alanı adı",
                            "zscalerUserDomainDescription":  "Zscaler uygulamasındaki oturum açma alanını önceden doldurmak için bir statik etki alanı girin. Bu alan boş bırakılırsa kullanıcının Microsoft Entra etki alanı kullanılır.",
                            "zscalerUserDomainExample":  "contoso.com",
+                           "ztdnsAdvancedSettingsChevronName":  "Gelişmiş ayarlar",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledDescription":  "Windows DNS istemcisinin DNS sorgularını çözümlemek için makinenin ana bilgisayar dosyasını kullanmasını engelleyin. ",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledLearnMore":  "Sıfır Güven DNS ile ana bilgisayar dosyası çözümleme hakkında daha fazla bilgi edinin.",
+                           "ztdnsAdvancedSettingsHostsFileResolutionEnabledName":  "Konaklar dosyasından sorgular",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledDescription":  "Bu ayarı etkinleştirerek, localhost (127.0.0.1 veya ::1) DNS sorgularının güvenilir bir DNS sunucusuna gönderilmesini sağlayabilir ve şifrelenmemiş sorguların filtrelenmeden geçmesini önleyebilirsiniz. ",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledLearnMore":  "Sıfır Güven DNS ile DNS yönlendirme hakkında daha fazla bilgi edinin.",
+                           "ztdnsAdvancedSettingsLoopbackDnsForwarderEnabledName":  "Geri Döngü DNS ileticisi",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedDescription":  "127.0.0.1 ve ::1 gibi geri döngü adreslerine giden trafiği engellemek güvenliği artırır.",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedLearnMore":  "Sıfır Güven DNS ile geri döngü trafiğini engelleme hakkında daha fazla bilgi edinin.",
+                           "ztdnsAdvancedSettingsLoopbackTrafficBlockedName":  "Geri Döngü IP trafiği",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsDescription":  "Ad çözümlemesinden sonra bir IP adresine olan bağlantının ne kadar süreyle geçerli kalacağını ayarlayın. Saniye cinsinden yaş 30 ile 604800 arasında olabilir ve varsayılan değer 86400'dür (24 saat). ",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsLearnMore":  "Sıfır Güven DNS ile kullanıldığında DNS kayıt süreleri hakkında daha fazla bilgi edinin.",
+                           "ztdnsAdvancedSettingsMaximumConnectionTimeInSecondsName":  "DNS kayıtlarının yaşı (saniye)",
+                           "ztdnsClientCertificateChevronName":  "İstemci sertifikası doğrulaması",
+                           "ztdnsClientCertificateEkuHeaderLearnMore":  "İstemci sertifikası EKU'ları hakkında daha fazla bilgi edinin.",
+                           "ztdnsClientCertificateEkuHeaderName":  "Güvenilen DNS sunucularına yönelik ağ isteklerini kimlik doğrulaması ve güvenlik sağlamak için bir istemci sertifikasının sahip olması gereken EKU'ları yapılandırın. EKU'lar, istemci sertifikası kimlik doğrulaması kullanıldığında gereklidir.",
+                           "ztdnsClientCertificateHeaderLearnMore":  "İstemci sertifikası kimlik doğrulaması hakkında daha fazla bilgi edinin.",
+                           "ztdnsClientCertificateHeaderName":  "Güvenilen DNS sunucuları karşılıklı kimlik doğrulaması kullandığında, gerekli istemci kimlik doğrulama sertifikalarını veren sertifika yetkilendirme kuruluşlarını da sağlamanız gerekir. İstemci sertifikalarının kullandığı EKU'ları da sağlayabilirsiniz.",
+                           "ztdnsClientRootCertificateHeader":  "İstemci sertifikası kök sertifikayı veren",
+                           "ztdnsExemptionRuleDescriptionName":  "Açıklama",
+                           "ztdnsExemptionRuleDescriptionPlaceholder":  "Açıklama",
+                           "ztdnsExemptionRuleDisplayNameName":  "Ad",
+                           "ztdnsExemptionRuleDisplayNamePlaceholder":  "Ad",
+                           "ztdnsExemptionRuleIpAddressName":  "IP adresi veya aralık",
+                           "ztdnsExemptionRuleIpAddressPlaceholder":  "192.41.101.1, 2001:db8::/32",
+                           "ztdnsExemptionRuleIpAddressesDescription":  "Bu adresler güvenilen DNS sunucuları tarafından işlemden geçmeyecektir.",
+                           "ztdnsExemptionRuleIpAddressesName":  "IP adresleri veya aralıkları",
+                           "ztdnsExemptionRulesChevronName":  "Muafiyet kuralları",
+                           "ztdnsExemptionRulesDescription":  "Bu kurallar, hangi isteklerin güvenilen DNS işlemlerinden muaf tutulacağını belirler ve bunların sıfır güven DNS zorlamasını atlamasına olanak tanır.",
+                           "ztdnsExemptionRulesHeaderName":  "Engelleme kurallarından bazı ana bilgisayarları veya alt ağları muaf tutmanız gerekebilir. Öyleyse, buraya onlar için kurallar ekleyin.",
+                           "ztdnsExemptionRulesName":  "Muafiyet kuralları",
+                           "ztdnsMinimumBuildInfoboxName":  "Windows 11, sürüm 25H2 veya üstü",
+                           "ztdnsModeChevronName":  "Sıfır Güven DNS modu",
+                           "ztdnsModeHeaderLearnMore":  "Modlar hakkında daha fazla bilgi edinin.",
+                           "ztdnsModeHeaderName":  "<strong>Denetim</strong> modu, trafiği engellemeden bağlantıları günlüğe kaydeder. Olaylar Windows Olay Görüntüleyicisi'nde kaydedilir. Zorlama modunu kullanmadan önce, ağ erişimini kesintiye uğratmadan etkiyi değerlendirmek için Denetim modunu kullanın.<br /><br /> <strong>Zorlama</strong> modu, belirttiğiniz güvenilir DNS sunucularından gönderilmeyen tüm DNS sorgularını engeller.<br /><br />",
+                           "ztdnsModeSelectionAuditName":  "Denetim",
+                           "ztdnsModeSelectionEnforceName":  "Zorla",
+                           "ztdnsModeSelectionName":  "Mod",
+                           "ztdnsModeWarningName":  "Zorlama modunda, güvenilen bir DNS sunucusuna erişemeyen bir cihaza erişemezsiniz.",
+                           "ztdnsNotConfiguredName":  "Yapılandırılmadı",
+                           "ztdnsRootCertificateDescription":  "Bu CA sertifikası, şu anda kurmakta olduğunuz profil için sertifikayı veren CA'nın kök sertifikasıyla eşleşmelidir.",
+                           "ztdnsSecureDnsServerChevronName":  "Güvenilen DNS sunucuları",
+                           "ztdnsSecureDnsServerDisplayNameDescription":  "Güvenilen DNS sunucusunun görüntü adı.",
+                           "ztdnsSecureDnsServerDisplayNameName":  "Ad",
+                           "ztdnsSecureDnsServerDisplayNamePlaceholder":  "Görünen ad",
+                           "ztdnsSecureDnsServerDohAndDotOptionName":  "HTTPS üzerinden DNS ve TLS üzerinden DNS",
+                           "ztdnsSecureDnsServerDohHeaderName":  "HTTPS üzerinden DNS ayarları",
+                           "ztdnsSecureDnsServerDohOptionName":  "HTTPS üzerinden DNS",
+                           "ztdnsSecureDnsServerDohPortDescription":  "HTTPS üzerinden DNS sunucusu için HTTPS bağlantı noktası. Varsayılan bağlantı noktası 443'tür.",
+                           "ztdnsSecureDnsServerDohPortName":  "Bağlantı Noktası",
+                           "ztdnsSecureDnsServerDohUrlDescription":  "Bu URL, HTTPS üzerinden DNS talepleri göndermek için kullanılacaktır.",
+                           "ztdnsSecureDnsServerDohUrlName":  "URL",
+                           "ztdnsSecureDnsServerDohUrlPlaceholder":  "https://dns.contoso.com/dns-query",
+                           "ztdnsSecureDnsServerDotHeaderName":  "TLS üzerinden DNS ayarları",
+                           "ztdnsSecureDnsServerDotHostnameDescription":  "Bu ana bilgisayar adı, güvenilen DNS sunucu sertifikasının konu adını doğrulama için kullanılacaktır.",
+                           "ztdnsSecureDnsServerDotHostnameName":  "Ana Bilgisayar Adı",
+                           "ztdnsSecureDnsServerDotHostnamePlaceholder":  "dns.contoso.com",
+                           "ztdnsSecureDnsServerDotOptionName":  "TLS üzerinden DNS",
+                           "ztdnsSecureDnsServerDotPortDescription":  "TLS üzerinden DNS sunucusu tarafından kullanılan TLS bağlantı noktası numarası. Varsayılan bağlantı noktası 853'tür.",
+                           "ztdnsSecureDnsServerDotPortName":  "Bağlantı Noktası",
+                           "ztdnsSecureDnsServerHeaderLearnMore":  "Güvenilen DNS sunucularını yapılandırma hakkında daha fazla bilgi edinin.",
+                           "ztdnsSecureDnsServerHeaderName":  "DNS sorguları yalnızca burada belirttiğiniz güvenilen DNS sunucularına gönderilir. Her sunucu için kullanılacak güvenlik protokolünü ayarlayın: HTTPS üzerinden DNS (DoH) veya TLS üzerinden DNS (DoT). IPv4 veya IPv6 adres formatını kullanabilirsiniz.",
+                           "ztdnsSecureDnsServerIpAddressDescription":  "Bu, genel bir DNS sunucusu veya kuruluşunuzun DNS sunucusu olabilir.",
+                           "ztdnsSecureDnsServerIpAddressName":  "IP adresi",
+                           "ztdnsSecureDnsServerIpAddressPlaceholder":  "198.51.100.1, 2001:0db8:85a3::8a2e:0370:7334",
+                           "ztdnsSecureDnsServerName":  "Güvenilen DNS sunucuları",
+                           "ztdnsSecureDnsServerTypeDescription":  "Güvenilen DNS sunucusu tarafından desteklenen protokoller.",
+                           "ztdnsSecureDnsServerTypeName":  "Protokol",
+                           "ztdnsServerRootCertificateHeader":  "Sunucu sertifikası kök sertifikayı veren",
+                           "ztdnsTrustedCAChevronName":  "Güvenilen sertifika yetkilileri",
+                           "ztdnsTrustedCAHeaderLearnMore":  "Güvenilen sertifika yetkilendirme kuruluşları hakkında daha fazla bilgi edinin.",
+                           "ztdnsTrustedCAHeaderName":  "Belirttiğiniz güvenilen DNS sunucuları, güvenilen sertifika yetkilendirme kuruluşları tarafından verilen sertifikaları kullanmalıdır. Bu sertifikaları burada belirtin.",
                            "platformSupported":  "Desteklenen platform",
                            "aadDeviceId":  "Microsoft Entra Cihaz Kimliği",
                            "access":  "Erişim",
@@ -10808,6 +10917,7 @@
                            "displayName":  "Görünen ad",
                            "downloadReport":  "Raporu indir",
                            "downloadingReport":  "Rapor indiriliyor",
+                           "edgeCampaignInfoBoxText":  "Yönetilen uygulamalardan gelen tüm web içeriğinin Microsoft Edge tarafından korunmasını sağlamak için Diğer uygulamalarla web içeriği aktarımını kısıtla bölümünde Microsoft Edge'i seçin. Ardından İncele + kaydet öğesini seçin.",
                            "edgeGSAssignment":  "Edge mobilin yüklü olmasını istediğiniz kullanıcı gruplarını seçin. Edge, bu kullanıcılar tarafından kaydedilen tüm iOS ve Android cihazlara yüklenecek.",
                            "edgeGSIntroBenefitHTML":  "<p>iOS veya Android kullanıcılarınızın kurumsal cihazlara sorunsuz göz atabilmeleri için Microsoft Edge uygulamasını edinin! Edge, kullanıcıların iş içeriklerini birleştirmelerine, düzenlemelerine ve yönetmelerine yardımcı olan yerleşik özelliklerle web ortamındaki kalabalıktan kurtulmalarını sağlar. Edge uygulamasında kurumsal Microsoft Entra hesaplarıyla giriş yapan iOS ve Android cihaz kullanıcılarının tarayıcıları, çalışma alanı Sık kullanılanları ve tanımladığınız web sitesi filtreleriyle önceden yüklenmiş olarak gelir.</p><p>Kullanıcıların iOS veya Android cihazları kaydetmelerini engellediyseniz, bu senaryoda kayıt etkinleştirmez ve kullanıcıların Edge'i kendileri yüklemesi gerekir.</p>",
                            "edgeGSIntroPrereqHTML":  "<p>Kullanıcılarınızın ihtiyaç duyduğu çalışma alanı sık kullanılanlarını ve web'de gezinmeniz için gereken filtreleri size soracağız. Devam etmeden önce aşağıdaki görevleri tamamladığınızdan emin olun:</p>\r\n<li>Kullanıcıları <a href='https://go.microsoft.com/fwlink/?linkid=2102458'>Microsoft Entra gruplarına ekleyin</a></li>\r\n<li>iOS veya Android cihazlarını Intune’a kaydedin. <a href='https://go.microsoft.com/fwlink/?linkid=2102547'>Daha fazla bilgi edinin</a></li>\r\n<li>Edge’e eklemek için iş yeri sık kullanılanlarının listesini toplayın.</li>\r\n<li>Edge’de uygulamak için web sitesi filtrelerinin listesini toplayın.</li>",
@@ -11023,8 +11133,8 @@
                            "ok":  "Tamam",
                            "on":  "Açık",
                            "onlineButUnableToCheckin":  "Hesap devre dışı",
-                           "orgDestinationAnySourceOptionText":  "Org data destinations and any source",
-                           "orgDestinationOrgSourceOptionText":  "Org data destinations and org data sources",
+                           "orgDestinationAnySourceOptionText":  "Kuruluş veri hedefleri ve herhangi bir kaynak",
+                           "orgDestinationOrgSourceOptionText":  "Kuruluş veri hedefleri ve kuruluş veri kaynakları",
                            "orgPermission":  "Kuruluş okuma, güncelleştirme izni",
                            "override":  "Geçersiz kıl",
                            "overview":  "Genel Bakış",
@@ -11427,13 +11537,13 @@
                                         "gradualRolloutLicenseWarningEdit":  "İlke bu özellik seçilmeden kaydedilene kadar bu özellik kullanılmaya ve yapılandırılmaya devam eder.",
                                         "licenseLearnMoreText":  "Önkoşullar ve özellik güncelleştirmesi ilkeleri hakkında daha fazla bilgi edinin.",
                                         "optionalUpdateWarning":  "İsteğe bağlı seçeneği yalnızca Windows 11 güncelleştirmeleri için kullanılabilir",
-                                        "profileNameWarning":  "Ad 64 karakterden kısa olmalıdır",
+                                        "profileNameWarning":  "Ad 255 karakterden kısa olmalıdır",
                                         "specificLicensingRequired":  "Seçilen bazı özellikler belirli lisans gerektirir."
                                     },
     "AzureCA":  {
                     "AdrsUserActionSelectionWarning":  {
                                                            "conditions":  "Conditions that require device registration are not available with \"Register or join devices\" user action.",
-                                                           "message":  "Only \"Require multifactor authentication\" can be used in policies created for the \"Register or join devices\" user action.{0}"
+                                                           "message":  "Only \"Require multifactor authentication or Require Auth strength'\" can be used in policies created for the \"Register or join devices\" user action.{0}"
                                                        },
                     "AuthContext":  {
                                         "Delete":  {
@@ -11564,7 +11674,7 @@
                                                                          "placeholder":  "Choose an attribute"
                                                                      },
                                                 "Configure":  {
-                                                                  "infoBalloon":  "Configure app filters you want to policy to apply to."
+                                                                  "infoBalloon":  "Configure custom security attributes you want the policy to apply to."
                                                               },
                                                 "NoPermissions":  {
                                                                       "learnMoreAria":  "More about custom security attribute permissions.",
@@ -11584,14 +11694,15 @@
                                                  "learnMoreB2C":  "Control access based on all or specific cloud apps.",
                                                  "learnMoreNetworkAccess":  "Control access based on all or specific network access traffic, cloud apps or actions.",
                                                  "learnMorePublicClouds":  "Control access based on all or specific apps, internet resources, actions, or authentication context.",
+                                                 "learnMorePublicCloudsAgents":  "Control access based on all or specific apps, agents, internet resources, actions, or authentication context.",
                                                  "title":  "Cloud apps or actions"
                                              },
                     "CloudappsSelectionBlade":  {
                                                     "AgenticResources":  {
                                                                              "allAgenticResources":  "All agent resources (Preview)",
-                                                                             "allAgenticResourcesExcLower":  "all agent resources excluded",
-                                                                             "allAgenticResourcesExcluded":  "All agent resources excluded",
-                                                                             "allAgenticResourcesIncluded":  "All agent resources"
+                                                                             "allAgenticResourcesExcLower":  "all agent resources (Preview) excluded",
+                                                                             "allAgenticResourcesExcluded":  "All agent resources (Preview) excluded",
+                                                                             "allAgenticResourcesIncluded":  "All agent resources (Preview)"
                                                                          },
                                                     "AllInternetResources":  {
                                                                                  "excludedWithGSA":  "All internet resources with Global Secure Access excluded",
@@ -11603,7 +11714,13 @@
                                                                  },
                                                     "Filter":  {
                                                                    "configured":  "Configured",
+                                                                   "descriptionAgents":  "Apply policy to agent identities based on custom security attributes pre-assigned to them.",
                                                                    "label":  "Edit filter",
+                                                                   "resourceDescription":  "Select resources based on custom security attributes.",
+                                                                   "sPDescription":  "Select service principals based on custom security attributes.",
+                                                                   "titleAgents":  "Select agent identities based on attributes",
+                                                                   "titleResource":  "Select resources based on attributes",
+                                                                   "titleSP":  "Select service principals based on attributes",
                                                                    "with":  "{0} with {1}"
                                                                },
                                                     "Included":  {
@@ -11660,12 +11777,15 @@
                     "MicrosoftManagedPolicies":  {
                                                      "alertBanner":  "Microsoft-managed policies will be enabled no sooner than {0} days after creation unless you take action. We recommend that you review these policies and take the recommended actions.",
                                                      "alertBannerV2":  "Microsoft-managed policies in report-only state will be automatically turned on with advance email and {0}M365 message center{1} notifications. We recommend that you review these policies and recommended actions.",
+                                                     "bsmRecActionsGlobal2":  "When you are ready to enable, switch its state to 'on'. If you do not want to enforce this policy for your organization, switch its state to 'off'.",
                                                      "learnMoreLinkAriaLabel":  "Learn more about Microsoft-managed policies.",
                                                      "m365MessageCenterLinkAriaLabel":  "M365 message center",
                                                      "policySummaryBlockDCF":  "This policy unilaterally blocks device code flow usage across all resources and all users. As a Microsoft-managed policy, only certain properties are editable.",
+                                                     "policySummaryBlockHighRiskAgents":  "This policy blocks any sign-in attempt made by a high-risk agent identity",
                                                      "policySummaryBlockLegacyAuth":  "This policy blocks any sign-in attempt using legacy authentication and legacy authentication protocols from accessing applications. Legacy authentication refers to authentication requests made by: Clients that don't use modern authentication (e.g., Office 2010 clients). Clients that use older mail protocols such as IMAP, SMTP, or POP3.",
                                                      "policySummaryMfa":  "This policy requires some administrator roles to perform multifactor authentication when accessing Microsoft admin portals. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryMfaForAllUsers":  "This policy requires all users to perform multifactor authentication when accessing any resources. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
+                                                     "policySummaryMfaForGuestAccess":  "This policy requires all guest and external users to perform multifactor authentication when accessing your organization's resources. Requiring multifactor authentication for guests reduces the risk of compromised external accounts gaining access to your data and applications.",
                                                      "policySummaryPerUserMfaV2":  "This policy covers per-user multifactor authentication enforced users with recent sign-ins and requires them to perform MFA while accessing cloud applications. There will be no change to the end user experience as a result of this policy and your organization is sufficiently licensed to use this policy. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryPerUserMfaViaGroup":  "This policy covers per-user multifactor authentication enforced users with recent sign-ins and requires them to perform MFA while accessing cloud applications. There will be no change to the end user experience as a result of this policy and your organization is sufficiently licensed to use this policy. We'll assign eligible users into a new security group named 'Conditional Access: Per-user multifactor authentication users (a4ea6c0f-b8fb-4d29-91f1-9f8cf0601e97)'. Currently, the policy is in '{0}' mode. As a Microsoft-managed policy, only certain properties are editable.",
                                                      "policySummaryPhishingResistantMfa":  "Accounts that are assigned privileged administrative roles are frequent targets of attackers. Requiring phishing-resistant multifactor authentication (MFA) on those accounts is an easy way to reduce the risk of those accounts being compromised.",
@@ -11829,6 +11949,11 @@
                                                                                                                    "learnMoreLabel":  "enable GSA Adaptive Access Signaling."
                                                                                                                }
                                          },
+                    "ObjectPickerStrings":  {
+                                                "appId":  "App Id",
+                                                "blueprintId":  "Blueprint Id",
+                                                "objectId":  "Object Id"
+                                            },
                     "Overview":  {
                                      "SignInsProtectedByCa":  {
                                                                   "accessDenied":  "Access denied",
@@ -12098,6 +12223,7 @@
                                                                 }
                                                 },
                     "RiskRemediationValidation":  {
+                                                      "mustNotSelect":  "To enable Require Risk Remediation, you must not select {0}.",
                                                       "mustSelect":  "To enable Require Risk Remediation, you must select {0}.",
                                                       "xOrY":  "{0} or {1}"
                                                   },
@@ -12330,6 +12456,8 @@
                                         "accessRequirement2":  "Level 2",
                                         "accessRequirement3":  "Level 3",
                                         "accessRequirementsLabel":  "Accessing secured app data",
+                                        "accountRecovery":  "Recover account",
+                                        "accountRecoveryInfoText":  "This user action requires the idenity verification grant control. Please select an identity verification profile.",
                                         "appsActionsAuthTitle":  "Cloud apps, actions, or authentication context",
                                         "appsOrActionsSelectorInfoBallonText":  "Applications accessed or user actions",
                                         "appsOrActionsTitle":  "Cloud apps or actions",
@@ -12358,6 +12486,7 @@
                                                                   "usersGroups":  "Select at least one user or group"
                                                               },
                                                "learnMore":  "Control access based on who the policy will apply to, such as users and groups, workload identities, directory roles, or external guests.",
+                                               "learnMoreAgents":  "Control access based on who the policy will apply to, such as users and groups, agents, workload identities, directory roles, or external guests.",
                                                "learnMoreAriaLabel":  "Learn more about Conditional Access users, groups, and workload identities."
                                            },
                     "ValidationResult":  {
@@ -12406,7 +12535,9 @@
                                                           "requireMfa":  "Consider testing the new \"{0}\".",
                                                           "requirePasswordChangeEnabled":  "\"Require password change\" can only be used when policy is assigned to \"All cloud apps\".",
                                                           "requirePasswordChangeEnabledResource":  "\"Require password change\" can only be used when policy is assigned to \"All resources\".",
-                                                          "requireRiskRemediation":  "\"{0}\" can only be used when policy is assigned to \"{1}.\" This option requires multifactor authentication or authentication strengths controls. Other controls cannot be used. This option also requires the Session control \"Sign-in Frequency\" to be set to \"Every time.\""
+                                                          "requireRiskRemediation":  "\"{0}\" can only be used when policy is assigned to \"{1}.\" This option requires multifactor authentication or authentication strengths controls. Other controls cannot be used. This option also requires the Session control \"Sign-in Frequency\" to be set to \"Every time.\"",
+                                                          "verifiedId":  "The user action \"Recover account\" requires this control. Please select identity verification profile. No other controls are supported at this time.",
+                                                          "vidAmpWarning":  "Before creating a Conditional Access policy, make sure Verified ID is turned on as an authentication method."
                                                       },
                                          "Policies":  {
                                                           "Linux":  {
@@ -12486,6 +12617,17 @@
                                         "loadingPermissions":  "Loading permissions..."
                                     },
                     "advancedTabText":  "Advanced",
+                    "agentIdentitiesAlert":  "Some controls are not available due to 'agents' selection in policy assignment",
+                    "agentIdentitiesInfo":  "Apply policy to all agent identities.",
+                    "agentIdentitiesSelectInfo":  "Apply policy to specific agent identities in the tenant.",
+                    "agentUsersAlert":  "During public preview, block access to all resources is the only policy configuration allowed for 'All agents acting as users' selection. Additional conditions and controls are coming soon.",
+                    "agentUsersDescription":  "Agent users enable AI-powered applications to interact with systems and services that require user identities.",
+                    "agentUsersInfo":  "Apply policy to all agents acting as users.",
+                    "agentUsersSelect":  "Select agents acting as users",
+                    "agentUsersSelectTitle":  "Select agent users",
+                    "agentUsersWarning":  "All agents acting as users cannot be combined with other selections.",
+                    "agents":  "Agents (Preview)",
+                    "allAgentUsers":  "All agents acting as users (Preview)",
                     "allCloudAppsErrorBox":  "\"All cloud apps\" must be selected when \"Require password change\" grant is selected",
                     "allCloudAppsReauth":  "\"All cloud apps\" must be selected when \"Sign-in frequency every time\" session control and \"sign-in risk\" condition are selected",
                     "allCloudOrSpecificApps":  "The \"sign-in frequency every time\" session control requires \"all cloud apps\" or specifically-supported apps to be selected",
@@ -12515,6 +12657,7 @@
                     "applyConditionClientAppInfoBalloonContent":  "Configure client apps to apply the policy to specific client apps",
                     "applyConditionDevicePlatformInfoBalloonContent":  "Configure device platforms to apply the policy to specific platforms",
                     "applyConditionDeviceStateInfoBalloonContent":  "Configure device state to apply the policy to specific device state(s)",
+                    "applyConditionLocation":  "Configure Locations",
                     "applyConditionLocationInfoBalloonContent":  "Configure locations to apply the policy to trusted/untrusted locations",
                     "applyConditionSigninRiskInfoBalloonContent":  "Configure sign-in risk to apply the policy to selected risk level(s)",
                     "applyConditionUserRiskInfoBalloonContent":  "Configure user risk to apply the policy to selected risk level(s)",
@@ -12709,6 +12852,8 @@
                     "cloudappsSelectionBladeIncludedSelectorTitle":  "Select",
                     "cloudappsSelectionBladeSelectedCloudapps":  "Select apps",
                     "cloudappsSelectionBladeSelectedResources":  "Select resources",
+                    "cloudappsSelectionDescription":  "Select specific resources this policy targets.",
+                    "cloudappsSelectionTitle":  "Select specific resources",
                     "cloudappsSelectorInfoBallonText":  "Services which the user accesses to do work. For example, 'Salesforce'",
                     "cloudappsSelectorNone":  "No cloud apps, actions, or authentication context selected",
                     "cloudappsSelectorPluralExcluded":  "{0} apps excluded",
@@ -12846,7 +12991,7 @@
                     "memberSelectionCommandRemove":  "Remove",
                     "menuItemClaimProviderControls":  "Custom controls (Preview)",
                     "menuItemClassicPolicies":  "Classic policies",
-                    "menuItemDeletedPolicies":  "Deleted Policies (Preview)",
+                    "menuItemDeletedPolicies":  "Deleted Policies",
                     "menuItemInsightsAndReporting":  "Insights and reporting",
                     "menuItemManage":  "Manage",
                     "menuItemNamedLocationsPreview":  "Named locations (Preview)",
@@ -12949,6 +13094,7 @@
                     "policyConditionNetworkLocationDescription":  "Network and locations (determined by IP address range or GPS coordinates) the user is signing in from",
                     "policyConditionSigninRisk":  "Sign-in risk",
                     "policyConditionSigninRiskDescription":  "Likelihood that the sign-in is coming from someone other than the user. Risk level can be high, medium or low. Requires Microsoft Entra ID P2 license.",
+                    "policyConditionUserAndSigninRiskWarning":  "Avoid combining User Risk and Sign-in Risk in the same policy. These conditions rarely occur together, so Microsoft recommends creating separate policies - one for User Risk and another for Sign-in Risk.",
                     "policyConditionUserRisk":  "User risk",
                     "policyConditionUserRiskDescription":  "Configure user risk levels needed for policy to be enforced",
                     "policyConditioniClientApp":  "Client apps",
@@ -12968,6 +13114,7 @@
                     "policyControlRequiredPasswordChangeDisplayedName":  "Require password change",
                     "policyControlSelectAuthStrength":  "Require authentication strength",
                     "policyControlSelectRiskRemediation":  "Require risk remediation",
+                    "policyControlVerifiedIdDisplayedName":  "Require identity verification",
                     "policyControlsNoControlsSelected":  "0 controls selected",
                     "policyControlsSection":  "Access controls",
                     "policyCreatBladeTitle":  "New",
@@ -13114,12 +13261,12 @@
                     "trustedLocationStatusIconEnabled":  "Trusted status icon",
                     "tuesday":  "Tuesday",
                     "uploadInBadState":  "Unable to upload the specified file.",
-                    "userAgentOrSPSelectionBladeTitle":  "Users, agent identities or workload identities",
+                    "userAgentOrSPSelectionBladeTitle":  "Users, agents or workload identities",
                     "userAppNoneOption":  "None",
                     "userNamePlaceholderText":  "Enter User Name",
                     "userNotSetSeletorLabel":  "0 users and groups selected",
                     "userOnlySelectionBladeExcludeDescription":  "Select the users to exempt from the policy",
-                    "userOrAgentSelectionBladeTitle":  "Users or agent identities",
+                    "userOrAgentSelectionBladeTitle":  "Users or agents (Preview)",
                     "userOrGroupSelectionCountDiffBannerText":  "{0} configured in this policy have been deleted from the directory, but this doesn't affect the other users and groups in the policy. The next time you update the policy, the deleted users and/or groups will be automatically removed.",
                     "userOrSPNotSetSelectorLabel":  "0 users or workload identities selected",
                     "userOrSPSelectionBladeTitle":  "Users or workload identities",
@@ -13153,6 +13300,7 @@
                     "userSelectorUserSingular":  "1 user",
                     "userSelectorWithExclusion":  "{0} and {1}",
                     "usersGroupsLabel":  "Users and groups",
+                    "verifiedIdInfoBubble":  "Users must present a Verified ID and complete Face Check",
                     "viewApprovedAppsText":  "See list of approved client apps",
                     "viewCompliantAppsText":  "See list of policy protected client apps",
                     "viewPolicyInformation":  "View policy information",

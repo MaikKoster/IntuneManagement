@@ -635,6 +635,15 @@
                        ]
     },
     {
+        "ObjectType":  "#microsoft.graph.iosWiredNetworkConfiguration",
+        "PolicyType":  "IosWiredNetwork",
+        "PolicyTypeLanguageId":  "wiredNetwork",
+        "PlatformLanguageId":  "Ios",
+        "Categories":  [
+
+                       ]
+    },
+    {
         "ObjectType":  "#microsoft.graph.iosEnterpriseWiFiConfiguration",
         "PolicyType":  "IosWiFi",
         "PolicyTypeLanguageId":  "wiFi",
@@ -1204,6 +1213,15 @@
         "PlatformLanguageId":  "Windows10",
         "Categories":  [
                            "HealthMonitoring"
+                       ]
+    },
+    {
+        "ObjectType":  "#microsoft.graph.windowsZtdnsConfiguration",
+        "PolicyType":  "Windows10Ztdns",
+        "PolicyTypeLanguageId":  "windowsZeroTrustDns",
+        "PlatformLanguageId":  "Windows10",
+        "Categories":  [
+
                        ]
     },
     {
